@@ -1,5 +1,6 @@
 
-<form action="emp_profile_config.php" method="post" enctype="multipart/form-data" id="emp_profile_form">
+
+<form action="pds_config.php" method="post" enctype="multipart/form-data" id="emp_profile_form">
 
 
 
@@ -200,7 +201,7 @@
 
           <div class="col-lg-12 text-right mt-4 ">
 
-             <button class="btn button-2  " type="submit" name="submit"><i class="fas fa-edit"></i></button>
+             <button class="btn button-1 " type="submit" name="submit"><i class="fas fa-edit"></i></button>
 
              <!-- <button class="btn button-2  "><i class="fas fa-trash-alt"></i></button>
              <button class="btn button-2 " ><i class="fa fa-eye"></i></button> -->

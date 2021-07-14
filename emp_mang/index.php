@@ -1,6 +1,12 @@
 <?php include '../config.php';
 
-include SITE_ROOT .'/includes/header.php'; ?>
+
+include SITE_ROOT .'/includes/header.php'; 
+require '../includes/conn.php';
+?>
+
+
+
 <div class="container ">
       <div class="row">
 
@@ -48,7 +54,7 @@ include SITE_ROOT .'/includes/header.php'; ?>
            
       </div>
       <!-- end of first part -->
-
+    
       <?php include "../home/emp_mang_section.php";?>
 
       <!-- <div class="row mt-5">

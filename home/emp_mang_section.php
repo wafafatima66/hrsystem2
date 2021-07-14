@@ -1,6 +1,6 @@
 <div class="row mt-5">
 
-            <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-6 col-sm-6">
             <form class="form-inline" method="post" action="">
                   <div class="input-group">
                  
@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
       $search=$_POST['search'];
 
       $sql = "SELECT id, emp_id , emp_first_name , emp_last_name , emp_middle_name , emp_ext , emp_gender FROM employee
-      WHERE emp_first_name LIKE '%{$search}%' OR emp_last_name LIKE '%{$search}%'" ; 
+      WHERE emp_first_name LIKE '%{$search}%' OR emp_last_name LIKE '%{$search}%' OR emp_id LIKE '%{$search}%'" ; 
 
       $result = mysqli_query($conn, $sql );
 
@@ -64,8 +64,9 @@ while ($mydata = mysqli_fetch_array($result))
 } 
 $output.="</tbody>
 </table>";
-}
 
+echo $output ; 
+}
 
 
 
@@ -82,7 +83,7 @@ $output.="</tbody>
   $(document).ready(function(){
     function loadData(page){
       $.ajax({
-        url  : "pagination.php",
+        url  : "../home/pagination.php",
         type : "POST",
         cache: false,
         data : {page_no:page},

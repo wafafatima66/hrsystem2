@@ -189,15 +189,17 @@ if (isset($_POST['submit'])) {
 
         
 
-    $sql = "INSERT INTO employee (
+    $sql1 = "INSERT INTO employee (
 emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_ext , emp_dob , emp_gender , emp_civil_status  , emp_height , emp_weight , emp_blood , emp_citizen , emp_nationality , emp_resi_add , emp_resi_add_street  , emp_resi_add_municipal  , emp_resi_add_barangay  , emp_resi_add_zipcode  , emp_per_add , emp_per_add_street  , emp_per_add_municipal  , emp_per_add_barangay  , emp_per_add_zipcode  , emp_tel_no  , emp_mb_no  , emp_email , emp_contact_gs , emp_contact_pag , emp_contact_ph , emp_contact_ss , emp_contact_tin , emp_contact_agency , emp_spouse_lastname  , emp_spouse_firstname  , emp_spouse_middlename  , emp_spouse_extname  , emp_sp_occupation  , emp_sp_employer  , emp_sp_add  , emp_sp_tel  , emp_father_lastname  , emp_father_firstname  , emp_father_middlename  , emp_father_extname  , emp_mother_lastname  , emp_mother_firstname  , emp_mother_middlename  , emp_mother_extname  , ele_school_name  , ele_degree  , ele_from_date  , ele_to_date  , ele_units  , ele_award  , ele_graduation  , sec_school_name  , sec_degree  , sec_from_date  , sec_to_date  , sec_units  , sec_award  , sec_graduation  , voc_school_name  , voc_degree  , voc_from_date  , voc_to_date  , voc_units  , voc_award  , voc_graduation  , coll_school_name  , coll_degree  , coll_from_date  , coll_to_date  , coll_units  , coll_award  , coll_graduation  , gra_school_name  , gra_degree  , gra_from_date  , gra_to_date  , gra_units  , gra_award  , gra_graduation  , condition_1  , condition_2  , condition_2_des  , condition_3  , condition_3_des  , condition_4  , condition_4_des  , condition_4_date  , condition_4_status  , condition_5  , condition_5_des  , condition_6  , condition_6_des  , condition_7  , condition_7_des  , condition_8  , condition_8_des  , condition_9  , condition_9_des  , condition_10  , condition_10_des  , condition_11  , condition_11_des  , condition_12  , condition_12_des ) VALUES ( '$emp_id'  , '$emp_image'  , '$emp_first_name' , '$emp_middle_name' ,' $emp_last_name' , '$emp_ext' , '$emp_dob' , '$emp_gender' , '$emp_civil_status'  , '$emp_height' , '$emp_weight' , '$emp_blood' , '$emp_citizen' , '$emp_nationality' , '$emp_resi_add' , '$emp_resi_add_street'  , '$emp_resi_add_municipal'  , '$emp_resi_add_barangay'  , '$emp_resi_add_zipcode'  , '$emp_per_add' , '$emp_per_add_street'  , '$emp_per_add_municipal'  , '$emp_per_add_barangay'  , '$emp_per_add_zipcode'  , '$emp_tel_no'  , '$emp_mb_no'  , '$emp_email' , '$emp_contact_gs' , '$emp_contact_pag' , '$emp_contact_ph' , '$emp_contact_ss' , '$emp_contact_tin' , '$emp_contact_agency' , '$emp_spouse_lastname'  , '$emp_spouse_firstname'  , '$emp_spouse_middlename'  , '$emp_spouse_extname'  , '$emp_sp_occupation'  , '$emp_sp_employer'  , '$emp_sp_add'  , '$emp_sp_tel'  , '$emp_father_lastname'  , '$emp_father_firstname'  , '$emp_father_middlename'  , '$emp_father_extname' , '$emp_mother_lastname'  ,' $emp_mother_firstname'  , '$emp_mother_middlename'  , '$emp_mother_extname'  , '$ele_school_name'  , '$ele_degree'  , '$ele_from_date'  , '$ele_to_date'  , '$ele_units'  , '$ele_award'  , '$ele_graduation'  , '$sec_school_name'  , '$sec_degree'  , '$sec_from_date'  , '$sec_to_date'  , '$sec_units'  , '$sec_award ' , '$sec_graduation'  , '$voc_school_name'  , '$voc_degree'  , '$voc_from_date'  , '$voc_to_date'  , '$voc_units'  , '$voc_award'  , '$voc_graduation'  , '$coll_school_name'  , '$coll_degree'  , '$coll_from_date'  , '$coll_to_date'  ,' $coll_units'  , '$coll_award'  , '$coll_graduation'  , '$gra_school_name'  , '$gra_degree'  , '$gra_from_date'  , '$gra_to_date'  , '$gra_units'  , '$gra_award'  , '$gra_graduation'  , '$condition_1'  , '$condition_2'  , '$condition_2_des ' , '$condition_3'  , '$condition_3_des'  , '$condition_4'  , '$condition_4_des'  , '$condition_4_date'  , '$condition_4_status'  , '$condition_5'  , '$condition_5_des'  , '$condition_6'  , '$condition_6_des'  , '$condition_7'  , '$condition_7_des'  , '$condition_8'  , '$condition_8_des ' , '$condition_9'  , '$condition_9_des'  , '$condition_10'  , '$condition_10_des ' , '$condition_11'  , '$condition_11_des'  , '$condition_12'  , '$condition_12_des'  
 )";
 
-    if (mysqli_query($conn, $sql)) {
-        echo "New record created successfully";
-    } else {
-        echo  $conn->error;
-    }
+    // if (mysqli_query($conn, $sql)) {
+    //     echo "New record created successfully";
+    // } else {
+    //     echo  $conn->error;
+    // }
+
+    // mysqli_query($conn, $sql);
 
     // employee children 
 
@@ -219,11 +221,13 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
         $sql2 = "INSERT INTO emp_children (emp_id,emp_child_name,emp_child_dob)
             VALUES ('$emp_id', '$emp_child_name', '$emp_child_dob')";
 
-        if (mysqli_query($conn, $sql2)) {
-            echo "New record created successfully 2";
-        } else {
-            echo "Error: " . mysqli_error($conn);
-        }
+        // mysqli_query($conn, $sql2);
+
+        // if (mysqli_query($conn, $sql2)) {
+        //     echo "New record created successfully 2";
+        // } else {
+        //     echo "Error: " . mysqli_error($conn);
+        // }
     }
     }
 
@@ -253,11 +257,13 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
         $sql3 = "INSERT INTO emp_civil_service (emp_id, civil_exam_type, civil_exam_name, civil_exam_rating,civil_exam_date, civil_exam_place, civil_exam_licence_no, civil_exam_licence_val)
         VALUES ('$emp_id', '$civil_exam_type', '$civil_exam_name', '$civil_exam_rating', '$civil_exam_date', '$civil_exam_place', '$civil_exam_licence_no', '$civil_exam_licence_val')";
 
-        if (mysqli_query($conn, $sql3)) {
-            echo "New record created successfully 3";
-        } else {
-            echo "Error: " . mysqli_error($conn);
-        }
+// mysqli_query($conn, $sql3);
+
+        // if (mysqli_query($conn, $sql3)) {
+        //     echo "New record created successfully 3";
+        // } else {
+        //     echo "Error: " . mysqli_error($conn);
+        // }
     }
     }
 
@@ -287,11 +293,13 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
         $sql4 = "INSERT INTO emp_work_experience (emp_id, work_to_date, work_from_date, work_position, work_employer, work_govt_service, work_monthly_sal, work_increment ,work_status)
         VALUES ('$emp_id', '$work_to_date', '$work_from_date', '$work_position', '$work_employer', '$work_govt_service', '$work_monthly_sal', '$work_increment' , '$work_status')";
 
-        if (mysqli_query($conn, $sql4)) {
-            echo "New record created successfully 4";
-        } else {
-            echo "Error: " . mysqli_error($conn);
-        }
+// mysqli_query($conn, $sql4);
+
+        // if (mysqli_query($conn, $sql4)) {
+        //     echo "New record created successfully 4";
+        // } else {
+        //     echo "Error: " . mysqli_error($conn);
+        // }
     }
     }
     //voluntary 
@@ -318,11 +326,12 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql5 = "INSERT INTO emp_voluntary_work (emp_id, vol_name_org, vol_org_add, vol_from_date, vol_to_date, vol_no_of_hrs, vol_position )
         VALUES ('$emp_id', '$vol_name_org', '$vol_org_add', '$vol_from_date', '$vol_to_date', '$vol_no_of_hrs', '$vol_position')";
 
-            if (mysqli_query($conn, $sql5)) {
-                echo "New record created successfully 5";
-            } else {
-                echo "Error: " . mysqli_error($conn);
-            }
+// mysqli_query($conn, $sql5);
+            // if (mysqli_query($conn, $sql5)) {
+            //     echo "New record created successfully 5";
+            // } else {
+            //     echo "Error: " . mysqli_error($conn);
+            // }
         }
     }
     // training
@@ -349,11 +358,13 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql6 = "INSERT INTO emp_training (emp_id, title_of_training, training_type_of_position, training_no_of_hrs, training_from_date, training_to_date, training_conducted_by)
         VALUES ('$emp_id', '$title_of_training', '$training_type_of_position', '$training_no_of_hrs', '$training_from_date', '$training_to_date', '$training_conducted_by')";
 
-            if (mysqli_query($conn, $sql6)) {
-                echo "New record created successfully 6";
-            } else {
-                echo "Error: " . mysqli_error($conn);
-            }
+// mysqli_query($conn, $sql6);
+
+            // if (mysqli_query($conn, $sql6)) {
+            //     echo "New record created successfully 6";
+            // } else {
+            //     echo "Error: " . mysqli_error($conn);
+            // }
         }
     }
     //membership
@@ -376,11 +387,13 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql7 = "INSERT INTO emp_membership (emp_id, emp_membership)
         VALUES ('$emp_id', '$emp_membership')";
 
-            if (mysqli_query($conn, $sql7)) {
-                echo "New record created successfully 7";
-            } else {
-                echo "Error: " . mysqli_error($conn);
-            }
+// mysqli_query($conn, $sql7);
+
+            // if (mysqli_query($conn, $sql7)) {
+            //     echo "New record created successfully 7";
+            // } else {
+            //     echo "Error: " . mysqli_error($conn);
+            // }
         }
     }
     // aacademic 
@@ -402,11 +415,12 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql8 = "INSERT INTO emp_non_academic (emp_id, emp_non_academic)
         VALUES ('$emp_id', '$emp_non_academic')";
 
-            if (mysqli_query($conn, $sql8)) {
-                echo "New record created successfully 8";
-            } else {
-                echo "Error: " . mysqli_error($conn);
-            }
+// mysqli_query($conn, $sql8);
+            // if (mysqli_query($conn, $sql8)) {
+            //     echo "New record created successfully 8";
+            // } else {
+            //     echo "Error: " . mysqli_error($conn);
+            // }
         }
     }
     // special skills
@@ -431,11 +445,12 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql9 = "INSERT INTO emp_special_skills (emp_id, emp_special_skills)
         VALUES ('$emp_id', '$emp_special_skills')";
 
-            if (mysqli_query($conn, $sql9)) {
-                echo "New record created successfully 9";
-            } else {
-                echo "Error: " . mysqli_error($conn);
-            }
+// mysqli_query($conn, $sql9);
+            // if (mysqli_query($conn, $sql9)) {
+            //     echo "New record created successfully 9";
+            // } else {
+            //     echo "Error: " . mysqli_error($conn);
+            // }
         }
     }
 
@@ -461,11 +476,12 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql10 = "INSERT INTO emp_reference (emp_id, ref_full_name, ref_add, ref_tel)
         VALUES ('$emp_id', '$ref_full_name', '$ref_add', '$ref_tel')";
 
-            if (mysqli_query($conn, $sql10)) {
-                echo "New record created successfully 10";
-            } else {
-                echo "Error: " . mysqli_error($conn);
-            }
+// mysqli_query($conn, $sql10);
+            // if (mysqli_query($conn, $sql10)) {
+            //     echo "New record created successfully 10";
+            // } else {
+            //     echo "Error: " . mysqli_error($conn);
+            // }
         }
     }
     // govt id 
@@ -488,11 +504,27 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql11 = "INSERT INTO emp_govt_id (emp_id,emp_gov_issued_id, emp_gov_issued_id_type)
         VALUES ('$emp_id', '$emp_gov_issued_id', '$emp_gov_issued_id_type')";
 
-            if (mysqli_query($conn, $sql11)) {
-                echo "New record created successfully 11";
-            } else {
-                echo "Error: " . mysqli_error($conn);
-            }
+// mysqli_query($conn, $sql11);
+            // if (mysqli_query($conn, $sql11)) {
+            //     echo "New record created successfully 11";
+            // } else {
+            //     echo "Error: " . mysqli_error($conn);
+            // }
         }
     }
+
+    if (mysqli_query($conn, $sql1) && mysqli_query($conn, $sql2) && mysqli_query($conn, $sql3) && mysqli_query($conn, $sql4) && mysqli_query($conn, $sql5) && mysqli_query($conn, $sql6) && mysqli_query($conn, $sql7) && mysqli_query($conn, $sql8) && mysqli_query($conn, $sql9) && mysqli_query($conn, $sql10) && mysqli_query($conn, $sql11))
+     {
+       
+        $sql = mysqli_query($conn,"select id from employee where emp_id = '$emp_id' ");
+   
+        $row = mysqli_fetch_array($sql,MYSQLI_ASSOC);
+        $id = $row['id'];
+
+        header("Location:../emp_mang/emp_profile.php?id=".$id."&success");
+    
+       } else {
+           echo  '<script>toastr.error("Employee not updated. Try again !")</script>';
+        
+       }
 }

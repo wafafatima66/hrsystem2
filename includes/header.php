@@ -17,6 +17,7 @@ if(!isset($_SESSION['login_user'])){
    
    $row = mysqli_fetch_array($sql,MYSQLI_ASSOC);
    $admin_photo_to_show = '../img/'.$row['admin_photo'];
+
 }
 
 ?>
@@ -49,34 +50,69 @@ function active($currect_page){
 
 ?>
 
-        <a href="../home/" class="list-group-item d-inline-block collapsed  <?php active('home');?>" >
-        <span class="d-none d-md-inline">Dashboard</span> <i class="fa fa-home"></i>
-        </a>
+<?php if($row['role'] == 'Super Admin'){ ?>
 
-        <a href="../emp_mang/" class="list-group-item d-inline-block collapsed <?php active('emp_mang');?>"><span class="d-none d-md-inline">Employee
-            Management</span><i class="fas fa-users"></i> </a>
+<a href="../home/" class="list-group-item d-inline-block collapsed  <?php active('home');?>" >
+<span class="d-none d-md-inline">Dashboard</span> <i class="fa fa-home"></i>
+</a>
 
-        <a href="../leave_mang/" class="list-group-item d-inline-block collapsed <?php active('leave_mang');?>"><span class="d-none d-md-inline">Leave
-            Management</span><i class="fa fa-calendar"></i>
-        </a>
+<a href="../emp_mang/" class="list-group-item d-inline-block collapsed <?php active('emp_mang');?>"><span class="d-none d-md-inline">Employee
+    Management</span><i class="fas fa-users"></i> </a>
 
-        <a href="#menu1" class="list-group-item d-inline-block collapsed"><span class="d-none d-md-inline">Performance
-            Management</span> <i class="fas fa-chart-line"></i>
-        </a>
+<a href="../leave_mang/" class="list-group-item d-inline-block collapsed <?php active('leave_mang');?>"><span class="d-none d-md-inline">Leave
+    Management</span><i class="fa fa-calendar"></i>
+</a>
 
-        <a href="../learning/" class="list-group-item d-inline-block collapsed <?php active('learning');?>"><span class="d-none d-md-inline">Learning &
-            Development</span><i class="fas fa-chalkboard-teacher"></i> </a>
+<a href="../performance_mang/" class="list-group-item d-inline-block collapsed <?php active('performance_mang');?>"><span class="d-none d-md-inline">Performance
+    Management</span> <i class="fas fa-chart-line"></i>
+</a>
 
-        <a href="../hiring/" class="list-group-item d-inline-block collapsed <?php active('hiring');?>"><span class="d-none d-md-inline">Hiring &
-            Appointment</span><i class="fas fa-calendar-check"></i>
-        </a>
+<a href="../learning/" class="list-group-item d-inline-block collapsed <?php active('learning');?>"><span class="d-none d-md-inline">Learning &
+    Development</span><i class="fas fa-chalkboard-teacher"></i> </a>
 
-        <a href="#" class="list-group-item d-inline-block collapsed " id="myDIV"><span class="d-none d-md-inline">Reports
-            Management</span><i class="fas fa-copy"></i>
-        </a>
+<a href="../hiring/" class="list-group-item d-inline-block collapsed <?php active('hiring');?>"><span class="d-none d-md-inline">Hiring &
+    Appointment</span><i class="fas fa-calendar-check"></i>
+</a>
 
-        <a href="../user_mang/" class="list-group-item d-inline-block collapsed <?php active('user_mang');?> " id="myDIV"><span class="d-none d-md-inline">User Management</span><i class="fas fa-copy"></i>
-        </a>
+<a href="#" class="list-group-item d-inline-block collapsed " id="myDIV"><span class="d-none d-md-inline">Reports
+    Management</span><i class="fas fa-copy"></i>
+</a>
+
+<a href="../user_mang/" class="list-group-item d-inline-block collapsed <?php active('user_mang');?> " id="myDIV"><span class="d-none d-md-inline">User Management</span><i class="fas fa-copy"></i>
+</a>
+
+<?php 
+
+}else if($row['role'] == 'Employee') {
+  
+  $emp_id = $row['emp_id'] ; 
+  $sql = "SELECT id FROM employee WHERE emp_id = '$emp_id'";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                $id = $row['id'] ; 
+  ?>
+
+<a href="../emp_mang/emp_profile.php?id=<?php echo $id?>" class="list-group-item d-inline-block collapsed <?php active('emp_mang');?>"><span class="d-none d-md-inline">Profile Management</span><i class="fas fa-users"></i> </a>
+
+<a href="../emp_leave_mang/" class="list-group-item d-inline-block collapsed <?php active('emp_leave_mang');?>"><span class="d-none d-md-inline">Leave
+    Application</span><i class="fa fa-calendar"></i>
+</a>
+
+<a href="../performance_mang/emp_profile.php?id=<?php echo $id?>" class="list-group-item d-inline-block collapsed <?php active('performance_mang');?>"><span class="d-none d-md-inline">Performance
+   Submission</span> <i class="fas fa-chart-line"></i>
+</a>
+
+<a href="../learning/" class="list-group-item d-inline-block collapsed <?php active('learning');?>"><span class="d-none d-md-inline">Learning &
+    Development</span><i class="fas fa-chalkboard-teacher"></i> </a>
+
+    <a href="../emp_hiring/" class="list-group-item d-inline-block collapsed <?php active('emp_hiring');?>"><span class="d-none d-md-inline">Hiring &
+    Appointment</span><i class="fas fa-calendar-check"></i>
+</a>
+
+
+<?php } ?>
+
+       
 
 
 
@@ -88,7 +124,15 @@ function active($currect_page){
           class="text-dark fa fa-navicon fa-lg py-2 p-1"></i></a> -->
       <nav class="navbar main-header ">
         <h4 class="">HUMAN RESOURCES MANAGEMENT SYSTEM</h4>
-       <a href="../account_mang/"><i class="fas fa-cog" style="text-align: right;"></i></a> 
+
+        <div class="text-right">
+        <a href="../account_mang/"><i class="fas fa-cog mr-3" ></i></a> 
+        <a href="../includes/logout.php">
+                  <i class="fas fa-sign-out-alt mr-3"  ></i>
+                </a>
+        </div>
+     
+              
       </nav>
      
       <div class="page-body">

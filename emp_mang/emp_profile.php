@@ -2,6 +2,13 @@
 include SITE_ROOT .'/includes/header.php'; 
 require '../includes/conn.php';
 
+
+if(isset($_GET['success'])){
+      echo  '<script>toastr.success("Employee updated successfully")</script>';
+}
+
+
+
 if(isset($_GET['id'])){
 
       $id =  $_GET['id'];
@@ -55,10 +62,11 @@ if(isset($_GET['id'])){
                   <h6>Position/officer</h6>
 
             </div>
-            <div class="col-lg-2 col-sm-4"></div>
+            <div class="col-lg-1 col-sm-4"></div>
 
-            <div class="col-lg-4 col-sm-12 d-flex align-items-start flex-column ">
+            <div class="col-lg-5 col-sm-12 d-flex align-items-start flex-column ">
                   <div class="d-flex justify-content-center">
+                        <h5 class="emp_profile_button" id="agency">Agency Profile | </h5>
                         <h5 class="emp_profile_button" id="pds">PDS | </h5>
                         <h5 class="emp_profile_button" id="leave">Leave ledger | </h5>
                         <h5 class="emp_profile_button" id="file">File 201</h5>
@@ -72,17 +80,23 @@ if(isset($_GET['id'])){
       </div>
       <!-- end of first part -->
 
-      <div class="pds-tab emp_profile_tab" style="display: block;">
-            <?php include "pds.php";?>
+      <div class="leave-tab emp_profile_tab" >
+            <?php include "leave.php";?>
       </div>
 
-      <div class="leave-tab emp_profile_tab">
-            <?php include "leave.php";?>
+      
+      <div class="agency-tab emp_profile_tab" >
+            <?php include "agency.php";?>
       </div>
 
       <div class="file-tab emp_profile_tab">
             <?php include "file.php";?>
       </div>
+
+      <div class="pds-tab emp_profile_tab" style="display: block;">
+            <?php include "pds.php";?>
+      </div>
+      
     
 
 </div>
@@ -102,6 +116,7 @@ if(isset($_GET['id'])){
     });
   });
 
+// for the image preview
   function previewFile(input) {
       var file = $("input[type=file]").get(0).files[0];
 

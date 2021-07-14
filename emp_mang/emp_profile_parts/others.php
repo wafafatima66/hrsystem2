@@ -110,7 +110,7 @@
         <p>a.within the third degree?</p>
     </div>
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_1" id="" class="form-control text-input ">
+        <select name="condition_1"  class="form-control text-input ">
             <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_1'] == "Yes"  ) {
@@ -130,7 +130,7 @@
     </div>
 
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_2" id="" class="form-control text-input ">
+        <select name="condition_2"  class="form-control text-input ">
         <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_2'] == "Yes"  ) {
@@ -155,7 +155,7 @@
     </div>
 
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_3" id="" class="form-control text-input ">
+        <select name="condition_3"  class="form-control text-input ">
         <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_3'] == "Yes"  ) {
@@ -181,7 +181,7 @@
     </div>
 
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_4" id="" class="form-control text-input ">
+        <select name="condition_4"  class="form-control text-input ">
         <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_4'] == "Yes"  ) {
@@ -220,7 +220,7 @@
     </div>
 
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_5" id="" class="form-control text-input ">
+        <select name="condition_5"  class="form-control text-input ">
         <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_5'] == "Yes"  ) {
@@ -247,7 +247,7 @@
 
 
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_6" id="" class="form-control text-input ">
+        <select name="condition_6"  class="form-control text-input ">
         <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_6'] == "Yes"  ) {
@@ -275,7 +275,7 @@
 
 
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_7" id="" class="form-control text-input ">
+        <select name="condition_7"  class="form-control text-input ">
         <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_7'] == "Yes"  ) {
@@ -301,7 +301,7 @@
 
 
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_8" id="" class="form-control text-input ">
+        <select name="condition_8"  class="form-control text-input ">
         <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_8'] == "Yes"  ) {
@@ -328,7 +328,7 @@
 
 
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_9" id="" class="form-control text-input ">
+        <select name="condition_9"  class="form-control text-input ">
         <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_9'] == "Yes"  ) {
@@ -354,7 +354,7 @@
 
 
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_10" id="" class="form-control text-input ">
+        <select name="condition_10"  class="form-control text-input ">
         <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_10'] == "Yes"  ) {
@@ -380,7 +380,7 @@
 
 
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_11" id="" class="form-control text-input ">
+        <select name="condition_11"  class="form-control text-input ">
         <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_11'] == "Yes"  ) {
@@ -406,7 +406,7 @@
 
 
     <div class="col-lg-2 col-sm-12">
-        <select name="condition_12" id="" class="form-control text-input ">
+        <select name="condition_12"  class="form-control text-input ">
         <option value="">Select</option>
             <option value="Yes"
             <?php if ($mydata['condition_12'] == "Yes"  ) {

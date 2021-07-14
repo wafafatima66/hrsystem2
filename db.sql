@@ -241,3 +241,19 @@
 -- applicant table will have item no ,  if assigned == 1 , its in  a filled item . 
 
 -- two tables item and applicant table 
+
+-- performance table
+`emp_id` varchar(100) ,
+`excel_file_type` varchar(100) ,
+`year` varchar(100) ,
+`rating_period` varchar(100) ,
+`rating` varchar(100) ,
+`excel_file_name` varchar(100) ,
+
+-- emp files
+`emp_id` varchar(100) ,
+`file_folder` varchar(100) ,
+`file_name` varchar(100) ,
+`file_type` varchar(100) ,
+`file_size` varchar(100) ,
+`file_date` varchar(100) ,

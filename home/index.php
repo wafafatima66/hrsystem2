@@ -58,7 +58,7 @@ require '../includes/conn.php';
       </div>
       <!-- end of first part -->
 
-      
+     
       <?php include "emp_mang_section.php";?>
      
 </div>

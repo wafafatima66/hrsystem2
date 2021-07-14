@@ -92,6 +92,12 @@ body {
 a{
     text-decoration: none;
 }
+
+.container-box{
+    padding:20px;
+    border:solid 1px #505A43 ; 
+    margin-top: 30px;
+}
 /* login page */
 
 .login-page{
@@ -395,4 +401,35 @@ a{
     height: 180px;
     width: 100%;
     background-color: #505A43;
+}
+
+/* performance page */
+.performance-box{
+    border: solid 1px darkolivegreen;
+    padding: 50px;
+    background-color:#E1FBEE;
+    margin-top:20px ; 
+    margin-bottom: 30px;
+}
+.performance-col{
+    border: solid 1px grey ;
+    padding: 20px;
+}
+.performance-col h3{
+    font-size:70px;
+}
+/* emp hiring page */
+.emp_hiring_box{
+    padding:20px;
+    border:solid 1px #505A43 ; 
+    margin-top: 30px;
+}
+.emp_hiring_box h6{
+    cursor: pointer;
+}
+/* emp profile file */
+
+.file-box i{
+    font-size: 80px;
+    color:#505A43 ; 
 }

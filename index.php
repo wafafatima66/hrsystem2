@@ -15,41 +15,65 @@
 
 <body>
 
-    <?php require dirname(__FILE__).'/includes/conn.php';
+    <?php require dirname(__FILE__) . '/includes/conn.php';
 
-session_start();
+    session_start();
 
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    // username and password sent from form 
-    
-    $username = mysqli_real_escape_string($conn,$_POST['username']);
-    $password = mysqli_real_escape_string($conn,$_POST['password']); 
-    
-    $sql = "SELECT id FROM users WHERE username = '$username' and password = '$password'";
-    $result = mysqli_query($conn,$sql);
-    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-   // $active = $row['active'];
-    
-    $count = mysqli_num_rows($result);
-    
-    // If result matched $myusername and $mypassword, table row must be 1 row
-      
-    if($count == 1) {
-      $userid = $row['id'];
-       $_SESSION['login_user'] = $userid;
-       header("location:home/index.php");
-    }else {
-        header("location:index.php?error");
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // username and password sent from form 
+
+        $username = mysqli_real_escape_string($conn, $_POST['username']);
+        $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+        $sql = "SELECT * FROM users WHERE username = '$username' and password = '$password'";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        // $active = $row['active'];
+
+        $count = mysqli_num_rows($result);
+        $userid = $row['id'];
+        $_SESSION['login_user'] = $userid;
+
+
+        // If result matched $myusername and $mypassword, table row must be 1 row
+
+        // if ($count == 1 && $row['role'] == 'Super Admin') {
+
+        //     $_SESSION['login_user'] = $userid;
+        //     header("location:home/index.php");
+        // } else if ($count == 1 && $row['role'] == 'Employee') {
+
+        //     $_SESSION['login_user'] = $userid;
+        //     header("location:emp_mang/index.php");
+        // } else {
+        //     header("location:index.php?error");
+        // }
+
+        if ($count == 1){
+            if($row['role'] == 'Super Admin'){
+                header("location:home/index.php");
+            }else if($row['role'] == 'Employee'){
+
+                $emp_id = $row['emp_id'];
+                $sql = "SELECT id FROM employee WHERE emp_id = '$emp_id'";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+                header("location:emp_mang/emp_profile.php?id=".$row["id"]);
+            }
+        }else {
+                header("location:index.php?error");
+            }
+
     }
- }
 
-?>
+    ?>
 
 
     <div class="login-page">
 
-  
+
 
         <div class="container">
             <div class="row">
@@ -128,12 +152,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <?php
 
-                            if(isset($_GET['error'])){
+                        if (isset($_GET['error'])) {
 
-                                echo'<p class="mt-5">Your Login Name or Password is invalid</p>';
-
-                                }  
-                            ?>
+                            echo '<p class="mt-5">Your Login Name or Password is invalid</p>';
+                        }
+                        ?>
                     </div>
 
 
@@ -145,13 +168,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <nav class="navbar main-header ">
-    <h4 class="mx-auto">HUMAN RESOURCES MANAGEMENT SYSTEM</h4>
-    <div class="text-right">
-        <h6 class="">Ajax Version 1.01</h6>
-    </div>
-</nav>
+        <h4 class="mx-auto">HUMAN RESOURCES MANAGEMENT SYSTEM</h4>
+        <div class="text-right">
+            <h6 class="">Ajax Version 1.01</h6>
+        </div>
+    </nav>
 
-</footer> -->
+    </footer> -->
 
 </body>
 
