@@ -54,25 +54,25 @@ if($rowcount == 0 ){
   <div class="form-row">
 
     <div class="col-lg-3 col-sm-6 text-center">
-      <h6>PDS</h6>
+      <h5>PDS</h5>
 
       <a data-id="<?php echo $emp_id?>" data-folder="pds" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open" name="pds"></i></a>
     </div>
 
     <div class="col-lg-3 col-sm-6 text-center">
-      <h6>IPCR</h6>
+      <h5>IPCR</h5>
 
       <a data-id="<?php echo $emp_id?>" data-folder="ipcr" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open" name="ipcr"></i></a>
     </div>
 
 
     <div class="col-lg-3 col-sm-6 text-center">
-      <h6>SALN</h6>
+      <h5>SALN</h5>
       <a data-id="<?php echo $emp_id?>" data-folder="saln" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
     </div>
 
     <div class="col-lg-3 col-sm-6 text-center">
-      <h6>OTHERS</h6>
+      <h5>OTHERS</h5>
       <a data-id="<?php echo $emp_id?>" data-folder="others" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
     </div>
 
@@ -99,12 +99,12 @@ if($rowcount == 0 ){
 
       </div>
 
-      <div class="col-lg-4 col-sm-6">
+      <div class="col-lg-4 col-sm-6 mt-1">
         <input type="file" name="upload_file" class="form-control text-input" />
       </div>
 
 
-      <div class="col-lg-2 col-sm-6">
+      <div class="col-lg-2 col-sm-6 mt-1">
         <button class="btn button-2" type="submit" name="submit">UPLOAD</button>
       </div>
 

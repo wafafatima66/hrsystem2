@@ -35,17 +35,17 @@ if($runquery == true){
 
                     <div class="col-lg-4 col-sm-6 form-inline">
                         <label for="" class="mx-2">Item No</label>
-                        <input type="text" class=" form-control text-input" placeholder="" value="<?php echo $mydate['item_no'];?>">
+                        <input type="text" class=" form-control text-input" placeholder="" value="<?php echo $mydata['item_no'];?>">
                     </div>
 
                     <div class="col-lg-4 col-sm-6 form-inline">
                         <label for="" class="mx-2">Plantilla</label>
-                        <input type="text" class=" form-control text-input" placeholder="" value="<?php echo $mydate['position'];?>">
+                        <input type="text" class=" form-control text-input" placeholder="" value="<?php echo $mydata['position'];?>">
                     </div>
 
                     <div class="col-lg-4 col-sm-6 form-inline">
                         <label for="" class="mx-2">Salary Grade</label>
-                        <input type="text" class="form-control text-input" placeholder="" value="<?php echo $mydate['salary_grade'];?>">
+                        <input type="text" class="form-control text-input" placeholder="" value="<?php echo $mydata['salary_grade'];?>">
                     </div>
 
                 </div>
@@ -61,7 +61,7 @@ if($runquery == true){
 
                     <div class="col-lg-4 col-sm-6 form-inline">
                         <label for="" class="mx-2">Date created</label>
-                        <input type="text" class=" form-control text-input" placeholder="Date Created" value="<?php echo $mydate['date_created'];?>">
+                        <input type="text" class=" form-control text-input" placeholder="Date Created" value="<?php echo $mydata['date_created'];?>">
                     </div>
 
                     <div class="col-lg-4 col-sm-6 form-inline">
@@ -97,7 +97,7 @@ if($runquery == true){
                     </div>
                     </div> 
 
-                    <table class="table home-page-table mt-4 table-striped ">
+                    <table class="table home-page-table mt-4 table-striped table-responsive-sm">
             <thead>
                 <tr>
                     <th scope="col">No</th>

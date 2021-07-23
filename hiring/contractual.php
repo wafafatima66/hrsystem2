@@ -1,7 +1,7 @@
 <div class="row mt-5 ">
 
     <div class=" col-lg-12 col-sm-12 mb-3">
-        <h4>ITEM MANAGEMENT - JOB ORDER/CONTRACTUAL </h4>
+        <h4 class="h4-heading">ITEM MANAGEMENT - JOB ORDER/CONTRACTUAL </h4>
     </div>
 
     <div class="col-lg-5 col-sm-6">
@@ -18,21 +18,18 @@
 
     </div>
 
-    <div class="ml-auto col-lg-3 col-sm-6">
-        <div class="dropdown">
-            <button class=" btn dropdown-toggle home-page-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Filter By
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </div>
+        <div class="ml-auto col-lg-3 col-sm-6">
+    
+    <select name="hiring_dropdown" id="hiring_dropdown" class="form-control text-input">
+        <option value="">Filter By</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+
     </div>
 </div>
 
-<table class="table home-page-table mt-4 table-striped ">
+<table class="table home-page-table mt-4 table-striped table-responsive-sm table-sm">
     <thead>
         <tr>
             <th scope="col">Employee Id</th>

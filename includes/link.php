@@ -37,9 +37,10 @@
 
     <script src="../assets/js/bootstrap-4-3.js"></script>
 
-    <script src="../assets/js/main.js"></script>
+  
 
     <script src="../assets/js/ajax-3-5.js"></script>
+    <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

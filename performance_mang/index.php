@@ -5,7 +5,7 @@ include SITE_ROOT . '/includes/header.php'; ?>
 <div class="row mt-5 ">
 
   <div class=" col-lg-12 col-sm-12">
-    <h4>PERFORMANCE MANAGEMENT</h4>
+    <h4 class="h4-heading">PERFORMANCE MANAGEMENT</h4>
   </div>
 
 </div>

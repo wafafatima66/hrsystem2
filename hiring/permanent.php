@@ -1,7 +1,7 @@
 <div class="row mt-5 ">
 
   <div class=" col-lg-12 col-sm-12 mb-3">
-    <h4>ITEM MANAGEMENT - PERMANENT </h4>
+    <h4 class="h4-heading">ITEM MANAGEMENT - PERMANENT </h4>
   </div>
 
   <div class="col-lg-5 col-sm-6">
@@ -30,15 +30,16 @@
   </div>
 </div>
 
-<table class="table home-page-table mt-4 table-striped ">
+<table class="table home-page-table mt-4 table-striped table-responsive-sm table-sm">
   <thead>
     <tr>
       <th scope="col">Item No</th>
       <th scope="col">Plantilla</th>
       <th scope="col">Date created</th>
       <th scope="col">date posted</th>
-      <th scope="col">date filled</th>
+      <th scope="col">Date filled</th>
       <th scope="col">Appointed employee</th>
+      <th scope="col">Type</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -62,9 +63,10 @@
         <td></td>
         <td></td>
         <td></td>
+        <td><?php if ($mydata['filled']== '0'){echo "Unfilled" ;  } else {  echo "Filled" ;   }?></td>
         <td>
         <a href='<?php if ($mydata['filled']== '0'){
-                echo "unfilled.php?id=".$mydata['id'] ; 
+                echo "unfilled.php?id=".$mydata['id']; 
             }else {
               echo "filled.php?id=".$mydata['id'];
             }?>'>
@@ -95,7 +97,7 @@
 
         <div class="form-inline mt-3 p-3" style="background-color: #9EB87C;">
 
-          <input type="radio" name="job_type" value="Original" class=" m-2 ">
+          <input type="radio" name="job_type" value="Original" class=" m-2 " checked>
           <label for="">Original</label>
 
 

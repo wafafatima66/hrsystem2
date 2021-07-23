@@ -23,7 +23,7 @@
 
         <div class="form-inline mt-3 p-3" style="background-color: #9EB87C;">
 
-          <input type="radio" name="job_type" value="Permanent" class=" m-2 ">
+          <input type="radio" name="job_type" value="Permanent" class=" m-2 " checked>
           <label for="">Permanent/Regular</label>
 
 

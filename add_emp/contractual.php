@@ -30,14 +30,19 @@ if (isset($_POST['submit-con'])) {
 
     VALUES ('$emp_id','$emp_first_name', '$emp_last_name', '$emp_middle_name', '$emp_ext', '$emp_gender')";
 
-    if (mysqli_query($conn, $sql3)  && mysqli_query($conn, $sql2)) {
+    // adding for leave credits 
+
+    $year = date("Y");
+
+
+    $sql4 = "INSERT INTO `leave_credits_result` (`emp_id`, `year`, `vl_pts_1`, `vl_pts_2`, `vl_pts_3`, `vl_pts_4`, `vl_pts_5`, `vl_pts_6`, `vl_pts_7`, `vl_pts_8`, `vl_pts_9`, `vl_pts_10`, `vl_pts_11`, `vl_pts_12`, `sl_pts_1`, `sl_pts_2`, `sl_pts_3`, `sl_pts_4`, `sl_pts_5`, `sl_pts_6`, `sl_pts_7`, `sl_pts_8`, `sl_pts_9`, `sl_pts_10`, `sl_pts_11`, `sl_pts_12`) VALUES ('$emp_id', '$year', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25');";
+
+    if (mysqli_query($conn, $sql3) && mysqli_query($conn, $sql2) && mysqli_query($conn, $sql4)) {
 
         echo  '<script>toastr.success("Employee added successfully")</script>';
     } else {
         echo  '<script>toastr.error("Employee not added. Try again !")</script>';
     }
-
-    // echo $emp_first_name ; 
 
 }
 

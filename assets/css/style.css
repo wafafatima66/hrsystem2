@@ -27,7 +27,7 @@
          url('../fonts/merriweather-v22-latin-regular.svg#Merriweather') format('svg'); /* Legacy iOS */
   }
 body {
-    height: 100%;
+    /* height: 100%; */
     background-color: #F3F3F3;
     /* font-family: 'Merriweather'; */
     /* font-weight: 300; */
@@ -98,6 +98,29 @@ a{
     border:solid 1px #505A43 ; 
     margin-top: 30px;
 }
+
+.date-input {
+    font-size: 12px;
+}
+
+@media (max-width:768px) {
+    .responsive-label {
+        font-size: 7px;
+    }
+    .date-input {
+        font-size: 7px;
+    }
+    .text-input {
+        font-size: 10px;
+    }
+    .button-1 {
+        font-size: 10px;
+    }
+    .button-2 {
+        font-size: 10px;
+    }
+}
+
 /* login page */
 
 .login-page{
@@ -125,6 +148,13 @@ a{
     color: #505A43;
    
 }
+
+@media (max-width:768px) {
+.responsive-login-part{
+    display: none;
+}
+}
+
 /* main page layout */
 #sidebar {
     overflow: hidden;
@@ -386,6 +416,11 @@ a{
 .emp_profile_button{
     cursor: pointer;
 }
+@media (max-width:768px) {
+.emp-profile-box-1 h5{
+    font-size:12px;
+}
+}
 
 /* education profile parts */
 #collapseThree h5{
@@ -406,17 +441,21 @@ a{
 /* performance page */
 .performance-box{
     border: solid 1px darkolivegreen;
-    padding: 50px;
     background-color:#E1FBEE;
     margin-top:20px ; 
     margin-bottom: 30px;
+    height: 400px;
+    overflow: scroll;
 }
 .performance-col{
     border: solid 1px grey ;
     padding: 20px;
 }
 .performance-col h3{
-    font-size:70px;
+    font-size:40px;
+}
+.performance-col p{
+  
 }
 /* emp hiring page */
 .emp_hiring_box{
@@ -426,6 +465,14 @@ a{
 }
 .emp_hiring_box h6{
     cursor: pointer;
+    margin-top: 15px;
+}
+
+@media (max-width:768px) {
+    .emp_hiring_box h6{
+        display: block;
+    }
+    
 }
 /* emp profile file */
 
@@ -433,3 +480,14 @@ a{
     font-size: 80px;
     color:#505A43 ; 
 }
+
+/* report manag */
+.upload-field{
+    border: 1px #fc7e43 solid;
+    padding: 20px;
+}
+.inner-upload-field{
+    border: 4px dotted #fc7e43;
+    padding: 20px;
+}
+

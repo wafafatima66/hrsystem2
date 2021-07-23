@@ -1,21 +1,21 @@
 <!--body section of OTHER INFORMATION-->
 
 <div class="form-row mt-3">
-    <div class="col-lg-4 col-sm-12">
-        <label for="">SPECIAL SKILLS AND HOBBIES</label>
+    <div class="col-lg-4 col-sm-4 col-4">
+        <label for="" class="responsive-label">SPECIAL SKILLS AND HOBBIES</label>
     </div>
-    <div class="col-lg-4 col-sm-12">
-        <label for="">NON-ACADEMIC DISTINCTION/RECOGNITION</label>
+    <div class="col-lg-4 col-sm-4 col-4">
+        <label for="" class="responsive-label">NON-ACADEMIC DISTINCTION/RECOGNITION</label>
     </div>
-    <div class="col-lg-4 col-sm-12">
-        <label for="">MEMBERSHIP IN ASSOCIATION/ORGANIZATION</label>
+    <div class="col-lg-4 col-sm-4 col-4">
+        <label for="" class="responsive-label">MEMBERSHIP IN ASSOCIATION/ORGANIZATION</label>
     </div>
 </div>
 
 <div class="skills_wrapper">
 
 
-    <div class="form-row mt-3">
+    <div class="form-row">
 
         <?php
 
@@ -27,13 +27,13 @@
 
             while ($mydata1 = $runquery->fetch_assoc()) {  ?>
 
-                <div class="col-lg-4 col-sm-12 mt-3">
+                <div class="col-lg-4 col-sm-4 col-4 mt-3">
                     <input type="text" class="form-control text-input" value="<?php echo $mydata1['emp_special_skills'] ?>" name="emp_special_skills[]">
                 </div>
 
         <?php }
         } else {?>
-                <div class="col-lg-4 col-sm-12 mt-3">
+                <div class="col-lg-4 col-sm-4 col-4 mt-3">
                     <input type="text" class="form-control text-input" value="" name="emp_special_skills[]">
                 </div>
       <?php  }?>
@@ -48,13 +48,13 @@
 
             while ($mydata2 = $runquery->fetch_assoc()) {  ?>
 
-                <div class="col-lg-4 col-sm-12 mt-3">
+                <div class="col-lg-4 col-sm-4 col-4 mt-3">
                     <input type="text" class="form-control text-input" value="<?php echo $mydata2['emp_non_academic'] ?>" name="emp_non_academic[]">
                 </div>
 
         <?php }
         } else {?>
-           <div class="col-lg-4 col-sm-12 mt-3">
+           <div class="col-lg-4 col-sm-4 col-4 mt-3">
                     <input type="text" class="form-control text-input" value="" name="emp_non_academic[]">
                 </div>
   <?php  }?>
@@ -69,13 +69,13 @@
 
             while ($mydata3 = $runquery->fetch_assoc()) {  ?>
 
-                <div class="col-lg-4 col-sm-12 mt-3">
+                <div class="col-lg-4 col-sm-4 col-4 mt-3">
                     <input type="text" class="form-control text-input" value="<?php echo $mydata3['emp_membership'] ?>" name="emp_membership[]">
                 </div>
 
         <?php }
         } else {?>
-            <div class="col-lg-4 col-sm-12 mt-3">
+            <div class="col-lg-4 col-sm-4 col-4 mt-3">
                     <input type="text" class="form-control text-input" value="" name="emp_membership[]">
                 </div>
   <?php  }?>
@@ -433,7 +433,7 @@
         var addButton = $('.add_skills_button'); //Add button selector
         var wrapper = $('.skills_wrapper'); //Input field wrapper
         var fieldHTML =
-            '<div class="form-row mt-3"> <div class="col-lg-4 col-sm-12"> <input type="text" class="form-control text-input"  value="" name="emp_special_skills[]"> </div> <div class="col-lg-4 col-sm-12"> <input type="text" class="form-control text-input"  value=""  name="emp_non_academic[]"> </div> <div class="col-lg-4 col-sm-12"> <input type="text" class="form-control text-input"  value=""  name="emp_membership[]"> </div> </div>';
+            '<div class="form-row"> <div class="col-lg-4 col-sm-4 col-4 mt-3"> <input type="text" class="form-control text-input"  value="" name="emp_special_skills[]"> </div> <div class="col-lg-4 col-sm-4 col-4 mt-3"> <input type="text" class="form-control text-input"  value=""  name="emp_non_academic[]"> </div> <div class="col-lg-4 col-sm-4 col-4 mt-3"> <input type="text" class="form-control text-input"  value=""  name="emp_membership[]"> </div> </div>';
 
            
 

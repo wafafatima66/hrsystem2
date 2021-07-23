@@ -8,25 +8,26 @@ include SITE_ROOT .'/includes/header.php'; ?>
       </div>
       <!-- end of first part -->
 
-      <div class="row mt-5">
-            <div class="col-lg-5 col-sm-12">
+      <div class="row">
+            <div class="col-lg-5 col-sm-12 mt-3">
                   <div class="input-group">
                         <input type="search" class="form-control">
                         <button type="button" class="home-page-search-btn">
                               <i class="fa fa-search"></i>
                         </button>
-                        <button class="ml-3 btn button-1">Add Training</button>
+                      
+                          <button type="button" class="ml-3 btn button-1" data-toggle="modal" data-target="#addlearning" >Add Training</button> 
                   </div>
 
             </div>
 
             
                   
-                  <div class="col-lg-3 col-sm-12">
+                  <div class="col-lg-3 col-sm-5  mt-3">
                                     <input type="date" class="form-control text-input" placeholder="Date Picker">
                               </div>
                              <span class="mr-2 ml-2 mt-2">to</span>
-                              <div class="col-lg-3 col-sm-12">
+                              <div class="col-lg-3 col-sm-5 mt-3">
                                     <input type="date" class="form-control text-input" placeholder="Date Picker">
                               </div>
                  
@@ -34,7 +35,7 @@ include SITE_ROOT .'/includes/header.php'; ?>
 
       </div>
 
-      <table class="table home-page-table mt-2 table-striped table-sm">
+      <table class="table home-page-table mt-2 table-striped table-sm table-responsive-sm">
             <thead>
                   <tr>
                         <th scope="col">Date</th>
@@ -85,3 +86,5 @@ include SITE_ROOT .'/includes/header.php'; ?>
             </tbody>
       </table>
 </div>
+
+<?php include "learning_modal.php" ?>

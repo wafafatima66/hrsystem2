@@ -77,24 +77,32 @@ if (isset($_GET['id'])) {
                     <div class="form-row mt-2">
 
                         <div class="col-lg-2 col-sm-6">
+                            <label for="">Employee Id</label>
                             <input type="text" class=" form-control text-input" placeholder="Employee Id" value="<?php echo $mydata['emp_id']; ?>">
                         </div>
 
                         <div class="col-lg-2 col-sm-6">
+                        <label for="">Last Name</label>
                             <input type="text" class=" form-control text-input" placeholder="Last name" value="<?php echo $mydata['emp_last_name']; ?>">
                         </div>
 
                         <div class="col-lg-2 col-sm-6">
+                        <label for="">First Name</label>
                             <input type="text" class=" form-control text-input" placeholder="First Name" value="<?php echo $mydata['emp_first_name']; ?>">
                         </div>
+
                         <div class="col-lg-2 col-sm-6">
+                        <label for="">Middle Name</label>
                             <input type="text" class=" form-control text-input" placeholder="Middle Name" value="<?php echo $mydata['emp_middle_name']; ?>">
                         </div>
+
                         <div class="col-lg-2 col-sm-6">
+                        <label for="">Ext</label>
                             <input type="text" class=" form-control text-input" placeholder="Ext" value="<?php echo $mydata['emp_ext']; ?>">
                         </div>
 
                         <div class="col-lg-2 col-sm-6">
+                        <label for="">Sex</label>
                             <input type="text" class=" form-control text-input" placeholder="Sex" value="<?php echo $mydata['emp_gender']; ?>">
                         </div>
 
@@ -113,22 +121,23 @@ if (isset($_GET['id'])) {
 
                         $runquery = $conn->query($query);
                         if ($runquery == true) {
+                            if (mysqli_num_rows($runquery) > 0) {
                             while ($mydata = $runquery->fetch_assoc()) {
 
                                 $excel_file_name = '../files/'.$mydata['excel_file_name'];
                         ?>
 
-                            <div class="col-lg-4 col-sm- mt-2 ">
+                            <div class="col-lg-4 col-sm-6 col-12 mt-2 ">
                                 <div class="performance-col"  >
 
-                                    <div class="row" style="padding: 15px;">
+                                    <div class="row">
                                         
-                                        <div class="col-lg-6 col-sm-6" style="border-right: solid #6DC7CD 1px;"><a href="<?php echo $excel_file_name ; ?>">
-                                        <img src="../img/excel.png" alt="" style="width:80px; height:80px"></a>
+                                        <div class="col-lg-6 col-sm-6 col-6" style="border-right: solid #6DC7CD 1px;"><a href="<?php echo $excel_file_name ; ?>">
+                                        <img src="../img/excel.png" alt="" style="width:100%; height:50%"></a>
                                         <p><?php echo $mydata["excel_file_type"] . "-" . $mydata["year"] ." " . $mydata["rating_period"] ?></p>
                                     </div>
 
-                                        <div class="col-lg-6 col-sm-6">
+                                        <div class="col-lg-6 col-sm-6 col-6">
                                             <h3>67</h3> Female
                                         </div>
                                     </div>
@@ -136,7 +145,15 @@ if (isset($_GET['id'])) {
                                 </div>
                             </div>
 
-                            <?php }} ?>
+                            <?php }}
+
+                        else{
+                            echo '<div class="col-lg-12 col-sm-12 text-center mt-3 ">
+                            <p class=" p-3" >No Performance data found  ! </p>
+                            </div>';
+                        }
+                        
+                        }?>
 
                         </div>
                     </div>
@@ -148,14 +165,14 @@ if (isset($_GET['id'])) {
                     <input type="hidden" value="<?php echo $emp_id ; ?>" name="emp_id">
 
                         <div class="col-lg-2 col-sm-6">
-                            <select name="excel_file_type" id="" class="form-control text-input">
+                            <select name="excel_file_type"  class="form-control text-input">
                                 <option value="IPCR">IPCR</option>
                                 <option value="DPCR"> DPCR</option>
                             </select>
                         </div>
 
                         <div class="col-lg-1 col-sm-6">
-                            <select name="year" id="" class="form-control text-input">
+                            <select name="year"  class="form-control text-input">
                                 <option value="">Year</option>
                                 <option value="2021">2021</option>
                                 <option value="2020">2020</option>
@@ -163,7 +180,7 @@ if (isset($_GET['id'])) {
                         </div>
 
                         <div class="col-lg-2 col-sm-6">
-                            <select name="rating_period" id="" class="form-control text-input">
+                            <select name="rating_period"  class="form-control text-input">
                                 <option value="">Rating period</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -171,7 +188,7 @@ if (isset($_GET['id'])) {
                         </div>
 
                         <div class="col-lg-2 col-sm-6">
-                            <select name="rating" id="" class="form-control text-input">
+                            <select name="rating"  class="form-control text-input">
                                 <option value="">Rating</option>
                                 <option value="5">5</option>
                                 <option value="4">4</option>
@@ -181,11 +198,11 @@ if (isset($_GET['id'])) {
                             </select>
                         </div>
 
-                        <div class="col-lg-3 col-sm-6">
+                        <div class="col-lg-3 col-sm-6 mt-2">
                             <input type="file" name="excel_file_name">
                         </div>
 
-                        <div class="col-lg-2 col-sm-6">
+                        <div class="col-lg-2 col-sm-12 mt-2">
 
                             <button class="btn button-1  " type="submit" name="submit">Submit</button>
 

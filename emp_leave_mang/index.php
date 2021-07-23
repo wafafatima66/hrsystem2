@@ -67,7 +67,7 @@ include SITE_ROOT .'/includes/header.php'; ?>
 
       
                 
-            <table class="table home-page-table mt-4 table-striped ">
+            <table class="table home-page-table mt-4 table-striped table-responsive">
                   <thead>
                         <tr>
                               <th scope="col">Date Filled</th>

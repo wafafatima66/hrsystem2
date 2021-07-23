@@ -74,11 +74,11 @@ function active($currect_page){
     Appointment</span><i class="fas fa-calendar-check"></i>
 </a>
 
-<a href="#" class="list-group-item d-inline-block collapsed " id="myDIV"><span class="d-none d-md-inline">Reports
+<a href="../report_mang/" class="list-group-item d-inline-block collapsed <?php active('report_mang');?> " id="myDIV"><span class="d-none d-md-inline">Reports
     Management</span><i class="fas fa-copy"></i>
 </a>
 
-<a href="../user_mang/" class="list-group-item d-inline-block collapsed <?php active('user_mang');?> " id="myDIV"><span class="d-none d-md-inline">User Management</span><i class="fas fa-copy"></i>
+<a href="../user_mang/" class="list-group-item d-inline-block collapsed <?php active('user_mang');?> " id="myDIV"><span class="d-none d-md-inline">User Management</span><i class="fa fa-user"></i>
 </a>
 
 <?php 

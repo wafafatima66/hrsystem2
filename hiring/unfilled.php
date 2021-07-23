@@ -183,7 +183,7 @@ if (isset($_GET['id'])) {
                         </div>
                     </div>
 
-                    <table class="table home-page-table mt-4 table-striped ">
+                    <table class="table home-page-table mt-4 table-striped table-responsive-sm">
                         <thead>
                             <tr>
                                 <th scope="col">Applicant Id</th>

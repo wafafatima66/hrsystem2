@@ -11,7 +11,8 @@ include SITE_ROOT . '/includes/header.php'; ?>
       <div class="row ">
             <h4 class="background-title-1">LIST OF UNFILLED / VACANT POSITION</h4>
 
-            <table class="table home-page-table mt-4 table-striped ">
+           
+            <table class="table home-page-table mt-4 table-striped  table-sm table-responsive-sm" >
                   <thead>
                         <tr>
                               <th scope="col">Date Filled</th>
@@ -35,8 +36,8 @@ include SITE_ROOT . '/includes/header.php'; ?>
 
                   </tbody>
             </table>
-
-
+           
+            </div>
       </div>
       <!-- end of first part -->
 

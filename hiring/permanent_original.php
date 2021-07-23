@@ -65,7 +65,7 @@ if (mysqli_query($conn, $sql)) {
 ?>
 
 
-<div class="Original switch-tab">
+<div class="Original switch-tab" style="display: block;">
 
     <form method="post" action="" enctype="multipart/form-data">
 

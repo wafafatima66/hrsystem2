@@ -156,7 +156,7 @@
     <div class="col-lg-6 col-sm-12">
         <div class="d-flex flex-column">
             <label for="">PERIOD OF ATTENDANCE</label>
-            <div class="d-flex justify-content-center">
+            <div class="d-md-flex justify-content-center">
                 <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['sec_from_date']?>"
                     name="sec_from_date">
 
@@ -216,7 +216,7 @@
     <div class="col-lg-6 col-sm-12">
         <div class="d-flex flex-column">
             <label for="">PERIOD OF ATTENDANCE</label>
-            <div class="d-flex justify-content-center">
+            <div class="d-md-flex justify-content-center">
                 <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['voc_from_date']?>"
                     name="voc_from_date">
 
@@ -280,7 +280,7 @@
     <div class="col-lg-6 col-sm-12">
         <div class="d-flex flex-column">
             <label for="">PERIOD OF ATTENDANCE</label>
-            <div class="d-flex justify-content-center">
+            <div class="d-md-flex justify-content-center">
                 <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['coll_from_date']?>"
                     name="coll_from_date">
                 <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['coll_to_date']?>"
@@ -343,7 +343,7 @@
     <div class="col-lg-6 col-sm-12">
         <div class="d-flex flex-column">
             <label for="">PERIOD OF ATTENDANCE</label>
-            <div class="d-flex justify-content-center">
+            <div class="d-md-flex justify-content-center">
                 <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['gra_from_date']?>"
                     name="gra_from_date">
                 <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['gra_to_date']?>" name="gra_to_date">

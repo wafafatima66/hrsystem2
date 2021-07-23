@@ -6,7 +6,9 @@ require '../includes/conn.php';
 if(isset($_GET['success'])){
       echo  '<script>toastr.success("Employee updated successfully")</script>';
 }
-
+if(isset($_GET['credits_year'])){
+      echo  '<script>toastr.success("Credits year updated successfully")</script>';
+}
 
 
 if(isset($_GET['id'])){

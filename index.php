@@ -74,23 +74,22 @@
     <div class="login-page">
 
 
-
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-sm-6 col-md-6 pr-5" style="border-right: solid 4px #505A43;">
+                <div class="col-lg-6 col-sm-6 col-md-6 pr-5 responsive-login-part" style="border-right: solid 4px #505A43;">
 
                     <div class="mx-auto">
 
                         <h1 class="h4-heading text-center">Agency name</h1>
 
                         <h3 class="text-center  mt-5">Vision</h3><br>
-                        <p class="p-3 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+                        <p class="p-3 text-justify ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
                             repellat, modi harum quae quibusdam magni corporis laboriosam? Dignissimos, vero iste.</p>
                         <h3 class="text-center  mt-5">Vision</h3><br>
-                        <p class="p-3 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quam
+                        <p class="p-3 text-justify ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quam
                             quisquam quidem nulla adipisci ipsum cupiditate obcaecati inventore voluptate! Animi!</p>
                         <h3 class="text-center  mt-5">Vision</h3><br>
-                        <p class="p-3 text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam
+                        <p class="p-3 text-justify ">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam
                             doloremque fuga quae illum sit nobis laboriosam commodi dolorem accusantium in?.</p>
 
                     </div>
@@ -174,7 +173,7 @@
         </div>
     </nav>
 
-    </footer> -->
+    </footer> 
 
 </body>
 

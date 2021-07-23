@@ -35,7 +35,7 @@ if(isset($_POST['submit'])){
 
 	if (mysqli_num_rows($result) > 0) {
 
-	$output.="<table class='table home-page-table mt-2 table-striped '>
+	$output.="<table class='table home-page-table mt-2 table-striped table-responsive-sm '>
     <thead>
           <tr>
                 <th scope='col'>Employee Id</th>

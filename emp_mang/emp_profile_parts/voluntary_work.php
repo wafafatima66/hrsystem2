@@ -44,7 +44,7 @@
         <div class="col-lg-6 col-sm-12">
             <div class="d-flex flex-column">
                 <label for="">INCLUSIVE DATES</label>
-                <div class="d-flex justify-content-center">
+                <div class="d-md-flex justify-content-center">
 
                     <input type="date" class="form-control text-input mx-sm-1" name="vol_from_date[]" value="<?php echo $mydata['vol_from_date']?>">
 
@@ -130,7 +130,7 @@
         var addButton = $('.add_vol_button'); //Add button selector
         var wrapper = $('.voluntary_wrapper'); //Input field wrapper
         var fieldHTML =
-            ' <div class="form-row mt-5"> <div class="col-lg-4 col-sm-12"> <div class="d-flex flex-column"> <label for="">NAME OF ORGANISATION</label> <input type="text" class="form-control text-input"  name="vol_name_org[]"> </div> </div> <div class="col-lg-4 col-sm-6"> <div class="d-flex flex-column"> <label for="">ADDRESS</label> <input type="text" class="form-control text-input"  name="vol_org_add[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <label for="">NO OF HOURS</label> <input type="text" class="form-control text-input"  name="vol_no_of_hrs[]"> </div> </div> <div class="form-row mt-3"> <div class="col-lg-6 col-sm-12"> <div class="d-flex flex-column"> <label for="">INCLUSIVE DATES</label> <div class="d-flex justify-content-center"> <input type="date" class="form-control text-input mx-sm-1" name="vol_from_date[]"> <input type="date" class="form-control text-input mx-sm-1" name="vol_to_date[]"> </div> </div> </div> <div class="col-lg-3 col-sm-6"> <label for="">POSITION/ROLE</label> <input type="text" class="form-control text-input"  name="vol_position[]"> </div> </div>';
+            ' <div class="form-row mt-5"> <div class="col-lg-4 col-sm-12"> <div class="d-flex flex-column"> <label for="">NAME OF ORGANISATION</label> <input type="text" class="form-control text-input"  name="vol_name_org[]"> </div> </div> <div class="col-lg-4 col-sm-6"> <div class="d-flex flex-column"> <label for="">ADDRESS</label> <input type="text" class="form-control text-input"  name="vol_org_add[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <label for="">NO OF HOURS</label> <input type="text" class="form-control text-input"  name="vol_no_of_hrs[]"> </div> </div> <div class="form-row mt-3"> <div class="col-lg-6 col-sm-12"> <div class="d-flex flex-column"> <label for="">INCLUSIVE DATES</label> <div class="d-md-flex justify-content-center"> <input type="date" class="form-control text-input mx-sm-1" name="vol_from_date[]"> <input type="date" class="form-control text-input mx-sm-1" name="vol_to_date[]"> </div> </div> </div> <div class="col-lg-3 col-sm-6"> <label for="">POSITION/ROLE</label> <input type="text" class="form-control text-input"  name="vol_position[]"> </div> </div>';
 
         //New input field html 
         var x = 1; //Initial field counter is 1

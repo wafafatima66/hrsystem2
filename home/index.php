@@ -26,7 +26,7 @@ require '../includes/conn.php';
                         <h2 class="text-center" style="font-size: 43px; font-weight:100;">40</h2>
                   </div>
                   <div class="home-col-box-title" style="background-color: #CE787E  ;">
-                        <h4 class="text-center">Employees</h4>
+                        <h4 class="text-center">Vacant Positions</h4>
                   </div>
             </div>
 
@@ -39,7 +39,7 @@ require '../includes/conn.php';
 
                   </div>
                   <div class="home-col-box-title" style="background-color: #B99653 ;">
-                        <h4 class="text-center">Employees</h4>
+                        <h4 class="text-center">Trainings</h4>
                   </div>
             </div>
 
@@ -52,7 +52,7 @@ require '../includes/conn.php';
 
                   </div>
                   <div class="home-col-box-title" style="background-color: #6A8858 ;">
-                        <h4 class="text-center">Employees</h4>
+                        <h4 class="text-center">Employee Leave</h4>
                   </div>
             </div>
       </div>

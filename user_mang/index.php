@@ -10,17 +10,17 @@ include SITE_ROOT .'/includes/header.php'; ?>
 
       <!-- end of first part -->
 
-      <div class="row mt-3">
+      <div class="row ">
            
-            <div class="col-lg-3 col-sm-12">
+            <div class="col-lg-3 col-sm-12 mt-3">
                   <input type="text" class="form-control text-input" placeholder="Type id">
             </div>
            
-            <div class="col-lg-3 col-sm-12">
+            <div class="col-lg-3 col-sm-12 mt-3">
                   <input type="text" class="form-control text-input" placeholder="">
             </div>
 
-            <div class="col-lg-3 col-sm-12">
+            <div class="col-lg-3 col-sm-12 mt-3">
                   <select name="" id="" class="form-control text-input">
                         <option value="">Role selection</option>
                         <option value=""></option>
@@ -28,16 +28,16 @@ include SITE_ROOT .'/includes/header.php'; ?>
             </div>
 
             </div>
-            <div class="row mt-3">
-            <div class="col-lg-3 col-sm-12">
+            <div class="row ">
+            <div class="col-lg-3 col-sm-12 mt-3">
                   <input type="text" class="form-control text-input" placeholder="Username">
             </div>
 
-            <div class="col-lg-3 col-sm-12">
+            <div class="col-lg-3 col-sm-12 mt-3">
                   <input type="text" class="form-control text-input" placeholder="Password">
             </div>
 
-            <div class="col-lg-3 col-sm-12"><button class="ml-3 btn button-1">Add user</button></div>
+            <div class="col-lg-3 col-sm-12 mt-3"><button class="ml-3 btn button-1">Add user</button></div>
             
       </div>
 

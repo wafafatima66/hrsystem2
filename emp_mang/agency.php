@@ -1,5 +1,6 @@
 <div class="container container-box">
-    <h6>AGENCY PROFILE</h6>
+
+<h4 class="h4-heading">Agency Profile</h4>
 
     <form method="post" action="" enctype="multipart/form-data">
 
