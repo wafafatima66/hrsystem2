@@ -50,7 +50,7 @@ function active($currect_page){
 
 ?>
 
-<?php if($row['role'] == 'Super Admin'){ ?>
+<?php if($row['role'] == 'Super Administrator'){ ?>
 
 <a href="../home/" class="list-group-item d-inline-block collapsed  <?php active('home');?>" >
 <span class="d-none d-md-inline">Dashboard</span> <i class="fa fa-home"></i>

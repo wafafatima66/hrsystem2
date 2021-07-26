@@ -30,6 +30,14 @@
 
 </div>
 
+
+<div class="col-lg-12 text-right mt-4 ">
+
+  <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
+
+
+</div>
+
 <script>
      $(document).ready(function() {
     $('input[type="radio"]').click(function() {

@@ -1,6 +1,13 @@
+<style>
+     .emp_profile_button_active{
+           border-bottom: #FFDF88 1px solid;
+     }
+</style>
+
 <?php include '../config.php';
 include SITE_ROOT .'/includes/header.php'; 
 require '../includes/conn.php';
+
 
 
 if(isset($_GET['success'])){
@@ -60,7 +67,7 @@ if(isset($_GET['id'])){
             </div>
             <div class="col-lg-3 col-sm-4 align-self-end">
 
-                  <h2><?php echo $mydata["emp_first_name"] ." ". $mydata["emp_middle_name"] ." " . $mydata["emp_last_name"] . " " . $mydata["emp_ext"] ?></h2>
+                  <h4 style="color: #FFDF88;"><?php echo $mydata["emp_first_name"] ." ". $mydata["emp_middle_name"] ." " . $mydata["emp_last_name"] . " " . $mydata["emp_ext"] ?></h4>
                   <h6>Position/officer</h6>
 
             </div>
@@ -68,7 +75,7 @@ if(isset($_GET['id'])){
 
             <div class="col-lg-5 col-sm-12 d-flex align-items-start flex-column ">
                   <div class="d-flex justify-content-center">
-                        <h5 class="emp_profile_button" id="agency">Agency Profile | </h5>
+                        <h5 class="emp_profile_button emp_profile_button_active" id="agency">Agency Profile | </h5>
                         <h5 class="emp_profile_button" id="pds">PDS | </h5>
                         <h5 class="emp_profile_button" id="leave">Leave ledger | </h5>
                         <h5 class="emp_profile_button" id="file">File 201</h5>
@@ -80,22 +87,23 @@ if(isset($_GET['id'])){
                   </div>
             </div>
       </div>
-      <!-- end of first part -->
+ 
+      <?php }} }?>
+    
+
+      <div class="agency-tab emp_profile_tab" style="display: block;" >
+            <?php include "agency.php";?>
+      </div>
 
       <div class="leave-tab emp_profile_tab" >
             <?php include "leave.php";?>
-      </div>
-
-      
-      <div class="agency-tab emp_profile_tab" >
-            <?php include "agency.php";?>
       </div>
 
       <div class="file-tab emp_profile_tab">
             <?php include "file.php";?>
       </div>
 
-      <div class="pds-tab emp_profile_tab" style="display: block;">
+      <div class="pds-tab emp_profile_tab" >
             <?php include "pds.php";?>
       </div>
       
@@ -104,11 +112,13 @@ if(isset($_GET['id'])){
 </div>
 
 
-<?php }} }?>
+
 <script>
  
   $(document).ready(function () {
     $('.emp_profile_button').click(function () {
+      $('.emp_profile_button').removeClass('emp_profile_button_active');
+      $(this).addClass('emp_profile_button_active');
       var className=$(this).attr('id');
       var tab = className + '-tab';
       var targetBox = $("." + tab);

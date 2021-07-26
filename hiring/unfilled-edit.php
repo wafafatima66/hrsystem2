@@ -133,17 +133,20 @@ if (isset($_GET['applicant_id'])) {
 
 
 
-                    <div class="form-row">
+                    <div class="form-row mt-5">
 
                         <div class="col-lg-3 col-sm-6">
+                            <label for="">Applicant Id</label>
                             <input type="text" class="form-control text-input" name="applicant_id" placeholder="Applicant ID" value="<?php echo $mydata['applicant_id']; ?>">
                         </div>
 
                         <div class="col-lg-3 col-sm-6">
+                        <label for="">Applicant Rating</label>
                             <input type="text" class="form-control text-input" name="applicant_rating" placeholder="Rating" value="<?php echo $mydata['applicant_rating']; ?>">
                         </div>
 
                         <div class="col-lg-3 col-sm-6">
+                        <label for="">Applicant Rank</label>
                             <input type="text" class="form-control text-input" name="applicant_rank" placeholder="Rank" value="<?php echo $mydata['applicant_rank']; ?>">
                         </div>
 
@@ -305,30 +308,18 @@ if (isset($_GET['applicant_id'])) {
                     </div>
 
                     <div class="form-row mt-4">
-                        <div class="col-lg-4 col-sm-6">
+                      <div class="col-lg-6 col-sm-6">
+                          <input type="file" name="" id="">
+                      </div>
 
-                        <div class="emp-profile-img">
-                              <img src="<?php echo  $photo_to_show ; ?>" alt="" id="previewImg"
-                                    style="width:100%;height:100%">
-                        </div>
-
-                        <div class="text-lg-right  mt-2">
-
-
-                              <label>
-                                    <i class="fa fa-camera"> </i>
-                                    <input type="file" style="display: none;" name="applicant_image"
-                                          onchange="previewFile(this);"  >
-                              </label>
-
-
-                        </div>
-                        </div>
-
-                        <div class="col-lg-12 col-sm-6  float-right mt-2">
+                      <div class="col-lg-12 col-sm-6  float-right mt-2">
                       
-                        <button type="submit" name="submit" class="btn button-1 ">Update</button>
-                    </div>
+                      <button type="submit" name="submit" class="btn button-1 ">Update</button>
+                  </div>
+
+                        </div>
+
+                       
                     </div>
 
 

@@ -60,7 +60,14 @@
 
 	$totalPage = ceil($totalRecords/$limit);
 
-	$output.="<ul class='pagination justify-content-end ' style='margin:20px 0'>";
+	$output .= '<div class=" d-flex justify-content-between mt-4 ">
+
+	<button class="btn button-1 " style="height:35px"><i class="fa fa-print"></i></button>
+  
+  
+  ';
+
+	$output.="<ul class='pagination  '>";
 
 	for ($i=1; $i <= $totalPage ; $i++) { 
 	   if ($i == $page_no) {
@@ -72,10 +79,29 @@
 	    $output.="<li class='page-item $active'><a class='page-link' id='$i' href=''>$i</a></li>";
 	}
 
-	$output .= '</ul>';
+	$output .= '</ul> </div>';
+	echo $output ;
 
-	echo $output;
+	}else {
+		$output.="<table class='table home-page-table mt-2 table-striped table-responsive-sm '>
+		<thead>
+			  <tr>
+			  <th scope='col'>Employee Id</th>
+			  <th scope='col'>Name</th>
+			  <th scope='col'>Sex</th>
+			  <th scope='col'>Status</th>
+			  <th scope='col'>Position</th>
+			  <th scope='col'>Office/Unit</th>
+			  </tr>
+		</thead>
+		<tbody>
+		<tr>
+				<td colspan='6'>No data Available</td>
+                  </tr>
+				  </tbody>
+		</table>";
 
+		echo $output ; 
 	}
 
 ?>

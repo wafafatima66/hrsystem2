@@ -23,7 +23,10 @@ include SITE_ROOT .'/includes/header.php'; ?>
             <div class="col-lg-3 col-sm-12 mt-3">
                   <select name="" id="" class="form-control text-input">
                         <option value="">Role selection</option>
-                        <option value=""></option>
+                        <option value="">Super Administrator</option>
+                        <option value="">HR Administrator</option>
+                        <option value="">Department Head</option>
+                        <option value="">Employee</option>
                   </select>
             </div>
 
@@ -45,7 +48,7 @@ include SITE_ROOT .'/includes/header.php'; ?>
             <thead>
                   <tr>
                         <th scope="col">Employee Id</th>
-                        <th scope="col">NAme</th>
+                        <th scope="col">Name</th>
                         <th scope="col">User Role</th>
                         <th scope="col">Action</th>
                   </tr>

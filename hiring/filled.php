@@ -180,7 +180,7 @@ if($runquery == true){
                 </div>
 
 
-        <div class="text-right"><button class="ml-3 btn button-1">Add Applicant</button></div>
+        <div class="text-right"><button class="ml-3 btn button-1 mt-2">Add Applicant</button></div>
 
 
 

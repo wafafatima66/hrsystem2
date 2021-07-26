@@ -46,7 +46,12 @@
 	$output.="</tbody>
 		</table>";
 
-	
+    $output .= '<div class=" d-flex justify-content-between ">
+
+    <button class="btn button-1 " style="height:35px"><i class="fa fa-print"></i></button>
+    
+    
+    </div>';
 
 
 

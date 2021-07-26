@@ -1,13 +1,13 @@
-
+<div class="container container-box">
 
 <form action="pds_config.php" method="post" enctype="multipart/form-data" id="emp_profile_form">
 
 
 
 
-<div class="row mt-5">
+<div class="row ">
 
-      <div class=" col-lg-12 emp-profile-box-2">
+      <div class=" col-lg-12 ">
 
 
             <div class="accordion" id="accordionExample">
@@ -199,7 +199,11 @@
 
       </div>
 
+     
+
           <div class="col-lg-12 text-right mt-4 ">
+
+          <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
 
              <button class="btn button-1 " type="submit" name="submit"><i class="fas fa-edit"></i></button>
 
@@ -211,3 +215,4 @@
 </div>
 
 </form>
+</div>

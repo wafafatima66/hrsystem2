@@ -74,6 +74,10 @@
     </tbody>
 </table>
 
+<div class="mt-4 ">
+    <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
+</div>
+
 <div class="modal fade addposition " id="addposition" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">

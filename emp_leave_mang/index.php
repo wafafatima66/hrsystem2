@@ -2,11 +2,11 @@
 
 include SITE_ROOT .'/includes/header.php'; ?>
 
-<div class="container ">
+<div class="container">
       <div class="row ">
             <h4 class="background-title-1">LEAVE FORM</h4>
 
-            <div class="leave-mang-box-1" style="width: 100%;">
+            <div class="leave-mang-box-1  container-box " style="width: 100%;">
                   <form>
                         <div class="form-row mt-3">
                               <div class="col-lg-2 col-sm-6">
@@ -62,12 +62,12 @@ include SITE_ROOT .'/includes/header.php'; ?>
       </div>
       <!-- end of first part -->
 
-      <div class="row mt-5 mr-2 ml-2">
+      <div class="row mt-5 ">
       <h4 class="background-title-1">LEAVE APPLICATION HISTORY</h4>
 
       
                 
-            <table class="table home-page-table mt-4 table-striped table-responsive">
+            <table class="table home-page-table mt-4 table-striped table-responsive-sm">
                   <thead>
                         <tr>
                               <th scope="col">Date Filled</th>
@@ -91,5 +91,8 @@ include SITE_ROOT .'/includes/header.php'; ?>
 
                   </tbody>
             </table>
-     
+            <div class=" mt-2 ">
+            <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
+      </div>
 </div>
+

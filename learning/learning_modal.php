@@ -208,7 +208,7 @@ if (!empty($_POST['sponsor'])) {
               <div class="form-row ">
 
                 <div class="col-lg-12 col-sm-6">
-                  <label>Speaker/s</label>
+                  <label >Speaker<span style="text-transform: lowercase;">/s</span></label>
                 </div>
 
                 <div class="col-lg-2 col-sm-6">
@@ -263,7 +263,7 @@ if (!empty($_POST['sponsor'])) {
 
             <div class="form-row mt-2">
               <div class="col-lg-3 col-sm-6">
-                <label>Sponsor Agency/ies</label>
+                <label>Sponsor Agency<span style="text-transform: lowercase;">/ies</span></label>
               </div>
 
               <div class="col-lg-4 col-sm-6">

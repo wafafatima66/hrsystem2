@@ -21,8 +21,8 @@
    
     <select name="hiring_dropdown" id="hiring_dropdown" class="form-control text-input">
       <option value="">Filter By</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
+      <option value="Filled">Filled</option>
+      <option value="Unfilled">Unfilled</option>
     </select>
 
 
@@ -78,10 +78,17 @@
     </tr>
 
     <?php }
-    } ?>
+    } else { ?>
+<tr>
+  <td colspan = '8'>No data Available</td>
+</tr>
+  <?php  }?>
   </tbody>
 </table>
 
+<div class="mt-4 ">
+    <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
+</div>
 
 <!-- add item modal -->
 <div class="modal fade hiring_permanent " id="hiring_permanent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -114,13 +121,9 @@
 
           <?php include "permanent_original.php";  ?>
 
-          <div class="Promotion switch-tab">
-            Promotion
-          </div>
+          <?php include "permanent_promotion.php";  ?>
 
-          <div class="Others switch-tab">
-            Others
-          </div>
+          <?php include "permanent_others.php";  ?>
 
 
         </div>

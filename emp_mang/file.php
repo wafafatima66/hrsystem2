@@ -1,88 +1,83 @@
-
 <?php
 require '../includes/conn.php';
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
-  $emp_id = $_POST['emp_id'];  
-  
+  $emp_id = $_POST['emp_id'];
+
 
   $file_date = date("Y-m-d"); //date("l jS \of F Y ");
   $file_folder = $_POST["folder"];
 
-  $file_name =  $emp_id."-".$_FILES['upload_file']['name'];
+  $file_name =  $emp_id . "-" . $_FILES['upload_file']['name'];
   $file_loc = $_FILES['upload_file']['tmp_name'];
   $file_size = $_FILES['upload_file']['size'];
   $file_type = $_FILES['upload_file']['type'];
-  $path="../files/";
+  $path = "../files/";
 
 
-$query = "SELECT * FROM emp_file WHERE file_name = '$file_name' and file_folder = '$file_folder' ";
+  $query = "SELECT * FROM emp_file WHERE file_name = '$file_name' and file_folder = '$file_folder' ";
 
-$runquery = $conn -> query($query);
-$rowcount=mysqli_num_rows($runquery);
-if($rowcount == 0 ){
+  $runquery = $conn->query($query);
+  $rowcount = mysqli_num_rows($runquery);
+  if ($rowcount == 0) {
 
-       if(move_uploaded_file($file_loc,$path.$file_name)) {
+    if (move_uploaded_file($file_loc, $path . $file_name)) {
 
 
-      $sql="INSERT INTO emp_file (emp_id ,file_folder, file_name, file_type, file_size,file_date) VALUE ('$emp_id' ,'$file_folder', '$file_name', '$file_type', '$file_size', '$file_date')";
-      
-       if (mysqli_query($conn, $sql)){
-        echo  '<script>toastr.success("File uploaded !")</script>';
-       } else {
+      $sql = "INSERT INTO emp_file (emp_id ,file_folder, file_name, file_type, file_size,file_date) VALUE ('$emp_id' ,'$file_folder', '$file_name', '$file_type', '$file_size', '$file_date')";
+
+      if (mysqli_query($conn, $sql)) {
+        echo  '<script>toastr.success("File is uploaded succesfully !")</script>';
+      } else {
         echo  $conn->error;
         echo  '<script>toastr.error("File not uploaded !")</script>';
-       }
-          
-         
-      } else {
-        echo  '<script>toastr.error("Could not move to location!")</script>';
-       }
-    } else{
-      echo  '<script>toastr.error("File exist !")</script>';
+      }
+    } else {
+      echo  '<script>toastr.error("Could not move to location!")</script>';
     }
-    
-     
+  } else {
+    echo  '<script>toastr.error("File exist !")</script>';
+  }
 }
 
 
 ?>
 
 
-<div class="container container-box file-box">
+<div class="container-box file-box">
 
   <div class="form-row">
 
     <div class="col-lg-3 col-sm-6 text-center">
       <h5>PDS</h5>
 
-      <a data-id="<?php echo $emp_id?>" data-folder="pds" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open" name="pds"></i></a>
+      <a data-id="<?php echo $emp_id ?>" data-folder="pds" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open" name="pds"></i></a>
     </div>
 
     <div class="col-lg-3 col-sm-6 text-center">
       <h5>IPCR</h5>
 
-      <a data-id="<?php echo $emp_id?>" data-folder="ipcr" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open" name="ipcr"></i></a>
+      <a data-id="<?php echo $emp_id ?>" data-folder="ipcr" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open" name="ipcr"></i></a>
     </div>
 
 
     <div class="col-lg-3 col-sm-6 text-center">
       <h5>SALN</h5>
-      <a data-id="<?php echo $emp_id?>" data-folder="saln" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
+      <a data-id="<?php echo $emp_id ?>" data-folder="saln" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
     </div>
 
     <div class="col-lg-3 col-sm-6 text-center">
       <h5>OTHERS</h5>
-      <a data-id="<?php echo $emp_id?>" data-folder="others" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
+      <a data-id="<?php echo $emp_id ?>" data-folder="others" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
     </div>
 
 
 
   </div>
-  
+
   <form method="post" action="" enctype="multipart/form-data">
 
-  <input type="hidden" name="emp_id" value="<?php echo $emp_id?>">
+    <input type="hidden" name="emp_id" value="<?php echo $emp_id ?>">
 
     <div class="form-row mt-5 justify-content-center">
 
@@ -95,7 +90,7 @@ if($rowcount == 0 ){
           <option value="others">OTHERS</option>
         </select>
 
-        
+
 
       </div>
 
@@ -110,16 +105,23 @@ if($rowcount == 0 ){
 
     </div>
   </form>
-  </div>
+</div>
+
+
+<div class="col-lg-12 text-right mt-4 ">
+
+  <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
+
+</div>
 
 <div class="modal fade" id="modal-popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
-  <div class="modal-dialog modal-dialog-centered " role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
 
     <div class="modal-content">
 
-        <div id="table-data"></div>
-        
+      <div id="table-data"></div>
+
 
     </div>
   </div>
@@ -129,20 +131,23 @@ if($rowcount == 0 ){
 <script>
   $(document).ready(function() {
     $('.view_file').click(function() {
-    var folder = $(this).data('folder');
-    var emp_id = $(this).data('id');
+      var folder = $(this).data('folder');
+      var emp_id = $(this).data('id');
 
       $.ajax({
-        url  : "../emp_mang/file-table.php",
-        type : "POST",
+        url: "../emp_mang/file-table.php",
+        type: "POST",
         cache: false,
-        data : {folder:folder , emp_id:emp_id },
-        success:function(response){
+        data: {
+          folder: folder,
+          emp_id: emp_id
+        },
+        success: function(response) {
           $("#table-data").html(response);
         }
       });
 
     });
- 
+
   });
 </script>

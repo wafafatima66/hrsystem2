@@ -1,3 +1,20 @@
+<style>
+    .red{
+        color: red;
+    }
+    .blue{
+        color: blue;
+    }
+    .orange{
+        color: orange;
+    }
+    .pink{
+        color: darkmagenta;
+    }
+    .green{
+        color: green;
+    }
+</style>
 <?php include '../config.php';
 
 include SITE_ROOT . '/includes/header.php';
@@ -134,11 +151,41 @@ if (isset($_GET['id'])) {
                                         
                                         <div class="col-lg-6 col-sm-6 col-6" style="border-right: solid #6DC7CD 1px;"><a href="<?php echo $excel_file_name ; ?>">
                                         <img src="../img/excel.png" alt="" style="width:100%; height:50%"></a>
-                                        <p><?php echo $mydata["excel_file_type"] . "-" . $mydata["year"] ." " . $mydata["rating_period"] ?></p>
+                                        <h5><?php echo $mydata["excel_file_type"] . "-" . $mydata["year"] ." " . $mydata["rating_period"] ?></h5>
                                     </div>
 
                                         <div class="col-lg-6 col-sm-6 col-6">
-                                            <h3>67</h3> Female
+                                            <h3 class="<?php  
+                                            
+                                            if($mydata["rating"] == 1){
+                                                echo "red";
+                                            } else  if($mydata["rating"] == 2){
+                                                echo "green";
+                                            } else  if($mydata["rating"] == 3){
+                                                echo " blue";
+                                            }else  if($mydata["rating"] == 4){
+                                                echo "orange";
+                                            }else  if($mydata["rating"] == 5){
+                                                echo "pink";
+                                            } ?>">
+                                            
+                                            <?php
+                                            echo $mydata["rating"] ;
+                                            ?></h3>
+                                            
+                                            <h4> <?php
+                                            if($mydata["rating"] == 1){
+                                                echo "Poor";
+                                            } else  if($mydata["rating"] == 2){
+                                                echo "Not Satisfactory";
+                                            } else  if($mydata["rating"] == 3){
+                                                echo " Satisfactory";
+                                            }else  if($mydata["rating"] == 4){
+                                                echo "Very Satisfactory";
+                                            }else  if($mydata["rating"] == 5){
+                                                echo "Outstanding";
+                                            }
+                                            ?></h4>
                                         </div>
                                     </div>
 

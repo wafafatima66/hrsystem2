@@ -449,13 +449,17 @@ a{
 }
 .performance-col{
     border: solid 1px grey ;
-    padding: 20px;
+    padding: 5px 10px;
 }
 .performance-col h3{
-    font-size:40px;
+    font-size:60px;
 }
-.performance-col p{
-  
+.performance-col h5{
+    font-size:15px;
+    margin-top: 12px;
+}
+.performance-col h4{
+    font-size:14px;
 }
 /* emp hiring page */
 .emp_hiring_box{

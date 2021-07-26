@@ -1,3 +1,14 @@
+<?php
+if(isset($_GET['id'])){
+
+    $id =  $_GET['id'];
+
+    $query = "SELECT * FROM employee WHERE id = '$id'";
+
+    $runquery = $conn -> query($query);
+    if($runquery == true){
+        while($mydata = $runquery -> fetch_assoc()){
+?>
 
 <div class="row">
 
@@ -197,6 +208,9 @@
     </div>
 
 </div>
+
+
+<?php }} }?>
 
 <script type="text/javascript">
     

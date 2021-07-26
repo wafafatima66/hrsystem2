@@ -60,7 +60,7 @@
 
             <div class="container">
                 <div class="text-center">
-                    <input type="submit" class="btn m-3 button-1" name="upgrade" value="Upgrade">
+                    <input type="submit" class="btn m-3 button-1" name="upgrade" value="Update">
                 </div>
             </div>
 

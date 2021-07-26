@@ -38,6 +38,8 @@ if (isset($_POST['submit'])) {
         } else {
             (move_uploaded_file($tempname, $folder));
         }
+    } else {
+        $applicant_image = "";
     }
 
     $sql = "INSERT INTO applicant (

@@ -36,8 +36,12 @@ include SITE_ROOT . '/includes/header.php'; ?>
 
                   </tbody>
             </table>
-           
+            <div class=" mt-2 ">
+            <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
+      </div>
             </div>
+
+           
       </div>
       <!-- end of first part -->
 

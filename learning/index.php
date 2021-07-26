@@ -1,11 +1,8 @@
 <?php include '../config.php';
 
-include SITE_ROOT .'/includes/header.php'; ?>
+include SITE_ROOT . '/includes/header.php'; ?>
 <div class="container ">
-      <div class="row">
 
-           
-      </div>
       <!-- end of first part -->
 
       <div class="row">
@@ -15,27 +12,27 @@ include SITE_ROOT .'/includes/header.php'; ?>
                         <button type="button" class="home-page-search-btn">
                               <i class="fa fa-search"></i>
                         </button>
-                      
-                          <button type="button" class="ml-3 btn button-1" data-toggle="modal" data-target="#addlearning" >Add Training</button> 
+
+                        <button type="button" class="ml-3 btn button-1" data-toggle="modal" data-target="#addlearning">Add Training</button>
                   </div>
 
             </div>
 
-            
-                  
-                  <div class="col-lg-3 col-sm-5  mt-3">
-                                    <input type="date" class="form-control text-input" placeholder="Date Picker">
-                              </div>
-                             <span class="mr-2 ml-2 mt-2">to</span>
-                              <div class="col-lg-3 col-sm-5 mt-3">
-                                    <input type="date" class="form-control text-input" placeholder="Date Picker">
-                              </div>
-                 
-                 
+
+
+            <div class="col-lg-3 col-sm-5  mt-3">
+                  <input type="date" class="form-control text-input" placeholder="Date Picker">
+            </div>
+            <span class="mr-2 ml-2 mt-4">to</span>
+            <div class="col-lg-3 col-sm-5 mt-3">
+                  <input type="date" class="form-control text-input" placeholder="Date Picker">
+            </div>
+
+
 
       </div>
 
-      <table class="table home-page-table mt-2 table-striped table-sm table-responsive-sm">
+      <table class="table home-page-table mt-4 table-striped table-sm table-responsive-sm">
             <thead>
                   <tr>
                         <th scope="col">Date</th>
@@ -85,6 +82,11 @@ include SITE_ROOT .'/includes/header.php'; ?>
 
             </tbody>
       </table>
+
+      <div class=" mt-4 ">
+            <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
+      </div>
 </div>
+
 
 <?php include "learning_modal.php" ?>

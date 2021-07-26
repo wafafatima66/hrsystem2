@@ -51,7 +51,7 @@
         // }
 
         if ($count == 1){
-            if($row['role'] == 'Super Admin'){
+            if($row['role'] == 'Super Administrator'){
                 header("location:home/index.php");
             }else if($row['role'] == 'Employee'){
 

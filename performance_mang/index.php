@@ -8,7 +8,23 @@ include SITE_ROOT . '/includes/header.php'; ?>
     <h4 class="h4-heading">PERFORMANCE MANAGEMENT</h4>
   </div>
 
+  <div class="col-lg-6 col-sm-6">
+            <form class="form-inline" method="post" action="">
+                  <div class="input-group">
+                 
+                        <input type="search" class="form-control" name="search">
+                        <button type="submit" class="home-page-search-btn" name="submit">
+                              <i class="fa fa-search"></i>
+                        </button>
+
+                       
+                  </div>
+                  </form>
+            </div>
+
 </div>
+
+
 
 <?php  echo '<div id="table-data"> </div>' ; ?>
 
