@@ -32,44 +32,34 @@
 <table class="table home-page-table mt-4 table-striped table-responsive-sm table-sm">
     <thead>
         <tr>
-            <th scope="col">Employee Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Type Of Leave</th>
+            <th scope="col">Position</th>
+            <th scope="col">SG</th>
+            <th scope="col">Description</th>
             <th scope="col">Duration</th>
-            <th scope="col">Details of leave</th>
+            <th scope="col">Date posted</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <th scope="row">1</th>
-            <td>
-                <img src="../img/logo-2.png" alt="" style="width: 20px; height:20px">
-                <span>Otto</span>
-            </td>
+            <td>Mark</td>
             <td>Mark</td>
             <td>@mdo</td>
             <td>Otto</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>
-                <img src="../img/logo-2.png" alt="" style="width: 20px; height:20px">
-                <span>Otto</span>
-            </td>
-            <td>Thornton</td>
-            <td>@fat</td>
             <td>Otto</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
             <td>
-                <img src="../img/logo-2.png" alt="" style="width: 20px; height:20px;">
-                <span>Otto</span>
-            </td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>Otto</td>
+            <a href='contractual_edit.php?id=<?php echo $mydata['id'] ?>'>
+              <i class='fa fa-edit mx-2 '></i>
+            </a>
+
+            <a href='add_applicant.php?id=<?php echo $mydata['id'] ?>'><i class='fa fa-file-alt mx-2'></i></a>
+            <a href=''><i class='fa fa-user-edit mx-2'></i></a>
+          </td>
         </tr>
+       
+       
 
     </tbody>
 </table>

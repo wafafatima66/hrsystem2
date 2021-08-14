@@ -81,14 +81,12 @@ body {
     color: #fff;
     border: solid 1px #fc7e43;
 }
-.fa-edit{
+.fa-edit,.fa-upload,.fa-user-edit,.fa-trash,.fa-file-alt,.fa-eye{
     color : #505A43 ; 
+    cursor: pointer;
     
 }
-.fa-trash{
-    color : #505A43 ; 
-    
-}
+
 a{
     text-decoration: none;
 }

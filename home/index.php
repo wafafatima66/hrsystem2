@@ -5,14 +5,45 @@ include SITE_ROOT .'/includes/header.php';
 require '../includes/conn.php';
 
 ?>
+
+<?php 
+      $sql = "SELECT COUNT(emp_gender) AS male_total from employee WHERE emp_gender = 'male'   ";
+      $result = $conn->query($sql);
+      $data =  $result->fetch_assoc();
+      $male_total =  $data['male_total'];
+
+      $sql = "SELECT COUNT(emp_gender) AS female_total from employee WHERE emp_gender = 'female'  ";
+      $result = $conn->query($sql);
+      $data =  $result->fetch_assoc();
+      $female_total =  $data['female_total'];
+
+      // curdate
+      $year = date("Y");
+      $month = date("m");
+      $date = date("Y-m-d");
+
+      // $sql = "  SELECT COUNT( DISTINCT emp_gender) as female_total_leave from employee e , emp_leaves p where e.emp_id = p.emp_id and e.emp_gender = 'female' and month(p.leave_from_date) = '$month' and year(p.leave_from_date) = '$year'   ";
+
+      $sql = "  SELECT DISTINCT e.emp_id, COUNT(  emp_gender) as female_total_leave from employee e , emp_leaves p where e.emp_id = p.emp_id and e.emp_gender = 'female' and '$date' BETWEEN leave_from_date AND leave_to_date ";
+      $result = $conn->query($sql);
+      $data =  $result->fetch_assoc();
+      $female_total_leave =  $data['female_total_leave'];
+
+   
+      $sql = "  SELECT DISTINCT e.emp_id, COUNT( emp_gender) as male_total_leave from employee e , emp_leaves p where e.emp_id = p.emp_id and e.emp_gender = 'male' and '$date' BETWEEN leave_from_date AND leave_to_date  ";
+      $result = $conn->query($sql);
+      $data =  $result->fetch_assoc();
+      $male_total_leave =  $data['male_total_leave'];
+
+?>
 <div class="container ">
       <div class="row">
 
-            <div class="col-lg-3 col-sm-6 home-page-col">
+            <div class="col-lg-4 col-sm-6 home-page-col">
                   <div class="home-col-box" style="background-color: #A8E5E9 ;">
                         <div class="row">
-                              <div class="col" style="border-right: solid #6DC7CD 1px;">Male <span>67</span></div>
-                              <div class="col">Female <span>67</span></div>
+                              <div class="col" style="border-right: solid #6DC7CD 1px;">Male <span><?php echo $male_total ;  ?></span></div>
+                              <div class="col">Female <span><?php echo $female_total ; ?></span></div>
                         </div>
 
                   </div>
@@ -21,7 +52,7 @@ require '../includes/conn.php';
                   </div>
             </div>
 
-            <div class="col-lg-3 col-sm-6 home-page-col">
+            <div class="col-lg-4 col-sm-6 home-page-col">
                   <div class="home-col-box" style="background-color: #EE999F ;">
                         <h2 class="text-center" style="font-size: 43px; font-weight:100;">40</h2>
                   </div>
@@ -30,7 +61,7 @@ require '../includes/conn.php';
                   </div>
             </div>
 
-            <div class="col-lg-3 col-sm-6 home-page-col">
+            <!-- <div class="col-lg-3 col-sm-6 home-page-col">
                   <div class="home-col-box" style="background-color: #F7CB75 ;">
                         <div class="row">
                               <div class="col" style="border-right: solid #B99653 1px;">Male <span>67</span></div>
@@ -41,13 +72,13 @@ require '../includes/conn.php';
                   <div class="home-col-box-title" style="background-color: #B99653 ;">
                         <h4 class="text-center">Trainings</h4>
                   </div>
-            </div>
+            </div> -->
 
-            <div class="col-lg-3 col-sm-6 home-page-col">
+            <div class="col-lg-4 col-sm-6 home-page-col">
                   <div class="home-col-box" style="background-color: #90AD7F ;">
                         <div class="row">
-                              <div class="col" style="border-right: solid #6A8858 1px;">Male <span>67</span></div>
-                              <div class="col">Female <span>67</span></div>
+                              <div class="col" style="border-right: solid #6A8858 1px;">Male <span><?php echo $male_total_leave ; ?></span></div>
+                              <div class="col">Female <span><?php echo $female_total_leave ; ?></span></div>
                         </div>
 
                   </div>

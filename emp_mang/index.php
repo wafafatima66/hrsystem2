@@ -34,7 +34,7 @@ require '../includes/conn.php';
                   </div>
                   
                   <div class="home-col-box-title" style="background-color: #CE787E  ;">
-                        <h4 class="text-center">Casual</h4>
+                        <h4 class="text-center">MOA/Residency</h4>
                   </div>
             </div>
 

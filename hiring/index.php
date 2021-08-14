@@ -51,6 +51,34 @@ include SITE_ROOT . '/includes/header.php'; ?>
             }
         });
 
+        $('.add_com_1').click(function() {
+            if (x < maxField) {
+                x++; 
+                $('.com_wrapper_1').append('<input type="text" class="form-control text-input mt-1 mb-1" name="hiring_education[]">'); 
+            }
+        });
+
+        $('.add_com_2').click(function() {
+            if (x < maxField) {
+                x++; 
+                $('.com_wrapper_2').append('<input type="text" class="form-control text-input mt-1 mb-1" name="hiring_education[]">'); 
+            }
+        });
+
+        $('.add_com_3').click(function() {
+            if (x < maxField) {
+                x++; 
+                $('.com_wrapper_3').append('<input type="text" class="form-control text-input mt-1 mb-1" name="hiring_education[]">'); 
+            }
+        });
+
+        $('.add_com_4').click(function() {
+            if (x < maxField) {
+                x++; 
+                $('.com_wrapper_4').append('<input type="text" class="form-control text-input mt-1 mb-1" name="hiring_education[]">'); 
+            }
+        });
+
 
     });
 </script>

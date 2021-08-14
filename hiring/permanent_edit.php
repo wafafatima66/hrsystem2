@@ -1,71 +1,23 @@
-<?php  
-if (isset($_POST['submit'])) {
+<?php include '../config.php';
 
-    $nature = 'Original';
-    $item_no = $_POST['item_no'];
-    $position = $_POST['position'];
-    $salary_grade = $_POST['salary_grade'];
-    $date_created = $_POST['date_created'];
-    $filled = 0 ; 
+include SITE_ROOT . '/includes/header.php'; ?>
 
-    $sql = "INSERT INTO item (
-        nature , item_no  , position , salary_grade , date_created , filled ) VALUES ( '$nature'  , '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled')";
-
-if (!empty($_POST['hiring_education'])) {
-    for ($i = 0; $i < count($_POST['hiring_education']); $i++) {
-
-        $hiring_education = $_POST['hiring_education'][$i];
-
-$sql1 = "INSERT INTO hiring_education (
-     item_no  , hiring_education  ) VALUES ( '$item_no'  , '$hiring_education')";
-
-    mysqli_query($conn, $sql1);
-
-    }}
-
-    if (!empty($_POST['hiring_work_exp'])) {
-        for ($i = 0; $i < count($_POST['hiring_work_exp']); $i++) {
-    
-            $hiring_work_exp = $_POST['hiring_work_exp'][$i];
-    
-            $sql2 = "INSERT INTO hiring_work_exp (
-                item_no  , hiring_work_exp  ) VALUES ( '$item_no'  , '$hiring_work_exp')";
-    mysqli_query($conn, $sql2);
-        }}
-
-        if (!empty($_POST['hiring_training'])) {
-            for ($i = 0; $i < count($_POST['hiring_training']); $i++) {
-        
-                $hiring_training = $_POST['hiring_training'][$i];
-        
-                $sql3 = "INSERT INTO hiring_training (
-                    item_no  , hiring_training  ) VALUES ( '$item_no'  , '$hiring_training')";
-        mysqli_query($conn, $sql3);
-            }}
-
-            if (!empty($_POST['hiring_eligibility'])) {
-                for ($i = 0; $i < count($_POST['hiring_eligibility']); $i++) {
-            
-                    $hiring_eligibility = $_POST['hiring_eligibility'][$i];
-            
-                    $sql4 = "INSERT INTO hiring_eligibility (
-                        item_no  , hiring_eligibility  ) VALUES ( '$item_no'  , '$hiring_eligibility')";
-            mysqli_query($conn, $sql4);
-                }}
-
-
-if (mysqli_query($conn, $sql)) {
-   
-    echo  '<script>toastr.success("Item added successfully")</script>';
-   } else {
-       echo  '<script>toastr.error("Item not added. Try again !")</script>';
-    
-   }
-}
+<?php 
+// if(isset($_GET['id'])){
+//     echo $_GET['id'];
+// }
 ?>
+<div class="form-row mt-2 mb-4">
+            <div class="col-lg-12 col-sm-12">
+            <h4 class="h4-heading">ITEM MANAGEMENT - PERMANENT </h4>
+            </div>
+        </div>
+    
+        
+        <h4 class="background-title-1 p-3">Edit Item</h4>
 
+        <div class="" style="border:solid 1px #505A43 ; padding:20px;">
 
-<div class="Original switch-tab" style="display: block;">
 
     <form method="post" action="" enctype="multipart/form-data">
 
@@ -97,6 +49,10 @@ if (mysqli_query($conn, $sql)) {
                     <input type="date" class="form-control text-input" name="date_created">
                     <small class="text-muted"> (Date created)</small>
                 </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <input type="text" class="form-control text-input" name="" placeholder="Place of assignment">
             </div>
 
         </div>
@@ -151,10 +107,59 @@ if (mysqli_query($conn, $sql)) {
 
         </div>
 
+        <div class="form-row mt-2">
+            <div class="col-lg-12 col-sm-12">
+                <label for="" class="h6">Applicable competency</label>
+            </div>
+        </div>
+
+        <div class="form-row mb-2">
+
+            <div class="col-lg-3 col-sm-6 ">
+                <span>Competency 1</span>
+
+                <div class="com_wrapper_1">
+                    <input type="text" class="form-control text-input mt-1 mb-1" name="hiring_education[]">
+                </div>
+
+                <button type="button" class="btn button-1 float-right add_com_1 pr-1 pl-1 pt-0 pb-0">+</button>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 ">
+                <span>Competency 2</span>
+
+                <div class="com_wrapper_2">
+                    <input type="text" class="form-control text-input mt-1 mb-1" name="hiring_work_exp[]">
+                </div>
+
+                <button type="button" class="btn button-1 float-right add_com_2 pr-1 pl-1 pt-0 pb-0">+</button>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 ">
+                <span>Competency 3</span>
+
+                <div class="com_wrapper_3">
+                    <input type="text" class="form-control text-input mt-1 mb-1" name="hiring_training[]">
+                </div>
+
+                <button type="button" class="btn button-1 float-right add_com_3 pr-1 pl-1 pt-0 pb-0">+</button>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 ">
+                <span>Competency 4</span>
+
+                <div class="com_wrapper_4">
+                    <input type="text" class="form-control text-input mt-1 mb-1" name="hiring_eligibility[]">
+                </div>
+
+                <button type="button" class="btn button-1 float-right add_com_4 pr-1 pl-1 pt-0 pb-0">+</button>
+            </div>
+
+        </div>
+
 
         <div class="modal-footer">
-            <button type="button" class="btn button-1 mr-2" data-dismiss="modal" aria-label="Close">Close
-            </button>
+            
             <button type="submit" name="submit" class="btn button-1 ">Submit</button>
         </div>
     </form>

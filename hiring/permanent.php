@@ -18,9 +18,9 @@
   </div>
 
   <div class="ml-auto col-lg-3 col-sm-6">
-   
+
     <select name="hiring_dropdown" id="hiring_dropdown" class="form-control text-input">
-      <option value="">Filter By</option>
+      <option value="All">Filter By</option>
       <option value="Filled">Filled</option>
       <option value="Unfilled">Unfilled</option>
     </select>
@@ -38,8 +38,7 @@
       <th scope="col">Date created</th>
       <th scope="col">date posted</th>
       <th scope="col">Date filled</th>
-      <th scope="col">Appointed employee</th>
-      <th scope="col">Type</th>
+      <th scope="col">Status</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -57,37 +56,38 @@
   "
     ?>
 
-<tr> <td><?php echo $mydata['item_no']?></td>
-        <td><?php echo$mydata['position']?></td>
-        <td><?php echo$mydata['date_created']?></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><?php if ($mydata['filled']== '0'){echo "Unfilled" ;  } else {  echo "Filled" ;   }?></td>
-        <td>
-        <a href='<?php if ($mydata['filled']== '0'){
-                echo "unfilled.php?id=".$mydata['id']; 
-            }else {
-              echo "filled.php?id=".$mydata['id'];
-            }?>'>
-            <i class='fa fa-edit mx-2 '></i>
-        </a>
+        <tr>
+          <td><?php echo $mydata['item_no'] ?></td>
+          <td><?php echo $mydata['position'] ?></td>
+          <td><?php echo $mydata['date_created'] ?></td>
+          <td></td>
+          <td></td>
+          <td><?php if ($mydata['filled'] == '0') {
+                echo "Unfilled";
+              } else {
+                echo "Filled";
+              } ?></td>
+          <td>
+            <a href='permanent_edit.php?id=<?php echo $mydata['id'] ?>'>
+              <i class='fa fa-edit mx-2 '></i>
+            </a>
 
-<a href=''><i class='fa fa-trash mx-2'></i></a>
-        </td>
-    </tr>
+            <a href='add_applicant.php?id=<?php echo $mydata['id'] ?>'><i class='fa fa-file-alt mx-2'></i></a>
+            <a href='permanent_appointment.php?id=<?php echo $mydata['id'] ?>'><i class='fa fa-user-edit mx-2'></i></a>
+          </td>
+        </tr>
 
-    <?php }
+      <?php }
     } else { ?>
-<tr>
-  <td colspan = '8'>No data Available</td>
-</tr>
-  <?php  }?>
+      <tr>
+        <td colspan='8'>No data Available</td>
+      </tr>
+    <?php  } ?>
   </tbody>
 </table>
 
 <div class="mt-4 ">
-    <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
+  <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
 </div>
 
 <!-- add item modal -->
@@ -100,30 +100,9 @@
 
       <div class="modal-body">
 
+        <div class="container ">
 
-
-        <div class="form-inline mt-3 p-3" style="background-color: #9EB87C;">
-
-          <input type="radio" name="job_type" value="Original" class=" m-2 " checked>
-          <label for="">Original</label>
-
-
-          <input type="radio" name="job_type" value="Promotion" class=" m-2 ">
-          <label for="">Promotion</label>
-
-          <input type="radio" name="job_type" value="Others" class=" m-2 ">
-          <label for="">Others</label>
-
-        </div>
-
-
-        <div class="container">
-
-          <?php include "permanent_original.php";  ?>
-
-          <?php include "permanent_promotion.php";  ?>
-
-          <?php include "permanent_others.php";  ?>
+          <?php include "permanent_modal.php";  ?>
 
 
         </div>
@@ -141,12 +120,6 @@
 
 <script>
   $(document).ready(function() {
-    $('input[type="radio"]').click(function() {
-      var inputValue = $(this).attr("value");
-      var targetBox = $("." + inputValue);
-      $(".switch-tab").not(targetBox).hide();
-      $(targetBox).show();
-    });
 
     $('#hiring_dropdown').on('change', function() {
       fetchRecordsfromDB(this.value);
