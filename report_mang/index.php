@@ -14,7 +14,7 @@ include SITE_ROOT .'/includes/header.php'; ?>
                         
                               <label style="width: 100%;">
                               <div class="upload-field">
-                             <div class="inner-upload-field">
+                             <div class="inner-upload-field p-4">
                                    <h4 class="text-center">Upload File</h4>
                              </div>
                              </div>

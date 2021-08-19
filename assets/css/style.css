@@ -59,6 +59,7 @@ body {
 .text-input{
     border: solid 1px #fc7e43;
     border-radius: 0;
+    text-transform: capitalize;
 }
 .h4-heading{
    color: #505A43;
@@ -490,6 +491,6 @@ a{
 }
 .inner-upload-field{
     border: 4px dotted #fc7e43;
-    padding: 20px;
+    /* padding: 20px; */
 }
 

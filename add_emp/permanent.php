@@ -9,7 +9,7 @@ if(isset($_POST['submit-per'])){
     $date_created=$_POST['date_created'];
     // $applicant=$_POST['applicant'];
     $department=$_POST['department'];
-    $unit=$_POST['unit'];
+    $office=$_POST['office'];
     $nature=$_POST['nature'];
     $designation=$_POST['designation'];
     $date_of_expiry=$_POST['date_of_expiry'];
@@ -20,9 +20,13 @@ if(isset($_POST['submit-per'])){
     $emp_ext=$_POST['emp_ext'];
     $emp_gender=$_POST['emp_gender'];
 
-    $sql2 = "INSERT INTO employee_job_type (emp_id,job_type , item_no, position, salary_grade, date_created,department,unit,nature,designation,date_of_expiry)
+    // $sql2 = "INSERT INTO employee_job_type (emp_id,job_type , item_no, position, salary_grade, date_created,department,unit,nature,designation,date_of_expiry)
 
-    VALUES ('$emp_id','$job_type', '$item_no', '$position', '$salary_grade', '$date_created','$department','$unit','$nature','$designation','$date_of_expiry')";
+    // VALUES ('$emp_id','$job_type', '$item_no', '$position', '$salary_grade', '$date_created','$department','$unit','$nature','$designation','$date_of_expiry')";
+
+    $sql2 = "INSERT INTO employee_agency (emp_id, job_type , item_no, position, salary_grade, date_created,department,office ,nature,designation,date_of_expiry)
+
+    VALUES ('$emp_id','$job_type', '$item_no', '$position', '$salary_grade', '$date_created','$department','$office','$nature','$designation','$date_of_expiry')";
 
 
     $sql3 = "INSERT INTO employee (emp_id , emp_first_name, emp_last_name, emp_middle_name, emp_ext,emp_gender)
@@ -31,7 +35,7 @@ if(isset($_POST['submit-per'])){
 
 // adding for leave credits 
 
-$year = date("Y");
+        $year = date("Y");
 
 
         $sql4 = "INSERT INTO `leave_credits_result` (`emp_id`, `year`, `vl_pts_1`, `vl_pts_2`, `vl_pts_3`, `vl_pts_4`, `vl_pts_5`, `vl_pts_6`, `vl_pts_7`, `vl_pts_8`, `vl_pts_9`, `vl_pts_10`, `vl_pts_11`, `vl_pts_12`, `sl_pts_1`, `sl_pts_2`, `sl_pts_3`, `sl_pts_4`, `sl_pts_5`, `sl_pts_6`, `sl_pts_7`, `sl_pts_8`, `sl_pts_9`, `sl_pts_10`, `sl_pts_11`, `sl_pts_12`) VALUES ('$emp_id', '$year', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25', '1.25');";
@@ -67,31 +71,43 @@ $year = date("Y");
 
     <div class="form-row">
         <div class="col-lg-3 col-sm-6">
-            <select class="form-control text-input" name="item_no">
-                <option value="">Item No </option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
+            <select class="form-control text-input" name="item_no" id="select_item">
+            <?php
+                    $query = "SELECT item_no FROM item  ";
+                    $result = mysqli_query($conn, $query);
+                    if (mysqli_num_rows($result) > 0) {
+                        echo "<option value=''> Select Item </option> ";
+                        while ($mydata = mysqli_fetch_assoc($result)) {
+                            echo "<option value= '" . $mydata['item_no'] . "'>" . $mydata['item_no'] . "</option>";
+                        }
+                    } else {
+                        echo "<option value='' > Select Item </option>";
+                    }
+            ?>
+            </select> 
+
+         
+
         </div>
 
         <div class="col-lg-2 col-sm-6">
-            <input type="text" class="form-control text-input" name="position" placeholder="position">
+            <input type="text" class="form-control text-input" name="position" placeholder="position" id="position">
         </div>
 
         <div class="col-lg-2 col-sm-6">
-            <input type="text" class="form-control text-input" name="salary_grade" placeholder="Salary Grade">
+            <input type="text" class="form-control text-input" name="salary_grade" placeholder="Salary Grade" id="salary_grade">
         </div>
 
         <div class="col-lg-3 col-sm-6">
             <div class="d-flex flex-column">
-                <input type="date" class="form-control text-input" name="date_created">
+                <input type="date" class="form-control text-input" name="date_created" id="date_created">
                 <small class="text-muted"> (Date created)</small>
             </div>
         </div>
 
         <div class="col-lg-2 col-sm-6">
             <div class="d-flex flex-column">
-                <input type="text" class="form-control text-input" name="nature" placeholder="Nature">
+                <input type="text" class="form-control text-input" name="nature" placeholder="Nature" id="nature">
             </div>
         </div>
 
@@ -151,7 +167,7 @@ $year = date("Y");
             <input type="text" class=" form-control text-input" placeholder="Department" name="department">
         </div>
         <div class="col-lg-3 col-sm-6">
-            <input type="text" class=" form-control text-input" placeholder="Office/Unit" name="unit">
+            <input type="text" class=" form-control text-input" placeholder="Office/Unit" name="office">
         </div>
         <div class="col-lg-3 col-sm-6">
             <input type="text" class="form-control text-input" placeholder="Designation" name="designation">
@@ -173,3 +189,28 @@ $year = date("Y");
 
     </form>
 </div>
+
+
+<script>
+
+// get applicant info
+$(document).ready(function(){
+    $("#select_item").change(function(){
+        $.ajax({
+            url:'../add_emp/get_info_item.php',
+            type : 'post',
+            data: {item_no : $(this).val()},
+            dataType: 'json',
+            success : function(result){
+                
+                $('#position').val(result.position);
+                $('#salary_grade').val(result.salary_grade);
+                $('#date_created').val(result.date_created);
+                $('#nature').val(result.nature);
+                
+            }
+        });
+        // console.log("hi");
+    });
+}); 
+</script>

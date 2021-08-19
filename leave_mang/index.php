@@ -188,7 +188,7 @@ if(isset($_GET['success'])){
 
 <script>
 
-// to get the id from leave management first box
+// to get the info
 $(document).ready(function(){
     $("#emp_id").keyup(function(){
         $.ajax({

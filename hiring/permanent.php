@@ -11,7 +11,7 @@
         <i class="fa fa-search"></i>
       </button>
 
-      <button type="button" class="ml-3 btn button-1" data-toggle="modal" data-target="#hiring_permanent">Add Item</button>
+      <button type="button" class="ml-3 btn button-1" data-toggle="modal" data-target="#add_item">Add Item</button>
 
     </div>
 
@@ -37,7 +37,7 @@
       <th scope="col">Plantilla</th>
       <th scope="col">Date created</th>
       <th scope="col">date posted</th>
-      <th scope="col">Date filled</th>
+      <!-- <th scope="col">Date filled</th> -->
       <th scope="col">Status</th>
       <th scope="col">Action</th>
     </tr>
@@ -45,44 +45,13 @@
   <tbody id="hiring-permanent-table">
 
     <?php
-    $query = "SELECT * FROM item  ";
-
-    $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) > 0) {
-      while ($mydata = mysqli_fetch_assoc($result)) {
-
-        echo "
-  
-  "
+        $query = "SELECT * FROM item  ";
+        $result = mysqli_query($conn, $query);
+        
+        // item table
+        include "item_table.php";
     ?>
 
-        <tr>
-          <td><?php echo $mydata['item_no'] ?></td>
-          <td><?php echo $mydata['position'] ?></td>
-          <td><?php echo $mydata['date_created'] ?></td>
-          <td></td>
-          <td></td>
-          <td><?php if ($mydata['filled'] == '0') {
-                echo "Unfilled";
-              } else {
-                echo "Filled";
-              } ?></td>
-          <td>
-            <a href='permanent_edit.php?id=<?php echo $mydata['id'] ?>'>
-              <i class='fa fa-edit mx-2 '></i>
-            </a>
-
-            <a href='add_applicant.php?id=<?php echo $mydata['id'] ?>'><i class='fa fa-file-alt mx-2'></i></a>
-            <a href='permanent_appointment.php?id=<?php echo $mydata['id'] ?>'><i class='fa fa-user-edit mx-2'></i></a>
-          </td>
-        </tr>
-
-      <?php }
-    } else { ?>
-      <tr>
-        <td colspan='8'>No data Available</td>
-      </tr>
-    <?php  } ?>
   </tbody>
 </table>
 
@@ -91,32 +60,10 @@
 </div>
 
 <!-- add item modal -->
-<div class="modal fade hiring_permanent " id="hiring_permanent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
 
+ <?php include "add_item_modal.php";  ?>
 
-      <h3 class=" background-title-1 p-3">Add Item</h3>
-
-      <div class="modal-body">
-
-        <div class="container ">
-
-          <?php include "permanent_modal.php";  ?>
-
-
-        </div>
-
-      </div>
-
-
-
-    </div>
-
-  </div>
-
-
-</div>
+<!--  -->
 
 <script>
   $(document).ready(function() {
@@ -128,7 +75,7 @@
 
     function fetchRecordsfromDB(data) {
       $.ajax({
-        url: "filter.php",
+        url: "filter_item.php",
         cache: false,
         type: "POST",
         data: {

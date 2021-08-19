@@ -14,7 +14,7 @@
 
 	$offset = ($page_no-1) * $limit;
 
-	$query = "SELECT id, emp_id , emp_first_name , emp_last_name , emp_middle_name , emp_ext , emp_gender  FROM employee LIMIT $offset, $limit";
+	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , p.job_type , p.office , p.position  FROM employee e join employee_agency p on e.emp_id = p.emp_id  LIMIT $offset, $limit";
 
 	$result = mysqli_query($conn, $query);
 
@@ -44,9 +44,9 @@
                               <span> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
                         </td>
                         <td> {$mydata['emp_gender']} </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+						<td>{$mydata['job_type']}</td>
+						<td>{$mydata['position']}</td>
+						<td>{$mydata['office']}</td>
                   </tr>";
 	} 
 	$output.="</tbody>

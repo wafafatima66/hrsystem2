@@ -10,25 +10,38 @@
                 <div class="container">
 
                     <?php
-                    if (isset($_GET['id'])) {
+                    // if (isset($_GET['id'])) {
 
-                        $id =  $_GET['id'];
+                    //     $id =  $_GET['id'];
 
-                        $query = "SELECT item_no FROM item WHERE id = '$id'";
-                        $runquery = $conn->query($query);
-                        if ($runquery == true) {
-                            while ($mydata = $runquery->fetch_assoc()) {
+                    //     $query = "SELECT item_no FROM item WHERE id = '$id'";
+                    //     $runquery = $conn->query($query);
+                    //     if ($runquery == true) {
+                    //         while ($mydata = $runquery->fetch_assoc()) {
 
-                                $item_no =  $mydata['item_no'];
-                            }
-                        }
+                    //             $item_no =  $mydata['item_no'];
+                                
+                    //         }
+                    //     }
+                    // }
+
+                    if (isset($_GET['item_no'])) {
+
+                        $item_no =  $_GET['item_no'];
+                        $input = '<input type="hidden" name="item_no" value="'.$item_no.'">';
+                     
+                    }else if (isset($_GET['position_no'])) {
+
+                        $position_no =  $_GET['position_no'];
+                        $input = '<input type="hidden" name="position_no" value="'.$position_no.'">';
+                     
                     }
 
                     ?>
 
                     <form method="post" action="" enctype="multipart/form-data">
 
-                        <input type="hidden" name="item_no" value="<?php echo $item_no; ?>">
+                        <?php echo $input ;  ?>
 
                         <div class="form-row">
 
@@ -78,7 +91,13 @@
                         <div class="form-row mt-3">
 
                             <div class="col-lg-3 col-sm-6">
-                                <input type="text" class=" form-control text-input" placeholder="Country" name="applicant_country" value="">
+                                <!-- <input type="text" class=" form-control text-input" placeholder="Country" name="applicant_country" value=""> -->
+
+                                <select class="form-control text-input" name="applicant_country" >
+                                    <option value="">Select Country</option>
+                                    <?php  include '../includes/countries.php' ?>
+                                </select>
+
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <input type="text" class=" form-control text-input" placeholder="Province/State" name="applicant_state" value="">
@@ -150,10 +169,25 @@
                             </div>
                         </div>
 
-                        <div class="form-row mt-4">
+                        <div class="form-row mt-2 mb-2">
                             <div class="col-lg-4 col-sm-6">
-                                <input type="file" name="applicant_image" id="">
+                                
+
+                             <label style="width: 100%;" >
+                             
+                             <div class="inner-upload-field p-2">
+                                   <h6 class="text-center">Upload Files</h6>
+                             </div>
+
+                                    <input type="file" name="applicant_files[]" id="applicant_files" multiple style="display: none;" >
+                              </label>
+
+                              <div id="total" class="text-success"></div>
+
                             </div>
+                            
+                                
+                           
                         </div>
 
 
@@ -177,3 +211,29 @@
 
 
 </div>
+
+<script>
+     $("#applicant_files").change(function(){
+            $("#total").html($("#applicant_files")[0].files.length + " Files uploaded");
+      });
+
+      function checkAvailability() {
+    // $("#loaderIcon").show();
+
+        var applicant_id = 'applicant_id=' + $("#applicant_id").val();
+
+        console.log(applicant_id);
+
+        jQuery.ajax({
+        url: "check_applicant_id.php",
+        data: applicant_id,
+        type: "POST",
+        success: function(data) {
+            $("#user-availability-status").html(data);
+            // $("#loaderIcon").hide();
+        },
+        error: function() {}
+        });
+  }
+
+</script>

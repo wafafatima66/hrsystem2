@@ -203,9 +203,9 @@
 
           <div class="col-lg-12 text-right mt-4 ">
 
-          <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
+          <button class="btn button-1 " type="submit" ><i class="fa fa-print"></i></button>
 
-             <button class="btn button-1 " type="submit" name="submit"><i class="fas fa-edit"></i></button>
+             <button class="btn button-1 " type="submit" name="submit"><i class="fas fa-check"></i></button>
 
              <!-- <button class="btn button-2  "><i class="fas fa-trash-alt"></i></button>
              <button class="btn button-2 " ><i class="fa fa-eye"></i></button> -->

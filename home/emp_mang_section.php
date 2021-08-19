@@ -26,8 +26,8 @@ if(isset($_POST['submit'])){
 
       $search=$_POST['search'];
 
-      $sql = "SELECT id, emp_id , emp_first_name , emp_last_name , emp_middle_name , emp_ext , emp_gender FROM employee
-      WHERE emp_first_name LIKE '%{$search}%' OR emp_last_name LIKE '%{$search}%' OR emp_id LIKE '%{$search}%'" ; 
+      $sql = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , p.job_type , p.office , p.position  FROM employee e join employee_agency p on e.emp_id = p.emp_id 
+      WHERE e.emp_first_name LIKE '%{$search}%' OR e.emp_last_name LIKE '%{$search}%' OR e.emp_id LIKE '%{$search}%'" ; 
 
       $result = mysqli_query($conn, $sql );
 
@@ -57,9 +57,9 @@ while ($mydata = mysqli_fetch_array($result))
             <span> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
       </td>
       <td> {$mydata['emp_gender']} </td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{$mydata['job_type']}</td>
+      <td>{$mydata['position']}</td>
+      <td>{$mydata['office']}</td>
 </tr>";
 } 
 $output.="</tbody>
@@ -74,7 +74,6 @@ echo $output ;
       echo '<div id="table-data"> </div>' ; 
 }
       ?>
-
 
       <?php include "../add_emp/add_emp_modal.php";?>
 
