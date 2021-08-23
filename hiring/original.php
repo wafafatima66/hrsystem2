@@ -6,6 +6,8 @@ if (isset($_POST['submit'])) {
     $applicant_id = $_POST['applicant_id'];
     $item_no = $_POST['item_no'];
     $appointment_date = $_POST['appointment_date'];
+    $department_name = $_POST['department_name'];
+    $office_name = $_POST['office_name'];
     $nature = 'Original';
 
     $query = "SELECT * FROM applicant where applicant_id = '$applicant_id'  ";
@@ -27,7 +29,7 @@ if (isset($_POST['submit'])) {
     VALUES ('$applicant_id', '$applicant_first_name', '$applicant_middle_name', '$applicant_last_name', '$applicant_ext', '$applicant_gender', '$applicant_country', '$applicant_state', '$applicant_municipal', '$applicant_zip')";
 
 
-    $sql2 = "DELETE FROM applicant WHERE applicant_id='$applicant_id'";
+    // $sql2 = "DELETE FROM applicant WHERE applicant_id='$applicant_id'";
     // $conn->query($sql2);
 
     $query2 = "SELECT position ,  salary_grade FROM item where item_no = '$item_no'  ";
@@ -38,13 +40,13 @@ if (isset($_POST['submit'])) {
         $salary_grade = $mydata['salary_grade'];
     }
 
-    $sql3 = "INSERT INTO employee_agency (emp_id , appointment_date , item_no , nature , position , salary_grade , job_type)
-    VALUES ('$applicant_id', '$appointment_date', '$item_no', '$nature','$position', '$salary_grade' , 'Permanent')";
+    $sql3 = "INSERT INTO employee_agency (emp_id , appointment_date , item_no , nature , position , salary_grade , job_type , department , office)
+    VALUES ('$applicant_id', '$appointment_date', '$item_no', '$nature','$position', '$salary_grade' , 'Permanent' , '$department_name','$office_name' )";
       
     $sql4 = "UPDATE item SET status = 1  WHERE item_no='$item_no'";
 
 
-    if (mysqli_query($conn, $sql1) && mysqli_query($conn, $sql2) && mysqli_query($conn, $sql3) && mysqli_query($conn, $sql4)) {
+    if (mysqli_query($conn, $sql1)  && mysqli_query($conn, $sql3) && mysqli_query($conn, $sql4)) {
         echo  '<script>toastr.success("Applicant appointmented successfully")</script>';
     } else {
         echo  '<script>toastr.error("Applicant not appointmented. Try again !")</script>';
@@ -105,6 +107,14 @@ if (isset($_GET['item-no'])) {
 
             <div class="col-lg-3 col-sm-6 mt-2">
                 <input type="text" class="form-control text-input" name="applicant_ext" placeholder="Ext" id="applicant_ext">
+            </div>
+
+            <div class="col-lg-3 col-sm-6 mt-2">
+                <input type="text" class="form-control text-input" name="department_name" placeholder="Department" >
+            </div>
+
+            <div class="col-lg-3 col-sm-6 mt-2">
+                <input type="text" class="form-control text-input" name="office_name" placeholder="Office/Unit">
             </div>
 
         </div>

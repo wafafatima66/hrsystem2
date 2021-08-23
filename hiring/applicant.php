@@ -392,7 +392,6 @@ if (isset($_GET['item_no']) || isset($_GET['position_no']) ) {
 
 <script>
 
-//JUERY SCRIPT
 $(document).ready(function(){
     $(".view_applicant_btn").click(function(){
         // $("#view_applicant").modal();
