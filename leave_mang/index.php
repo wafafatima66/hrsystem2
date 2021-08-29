@@ -6,6 +6,29 @@ include SITE_ROOT .'/includes/header.php'; ?>
 if(isset($_GET['success'])){
       echo  '<script>toastr.success("Leave form added succesfully !")</script>';
 }
+
+// editing approve or not approving leave 
+require '../includes/conn.php';
+
+if (isset($_POST['edit_leave_approve'])) {
+
+	$id = $_POST['id'];
+	$status = $_POST['status'];
+	$remarks = $_POST['remarks'];
+
+
+
+	$sql = "UPDATE emp_leaves SET status = '$status', remarks='$remarks' WHERE id='$id'";
+
+
+	if (mysqli_query($conn, $sql) ) {
+		echo  '<script>toastr.success("Leave form updated")</script>';
+	} else {
+		echo mysqli_error($conn);
+	}
+
+} 
+
 ?>
 
 <div class="container ">
@@ -28,18 +51,18 @@ if(isset($_GET['success'])){
                               </div>
 
                               <div class="col-lg-2 col-sm-6">
-                                    <input type="text" class="form-control text-input" placeholder="Position">
+                                    <input type="text" class="form-control text-input" placeholder="Position" id="position" name="position">
                               </div>
 
                               <div class="col-lg-2 col-sm-6">
-                                    <input type="text" class="form-control text-input" placeholder="Salary">
+                                    <input type="text" class="form-control text-input" placeholder="Salary" id="salary_grade" name="salary_grade">
                               </div>
                         </div>
 
                         <div class="form-row mt-4">
 
                               <div class="col-lg-3 col-sm-6">
-                                    <input type="text" class=" form-control text-input" placeholder="Office/Department">
+                                    <input type="text" class=" form-control text-input" placeholder="Office/Department" id="office" name="office">
                               </div>
 
                               <div class="col-lg-4 col-sm-6">
@@ -181,15 +204,29 @@ if(isset($_GET['success'])){
       </div>
 </div>
 
+<!-- view status modal -->
+<div class="modal fade " id="edit_leave" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content">
+
+                <h3 class=" background-title-1 p-3">View Applicant</h3>
+
+                <div class="modal-body" id="view_status_details">
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-
-<?php include "edit_leave_modal.php" ;  ?>
 
 <script>
 
 // to get the info
 $(document).ready(function(){
+
+     
+
     $("#emp_id").keyup(function(){
         $.ajax({
             url:'get_info_emp_id.php',
@@ -198,12 +235,13 @@ $(document).ready(function(){
             dataType: 'json',
             success : function(result){
                 
-                  var emp_name = result.emp_first_name +" "+ result.emp_middle_name + " " + result.emp_last_name + " " +result.emp_ext ; 
-                $('#emp_name').val(emp_name);
+                var emp_name = result.emp_first_name +" "+ result.emp_middle_name + " " + result.emp_last_name + " " +result.emp_ext ; 
 
-            //     $('#emp_middle_name').val(result.emp_middle_name);
-            //     $('#emp_last_name').val(result.emp_last_name);
-            //     $('#emp_ext').val(result.emp_ext);
+                $('#emp_name').val(emp_name);
+                $('#position').val(result.position);
+                $('#salary_grade').val(result.salary_grade);
+                $('#office').val(result.office);
+
             //     $('#emp_status').val(result.emp_status);
             //     $('#emp_salary').val(result.emp_salary);
 

@@ -1,5 +1,3 @@
-
-
 <?php
 
 	// Connect database 
@@ -116,14 +114,27 @@
 
 
 <script>
-  $(document).ready(function() {
-    $('.leave-edit').click(function() {
+//   $(document).ready(function() {
+//     $('.leave-edit').click(function() {
     
-	$('#leave_id').val($(this).data('id'));
+// 	$('#leave_id').val($(this).data('id'));
 
-    });
+//     });
  
-  });
+//   });
+
+$(".leave-edit").click(function(){
+     
+	 $.ajax({
+		 type:'POST',
+		 url:'get_status_details.php',
+		 data: { id : $(this).data("id")  },
+		 success:function(data){
+			 $("#view_status_details").html(data); 
+		 }
+	 }); 
+ });
+
 </script>
 
  

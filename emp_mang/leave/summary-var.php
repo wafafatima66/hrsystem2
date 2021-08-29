@@ -20,8 +20,8 @@
     {
     while($mydata = $runquery -> fetch_assoc())
         {
-            $leave_from_date =   date("m/d/Y", strtotime($mydata["leave_from_date"]));
-            $leave_to_date =   date("m/d/Y", strtotime($mydata["leave_to_date"]));
+            $leave_from_date =   date("m/d", strtotime($mydata["leave_from_date"]));
+            $leave_to_date =   date("m/d", strtotime($mydata["leave_to_date"]));
             $vac_date_diff =   $mydata["date_diff"];
             
 
@@ -42,8 +42,8 @@
     {
     while($mydata = $runquery -> fetch_assoc())
         {
-            $leave_from_date =   date("m/d/Y", strtotime($mydata["leave_from_date"]));
-            $leave_to_date =   date("m/d/Y", strtotime($mydata["leave_to_date"]));
+            $leave_from_date =   date("m/d", strtotime($mydata["leave_from_date"]));
+            $leave_to_date =   date("m/d", strtotime($mydata["leave_to_date"]));
             $sick_date_diff =   $mydata["date_diff"];
 
 
@@ -65,8 +65,8 @@
     {
     while($mydata = $runquery -> fetch_assoc())
         {
-            $leave_from_date =   date("m/d/Y", strtotime($mydata["leave_from_date"]));
-            $leave_to_date =   date("m/d/Y", strtotime($mydata["leave_to_date"]));
+            $leave_from_date =   date("m/d", strtotime($mydata["leave_from_date"]));
+            $leave_to_date =   date("m/d", strtotime($mydata["leave_to_date"]));
             $spl_date_diff =   $mydata["date_diff"];
 
 
@@ -88,8 +88,8 @@
     {
     while($mydata = $runquery -> fetch_assoc())
         {
-            $leave_from_date =   date("m/d/Y", strtotime($mydata["leave_from_date"]));
-            $leave_to_date =   date("m/d/Y", strtotime($mydata["leave_to_date"]));
+            $leave_from_date =   date("m/d", strtotime($mydata["leave_from_date"]));
+            $leave_to_date =   date("m/d", strtotime($mydata["leave_to_date"]));
             $lwp_date_diff =   $mydata["date_diff"];
     
     

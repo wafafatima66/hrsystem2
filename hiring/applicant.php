@@ -371,19 +371,16 @@ if (isset($_GET['item_no']) || isset($_GET['position_no']) ) {
     <!-- view applicant modal -->
 
     <div class="modal fade view_applicant " id="view_applicant"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
 
-            <h3 class=" background-title-1 p-3">View Applicant</h3>
+                <h3 class=" background-title-1 p-3">View Applicant</h3>
 
-            <div class="modal-body" id="view_applicant_details">
+                <div class="modal-body" id="view_applicant_details">
 
+                </div>
             </div>
-
         </div>
-
-    </div>
-
     </div>
 
    

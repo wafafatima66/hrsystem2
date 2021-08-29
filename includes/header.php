@@ -94,7 +94,7 @@ function active($currect_page){
 
 <a href="../emp_mang/emp_profile.php?id=<?php echo $id?>" class="list-group-item d-inline-block collapsed <?php active('emp_mang');?>"><span class="d-none d-md-inline">Profile Management</span><i class="fas fa-users"></i> </a>
 
-<a href="../emp_leave_mang/" class="list-group-item d-inline-block collapsed <?php active('emp_leave_mang');?>"><span class="d-none d-md-inline">Leave
+<a href="../emp_leave_mang/index.php?emp_id=<?php echo $emp_id?>" class="list-group-item d-inline-block collapsed <?php active('emp_leave_mang');?>"><span class="d-none d-md-inline">Leave
     Application</span><i class="fa fa-calendar"></i>
 </a>
 

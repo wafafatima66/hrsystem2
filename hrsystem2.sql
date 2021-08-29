@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2021 at 08:27 PM
+-- Generation Time: Aug 29, 2021 at 06:37 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -53,7 +53,8 @@ INSERT INTO `applicant` (`id`, `item_no`, `position_no`, `applicant_id`, `applic
 (6, 'item1', '', 'appli2', '   first', 'sec', 'Quincy', 'Kirk', 'Yvonne Velazquez', 'Nesciunt omnis inci', 'Eos eum laboris accu', 'Papua New Guinea', 'Aut laborum magna ex', 'Minus placeat sed n', '86150'),
 (9, '', '25-Dec-1978', '2021FG', '  HIGH', 'Et vel adipisicing c', 'Zephania', 'Campbell', 'Britanni Mcpherson', 'Sint illum deserun', 'Qui animi cupidatat', 'Turkey', 'Earum ducimus solut', 'Autem voluptatem rem', '63765'),
 (13, 'Item3', '', '2021OIB', '  Sed ', '3', 'Kathleen', 'Daugherty', 'Fredericka', 'Anim ea rem ut disti', 'Similique', 'Serbia', 'Officia debitis iure', 'Deleniti itaque null', '25005'),
-(14, 'item4', '', '2021POK', ' veniam', 'temporibus', 'Shana', 'Howe', 'Hiroko ', 'Fugiat eos exercita', 'obcaec', 'Uganda', 'Ipsum ', 'Optio ', '89367');
+(14, 'item4', '', '2021POK', ' veniam', 'temporibus', 'Shana', 'Howe', 'Hiroko ', 'Fugiat eos exercita', 'obcaec', 'Uganda', 'Ipsum ', 'Optio ', '89367'),
+(16, 'item1', '', '2021df', ' 3', '4', 'Keely', 'Frank', 'Brynne Higgins', 'Iusto exercitationem', 'Adipisci sunt dolore', 'Singapore', 'Amet quae pariatur', 'Id ut vel rem perspi', '62020');
 
 -- --------------------------------------------------------
 
@@ -252,12 +253,9 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `emp_id`, `emp_image`, `emp_first_name`, `emp_middle_name`, `emp_last_name`, `emp_ext`, `emp_dob`, `emp_gender`, `emp_civil_status`, `emp_height`, `emp_weight`, `emp_blood`, `emp_citizen`, `emp_nationality`, `emp_resi_add`, `emp_resi_add_street`, `emp_resi_add_municipal`, `emp_resi_add_barangay`, `emp_resi_add_zipcode`, `emp_per_add`, `emp_per_add_street`, `emp_per_add_municipal`, `emp_per_add_barangay`, `emp_per_add_zipcode`, `emp_tel_no`, `emp_mb_no`, `emp_email`, `emp_contact_gs`, `emp_contact_pag`, `emp_contact_ph`, `emp_contact_ss`, `emp_contact_tin`, `emp_contact_agency`, `emp_spouse_lastname`, `emp_spouse_firstname`, `emp_spouse_middlename`, `emp_spouse_extname`, `emp_sp_occupation`, `emp_sp_employer`, `emp_sp_add`, `emp_sp_tel`, `emp_father_lastname`, `emp_father_firstname`, `emp_father_middlename`, `emp_father_extname`, `emp_mother_lastname`, `emp_mother_firstname`, `emp_mother_middlename`, `emp_mother_extname`, `ele_school_name`, `ele_degree`, `ele_from_date`, `ele_to_date`, `ele_units`, `ele_award`, `ele_graduation`, `sec_school_name`, `sec_degree`, `sec_from_date`, `sec_to_date`, `sec_units`, `sec_award`, `sec_graduation`, `voc_school_name`, `voc_degree`, `voc_from_date`, `voc_to_date`, `voc_units`, `voc_award`, `voc_graduation`, `coll_school_name`, `coll_degree`, `coll_from_date`, `coll_to_date`, `coll_units`, `coll_award`, `coll_graduation`, `gra_school_name`, `gra_degree`, `gra_from_date`, `gra_to_date`, `gra_units`, `gra_award`, `gra_graduation`, `condition_1`, `condition_2`, `condition_2_des`, `condition_3`, `condition_3_des`, `condition_4`, `condition_4_des`, `condition_4_date`, `condition_4_status`, `condition_5`, `condition_5_des`, `condition_6`, `condition_6_des`, `condition_7`, `condition_7_des`, `condition_8`, `condition_8_des`, `condition_9`, `condition_9_des`, `condition_10`, `condition_10_des`, `condition_11`, `condition_11_des`, `condition_12`, `condition_12_des`) VALUES
-(4, '202198', 'employee202198-1.png', 'Cecilia', 'Ursa Maxwell', ' Blevins', 'Nesciunt beatae vel', '0000-00-00', 'Delectus v', '', 0, 0, '', '', 'Macao', 'Odit culpa ', 'State/Province', 'City/Municipilaty', 'Barangay', '22487', '', 'State/Province', 'City/Municipilaty', 'Barangay', '', '', '', '', 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', 0, '', '', '', '', '', '  ', '', '', ' ', '', '0000-00-00', '0000-00-00', 0, '', '', '', '', '0000-00-00', '0000-00-00', 0, ' ', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', ' ', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', ' ', '', '', '', ' ', '', '', '', ''),
-(5, 'app1', 'employee - app1-download (1).jpeg', 'Jordan', 'Madonna Donovan', ' Lara', 'Est amet alias offi', '0000-00-00', 'Cillum sin', '', 0, 0, '', '', 'Ireland', 'Qui consequuntur ver', 'State/Province', 'City/Municipilaty', 'Barangay', '21467', '', 'State/Province', 'City/Municipilaty', 'Barangay', '', '', '', '', 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', 0, '', '', '', '', '', '  ', '', '', ' ', '', '0000-00-00', '0000-00-00', 0, '', '', '', '', '0000-00-00', '0000-00-00', 0, ' ', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', ' ', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', ' ', '', '', '', ' ', '', '', '', ''),
 (6, '2021er', 'employee2021er-employee2021XF-download.jpg', 'Lana', 'Kyla Haynes', ' Alexander', 'Dolore qui fuga Eni', '0000-00-00', 'Dolor dese', '', 0, 0, '', '', '', '', 'State/Province', 'City/Municipilaty', 'Barangay', '', '', 'State/Province', 'City/Municipilaty', 'Barangay', '', '', '', '', 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', 0, '', '', '', '', '', '  ', '', '', ' ', '', '0000-00-00', '0000-00-00', 0, '', '', '', '', '0000-00-00', '0000-00-00', 0, ' ', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', ' ', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', ' ', '', '', '', ' ', '', '', '', ''),
-(7, '2021OIB', NULL, 'Kathleen', 'Fredericka', 'Daugherty', 'Anim ea rem ut disti', NULL, 'Similique', NULL, NULL, NULL, NULL, NULL, 'Serbia', 'Officia debitis iure', NULL, 'Deleniti itaque null', NULL, '25005', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, '2021POK', 'employee - 2021POK-download (1).jpeg', 'Shana', 'Hiroko ', 'Howe', 'Fugiat eos exercita', NULL, 'obcaec', NULL, NULL, NULL, NULL, NULL, 'Uganda', 'Ipsum ', NULL, 'Optio ', NULL, '89367', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, '2021yu', NULL, 'Hannah', 'Wayne Stanton', 'Cooper', 'Suscipit molestiae d', NULL, 'Eius conse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(12, '2021po', NULL, 'Honorato', 'Brenden Foster', 'Bradshaw', 'Ut eum non est dolor', NULL, 'Amet quo i', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, '2021df', NULL, 'Keely', 'Brynne Higgins', 'Frank', 'Iusto exercitationem', NULL, 'Adipisci s', NULL, NULL, NULL, NULL, NULL, 'Singapore', 'Amet quae pariatur', NULL, 'Id ut vel rem perspi', NULL, '62020', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -292,7 +290,12 @@ INSERT INTO `employee_agency` (`id`, `emp_id`, `appointment_date`, `item_no`, `p
 (3, '202198', '2021-08-17', 'item1', 'High', 'high', NULL, NULL, NULL, 'Original', 'Permanent', '0000-00-00', '', '0000-00-00'),
 (4, '2021OIB', '2021-08-25', 'Item3', 'position1', 'high', NULL, NULL, NULL, 'Original', 'Permanent', '0000-00-00', '', '0000-00-00'),
 (5, '2021POK', '0000-00-00', 'item4', 'position2', '20-Nov-2018', NULL, 'DEPTNEW', 'officenew', 'Original', 'Permanent', '0000-00-00', '', '0000-00-00'),
-(6, '2021yu', NULL, 'item2', 'High', 'Kin', NULL, 'Impedit commodo id', 'Est sed est laborum ', 'Original', 'Permanent', '1994-06-25', 'Molestiae possimus ', '1976-12-17');
+(6, '2021yu', NULL, 'item2', 'High', 'Kin', NULL, 'Impedit commodo id', 'Est sed est laborum ', 'Original', 'Permanent', '1994-06-25', 'Molestiae possimus ', '1976-12-17'),
+(7, '2021QW', NULL, 'item1', 'High', 'high', NULL, 'Illum eos corrupti', 'Pariatur Sed ipsa ', 'Original', 'Permanent', '2021-08-20', 'Tenetur qui id exerc', '1972-07-22'),
+(8, '2021err', NULL, 'item1', 'High', 'high', NULL, 'Maiores et perspicia', 'Sit nostrud ea veni', 'Original', 'Permanent', '2021-08-20', 'Iste soluta fugit i', '1995-09-28'),
+(9, '2021po', NULL, 'item1', 'High', 'high', NULL, 'Et quia quia nulla n', 'Nam earum ut unde ea', 'Original', 'Permanent', '2021-08-20', 'Nisi provident obca', '1990-07-02'),
+(10, '2021yt', '2021-08-30', 'item1', 'High', 'high', NULL, 'dept1', 'office1', 'Original', 'Permanent', '0000-00-00', '', '0000-00-00'),
+(11, '2021df', '2021-08-30', 'item1', 'High', 'high', NULL, 'dept1', 'office1', 'Original', 'Permanent', '0000-00-00', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -396,9 +399,19 @@ CREATE TABLE `emp_leaves` (
   `date_diff` int(100) NOT NULL,
   `details_of_leave` varchar(255) NOT NULL,
   `no_of_working_days` int(11) NOT NULL,
-  `approve` int(11) DEFAULT NULL,
-  `remarks` varchar(255) DEFAULT NULL
+  `status` int(11) DEFAULT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
+  `date_filled` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `emp_leaves`
+--
+
+INSERT INTO `emp_leaves` (`id`, `emp_id`, `type_of_leave`, `leave_from_date`, `leave_to_date`, `date_diff`, `details_of_leave`, `no_of_working_days`, `status`, `remarks`, `date_filled`) VALUES
+(3, '2021po', 'Vacation leave', '2021-09-01', '2021-09-03', 3, '', 3, 0, 'remarks done', '2021-08-29'),
+(4, '2021df', 'Vacation leave', '2021-08-24', '2021-08-27', 4, 'Long term vacation', 3, 1, 'Yes leave is approved', '2021-08-29'),
+(5, '2021df', 'Vacation leave', '2021-08-24', '2021-08-28', 5, 'GOING OUT', 5, NULL, NULL, '2021-08-29');
 
 -- --------------------------------------------------------
 
@@ -659,7 +672,9 @@ INSERT INTO `hiring_education` (`id`, `item_no`, `position_no`, `applicant_id`, 
 (28, 'Item3', NULL, NULL, '23-Oct-1983'),
 (30, NULL, NULL, '2021OIB', ' nd'),
 (31, 'item4', NULL, NULL, '14-Jul-2010'),
-(32, NULL, NULL, '2021POK', 'Reprehenderit simili');
+(32, NULL, NULL, '2021POK', 'Reprehenderit simili'),
+(33, NULL, NULL, '2021yt', 'Ea vitae quas laboru'),
+(34, NULL, NULL, '2021df', 'Rerum cupidatat reru');
 
 -- --------------------------------------------------------
 
@@ -698,7 +713,9 @@ INSERT INTO `hiring_eligibility` (`id`, `item_no`, `position_no`, `applicant_id`
 (25, 'Item3', NULL, NULL, '17-Nov-2011'),
 (27, NULL, NULL, '2021OIB', ' architect'),
 (28, 'item4', NULL, NULL, '25-Jan-2009'),
-(29, NULL, NULL, '2021POK', 'Consequat Velit qui');
+(29, NULL, NULL, '2021POK', 'Consequat Velit qui'),
+(30, NULL, NULL, '2021yt', 'Debitis qui eligendi'),
+(31, NULL, NULL, '2021df', 'Magna id dolorem cor');
 
 -- --------------------------------------------------------
 
@@ -738,7 +755,9 @@ INSERT INTO `hiring_training` (`id`, `item_no`, `position_no`, `applicant_id`, `
 (27, 'Item3', NULL, NULL, '24-Feb-1987'),
 (29, NULL, NULL, '2021OIB', '  ipsum est'),
 (30, 'item4', NULL, NULL, '29-Apr-1984'),
-(31, NULL, NULL, '2021POK', 'Provident velit vol');
+(31, NULL, NULL, '2021POK', 'Provident velit vol'),
+(32, NULL, NULL, '2021yt', 'Eius ullam ipsa ani'),
+(33, NULL, NULL, '2021df', 'Libero tempora repre');
 
 -- --------------------------------------------------------
 
@@ -777,7 +796,9 @@ INSERT INTO `hiring_work_exp` (`id`, `item_no`, `position_no`, `applicant_id`, `
 (25, 'Item3', NULL, NULL, '26-Jul-2019'),
 (27, NULL, NULL, '2021OIB', ' vitae t'),
 (28, 'item4', NULL, NULL, '28-Oct-2018'),
-(29, NULL, NULL, '2021POK', 'Omnis ducimus Nam e');
+(29, NULL, NULL, '2021POK', 'Omnis ducimus Nam e'),
+(30, NULL, NULL, '2021yt', 'Ut esse a soluta vo'),
+(31, NULL, NULL, '2021df', 'Vero inventore dolor');
 
 -- --------------------------------------------------------
 
@@ -825,6 +846,15 @@ CREATE TABLE `leave_credits` (
   `year` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `leave_credits`
+--
+
+INSERT INTO `leave_credits` (`id`, `emp_id`, `vacation_leave`, `sick_leave`, `spl`, `force_leave`, `lwp`, `mon`, `year`) VALUES
+(1, '2021po', 3, 0, 0, 0, 0, 9, 2021),
+(2, '2021df', 4, 0, 0, 0, 0, 9, 2021),
+(3, '2021df', 5, 0, 0, 0, 0, 8, 2021);
+
 -- --------------------------------------------------------
 
 --
@@ -838,27 +868,27 @@ CREATE TABLE `leave_credits_result` (
   `vl_pts_1` float DEFAULT NULL,
   `vl_pts_2` float DEFAULT NULL,
   `vl_pts_3` float DEFAULT NULL,
-  `vl_pts_4` int(11) DEFAULT NULL,
-  `vl_pts_5` int(11) DEFAULT NULL,
-  `vl_pts_6` int(11) DEFAULT NULL,
-  `vl_pts_7` int(11) DEFAULT NULL,
-  `vl_pts_8` int(11) DEFAULT NULL,
-  `vl_pts_9` int(11) DEFAULT NULL,
-  `vl_pts_10` int(11) DEFAULT NULL,
-  `vl_pts_11` int(11) DEFAULT NULL,
-  `vl_pts_12` int(11) DEFAULT NULL,
-  `sl_pts_1` int(11) DEFAULT NULL,
-  `sl_pts_2` int(11) DEFAULT NULL,
-  `sl_pts_3` int(11) DEFAULT NULL,
-  `sl_pts_4` int(11) DEFAULT NULL,
-  `sl_pts_5` int(11) DEFAULT NULL,
-  `sl_pts_6` int(11) DEFAULT NULL,
-  `sl_pts_7` int(11) DEFAULT NULL,
-  `sl_pts_8` int(11) DEFAULT NULL,
-  `sl_pts_9` int(11) DEFAULT NULL,
-  `sl_pts_10` int(11) DEFAULT NULL,
-  `sl_pts_11` int(11) DEFAULT NULL,
-  `sl_pts_12` int(11) DEFAULT NULL
+  `vl_pts_4` float DEFAULT NULL,
+  `vl_pts_5` float DEFAULT NULL,
+  `vl_pts_6` float DEFAULT NULL,
+  `vl_pts_7` float DEFAULT NULL,
+  `vl_pts_8` float DEFAULT NULL,
+  `vl_pts_9` float DEFAULT NULL,
+  `vl_pts_10` float DEFAULT NULL,
+  `vl_pts_11` float DEFAULT NULL,
+  `vl_pts_12` float DEFAULT NULL,
+  `sl_pts_1` float DEFAULT NULL,
+  `sl_pts_2` float DEFAULT NULL,
+  `sl_pts_3` float DEFAULT NULL,
+  `sl_pts_4` float DEFAULT NULL,
+  `sl_pts_5` float DEFAULT NULL,
+  `sl_pts_6` float DEFAULT NULL,
+  `sl_pts_7` float DEFAULT NULL,
+  `sl_pts_8` float DEFAULT NULL,
+  `sl_pts_9` float DEFAULT NULL,
+  `sl_pts_10` float DEFAULT NULL,
+  `sl_pts_11` float DEFAULT NULL,
+  `sl_pts_12` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -867,7 +897,10 @@ CREATE TABLE `leave_credits_result` (
 
 INSERT INTO `leave_credits_result` (`id`, `emp_id`, `year`, `vl_pts_1`, `vl_pts_2`, `vl_pts_3`, `vl_pts_4`, `vl_pts_5`, `vl_pts_6`, `vl_pts_7`, `vl_pts_8`, `vl_pts_9`, `vl_pts_10`, `vl_pts_11`, `vl_pts_12`, `sl_pts_1`, `sl_pts_2`, `sl_pts_3`, `sl_pts_4`, `sl_pts_5`, `sl_pts_6`, `sl_pts_7`, `sl_pts_8`, `sl_pts_9`, `sl_pts_10`, `sl_pts_11`, `sl_pts_12`) VALUES
 (1, '2021er', 2021, 16.25, 17.5, 18.75, 20, 21, 23, 24, 25, 26, 28, 29, 30, 16, 18, 19, 20, 21, 23, 24, 25, 26, 28, 29, 30),
-(2, '2021yu', 2021, 16.25, 17.5, 18.75, 20, 21, 23, 24, 25, 26, 28, 29, 30, 16, 18, 19, 20, 21, 23, 24, 25, 26, 28, 29, 30);
+(2, '2021yu', 2021, 16.25, 17.5, 18.75, 20, 21, 23, 24, 25, 26, 28, 29, 30, 16, 18, 19, 20, 21, 23, 24, 25, 26, 28, 29, 30),
+(4, '2021err', 2021, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
+(5, '2021po', 2021, 19.25, 20.5, 21.75, 23, 24.25, 25.5, 26.75, 28, 24.25, 25.5, 26.75, 28, 19.25, 20.5, 21.75, 23, 24.25, 25.5, 26.75, 28, 29.25, 30.5, 31.75, 33),
+(7, '2021df', 2021, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 17.5, 12.5, 13.75, 15, 16.25, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30);
 
 -- --------------------------------------------------------
 
@@ -882,6 +915,13 @@ CREATE TABLE `leave_credits_year` (
   `vl_pts` decimal(10,2) DEFAULT NULL,
   `sl_pts` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `leave_credits_year`
+--
+
+INSERT INTO `leave_credits_year` (`id`, `emp_id`, `year`, `vl_pts`, `sl_pts`) VALUES
+(1, '2021po', 2020, '18.00', '18.00');
 
 -- --------------------------------------------------------
 
@@ -990,7 +1030,8 @@ INSERT INTO `users` (`id`, `username`, `name`, `password`, `admin_photo`, `role`
 (6, 'we', 'Shana Howe', 'we', NULL, 'Employee', '2021POK', NULL, NULL),
 (8, 'er1', 'Jordan  Lara', 'er1', NULL, 'Department Head', 'app1', 'dept1', 'off1'),
 (9, 'er', 'Lana  Alexander', 'er', NULL, 'Supervisor', '2021er', 'dept2', 'office2'),
-(16, 'yu', 'Hannah Cooper', 'yu', NULL, 'Employee', '2021yu', 'dept1', 'office1');
+(16, 'yu', 'Hannah Cooper', 'yu', NULL, 'Employee', '2021yu', 'dept1', 'office1'),
+(17, 'emp', 'Keely Frank', 'emp', NULL, 'Employee', '2021df', 'dept1', 'office1');
 
 --
 -- Indexes for dumped tables
@@ -1214,7 +1255,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applicant`
 --
 ALTER TABLE `applicant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `applicant_file`
@@ -1238,13 +1279,13 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `employee_agency`
 --
 ALTER TABLE `employee_agency`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `emp_children`
@@ -1274,7 +1315,7 @@ ALTER TABLE `emp_govt_id`
 -- AUTO_INCREMENT for table `emp_leaves`
 --
 ALTER TABLE `emp_leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `emp_membership`
@@ -1334,25 +1375,25 @@ ALTER TABLE `hiring_competency`
 -- AUTO_INCREMENT for table `hiring_education`
 --
 ALTER TABLE `hiring_education`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `hiring_eligibility`
 --
 ALTER TABLE `hiring_eligibility`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `hiring_training`
 --
 ALTER TABLE `hiring_training`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `hiring_work_exp`
 --
 ALTER TABLE `hiring_work_exp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `item`
@@ -1364,19 +1405,19 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `leave_credits`
 --
 ALTER TABLE `leave_credits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `leave_credits_result`
 --
 ALTER TABLE `leave_credits_result`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `leave_credits_year`
 --
 ALTER TABLE `leave_credits_year`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `office`
@@ -1406,7 +1447,7 @@ ALTER TABLE `training_sponsor_list`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
