@@ -223,7 +223,8 @@ a{
 
 /* highlight active menu */
 #sidebar .list-group-item:not(.collapsed) {
-    background-color: #161616;
+    background-color: #505A43;
+    color: #FFDF88;
 }
 
 /* closed state */
@@ -237,7 +238,8 @@ a{
 
 /* open state */
 #sidebar .list-group .list-group-item[aria-expanded="true"] {
-  background-color: #222;
+    background-color: #FFDF88;
+    color: #505A43;
 }
 #sidebar .list-group .list-group-item[aria-expanded="true"]::after {
   content: "";
@@ -249,6 +251,21 @@ a{
 #sidebar .menu-active{
     background-color: #FFDF88;
     color: #505A43;
+}
+
+#sidebar li a{
+    color: #505A43;
+    padding-bottom: 4px;
+    text-decoration: none;
+    margin: 2px 6px;
+    padding: 2px;
+}
+#sidebar li {
+    margin: 2px 6px;
+    padding: 2px;
+}
+.list-active{
+    border-bottom: #505A43 .5px solid;
 }
 
 /* level 1*/
@@ -267,6 +284,7 @@ a{
 #sidebar .list-group .collapse > .collapse > .collapse .list-group-item {
   padding-left: 40px;
 }
+
 
 @media (max-width:768px) {
     #sidebar {

@@ -137,7 +137,7 @@ if (isset($_GET['item-no'])) {
         </div>
 
         <div class="text-right">
-            <a href="../hiring/" class="btn button-1 mt-2 ">Back</a>
+            <a href="../hiring_publication/" class="btn button-1 mt-2 ">Back</a>
             <button class="ml-3 btn button-1 mt-2" type="submit" name="submit">Submit</button>
         </div>
 

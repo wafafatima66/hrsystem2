@@ -48,6 +48,22 @@ function active($currect_page){
   } 
 }
 
+function hiring_active(){
+  $url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
+  $url =  $url_array[2];
+  if($url == 'hiring_item' || $url == 'hiring_publication' || $url == 'hiring_resignation' ){
+      echo 'menu-active'; //class name in css 
+  } 
+}
+
+function list_active($currect_page){
+  $url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
+  $url =  $url_array[2];
+  if($currect_page == $url){
+      echo 'list-active'; //class name in css 
+  } 
+}
+
 ?>
 
 <?php if($row['role'] == 'Super Administrator'){ ?>
@@ -70,9 +86,24 @@ function active($currect_page){
 <a href="../learning/" class="list-group-item d-inline-block collapsed <?php active('learning');?>"><span class="d-none d-md-inline">Learning &
     Development</span><i class="fas fa-chalkboard-teacher"></i> </a>
 
-<a href="../hiring/" class="list-group-item d-inline-block collapsed <?php active('hiring');?>"><span class="d-none d-md-inline">Hiring &
+<a data-toggle="collapse" href="#hiring_menus" role="button" class="list-group-item d-inline-block collapsed <?php hiring_active() ;?>"><span class="d-none d-md-inline">Hiring &
     Appointment</span><i class="fas fa-calendar-check"></i>
 </a>
+
+  <ul class="list-unstyled collapse" id="hiring_menus">
+
+    <li class="float-right <?php list_active('hiring_item');?>"><a href="../hiring_item"><span class="d-md-inline ">Item Management</span></a></li>
+
+    <li class="float-right <?php list_active('hiring_publication');?> "><a href="../hiring_publication"><span class="d-md-inline ">Publication Management</span></a></li>
+
+    <li class="float-right <?php list_active('hiring_resignation');?>"><a href="../hiring_resignation"><span class="d-md-inline ">Resignation & Retirement</span></a></li>
+
+  </ul>
+<!-- 
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">Cras justo odio</li>
+ 
+</ul> -->
 
 <a href="../report_mang/" class="list-group-item d-inline-block collapsed <?php active('report_mang');?> " id="myDIV"><span class="d-none d-md-inline">Reports
     Management</span><i class="fas fa-copy"></i>

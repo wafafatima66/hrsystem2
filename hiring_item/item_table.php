@@ -15,9 +15,12 @@ if (mysqli_num_rows($result) > 0) {
             
             <a href='edit_item.php?item_no=<?php echo $mydata['item_no'] ?>'><i class='fa fa-edit mx-2'></i></a>
             
-            <a href='applicant.php?item_no=<?php echo $mydata['item_no']?>'><i class='fa fa-file-alt mx-2'></i></a>
+            <a href='delete_item.php?id=<?php echo $mydata["id"]?>' onClick="return confirm('Are you sure you want to delete the item');"><i class='fa fa-trash mx-2'></i></a>
+
+
+            <!-- <a href='applicant.php?item_no=<?php echo $mydata['item_no']?>'><i class='fa fa-file-alt mx-2'></i></a>
             
-            <a href='permanent_appointment.php?item-no=<?php echo $mydata['item_no'] ?>'><i class='fa fa-user-edit mx-2'></i></a>
+            <a href='permanent_appointment.php?item-no=<?php echo $mydata['item_no'] ?>'><i class='fa fa-user-edit mx-2'></i></a> -->
 
             </td>
     </tr>

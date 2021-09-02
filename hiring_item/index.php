@@ -12,6 +12,17 @@ include SITE_ROOT . '/includes/header.php'; ?>
 // }
 ?>
 
+<!-- delete message -->
+<?php 
+if(isset($_GET['item_delete'])){
+    if(isset($_GET['item_delete']) =='success'){
+        echo  '<script>toastr.success("Item deleted successfully")</script>';
+    }else if(isset($_GET['item_delete']) =='fail'){
+        echo  '<script>toastr.error("Item not deleted. Try again !")</script>';
+    }
+}
+?>
+
 <style>
     .switch-tab {
     display: none;

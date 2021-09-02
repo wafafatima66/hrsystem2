@@ -18,9 +18,9 @@ if (mysqli_num_rows($result) > 0) {
 
             <a href='edit_position.php?position_no=<?php echo $mydata['position_no'] ?>'><i class='fa fa-edit mx-2'></i></a>
 
-            <a href='applicant.php?position_no=<?php echo $mydata['position_no'] ?>'><i class='fa fa-file-alt mx-2'></i></a>
+            <!-- <a href='applicant.php?position_no=<?php echo $mydata['position_no'] ?>'><i class='fa fa-file-alt mx-2'></i></a>
 
-            <a href=''><i class='fa fa-user-edit mx-2'></i></a>
+            <a href=''><i class='fa fa-user-edit mx-2'></i></a> -->
 
             </td>
     </tr>

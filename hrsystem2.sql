@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2021 at 06:37 PM
+-- Generation Time: Sep 02, 2021 at 10:05 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -50,11 +50,10 @@ CREATE TABLE `applicant` (
 --
 
 INSERT INTO `applicant` (`id`, `item_no`, `position_no`, `applicant_id`, `applicant_rating`, `applicant_rank`, `applicant_first_name`, `applicant_last_name`, `applicant_middle_name`, `applicant_ext`, `applicant_gender`, `applicant_country`, `applicant_state`, `applicant_municipal`, `applicant_zip`) VALUES
-(6, 'item1', '', 'appli2', '   first', 'sec', 'Quincy', 'Kirk', 'Yvonne Velazquez', 'Nesciunt omnis inci', 'Eos eum laboris accu', 'Papua New Guinea', 'Aut laborum magna ex', 'Minus placeat sed n', '86150'),
 (9, '', '25-Dec-1978', '2021FG', '  HIGH', 'Et vel adipisicing c', 'Zephania', 'Campbell', 'Britanni Mcpherson', 'Sint illum deserun', 'Qui animi cupidatat', 'Turkey', 'Earum ducimus solut', 'Autem voluptatem rem', '63765'),
 (13, 'Item3', '', '2021OIB', '  Sed ', '3', 'Kathleen', 'Daugherty', 'Fredericka', 'Anim ea rem ut disti', 'Similique', 'Serbia', 'Officia debitis iure', 'Deleniti itaque null', '25005'),
 (14, 'item4', '', '2021POK', ' veniam', 'temporibus', 'Shana', 'Howe', 'Hiroko ', 'Fugiat eos exercita', 'obcaec', 'Uganda', 'Ipsum ', 'Optio ', '89367'),
-(16, 'item1', '', '2021df', ' 3', '4', 'Keely', 'Frank', 'Brynne Higgins', 'Iusto exercitationem', 'Adipisci sunt dolore', 'Singapore', 'Amet quae pariatur', 'Id ut vel rem perspi', '62020');
+(17, 'item1', '', 'appli2', '    first 12', 'sec 12', 'Quincy', 'Kirk', 'Yvonne Velazquez', 'Nesciunt omnis inci', 'Eos eum laboris accu', 'Papua New Guinea', 'Aut laborum magna ex', 'Minus placeat sed n', '86150');
 
 -- --------------------------------------------------------
 
@@ -107,7 +106,8 @@ CREATE TABLE `cont_position` (
 INSERT INTO `cont_position` (`id`, `position_no`, `position_name`, `salary_grade`, `duration`, `from_date`, `to_date`, `status`, `date_posted`) VALUES
 (3, '25-Dec-1978', 'Zeus Craig', '05-Jan-2017', '22-Dec-2010', '1997-07-27', '1988-10-22', 0, '2021-08-19'),
 (4, 'pos2', 'Rae Hendrix', '29-Oct-2011', '29-Mar-2021', '2007-09-26', '2012-10-06', 0, '2021-08-19'),
-(5, 'pos1', 'officer', 'neutral', '2days', '1984-12-11', '1979-11-18', 0, '2021-08-19');
+(5, 'pos1', 'officer', 'neutral', '2days', '1984-12-11', '1979-11-18', 0, '2021-08-19'),
+(7, 'Et quia fuga Quisqu', 'Troy Lowery 2', '28-Oct-2004', '01-Jan-1979', '1990-03-03', '1993-10-31', 0, '2021-09-02');
 
 -- --------------------------------------------------------
 
@@ -255,7 +255,8 @@ CREATE TABLE `employee` (
 INSERT INTO `employee` (`id`, `emp_id`, `emp_image`, `emp_first_name`, `emp_middle_name`, `emp_last_name`, `emp_ext`, `emp_dob`, `emp_gender`, `emp_civil_status`, `emp_height`, `emp_weight`, `emp_blood`, `emp_citizen`, `emp_nationality`, `emp_resi_add`, `emp_resi_add_street`, `emp_resi_add_municipal`, `emp_resi_add_barangay`, `emp_resi_add_zipcode`, `emp_per_add`, `emp_per_add_street`, `emp_per_add_municipal`, `emp_per_add_barangay`, `emp_per_add_zipcode`, `emp_tel_no`, `emp_mb_no`, `emp_email`, `emp_contact_gs`, `emp_contact_pag`, `emp_contact_ph`, `emp_contact_ss`, `emp_contact_tin`, `emp_contact_agency`, `emp_spouse_lastname`, `emp_spouse_firstname`, `emp_spouse_middlename`, `emp_spouse_extname`, `emp_sp_occupation`, `emp_sp_employer`, `emp_sp_add`, `emp_sp_tel`, `emp_father_lastname`, `emp_father_firstname`, `emp_father_middlename`, `emp_father_extname`, `emp_mother_lastname`, `emp_mother_firstname`, `emp_mother_middlename`, `emp_mother_extname`, `ele_school_name`, `ele_degree`, `ele_from_date`, `ele_to_date`, `ele_units`, `ele_award`, `ele_graduation`, `sec_school_name`, `sec_degree`, `sec_from_date`, `sec_to_date`, `sec_units`, `sec_award`, `sec_graduation`, `voc_school_name`, `voc_degree`, `voc_from_date`, `voc_to_date`, `voc_units`, `voc_award`, `voc_graduation`, `coll_school_name`, `coll_degree`, `coll_from_date`, `coll_to_date`, `coll_units`, `coll_award`, `coll_graduation`, `gra_school_name`, `gra_degree`, `gra_from_date`, `gra_to_date`, `gra_units`, `gra_award`, `gra_graduation`, `condition_1`, `condition_2`, `condition_2_des`, `condition_3`, `condition_3_des`, `condition_4`, `condition_4_des`, `condition_4_date`, `condition_4_status`, `condition_5`, `condition_5_des`, `condition_6`, `condition_6_des`, `condition_7`, `condition_7_des`, `condition_8`, `condition_8_des`, `condition_9`, `condition_9_des`, `condition_10`, `condition_10_des`, `condition_11`, `condition_11_des`, `condition_12`, `condition_12_des`) VALUES
 (6, '2021er', 'employee2021er-employee2021XF-download.jpg', 'Lana', 'Kyla Haynes', ' Alexander', 'Dolore qui fuga Eni', '0000-00-00', 'Dolor dese', '', 0, 0, '', '', '', '', 'State/Province', 'City/Municipilaty', 'Barangay', '', '', 'State/Province', 'City/Municipilaty', 'Barangay', '', '', '', '', 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', 0, '', '', '', '', '', '  ', '', '', ' ', '', '0000-00-00', '0000-00-00', 0, '', '', '', '', '0000-00-00', '0000-00-00', 0, ' ', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', ' ', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', ' ', '', '', '', ' ', '', '', '', ''),
 (12, '2021po', NULL, 'Honorato', 'Brenden Foster', 'Bradshaw', 'Ut eum non est dolor', NULL, 'Amet quo i', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, '2021df', NULL, 'Keely', 'Brynne Higgins', 'Frank', 'Iusto exercitationem', NULL, 'Adipisci s', NULL, NULL, NULL, NULL, NULL, 'Singapore', 'Amet quae pariatur', NULL, 'Id ut vel rem perspi', NULL, '62020', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(14, '2021df', NULL, 'Keely', 'Brynne Higgins', 'Frank', 'Iusto exercitationem', NULL, 'Adipisci s', NULL, NULL, NULL, NULL, NULL, 'Singapore', 'Amet quae pariatur', NULL, 'Id ut vel rem perspi', NULL, '62020', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(15, 'appli2', NULL, 'Quincy', 'Yvonne Velazquez', 'Kirk', 'Nesciunt omnis inci', NULL, 'Eos eum la', NULL, NULL, NULL, NULL, NULL, 'Papua New Guinea', 'Aut laborum magna ex', NULL, 'Minus placeat sed n', NULL, '86150', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -295,7 +296,8 @@ INSERT INTO `employee_agency` (`id`, `emp_id`, `appointment_date`, `item_no`, `p
 (8, '2021err', NULL, 'item1', 'High', 'high', NULL, 'Maiores et perspicia', 'Sit nostrud ea veni', 'Original', 'Permanent', '2021-08-20', 'Iste soluta fugit i', '1995-09-28'),
 (9, '2021po', NULL, 'item1', 'High', 'high', NULL, 'Et quia quia nulla n', 'Nam earum ut unde ea', 'Original', 'Permanent', '2021-08-20', 'Nisi provident obca', '1990-07-02'),
 (10, '2021yt', '2021-08-30', 'item1', 'High', 'high', NULL, 'dept1', 'office1', 'Original', 'Permanent', '0000-00-00', '', '0000-00-00'),
-(11, '2021df', '2021-08-30', 'item1', 'High', 'high', NULL, 'dept1', 'office1', 'Original', 'Permanent', '0000-00-00', '', '0000-00-00');
+(11, '2021df', '2021-08-30', 'item1', 'High', 'high', NULL, 'dept1', 'office1', 'Original', 'Permanent', '0000-00-00', '', '0000-00-00'),
+(12, 'appli2', '2021-09-04', 'item1', 'position1', 'high', NULL, 'dept1', 'office1', 'Original', 'Permanent', '0000-00-00', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -613,18 +615,6 @@ CREATE TABLE `hiring_competency` (
 --
 
 INSERT INTO `hiring_competency` (`id`, `item_no`, `add_com`, `com_num`) VALUES
-(1, 'item1', '29-Dec-2007', 1),
-(2, 'item1', '14-Jul-1991', 2),
-(3, 'item1', '07-Mar-2019', 3),
-(4, 'item1', '13-Nov-2020', 4),
-(5, 'item1', '', 1),
-(6, 'item1', '', 2),
-(7, 'item1', '', 3),
-(8, 'item1', '', 4),
-(9, 'item2', '15-Feb-1982', 1),
-(10, 'item2', '30-Apr-1979', 2),
-(11, 'item2', '14-May-1993', 3),
-(12, 'item2', '11-Mar-1985', 4),
 (17, 'Item3', '03-Jul-2013', 1),
 (18, 'Item3', '28-Mar-1978', 2),
 (19, 'Item3', '23-Sep-1988', 3),
@@ -632,7 +622,39 @@ INSERT INTO `hiring_competency` (`id`, `item_no`, `add_com`, `com_num`) VALUES
 (21, 'item4', '18-Oct-1993', 1),
 (22, 'item4', '06-Feb-2011', 2),
 (23, 'item4', '27-Nov-2002', 3),
-(24, 'item4', '17-Sep-1976', 4);
+(24, 'item4', '17-Sep-1976', 4),
+(33, 'item2', '15-Feb-1982', 1),
+(34, 'item2', '02-Aug-2010', 1),
+(35, 'item2', '30-Apr-1979', 2),
+(36, 'item2', '02-Feb-2015', 2),
+(37, 'item2', '14-May-1993', 3),
+(38, 'item2', '18-Feb-1983', 3),
+(39, 'item2', '11-Mar-1985', 4),
+(40, 'item2', '24-Apr-2008', 4),
+(45, 'kmkm', 'rer', 1),
+(46, 'kmkm', 'hgh', 2),
+(47, 'kmkm', 'ghg', 3),
+(48, 'kmkm', 'jkjk', 4),
+(49, 'item1', '29-Dec-2007', 1),
+(50, 'item1', '', 1),
+(51, 'item1', '08-Jan-2005', 1),
+(52, 'item1', '14-Jul-1991', 2),
+(53, 'item1', '', 2),
+(54, 'item1', '07-Feb-2017', 2),
+(55, 'item1', '07-Mar-2019', 3),
+(56, 'item1', '', 3),
+(57, 'item1', '24-May-2016', 3),
+(58, 'item1', '13-Nov-2020', 4),
+(59, 'item1', '', 4),
+(60, 'item1', '29-May-1984', 4),
+(65, 'jkjk', '', 1),
+(66, 'jkjk', '', 2),
+(67, 'jkjk', '', 3),
+(68, 'jkjk', '', 4),
+(69, 'jhjh', '23-Nov-2002', 1),
+(70, 'jhjh', '06-May-1976', 2),
+(71, 'jhjh', '25-Dec-1973', 3),
+(72, 'jhjh', '11-Nov-1992', 4);
 
 -- --------------------------------------------------------
 
@@ -653,13 +675,8 @@ CREATE TABLE `hiring_education` (
 --
 
 INSERT INTO `hiring_education` (`id`, `item_no`, `position_no`, `applicant_id`, `hiring_education`) VALUES
-(1, 'item1', NULL, NULL, '03-Nov-1993'),
-(2, 'item1', NULL, NULL, ''),
-(3, 'item2', NULL, NULL, '12-Jan-1998'),
 (8, NULL, NULL, 'app1', '  Quo cumque odio vero'),
 (9, NULL, NULL, 'app1', ' es2'),
-(12, NULL, NULL, 'appli2', '  Consectetur sed qui'),
-(13, NULL, NULL, 'appli2', ' trr'),
 (14, NULL, NULL, 'dffg', ''),
 (18, NULL, '25-Dec-1978', NULL, '24-Dec-1978'),
 (19, NULL, '25-Dec-1978', NULL, 'ghgh'),
@@ -674,7 +691,18 @@ INSERT INTO `hiring_education` (`id`, `item_no`, `position_no`, `applicant_id`, 
 (31, 'item4', NULL, NULL, '14-Jul-2010'),
 (32, NULL, NULL, '2021POK', 'Reprehenderit simili'),
 (33, NULL, NULL, '2021yt', 'Ea vitae quas laboru'),
-(34, NULL, NULL, '2021df', 'Rerum cupidatat reru');
+(34, NULL, NULL, '2021df', 'Rerum cupidatat reru'),
+(37, 'item2', NULL, NULL, '12-Jan-1998'),
+(38, 'item2', NULL, NULL, '27-Mar-2011'),
+(40, 'kmkm', NULL, NULL, 'qwe'),
+(41, 'item1', NULL, NULL, '03-Nov-1993'),
+(42, 'item1', NULL, NULL, ''),
+(43, 'item1', NULL, NULL, '05-Jun-2002'),
+(45, 'jkjk', NULL, NULL, ''),
+(46, 'jhjh', NULL, NULL, '04-May-2011'),
+(48, NULL, 'Et quia fuga Quisqu', NULL, '07-Mar-2003'),
+(49, NULL, NULL, 'appli2', '   Consectetur sed qui'),
+(50, NULL, NULL, 'appli2', '  trr');
 
 -- --------------------------------------------------------
 
@@ -695,12 +723,8 @@ CREATE TABLE `hiring_eligibility` (
 --
 
 INSERT INTO `hiring_eligibility` (`id`, `item_no`, `position_no`, `applicant_id`, `hiring_eligibility`) VALUES
-(1, 'item1', NULL, NULL, '27-Nov-2002'),
-(2, 'item1', NULL, NULL, ''),
-(3, 'item2', NULL, NULL, '16-Aug-2009'),
 (8, NULL, NULL, 'app1', '  Commodo voluptas lab'),
 (9, NULL, NULL, 'app1', ' e2'),
-(11, NULL, NULL, 'appli2', '  Dolorum excepteur ap'),
 (12, NULL, NULL, 'dffg', ''),
 (15, NULL, '25-Dec-1978', NULL, '11-Apr-2011'),
 (16, NULL, '25-Dec-1978', NULL, 'trtrt'),
@@ -715,7 +739,17 @@ INSERT INTO `hiring_eligibility` (`id`, `item_no`, `position_no`, `applicant_id`
 (28, 'item4', NULL, NULL, '25-Jan-2009'),
 (29, NULL, NULL, '2021POK', 'Consequat Velit qui'),
 (30, NULL, NULL, '2021yt', 'Debitis qui eligendi'),
-(31, NULL, NULL, '2021df', 'Magna id dolorem cor');
+(31, NULL, NULL, '2021df', 'Magna id dolorem cor'),
+(34, 'item2', NULL, NULL, '16-Aug-2009'),
+(35, 'item2', NULL, NULL, '02-Dec-2004'),
+(37, 'kmkm', NULL, NULL, 'iiu'),
+(38, 'item1', NULL, NULL, '27-Nov-2002'),
+(39, 'item1', NULL, NULL, ''),
+(40, 'item1', NULL, NULL, '04-Sep-1989'),
+(42, 'jkjk', NULL, NULL, ''),
+(43, 'jhjh', NULL, NULL, '12-Sep-2000'),
+(45, NULL, 'Et quia fuga Quisqu', NULL, '23-May-1994'),
+(46, NULL, NULL, 'appli2', '   Dolorum excepteur ap');
 
 -- --------------------------------------------------------
 
@@ -736,13 +770,8 @@ CREATE TABLE `hiring_training` (
 --
 
 INSERT INTO `hiring_training` (`id`, `item_no`, `position_no`, `applicant_id`, `hiring_training`) VALUES
-(1, 'item1', NULL, NULL, '14-Sep-1987'),
-(2, 'item1', NULL, NULL, ''),
-(3, 'item2', NULL, NULL, '09-Mar-1993'),
 (8, NULL, NULL, 'app1', '  Assumenda eos dolor'),
 (9, NULL, NULL, 'app1', ' t2'),
-(11, NULL, NULL, 'appli2', '  Ut quia elit mollit'),
-(12, NULL, NULL, 'appli2', 'er'),
 (13, NULL, NULL, 'dffg', ''),
 (17, NULL, '25-Dec-1978', NULL, '26-May-2007'),
 (18, NULL, '25-Dec-1978', NULL, 'hghgh'),
@@ -757,7 +786,18 @@ INSERT INTO `hiring_training` (`id`, `item_no`, `position_no`, `applicant_id`, `
 (30, 'item4', NULL, NULL, '29-Apr-1984'),
 (31, NULL, NULL, '2021POK', 'Provident velit vol'),
 (32, NULL, NULL, '2021yt', 'Eius ullam ipsa ani'),
-(33, NULL, NULL, '2021df', 'Libero tempora repre');
+(33, NULL, NULL, '2021df', 'Libero tempora repre'),
+(36, 'item2', NULL, NULL, '09-Mar-1993'),
+(37, 'item2', NULL, NULL, '18-Aug-2020'),
+(39, 'kmkm', NULL, NULL, 'yuu'),
+(40, 'item1', NULL, NULL, '14-Sep-1987'),
+(41, 'item1', NULL, NULL, ''),
+(42, 'item1', NULL, NULL, '01-Jan-1995'),
+(44, 'jkjk', NULL, NULL, ''),
+(45, 'jhjh', NULL, NULL, '13-Oct-2020'),
+(47, NULL, 'Et quia fuga Quisqu', NULL, '30-Jul-1985'),
+(48, NULL, NULL, 'appli2', '   Ut quia elit mollit'),
+(49, NULL, NULL, 'appli2', ' er');
 
 -- --------------------------------------------------------
 
@@ -778,12 +818,8 @@ CREATE TABLE `hiring_work_exp` (
 --
 
 INSERT INTO `hiring_work_exp` (`id`, `item_no`, `position_no`, `applicant_id`, `hiring_work_exp`) VALUES
-(1, 'item1', NULL, NULL, '10-Aug-1973'),
-(2, 'item1', NULL, NULL, ''),
-(3, 'item2', NULL, NULL, '03-Jun-2005'),
 (8, NULL, NULL, 'app1', '  Exercitation velit l'),
 (9, NULL, NULL, 'app1', ' w2'),
-(11, NULL, NULL, 'appli2', '  Quod veniam volupta'),
 (12, NULL, NULL, 'dffg', ''),
 (15, NULL, '25-Dec-1978', NULL, '05-Nov-2018'),
 (16, NULL, '25-Dec-1978', NULL, 'trtrt'),
@@ -798,7 +834,17 @@ INSERT INTO `hiring_work_exp` (`id`, `item_no`, `position_no`, `applicant_id`, `
 (28, 'item4', NULL, NULL, '28-Oct-2018'),
 (29, NULL, NULL, '2021POK', 'Omnis ducimus Nam e'),
 (30, NULL, NULL, '2021yt', 'Ut esse a soluta vo'),
-(31, NULL, NULL, '2021df', 'Vero inventore dolor');
+(31, NULL, NULL, '2021df', 'Vero inventore dolor'),
+(34, 'item2', NULL, NULL, '03-Jun-2005'),
+(35, 'item2', NULL, NULL, '11-Jan-2004'),
+(37, 'kmkm', NULL, NULL, 'rtrt'),
+(38, 'item1', NULL, NULL, '10-Aug-1973'),
+(39, 'item1', NULL, NULL, ''),
+(40, 'item1', NULL, NULL, '20-Mar-1986'),
+(42, 'jkjk', NULL, NULL, ''),
+(43, 'jhjh', NULL, NULL, '25-Jul-1988'),
+(45, NULL, 'Et quia fuga Quisqu', NULL, '22-May-1982'),
+(46, NULL, NULL, 'appli2', '   Quod veniam volupta');
 
 -- --------------------------------------------------------
 
@@ -823,10 +869,8 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id`, `item_no`, `position`, `salary_grade`, `date_created`, `status`, `place_of_assignment`, `date_posted`, `nature`) VALUES
-(1, 'item1', 'High', 'high', '2021-08-20', '1', 'ofiice', '2021-08-19', 'Original'),
-(3, 'item2', 'High', 'Kin', '1994-06-25', '0', '02-May-2011', '2021-08-19', 'Original'),
-(5, 'Item3', 'position1', 'high', '1993-11-04', '1', '19-Dec-1987', '0000-00-00', ''),
-(6, 'item4', 'position2', '20-Nov-2018', '1998-07-09', '1', '08-Nov-2007', '2021-08-23', 'Original');
+(9, 'item2', 'position 3', 'high', '1973-03-14', '0', 'offline', '0000-00-00', ''),
+(12, 'item1', 'position1', 'high', '2021-08-25', '1', 'remote', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -900,7 +944,8 @@ INSERT INTO `leave_credits_result` (`id`, `emp_id`, `year`, `vl_pts_1`, `vl_pts_
 (2, '2021yu', 2021, 16.25, 17.5, 18.75, 20, 21, 23, 24, 25, 26, 28, 29, 30, 16, 18, 19, 20, 21, 23, 24, 25, 26, 28, 29, 30),
 (4, '2021err', 2021, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
 (5, '2021po', 2021, 19.25, 20.5, 21.75, 23, 24.25, 25.5, 26.75, 28, 24.25, 25.5, 26.75, 28, 19.25, 20.5, 21.75, 23, 24.25, 25.5, 26.75, 28, 29.25, 30.5, 31.75, 33),
-(7, '2021df', 2021, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 17.5, 12.5, 13.75, 15, 16.25, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30);
+(7, '2021df', 2021, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 17.5, 12.5, 13.75, 15, 16.25, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
+(8, 'appli2', 2021, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30);
 
 -- --------------------------------------------------------
 
@@ -943,6 +988,29 @@ INSERT INTO `office` (`id`, `office_name`, `department_name`) VALUES
 (1, 'office1', 'dept1'),
 (2, 'office2', 'dept3'),
 (3, 'office4', 'dept2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `publication`
+--
+
+CREATE TABLE `publication` (
+  `id` int(11) NOT NULL,
+  `date_of_publication` date DEFAULT NULL,
+  `item_number` varchar(100) DEFAULT NULL,
+  `plantilla` varchar(100) DEFAULT NULL,
+  `salary_grade` varchar(100) DEFAULT NULL,
+  `place_of_assignment` varchar(100) DEFAULT NULL,
+  `date_created` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `publication`
+--
+
+INSERT INTO `publication` (`id`, `date_of_publication`, `item_number`, `plantilla`, `salary_grade`, `place_of_assignment`, `date_created`) VALUES
+(11, '2021-09-05', 'item1', '  position1', 'high', 'remote', '2021-08-25');
 
 -- --------------------------------------------------------
 
@@ -1217,6 +1285,12 @@ ALTER TABLE `office`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `publication`
+--
+ALTER TABLE `publication`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `training_emp_list`
 --
 ALTER TABLE `training_emp_list`
@@ -1255,7 +1329,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applicant`
 --
 ALTER TABLE `applicant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `applicant_file`
@@ -1267,7 +1341,7 @@ ALTER TABLE `applicant_file`
 -- AUTO_INCREMENT for table `cont_position`
 --
 ALTER TABLE `cont_position`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -1279,13 +1353,13 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `employee_agency`
 --
 ALTER TABLE `employee_agency`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `emp_children`
@@ -1369,37 +1443,37 @@ ALTER TABLE `emp_work_experience`
 -- AUTO_INCREMENT for table `hiring_competency`
 --
 ALTER TABLE `hiring_competency`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `hiring_education`
 --
 ALTER TABLE `hiring_education`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `hiring_eligibility`
 --
 ALTER TABLE `hiring_eligibility`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `hiring_training`
 --
 ALTER TABLE `hiring_training`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `hiring_work_exp`
 --
 ALTER TABLE `hiring_work_exp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `leave_credits`
@@ -1411,7 +1485,7 @@ ALTER TABLE `leave_credits`
 -- AUTO_INCREMENT for table `leave_credits_result`
 --
 ALTER TABLE `leave_credits_result`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `leave_credits_year`
@@ -1424,6 +1498,12 @@ ALTER TABLE `leave_credits_year`
 --
 ALTER TABLE `office`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `publication`
+--
+ALTER TABLE `publication`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `training_emp_list`

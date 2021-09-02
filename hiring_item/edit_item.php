@@ -12,6 +12,8 @@ if (isset($_POST['submit'])) {
      $date_created = $_POST['date_created'];
      $place_of_assignment = $_POST['place_of_assignment'];
      $status = 0;
+     $date_posted = date('Y-m-d');
+     $nature = 'Original';
  
 
         $del_sql_1 = "DELETE FROM item WHERE item_no='$item_no'";
@@ -35,7 +37,7 @@ if (isset($_POST['submit'])) {
 
    
         $sql = "INSERT INTO item (
-            item_no  , position , salary_grade , date_created , status , place_of_assignment) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$status' , '$place_of_assignment')";
+            item_no  , position , salary_grade , date_created , status , place_of_assignment , date_posted , nature) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$status' , '$place_of_assignment' , '$date_posted' , '$nature')";
 
     if (!empty($_POST['hiring_education'])) {
         for ($i = 0; $i < count($_POST['hiring_education']); $i++) {
@@ -443,7 +445,7 @@ if(isset($_GET['item_no'])){
 
 
         <div class="modal-footer">
-            <a href="../hiring/" class="btn button-1 ">Back</a>
+            <a href="../hiring_item/" class="btn button-1 ">Back</a>
             <button type="submit" name="submit" class="btn button-1 ">Submit</button>
         </div>
     </form>

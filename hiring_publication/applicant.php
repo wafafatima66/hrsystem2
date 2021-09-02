@@ -352,7 +352,7 @@ if (isset($_GET['item_no']) || isset($_GET['position_no']) ) {
 
 
         <div class="text-right">
-            <a href="../hiring/" class="btn button-1 mt-2 ">Back</a>
+            <a href="../hiring_publication/" class="btn button-1 mt-2 ">Back</a>
 
             <button class="ml-3 btn button-1 mt-2" data-toggle="modal" data-target="#add_applicant">Add Applicant</button>
         </div>
@@ -369,7 +369,7 @@ if (isset($_GET['item_no']) || isset($_GET['position_no']) ) {
     <?php include 'add_applicant_modal.php' ?>
 
     <!-- view applicant modal -->
-
+    
     <div class="modal fade view_applicant " id="view_applicant"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
