@@ -27,6 +27,7 @@
 
     </div>
 </div>
+<div class="table-container">
 
 <table class="table home-page-table mt-4 table-striped table-responsive-sm table-sm">
     <thead>
@@ -72,6 +73,7 @@
 
 
 </table>
+</div>
 
 <div class="mt-4 ">
     <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>

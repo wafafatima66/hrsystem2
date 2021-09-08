@@ -15,7 +15,6 @@ if (isset($_POST['id'])) {
         while ($mydata = $runquery->fetch_assoc()) {
 
 
-
 ?>
 
             <div class="container">

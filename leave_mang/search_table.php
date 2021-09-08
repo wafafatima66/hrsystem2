@@ -16,46 +16,31 @@
 
 	if (mysqli_num_rows($result) > 0) {
 
-	$output.="<table class='table home-page-table mt-2 table-striped '>
-    <thead>
-          <tr>
-                <th scope='col'>Employee Id</th>
-                <th scope='col'>Name</th>
-                <th scope='col'>Type Of Leave</th>
-                <th scope='col'>Duration</th>
-                <th scope='col'>Details of leave</th>
-				<th scope='col'>Action</th>
-          </tr>
-    </thead>
-    <tbody>";
+	$output.="<tbody>";
     
     while ($mydata = mysqli_fetch_assoc($result)) {
 
-	$output.="<tr>
-                        <td>{$mydata['emp_id']}</td>
-                        <td>
-                              <img src='../img/logo-2.png' alt='' style='width: 20px; height:20px'>
-                              <span> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
-                        </td>
-                        <td> {$mydata['type_of_leave']} </td>
-                        <td>{$mydata['no_of_working_days']}</td>
-                        <td>{$mydata['details_of_leave']}</td>
-                        <td><a  data-toggle='modal' data-id='{$mydata['id']}' data-target='#edit_leave' class='leave-edit' ><i class='fas fa-edit '></i></a> </td>
-                  </tr>";
-	} 
-	$output.="</tbody>
-		</table>";
+      $output.="<tr>
+                  <td>{$mydata['emp_id']}</td>
+                  <td>
+                        <img src='../img/logo-2.png' alt='' style='width: 20px; height:20px'>
+                        <span> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
+                  </td>
+                  <td> {$mydata['type_of_leave']} </td>
+                  <td>{$mydata['no_of_working_days']}</td>
+                  <td>{$mydata['details_of_leave']}</td>
+                  <td><a  data-toggle='modal' data-id='{$mydata['id']}' data-target='#edit_leave' class='leave-edit' ><i class='fas fa-edit '></i></a> </td>
+            </tr>";
+      } 
+      $output.="</tbody>";
 
-    $output .= '<div class=" d-flex justify-content-between ">
+    // $output .= '<div class=" d-flex justify-content-between ">
 
-    <button class="btn button-1 " style="height:35px"><i class="fa fa-print"></i></button>
+    // <button class="btn button-1 " style="height:35px"><i class="fa fa-print"></i></button>
     
     
-    </div>';
+    // </div>';
 
-
-
-	
 
 	echo $output;
 

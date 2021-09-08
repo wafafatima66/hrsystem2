@@ -384,6 +384,12 @@ a{
 .home-page-table{
     border: solid 2px #fc7e43;
     border-top: solid 2px #505A43;
+   
+}
+.table-container{
+    height: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 .home-page-table td, .home-page-table th {
     border-right: 2px solid #fc7e43;

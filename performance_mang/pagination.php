@@ -4,17 +4,19 @@
 
 	require '../includes/conn.php';
 
-	$limit = 5;
+	// $limit = 5;
 
-	if (isset($_POST['page_no'])) {
-	    $page_no = $_POST['page_no'];
-	}else{
-	    $page_no = 1;
-	}
+	// if (isset($_POST['page_no'])) {
+	//     $page_no = $_POST['page_no'];
+	// }else{
+	//     $page_no = 1;
+	// }
 
-	$offset = ($page_no-1) * $limit;
+	// $offset = ($page_no-1) * $limit;
 
-	$query = "SELECT id, emp_id , emp_first_name , emp_last_name , emp_middle_name , emp_ext , emp_gender  FROM employee LIMIT $offset, $limit";
+	// $query = "SELECT id, emp_id , emp_first_name , emp_last_name , emp_middle_name , emp_ext , emp_gender  FROM employee LIMIT $offset, $limit";
+
+	$query = "SELECT id, emp_id , emp_first_name , emp_last_name , emp_middle_name , emp_ext , emp_gender  FROM employee";
 
 	$result = mysqli_query($conn, $query);
 
@@ -22,18 +24,7 @@
 
 	if (mysqli_num_rows($result) > 0) {
 
-	$output.="<table class='table home-page-table mt-2 table-striped table-responsive-sm'>
-    <thead>
-          <tr>
-                <th scope='col'>Employee Id</th>
-                <th scope='col'>Name</th>
-                <th scope='col'>Sex</th>
-                <th scope='col'>Status</th>
-                <th scope='col'>Position</th>
-                <th scope='col'>Office/Unit</th>
-          </tr>
-    </thead>
-    <tbody>";
+	$output.=" <tbody>";
     
     while ($mydata = mysqli_fetch_assoc($result)) {
 
@@ -49,57 +40,45 @@
                         <td></td>
                   </tr>";
 	} 
-	$output.="</tbody>
-		</table>";
+	$output.="</tbody>";
 
-	$sql = 'SELECT id  FROM employee';
+// 	$sql = 'SELECT id  FROM employee';
 
-	$records = mysqli_query($conn, $sql);
+// 	$records = mysqli_query($conn, $sql);
 
-	$totalRecords = mysqli_num_rows($records);
+// 	$totalRecords = mysqli_num_rows($records);
 
-	$totalPage = ceil($totalRecords/$limit);
+// 	$totalPage = ceil($totalRecords/$limit);
 
-	$output .= '<div class=" d-flex justify-content-between mt-4 ">
+// 	$output .= '<div class=" d-flex justify-content-between mt-4 ">
 
-	<button class="btn button-1 " style="height:35px"><i class="fa fa-print"></i></button>
-  
-  
-  ';
+// 	<button class="btn button-1 " style="height:35px"><i class="fa fa-print"></i></button>
+//   ';
 
-	$output.="<ul class='pagination  '>";
+	// $output.="<ul class='pagination  '>";
 
-	for ($i=1; $i <= $totalPage ; $i++) { 
-	   if ($i == $page_no) {
-		$active = 'active';
-	   }else{
-		$active = '';
-	   }
+	// for ($i=1; $i <= $totalPage ; $i++) { 
+	//    if ($i == $page_no) {
+	// 	$active = 'active';
+	//    }else{
+	// 	$active = '';
+	//    }
 
-	    $output.="<li class='page-item $active'><a class='page-link' id='$i' href=''>$i</a></li>";
-	}
+	//     $output.="<li class='page-item $active'><a class='page-link' id='$i' href=''>$i</a></li>";
+	// }
 
-	$output .= '</ul> </div>';
+	// $output .= '</ul> </div>';
+
 	echo $output ;
 
 	}else {
-		$output.="<table class='table home-page-table mt-2 table-striped table-responsive-sm '>
-		<thead>
-			  <tr>
-			  <th scope='col'>Employee Id</th>
-			  <th scope='col'>Name</th>
-			  <th scope='col'>Sex</th>
-			  <th scope='col'>Status</th>
-			  <th scope='col'>Position</th>
-			  <th scope='col'>Office/Unit</th>
-			  </tr>
-		</thead>
+		$output.="
 		<tbody>
 		<tr>
 				<td colspan='6'>No data Available</td>
                   </tr>
 				  </tbody>
-		</table>";
+		";
 
 		echo $output ; 
 	}
