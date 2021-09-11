@@ -155,10 +155,10 @@ if (isset($_POST['edit_leave_approve'])) {
 
             <div class="form-row mx-auto mt-3 ">
 
-                  <form action="" method="post" class="form-inline ">
+                  <!-- <form action="" method="post" class="form-inline "> -->
 
                         <div class="col-lg-5 col-sm-5">
-                              <input type="date" class="form-control text-input" placeholder="Date Picker" style="width:100%" name="from_date">
+                              <input type="date" class="form-control text-input" placeholder="Date Picker" style="width:100%" id="from_date">
                         </div>
 
                         <div class="col-lg-1 col-sm-1">
@@ -166,53 +166,27 @@ if (isset($_POST['edit_leave_approve'])) {
                         </div>
 
                         <div class="col-lg-5 col-sm-5">
-                              <input type="date" class="form-control text-input" placeholder="Date Picker" style="width:100%" name="to_date">
+                              <input type="date" class="form-control text-input" placeholder="Date Picker" style="width:100%" id="to_date">
                         </div>
 
                         <div class="col-lg-1 col-sm-2">
-                              <button type="submit" name="search" class="btn button-1">Search </button>
+                              <button type="submit" id="search_leave" class="btn button-1">Search </button>
                         </div>
 
 
-
-                  </form>
+                  <!-- </form> -->
 
             </div>
       </div>
 
-      <div class="table-container">
 
-            <table class='table home-page-table mt-5 table-striped '>
-                  <thead>
-                        <tr>
-                              <th scope='col'>Employee Id</th>
-                              <th scope='col'>Name</th>
-                              <th scope='col'>Type Of Leave</th>
-                              <th scope='col'>Duration</th>
-                              <th scope='col'>Details of leave</th>
-                              <th scope='col'>Action</th>
-                        </tr>
-                  </thead>
+            
 
                   <?php
-                  if (isset($_POST['search']) && isset($_POST['from_date']) && isset($_POST['to_date'])) {
-
-                        include "search_table.php";
-                  } else {
-                        
-                        include "pagination.php";
-                  }
-
+               
+                  echo '<div id="table-data"> </div>';
 
                   ?>
-
-            </table>
-
-      </div>
-
-      <div class=" d-flex justify-content-between ">
-            <button class="btn button-1 " style="height:35px"><i class="fa fa-print"></i></button>
-      </div>
 
 
 
@@ -281,14 +255,11 @@ if (isset($_POST['edit_leave_approve'])) {
                               $('#vl_pts').html(result.vl_pts); // getting vacation  leaves points from database
                               $('#sl_pts').html(result.sl_pts); // getting sick  leaves points from database
 
-
                               $('#pts_total').html(result.pts_total); // getting total points from calculing vl_pts and sl_pts
                               $('#total_pts_now').html(result.total_pts_now); // getting pints calculating from vi_now-pts and sl_now_pts
                               $('#vl_bal').html(result.vl_bal); // vl_pts - vl_now_pts
                               $('#sl_bal').html(result.sl_bal); // sl_pts - sl_now_pts
                               $('#total_bal').html(result.total_bal); //vl_bal - sl_bal
-
-
 
                               $('#vl_now_pts').html(result.vl_now_pts); // getting vacation  leaves points date given 
                               $('#sl_now_pts').html(result.sl_now_pts); // getting sick leaves points from date given
@@ -296,27 +267,37 @@ if (isset($_POST['edit_leave_approve'])) {
                   });
             });
 
-            // function loadData(page) {
-            //       $.ajax({
-            //             url: "../leave_mang/pagination.php",
-            //             type: "POST",
-            //             cache: false,
-            //             data: {
-            //                   page_no: page
-            //             },
-            //             success: function(response) {
-            //                   $("#table-data").html(response);
-            //             }
-            //       });
-            // }
-            // loadData();
+            function loadData(page , from_date , to_date) {
+                  $.ajax({
+                        url: "../leave_mang/pagination.php",
+                        type: "POST",
+                        cache: false,
+                        data: {
+                              page_no: page ,
+                              from_date : from_date, 
+                              to_date : to_date
+                        },
+                        success: function(response) {
+                              $("#table-data").html(response);
+                        }
+                  });
+            }
+            loadData();
 
-            // // Pagination code
-            // $(document).on("click", ".pagination li a", function(e) {
-            //       e.preventDefault();
-            //       var pageId = $(this).attr("id");
-            //       loadData(pageId);
-            // });
+            // Pagination code
+            $(document).on("click", ".page-item", function() {
+                  var from_date = $('#from_date').val();
+                  var to_date = $('#to_date').val();
+                  var pageId = $(this).attr("id");
+                  loadData(pageId , from_date , to_date);
+            });
+
+            $(document).on("click", "#search_leave", function() {
+                  var from_date = $('#from_date').val();
+                  var to_date = $('#to_date').val();
+                  var pageId = 1;
+                  loadData(pageId , from_date , to_date);
+            });
 
       });
 </script>

@@ -1,4 +1,3 @@
-
 <div class="row mt-5 ">
 
   <div class=" col-lg-12 col-sm-12 mb-3">
@@ -18,7 +17,7 @@
 
   </div>
 
-  <div class="ml-auto col-lg-3 col-sm-6">
+  <!-- <div class="ml-auto col-lg-3 col-sm-6">
 
     <select name="hiring_dropdown" id="hiring_dropdown" class="form-control text-input">
       <option value="All">Filter By</option>
@@ -28,75 +27,152 @@
 
 
 
+  </div> -->
+
+  <div class="col-lg-1 col-sm-6">
+    <select id="limit_dropdown" class="form-control text-input">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+    </select>
   </div>
+
+  <div class="col-lg-3 col-sm-6">
+    <select id="dept_dropdown" class="form-control text-input">
+     <?php 
+     $query = "SELECT department_name FROM department  ";
+     $result = mysqli_query($conn, $query);
+     if (mysqli_num_rows($result) > 0) {
+         echo "<option value=''> Select Department </option> ";
+         while ($mydata = mysqli_fetch_assoc($result)) {
+             echo "<option value= '" . $mydata['department_name'] . "'>" . $mydata['department_name'] . "</option>";
+         }
+     } else {
+         echo "<option value=''> Select Department </option>";
+     }
+     ?>
+    </select>
+  </div>
+
+  <div class="col-lg-3 col-sm-6">
+    <select id="office_dropdown" class="form-control text-input">
+    <?php 
+    $query = "SELECT * FROM office  ";
+    $result = mysqli_query($conn, $query);
+    if (mysqli_num_rows($result) > 0) {
+      echo "<option value=''> Select Office </option> ";
+        while ($mydata = mysqli_fetch_assoc($result)) {
+            echo "<option value= '" . $mydata['office_name'] . "'>" . $mydata['office_name'] . "</option>";
+        }
+    } else {
+      echo "<option value=''> Select Office</option>";
+  }
+    ?>
+    </select>
+  </div>
+
+
 </div>
 
-<table class="table home-page-table mt-4 table-striped table-responsive-sm table-sm">
-  <thead>
-    <tr>
-      <th scope="col">Date of publication</th>
-      <th scope="col">Item Number</th>
-      <th scope="col">Plantilla</th>
-      <th scope="col">SG</th>
-      <th scope="col">Place of Assignment</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody id="hiring-permanent-table">
+
 
     <?php
-        $query = "SELECT * FROM publication  ";
-        $result = mysqli_query($conn, $query);
-        
-        // item table
-        include "publication_table.php";
+ 
+    echo '<div id="table-data"> </div>';
     ?>
 
-  </tbody>
-</table>
-
-<div class="mt-4 ">
-  <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
-</div>
 
 <!-- add item modal -->
- <?php include "add_publication_modal.php";  ?>
- 
+<?php include "add_publication_modal.php";  ?>
 
- <!-- edit publication config -->
- <?php include "edit_publication_config.php";  ?>
+
+<!-- edit publication config -->
+<?php include "edit_publication_config.php";  ?>
 
 
 <!-- edit publication modal -->
-<div class="modal fade view_publication " id="view_publication"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
+<div class="modal fade view_publication " id="view_publication" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
 
-                <h3 class=" background-title-1 p-3">View Publication</h3>
+      <h3 class=" background-title-1 p-3">View Publication</h3>
 
-                <div class="modal-body" id="view_publication_details">
+      <div class="modal-body" id="view_publication_details">
 
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+</div>
 
 
 
-    <script>
-$(document).ready(function() {
+<script>
+  $(document).ready(function() {
 
-  $(".view_publication_btn").click(function(){
-     console.log('hi');
+    $(".view_publication_btn").click(function() {
+      //  console.log('hi');
       $.ajax({
-          type:'POST',
-          url:'get_publication_details.php',
-          data: { id : $(this).data("id")  },
-          success:function(data){
-              $("#view_publication_details").html(data); //the data is displayed in id=display_details
-          }
-      }); 
-  });
+        type: 'POST',
+        url: 'get_publication_details.php',
+        data: {
+          id: $(this).data("id")
+        },
+        success: function(data) {
+          $("#view_publication_details").html(data); //the data is displayed in id=display_details
+        }
+      });
+    });
 
-});
+    function loadData(page, limit , dept , office) {
+      $.ajax({
+        url: "permanent_pagination.php",
+        type: "POST",
+        cache: false,
+        data: {
+          page_no: page,
+          limit: limit,
+          dept:dept , 
+          office : office
+        },
+        success: function(response) {
+          $("#table-data").html(response);
+        }
+      });
+    }
+
+    loadData();
+
+    $(document).on("click", ".page-item", function() {
+      var page = $(this).attr("id");
+      var limit = $('#limit_dropdown').val();
+      var dept = $('#dept_dropdown').val();
+      var office = $('#office_dropdown').val();
+      loadData(page, limit , dept , office);
+    });
+
+    $('#limit_dropdown').on('change', function() {
+      var page = 1;
+      var limit = $('#limit_dropdown').val();
+      var dept = $('#dept_dropdown').val();
+      var office = $('#office_dropdown').val();
+      loadData(page, limit , dept , office);
+    });
+
+    $('#dept_dropdown').on('change', function() {
+      var page = 1;
+      var limit = $('#limit_dropdown').val();
+      var dept = $('#dept_dropdown').val();
+      var office = $('#office_dropdown').val();
+      loadData(page, limit , dept , office);
+    });
+
+    $('#office_dropdown').on('change', function() {
+      var page = 1;
+      var limit = $('#limit_dropdown').val();
+      var dept = $('#dept_dropdown').val();
+      var office = $('#office_dropdown').val();
+      loadData(page, limit , dept , office);
+    });
+
+  });
 </script>

@@ -81,6 +81,7 @@ body {
     background-color: #fc7e43;
     color: #fff;
     border: solid 1px #fc7e43;
+    cursor: pointer;
 }
 .fa-edit,.fa-upload,.fa-user-edit,.fa-trash,.fa-file-alt,.fa-eye{
     color : #505A43 ; 

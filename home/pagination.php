@@ -1,34 +1,59 @@
 <?php
 
-	// Connect database 
+// Connect database 
 
-	require '../includes/conn.php';
+require '../includes/conn.php';
 
-	// $limit = 20;
 
-	// if (isset($_POST['page_no'])) {
-	//     $page_no = $_POST['page_no'];
-	// }else{
-	//     $page_no = 1;
-	// }
+if (isset($_POST['limit'])) {
+	$limit = $_POST['limit'];
+} else {
+	$limit = 10;
+}
 
-	// $offset = ($page_no-1) * $limit;
+if (isset($_POST['page_no'])) {
+	$page_no = $_POST['page_no'];
+} else {
+	$page_no = 1;
+}
 
-	// $query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , p.job_type , p.office , p.position  FROM employee e join employee_agency p on e.emp_id = p.emp_id  LIMIT $offset, $limit";
+$offset = ($page_no - 1) * $limit;
 
-	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , p.job_type , p.office , p.position  FROM employee e join employee_agency p on e.emp_id = p.emp_id ";
+if (isset($_POST['search_employee'])) {
 
-	$result = mysqli_query($conn, $query);
+	$search_employee = $_POST['search_employee'];
 
-	$output = '';
+	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , p.job_type , p.office , p.position  FROM employee e join employee_agency p on e.emp_id = p.emp_id 
+	WHERE e.emp_first_name LIKE '%{$search_employee}%' OR e.emp_last_name LIKE '%{$search_employee}%' OR e.emp_id LIKE '%{$search_employee}%' LIMIT $offset, $limit";
+} else {
 
-	if (mysqli_num_rows($result) > 0) {
+	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , p.job_type , p.office , p.position  FROM employee e join employee_agency p on e.emp_id = p.emp_id  LIMIT $offset, $limit";
+}
 
-	$output.="<tbody>";
-    
-    while ($mydata = mysqli_fetch_assoc($result)) {
 
-	$output.="<tr class='clickable-row' data-href='../emp_mang/emp_profile.php?id={$mydata["id"]}' >
+
+$result = mysqli_query($conn, $query);
+
+$output = '';
+
+$output .= "<table class='table home-page-table mt-2 table-striped table-responsive-sm '>
+	<thead>
+		  <tr>
+				<th scope='col'>Employee Id</th>
+				<th scope='col'>Name</th>
+				<th scope='col'>Sex</th>
+				<th scope='col'>Status</th>
+				<th scope='col'>Position</th>
+				<th scope='col'>Office/Unit</th>
+		  </tr>
+	</thead>
+	<tbody>";
+
+if (mysqli_num_rows($result) > 0) {
+
+	while ($mydata = mysqli_fetch_assoc($result)) {
+
+		$output .= "<tr class='clickable-row' data-href='../emp_mang/emp_profile.php?id={$mydata["id"]}' >
                         <td>{$mydata['emp_id']}</td>
                         <td>
                               <img src='../img/logo-2.png' alt='' style='width: 20px; height:20px'>
@@ -39,64 +64,50 @@
 						<td>{$mydata['position']}</td>
 						<td>{$mydata['office']}</td>
                   </tr>";
-	} 
-	$output.="</tbody>";
-
-	// $sql = 'SELECT id  FROM employee';
-
-	// $records = mysqli_query($conn, $sql);
-	// $totalRecords = mysqli_num_rows($records);
-	// $totalPage = ceil($totalRecords/$limit);
-	// $showpageli = 3;
-
-// 	$output .= '<div class=" d-flex justify-content-between mt-4 ">
-
-// 	<button class="btn button-1 " style="height:35px"><i class="fa fa-print"></i></button>
-  
-  
-//   ';
-
-	// $output.="<ul class='pagination'>";
-	// $output .= ' <li class="prev"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
-
-	// for ($i=1; $i <= $totalPage ; $i++) { 
-	//    if ($i == $page_no) {
-	// 	$active = 'active';
-	//    }else{
-	// 	$active = '';
-	//    }
-
-	//     $output.="<li class='page-item $active'><a class='page-link' id='$i' href=''>$i</a></li>";
-	   
-	// }
-		// $output .= ' <li class="next"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo</span></a></li>';
-
-		// $output .= '</ul> </div>';
-		echo $output ; 
-	
-	} else {
-		$output.="
-		<tbody>
-		<tr>
-				<td colspan='6'>No data Available</td>
-                  </tr>
-				  </tbody>";
-
-		echo $output ; 
 	}
+	$output .= "</tbody>
+	</table>
+	";
+
+	// pagination
+
+	$sql = 'SELECT e.id FROM employee e join employee_agency p on e.emp_id = p.emp_id';
+
+	$records = mysqli_query($conn, $sql);
+	$totalRecords = mysqli_num_rows($records);
+	$totalPage = ceil($totalRecords / $limit);
+	$showpageli = 3;
+
+	$output .= '<div class=" d-flex justify-content-between mt-4 ">
+				<div>
+				<button class="btn button-1 mr-3" style="height:35px"><i class="fa fa-print"></i></button>
+				<p class="text-lowercase " style="display: contents;">' . $limit . ' ' . "of" . '  ' . $totalRecords . '</p>
+				</div> ';
+
+	
+	$output .= "<ul class='pagination '>";
+
+	include "../includes/pagination_ul.php"; //getting pagination to work
+
+	$output .= '</ul> </div>';
+	echo $output;
+
+} else {
+
+	$output .= "<tr><td colspan='6'>No data Available</td> </tr> </tbody></table>";
+
+	echo $output;
+}
 
 ?>
 
 
 <script>
-/*FOR THE CLICKABLE ROW IN emp_mang.php to new page emp_profile.php*/ 
+	/*FOR THE CLICKABLE ROW IN emp_mang.php to new page emp_profile.php*/
 
-jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-});
+	jQuery(document).ready(function($) {
+		$(".clickable-row").click(function() {
+			window.location = $(this).data("href");
+		});
+	});
 </script>
-
- 
- 

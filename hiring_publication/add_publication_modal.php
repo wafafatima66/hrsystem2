@@ -13,15 +13,17 @@ if (isset($_POST['submit'])) {
             $plantilla = $_POST['plantilla'][$i];
             $place_of_assignment = $_POST['place_of_assignment'][$i];
             $date_created = $_POST['date_created'][$i];
+            $department = $_POST['department'][$i];
+            $office = $_POST['office'][$i];
 
             $sql = "INSERT INTO publication (
-                date_of_publication  , item_number , salary_grade , plantilla , place_of_assignment , date_created ) VALUES (  '$date_of_publication'  , '$item_number' , '$salary_grade' ,' $plantilla' ,  '$place_of_assignment' ,'$date_created')";
+                date_of_publication  , item_number , salary_grade , plantilla , place_of_assignment , date_created , department , office ) VALUES (  '$date_of_publication'  , '$item_number' , '$salary_grade' ,' $plantilla' ,  '$place_of_assignment' ,'$date_created' ,  '$department' ,'$office')";
 
             if (mysqli_query($conn, $sql)) {
-                    echo  '<script>toastr.success("Item added to Publication added successfully")</script>';
-                } else {
-                    echo  '<script>toastr.error("Item not added to Publication. Try again !")</script>';
-                }
+                echo  '<script>toastr.success("Item added to Publication added successfully")</script>';
+            } else {
+                echo  '<script>toastr.error("Item not added to Publication. Try again !")</script>';
+            }
         }
     }
 
@@ -58,14 +60,14 @@ if (isset($_POST['submit'])) {
                     <form method="post" action="" enctype="multipart/form-data">
 
 
-                            <div class="form-row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <label for="">Date of publication</label>
-                                    <input type="date" class="form-control text-input" name="date_of_publication" placeholder="" required>
-                                </div>
+                        <div class="form-row">
+                            <div class="col-lg-3 col-sm-6">
+                                <label for="">Date of publication</label>
+                                <input type="date" class="form-control text-input" name="date_of_publication" placeholder="" required>
                             </div>
+                        </div>
 
-                            <div class="add_item_wrapper">
+                        <div class="add_item_wrapper">
 
                             <div class="form-row mt-2">
                                 <div class="col-lg-12 col-sm-12">
@@ -76,7 +78,7 @@ if (isset($_POST['submit'])) {
                             <div class="form-row">
 
                                 <div class="col-lg-3 col-sm-6">
-                                    <select class="form-control text-input item_number" name="item_number[]" id="item_number_1" >
+                                    <select class="form-control text-input item_number" name="item_number[]" id="item_number_1">
 
 
                                         <?php
@@ -93,7 +95,6 @@ if (isset($_POST['submit'])) {
                                         }
 
                                         ?>
-
 
                                     </select>
                                 </div>
@@ -115,6 +116,34 @@ if (isset($_POST['submit'])) {
                                         <input type="date" class="form-control text-input" name="date_created[]" id="date_created_1">
                                         <small class="text-muted"> (Date created)</small>
                                     </div>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-6 mt-2">
+                                    <select class="form-control text-input department_name" name="department[]" id="department_name_1">
+
+                                        <?php
+
+                                        $query = "SELECT * FROM department ";
+                                        $result = mysqli_query($conn, $query);
+                                        if (mysqli_num_rows($result) > 0) {
+                                            echo "<option value=''> Select Department </option> ";
+                                            while ($mydata = mysqli_fetch_assoc($result)) {
+                                                echo "<option value= '" . $mydata['department_name'] . "'>" . $mydata['department_name'] . "</option>";
+                                            }
+                                        } else {
+                                            echo "<option value=''> Select Department </option>";
+                                        }
+
+                                        ?>
+
+
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-3 col-sm-6 mt-2">
+                                    <select class="form-control text-input office_data_1 " name="office[]">
+                                        <option value=''> Select Office </option>
+                                    </select>
                                 </div>
 
                             </div>
@@ -151,12 +180,12 @@ if (isset($_POST['submit'])) {
 <script>
     // var item_list = "";
 
-    $(document).on( 'click', '.item_number',function(){
+    $(document).on('click', '.item_number', function() {
         var id = $(this).attr('id');
         var myArray = id.split("_");
         var i = myArray[2];
-    
-            $("#item_number_"+i).change(function() {
+
+        $("#item_number_" + i).change(function() {
 
             $.ajax({
                 url: 'get_info_item.php',
@@ -167,45 +196,83 @@ if (isset($_POST['submit'])) {
                 dataType: 'json',
                 success: function(result) {
 
-                    $('#plantilla_'+i).val(result.plantilla);
-                    $('#place_of_assignment_'+i).val(result.place_of_assignment);
-                    $('#salary_grade_'+i).val(result.salary_grade);
-                    $('#date_created_'+i).val(result.date_created);
+                    $('#plantilla_' + i).val(result.plantilla);
+                    $('#place_of_assignment_' + i).val(result.place_of_assignment);
+                    $('#salary_grade_' + i).val(result.salary_grade);
+                    $('#date_created_' + i).val(result.date_created);
 
                 }
             });
-        
+
         });
     });
-   
+
 
     // adding item 
-    $(document).ready(function() { 
+    $(document).ready(function() {
 
         var item_list;
         var maxField = 10;
         var x = 1;
+        var office_list;
+        var dept_list;
 
-         // getting items 
-         $.ajax({    
+        // getting items 
+        $.ajax({
             type: "GET",
-            url: "item_list.php",             
-            dataType: "html",                 
-            success: function(data){  
-                item_list = data ; 
+            url: "item_list.php",
+            dataType: "html",
+            success: function(data) {
+                item_list = data;
             }
-         });
+        });
+
+        // getting departments 
+        $.ajax({
+            type: "GET",
+            url: "dept_list.php",
+            dataType: "html",
+            success: function(data) {
+                dept_list = data;
+            }
+        });
 
         $('.add_item_btn').click(function() {
             if (x < maxField) {
                 x++;
-                var fieldHtml = '<div class="form-row mt-2"> <div class="col-lg-12 col-sm-12"> <label for="" class="h6">Item Details</label> </div> </div> <div class="form-row"> <div class="col-lg-3 col-sm-6"> <select class="form-control text-input item_number " name="item_number[]" id="item_number_' + x + '"> '+ item_list +' </select> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="plantilla[]" placeholder="Plantilla" id="plantilla_' + x + '"> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="salary_grade[]" placeholder="Salary Grade" id="salary_grade_' + x + '"> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="place_of_assignment[]" placeholder="Place of assignment" id="place_of_assignment_' + x + '"> </div> <div class="col-lg-3 col-sm-6 mt-2"> <div class="d-flex flex-column"> <input type="date" class="form-control text-input" name="date_created[]" id="date_created_' + x + '"> <small class="text-muted"> (Date created)</small> </div> </div> </div>';
+                var fieldHtml = '<div class="form-row mt-2"> <div class="col-lg-12 col-sm-12"> <label for="" class="h6">Item Details</label> </div> </div> <div class="form-row"> <div class="col-lg-3 col-sm-6"> <select class="form-control text-input item_number " name="item_number[]" id="item_number_' + x + '"> ' + item_list + ' </select> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="plantilla[]" placeholder="Plantilla" id="plantilla_' + x + '"> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="salary_grade[]" placeholder="Salary Grade" id="salary_grade_' + x + '"> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="place_of_assignment[]" placeholder="Place of assignment" id="place_of_assignment_' + x + '"> </div> <div class="col-lg-3 col-sm-6 mt-2"> <div class="d-flex flex-column"> <input type="date" class="form-control text-input" name="date_created[]" id="date_created_' + x + '"> <small class="text-muted"> (Date created)</small> </div> </div> <div class="col-lg-3 col-sm-6 mt-2"> <select class="form-control text-input department_name " name="department[]" id="department_name_' + x + '" > ' + dept_list + ' </select> </div> <div class="col-lg-3 col-sm-6 mt-2"> <select class="form-control text-input office_data_' + x + ' " name="office[]" > <option value=""> Select Office </option> </select> </div> </div> ';
 
                 $('.add_item_wrapper').append(fieldHtml);
                 // console.log(fieldHtml);
             }
         });
 
-    });
+        // getting office related to department in 
 
+        $(document).on('click', '.department_name', function() {
+
+
+            var id = $(this).attr('id');
+            var myArray = id.split("_");
+            var i = myArray[2];
+
+            $("#department_name_" + i).change(function() {
+
+                $.ajax({
+                    url: 'get_office_name.php',
+                    type: 'post',
+                    data: {
+                        dept: $(this).val()
+                    },
+                    success: function(response) {
+                        $('.office_data_' + i).html(response);
+
+                    }
+                });
+
+            });
+
+        });
+
+    });
 </script>
