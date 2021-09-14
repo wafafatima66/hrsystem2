@@ -9,15 +9,15 @@ if (isset($_POST['submit'])) {
 
             // $hiring_work_exp = $_POST['hiring_work_exp'][$i];
             $item_number = $_POST['item_number'][$i];
-            $salary_grade = $_POST['salary_grade'][$i];
-            $plantilla = $_POST['plantilla'][$i];
-            $place_of_assignment = $_POST['place_of_assignment'][$i];
-            $date_created = $_POST['date_created'][$i];
-            $department = $_POST['department'][$i];
-            $office = $_POST['office'][$i];
+            // $salary_grade = $_POST['salary_grade'][$i];
+            // $plantilla = $_POST['plantilla'][$i];
+            // $place_of_assignment = $_POST['place_of_assignment'][$i];
+            // $date_created = $_POST['date_created'][$i];
+            // $department = $_POST['department'][$i];
+            // $office = $_POST['office'][$i];
 
             $sql = "INSERT INTO publication (
-                date_of_publication  , item_number , salary_grade , plantilla , place_of_assignment , date_created , department , office ) VALUES (  '$date_of_publication'  , '$item_number' , '$salary_grade' ,' $plantilla' ,  '$place_of_assignment' ,'$date_created' ,  '$department' ,'$office')";
+                date_of_publication  , item_number  ) VALUES (  '$date_of_publication'  , '$item_number' )";
 
             if (mysqli_query($conn, $sql)) {
                 echo  '<script>toastr.success("Item added to Publication added successfully")</script>';
@@ -83,7 +83,7 @@ if (isset($_POST['submit'])) {
 
                                         <?php
 
-                                        $query = "SELECT item_no FROM item where status = 0  ";
+                                        $query = "SELECT item_no FROM item where filled = 0  ";
                                         $result = mysqli_query($conn, $query);
                                         if (mysqli_num_rows($result) > 0) {
                                             echo "<option value=''> Select Item </option> ";
@@ -99,52 +99,52 @@ if (isset($_POST['submit'])) {
                                     </select>
                                 </div>
 
-                                <div class="col-lg-3 col-sm-6">
+                                <div class="col-lg-2 col-sm-6">
                                     <input type="text" class="form-control text-input" name="plantilla[]" placeholder="Plantilla" id="plantilla_1">
                                 </div>
 
-                                <div class="col-lg-3 col-sm-6">
-                                    <input type="text" class="form-control text-input" name="salary_grade[]" placeholder="Salary Grade" id="salary_grade_1">
+                                <div class="col-lg-1 col-sm-6">
+                                    <input type="text" class="form-control text-input" name="salary_grade[]" placeholder="SG" id="salary_grade_1">
                                 </div>
 
                                 <div class="col-lg-3 col-sm-6">
                                     <input type="text" class="form-control text-input" name="place_of_assignment[]" placeholder="Place of assignment" id="place_of_assignment_1">
                                 </div>
 
-                                <div class="col-lg-3 col-sm-6 mt-2">
+                                <div class="col-lg-3 col-sm-6 ">
                                     <div class="d-flex flex-column">
                                         <input type="date" class="form-control text-input" name="date_created[]" id="date_created_1">
                                         <small class="text-muted"> (Date created)</small>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-sm-6 mt-2">
+                                <!-- <div class="col-lg-3 col-sm-6 mt-2">
                                     <select class="form-control text-input department_name" name="department[]" id="department_name_1">
 
                                         <?php
 
-                                        $query = "SELECT * FROM department ";
-                                        $result = mysqli_query($conn, $query);
-                                        if (mysqli_num_rows($result) > 0) {
-                                            echo "<option value=''> Select Department </option> ";
-                                            while ($mydata = mysqli_fetch_assoc($result)) {
-                                                echo "<option value= '" . $mydata['department_name'] . "'>" . $mydata['department_name'] . "</option>";
-                                            }
-                                        } else {
-                                            echo "<option value=''> Select Department </option>";
-                                        }
+                                        // $query = "SELECT * FROM department ";
+                                        // $result = mysqli_query($conn, $query);
+                                        // if (mysqli_num_rows($result) > 0) {
+                                        //     echo "<option value=''> Select Department </option> ";
+                                        //     while ($mydata = mysqli_fetch_assoc($result)) {
+                                        //         echo "<option value= '" . $mydata['department_name'] . "'>" . $mydata['department_name'] . "</option>";
+                                        //     }
+                                        // } else {
+                                        //     echo "<option value=''> Select Department </option>";
+                                        // }
 
                                         ?>
 
 
                                     </select>
-                                </div>
+                                </div> -->
 
-                                <div class="col-lg-3 col-sm-6 mt-2">
+                                <!-- <div class="col-lg-3 col-sm-6 mt-2">
                                     <select class="form-control text-input office_data_1 " name="office[]">
                                         <option value=''> Select Office </option>
                                     </select>
-                                </div>
+                                </div> -->
 
                             </div>
 
@@ -227,20 +227,20 @@ if (isset($_POST['submit'])) {
             }
         });
 
-        // getting departments 
-        $.ajax({
-            type: "GET",
-            url: "dept_list.php",
-            dataType: "html",
-            success: function(data) {
-                dept_list = data;
-            }
-        });
+        // // getting departments 
+        // $.ajax({
+        //     type: "GET",
+        //     url: "dept_list.php",
+        //     dataType: "html",
+        //     success: function(data) {
+        //         dept_list = data;
+        //     }
+        // });
 
         $('.add_item_btn').click(function() {
             if (x < maxField) {
                 x++;
-                var fieldHtml = '<div class="form-row mt-2"> <div class="col-lg-12 col-sm-12"> <label for="" class="h6">Item Details</label> </div> </div> <div class="form-row"> <div class="col-lg-3 col-sm-6"> <select class="form-control text-input item_number " name="item_number[]" id="item_number_' + x + '"> ' + item_list + ' </select> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="plantilla[]" placeholder="Plantilla" id="plantilla_' + x + '"> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="salary_grade[]" placeholder="Salary Grade" id="salary_grade_' + x + '"> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="place_of_assignment[]" placeholder="Place of assignment" id="place_of_assignment_' + x + '"> </div> <div class="col-lg-3 col-sm-6 mt-2"> <div class="d-flex flex-column"> <input type="date" class="form-control text-input" name="date_created[]" id="date_created_' + x + '"> <small class="text-muted"> (Date created)</small> </div> </div> <div class="col-lg-3 col-sm-6 mt-2"> <select class="form-control text-input department_name " name="department[]" id="department_name_' + x + '" > ' + dept_list + ' </select> </div> <div class="col-lg-3 col-sm-6 mt-2"> <select class="form-control text-input office_data_' + x + ' " name="office[]" > <option value=""> Select Office </option> </select> </div> </div> ';
+                var fieldHtml = '<div class="form-row mt-2"> <div class="col-lg-12 col-sm-12"> <label for="" class="h6">Item Details</label> </div> </div> <div class="form-row"> <div class="col-lg-3 col-sm-6"> <select class="form-control text-input item_number " name="item_number[]" id="item_number_' + x + '"> ' + item_list + ' </select> </div> <div class="col-lg-2 col-sm-6"> <input type="text" class="form-control text-input" name="plantilla[]" placeholder="Plantilla" id="plantilla_' + x + '"> </div> <div class="col-lg-1 col-sm-6"> <input type="text" class="form-control text-input" name="salary_grade[]" placeholder="SG" id="salary_grade_' + x + '"> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="place_of_assignment[]" placeholder="Place of assignment" id="place_of_assignment_' + x + '"> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <input type="date" class="form-control text-input" name="date_created[]" id="date_created_' + x + '"> <small class="text-muted"> (Date created)</small> </div> </div> </div> ';
 
                 $('.add_item_wrapper').append(fieldHtml);
                 // console.log(fieldHtml);
@@ -249,30 +249,30 @@ if (isset($_POST['submit'])) {
 
         // getting office related to department in 
 
-        $(document).on('click', '.department_name', function() {
+        // $(document).on('click', '.department_name', function() {
 
 
-            var id = $(this).attr('id');
-            var myArray = id.split("_");
-            var i = myArray[2];
+        //     var id = $(this).attr('id');
+        //     var myArray = id.split("_");
+        //     var i = myArray[2];
 
-            $("#department_name_" + i).change(function() {
+        //     $("#department_name_" + i).change(function() {
 
-                $.ajax({
-                    url: 'get_office_name.php',
-                    type: 'post',
-                    data: {
-                        dept: $(this).val()
-                    },
-                    success: function(response) {
-                        $('.office_data_' + i).html(response);
+        //         $.ajax({
+        //             url: 'get_office_name.php',
+        //             type: 'post',
+        //             data: {
+        //                 dept: $(this).val()
+        //             },
+        //             success: function(response) {
+        //                 $('.office_data_' + i).html(response);
 
-                    }
-                });
+        //             }
+        //         });
 
-            });
+        //     });
 
-        });
+        // });
 
     });
 </script>

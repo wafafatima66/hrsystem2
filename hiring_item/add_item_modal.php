@@ -1,19 +1,20 @@
 <?php
 if (isset($_POST['submit'])) {
 
-    // $nature = 'Original';
     $item_no = $_POST['item_no'];
     $position = $_POST['position'];
     $salary_grade = $_POST['salary_grade'];
     $date_created = $_POST['date_created'];
     $place_of_assignment = $_POST['place_of_assignment'];
-    $status = 0;
+    $department = $_POST['department'];
+    $office = $_POST['office'];
+    $filled = 0;
     $date_posted = date('Y-m-d');
-    $nature = 'Original';
-
+    // $nature = 'Original';
+    $job_type = 'Permanent';
 
     $sql = "INSERT INTO item (
-         item_no  , position , salary_grade , date_created , status , place_of_assignment , date_posted , nature) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$status' , '$place_of_assignment' , '$date_posted' , '$nature')";
+         item_no  , position , salary_grade , date_created , filled , place_of_assignment , date_posted , job_type , division , area_wrk_assign) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled' , '$place_of_assignment' , '$date_posted' , '$job_type' , '$department' , '$office' )";
 
     if (!empty($_POST['hiring_education'])) {
         for ($i = 0; $i < count($_POST['hiring_education']); $i++) {
@@ -165,9 +166,17 @@ if (isset($_POST['submit'])) {
                                 <input type="text" class="form-control text-input" name="place_of_assignment" placeholder="Place of assignment">
                             </div>
 
+                            <div class="col-lg-3 col-sm-6">
+                                <input type="text" class="form-control text-input" name="department" placeholder="Department">
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                                <input type="text" class="form-control text-input" name="office" placeholder="Office">
+                            </div>
+
                         </div>
 
-                        <div class="form-row mt-2">
+                        <div class="form-row mt-3">
                             <div class="col-lg-12 col-sm-12">
                                 <label for="" class="h6">Minimum Qualification</label>
                             </div>

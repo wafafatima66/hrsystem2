@@ -6,8 +6,8 @@
 
   <div class="col-lg-5 col-sm-6">
     <div class="input-group">
-      <input type="search" class="form-control">
-      <button type="button" class="home-page-search-btn">
+      <input type="search" class="form-control search_pub">
+      <button type="button" class="home-page-search-btn" id="search_pub_btn">
         <i class="fa fa-search"></i>
       </button>
 
@@ -37,37 +37,37 @@
     </select>
   </div>
 
-  <div class="col-lg-3 col-sm-6">
+  <div class="col-lg-2 col-sm-6">
     <select id="dept_dropdown" class="form-control text-input">
-     <?php 
-     $query = "SELECT department_name FROM department  ";
-     $result = mysqli_query($conn, $query);
-     if (mysqli_num_rows($result) > 0) {
-         echo "<option value=''> Select Department </option> ";
-         while ($mydata = mysqli_fetch_assoc($result)) {
-             echo "<option value= '" . $mydata['department_name'] . "'>" . $mydata['department_name'] . "</option>";
-         }
-     } else {
-         echo "<option value=''> Select Department </option>";
-     }
-     ?>
+      <?php
+      $query = "SELECT DISTINCT division FROM item where division != '' ";
+      $result = mysqli_query($conn, $query);
+      if (mysqli_num_rows($result) > 0) {
+        echo "<option value=''> Department </option> ";
+        while ($mydata = mysqli_fetch_assoc($result)) {
+          echo "<option value= '" . $mydata['division'] . "'>" . $mydata['division'] . "</option>";
+        }
+      } else {
+        echo "<option value=''> Department </option>";
+      }
+      ?>
     </select>
   </div>
 
-  <div class="col-lg-3 col-sm-6">
+  <div class="col-lg-2 col-sm-6">
     <select id="office_dropdown" class="form-control text-input">
-    <?php 
-    $query = "SELECT * FROM office  ";
-    $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) > 0) {
-      echo "<option value=''> Select Office </option> ";
+      <?php
+      $query = "SELECT DISTINCT area_wrk_assign FROM item where area_wrk_assign != ''";
+      $result = mysqli_query($conn, $query);
+      if (mysqli_num_rows($result) > 0) {
+        echo "<option value=''> Office </option> ";
         while ($mydata = mysqli_fetch_assoc($result)) {
-            echo "<option value= '" . $mydata['office_name'] . "'>" . $mydata['office_name'] . "</option>";
+          echo "<option value= '" . $mydata['area_wrk_assign'] . "'>" . $mydata['area_wrk_assign'] . "</option>";
         }
-    } else {
-      echo "<option value=''> Select Office</option>";
-  }
-    ?>
+      } else {
+        echo "<option value=''>  Office</option>";
+      }
+      ?>
     </select>
   </div>
 
@@ -76,10 +76,7 @@
 
 
 
-    <?php
- 
-    echo '<div id="table-data"> </div>';
-    ?>
+<?php echo '<div id="table-data"> </div>'; ?>
 
 
 <!-- add item modal -->
@@ -88,6 +85,10 @@
 
 <!-- edit publication config -->
 <?php include "edit_publication_config.php";  ?>
+
+
+<!-- delete modal -->
+<?php include "../includes/delete_modal.php";  ?>
 
 
 <!-- edit publication modal -->
@@ -109,21 +110,9 @@
 <script>
   $(document).ready(function() {
 
-    $(".view_publication_btn").click(function() {
-      //  console.log('hi');
-      $.ajax({
-        type: 'POST',
-        url: 'get_publication_details.php',
-        data: {
-          id: $(this).data("id")
-        },
-        success: function(data) {
-          $("#view_publication_details").html(data); //the data is displayed in id=display_details
-        }
-      });
-    });
+    
 
-    function loadData(page, limit , dept , office) {
+    function loadData(page, limit , dept , office , search_pub) {
       $.ajax({
         url: "permanent_pagination.php",
         type: "POST",
@@ -132,7 +121,8 @@
           page_no: page,
           limit: limit,
           dept:dept , 
-          office : office
+          office : office,
+          search_pub : search_pub
         },
         success: function(response) {
           $("#table-data").html(response);
@@ -140,39 +130,53 @@
       });
     }
 
+    function loadDataVariables() {
+      var limit = $('#limit_dropdown').val();
+      var dept = $('#dept_dropdown').val();
+      var office = $('#office_dropdown').val();
+      var search_pub = $('.search_pub').val();
+      return [limit, dept, office , search_pub];
+    }
+
     loadData();
 
     $(document).on("click", ".page-item", function() {
       var page = $(this).attr("id");
-      var limit = $('#limit_dropdown').val();
-      var dept = $('#dept_dropdown').val();
-      var office = $('#office_dropdown').val();
-      loadData(page, limit , dept , office);
+      var [limit,dept,office , search_pub] = loadDataVariables();
+      loadData(page, limit , dept , office , search_pub);
     });
 
     $('#limit_dropdown').on('change', function() {
-      var page = 1;
-      var limit = $('#limit_dropdown').val();
-      var dept = $('#dept_dropdown').val();
-      var office = $('#office_dropdown').val();
-      loadData(page, limit , dept , office);
+      var page = 1 ; 
+      var [limit,dept,office , search_pub] = loadDataVariables();
+      loadData(page, limit , dept , office, search_pub);
     });
 
     $('#dept_dropdown').on('change', function() {
-      var page = 1;
-      var limit = $('#limit_dropdown').val();
-      var dept = $('#dept_dropdown').val();
-      var office = $('#office_dropdown').val();
-      loadData(page, limit , dept , office);
+      var page = 1 ; 
+      var [limit,dept,office , search_pub] = loadDataVariables();
+      loadData(page, limit , dept , office , search_pub);
     });
 
     $('#office_dropdown').on('change', function() {
-      var page = 1;
-      var limit = $('#limit_dropdown').val();
-      var dept = $('#dept_dropdown').val();
-      var office = $('#office_dropdown').val();
-      loadData(page, limit , dept , office);
+      var page = 1 ; 
+      var [limit,dept,office , search_pub ] = loadDataVariables();
+      loadData(page, limit , dept , office , search_pub);
     });
+
+    $('#search_pub_btn').on('click', function() {
+          var page = 1;
+          var [limit, dept, office, status,search_pub] = loadDataVariables();
+          loadData(page, limit, dept, office, status , search_pub);
+    });
+
+    // delete 
+    $(document).on('click', '.delete_modal', function() {
+     var id = $(this).data('id');
+     var url = '../includes/delete.php?' ;
+     var newHref = url.concat(id);
+    $('#delete_confirm_btn').attr('href', newHref);
+});
 
   });
 </script>

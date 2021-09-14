@@ -22,7 +22,10 @@ if (isset($_GET['id'])) {
 
       $id =  $_GET['id'];
 
+      
       $query = "SELECT * FROM employee WHERE id = '$id'";
+      // $query =  "SELECT e.* , a.position FROM employee e join item a on e.emp_id = a.emp_id WHERE e.id = '$id'";
+     
 
       $runquery = $conn->query($query);
       if ($runquery == true) {
@@ -30,6 +33,10 @@ if (isset($_GET['id'])) {
 
                   $emp_id = $mydata['emp_id'];
                   $photo_to_show = '../img/' . $mydata['emp_image'];
+
+                  // getting position 
+                  $get = mysqli_fetch_assoc(mysqli_query($conn, "SELECT position FROM item WHERE emp_id = '$emp_id'"));
+                  $position = $get['position'];
 
 ?>
 
@@ -61,7 +68,7 @@ if (isset($_GET['id'])) {
                                     onchange="previewFile(this);"  form="emp_profile_form"> -->
 
                                                 <input type="file" style="display: none;" name="emp_image" id="emp_image">
-                                                <input type="hidden" name="emp_id" value="<?php echo $emp_id?>">
+                                                <input type="hidden" name="emp_id" value="<?php echo $emp_id ?>">
 
                                           </label>
 
@@ -75,7 +82,7 @@ if (isset($_GET['id'])) {
                               <div class="col-lg-3 col-sm-4 align-self-end">
 
                                     <h4 style="color: #FFDF88;"><?php echo $mydata["emp_first_name"] . " " . $mydata["emp_middle_name"] . " " . $mydata["emp_last_name"] . " " . $mydata["emp_ext"] ?></h4>
-                                    <h6>Position/officer</h6>
+                                    <h6>Position / <?php echo $position ;  ?></h6>
 
                               </div>
                               <div class="col-lg-1 col-sm-4"></div>
@@ -122,70 +129,69 @@ if (isset($_GET['id'])) {
 
 
 
-<script>
+                  <script>
+                        $(document).ready(function() {
+                              $('.emp_profile_button').click(function() {
+                                    $('.emp_profile_button').removeClass('emp_profile_button_active');
+                                    $(this).addClass('emp_profile_button_active');
+                                    var className = $(this).attr('id');
+                                    var tab = className + '-tab';
+                                    var targetBox = $("." + tab);
+                                    $(".emp_profile_tab").not(targetBox).hide();
+                                    $(targetBox).show();
 
-$(document).ready(function() {
-      $('.emp_profile_button').click(function() {
-            $('.emp_profile_button').removeClass('emp_profile_button_active');
-            $(this).addClass('emp_profile_button_active');
-            var className = $(this).attr('id');
-            var tab = className + '-tab';
-            var targetBox = $("." + tab);
-            $(".emp_profile_tab").not(targetBox).hide();
-            $(targetBox).show();
+                              });
 
-      });
+                              //     employee image uploading 
 
-      //     employee image uploading 
+                              $(document).on('change', '#emp_image', function() {
+                                    var emp_id = $('input[name="emp_id"]').val();
+                                    var name = document.getElementById("emp_image").files[0].name;
+                                    var form_data = new FormData();
+                                    var ext = name.split('.').pop().toLowerCase();
+                                    if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                                          alert("Invalid Image File");
+                                    }
+                                    var oFReader = new FileReader();
+                                    oFReader.readAsDataURL(document.getElementById("emp_image").files[0]);
+                                    var f = document.getElementById("emp_image").files[0];
+                                    var fsize = f.size || f.fileSize;
+                                    if (fsize > 2000000) {
+                                          alert("Image File Size is very big");
+                                    } else {
+                                          form_data.append("file", document.getElementById('emp_image').files[0]);
+                                          form_data.append("emp_id", emp_id);
+                                          $.ajax({
+                                                url: "upload_emp_image.php",
+                                                method: "POST",
+                                                data: form_data,
+                                                contentType: false,
+                                                cache: false,
+                                                processData: false,
 
-      $(document).on('change', '#emp_image', function() {
-            var emp_id = $('input[name="emp_id"]').val();
-            var name = document.getElementById("emp_image").files[0].name;
-            var form_data = new FormData();
-            var ext = name.split('.').pop().toLowerCase();
-            if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-                  alert("Invalid Image File");
-            }
-            var oFReader = new FileReader();
-            oFReader.readAsDataURL(document.getElementById("emp_image").files[0]);
-            var f = document.getElementById("emp_image").files[0];
-            var fsize = f.size || f.fileSize;
-            if (fsize > 2000000) {
-                  alert("Image File Size is very big");
-            } else {
-                  form_data.append("file", document.getElementById('emp_image').files[0]);
-                  form_data.append("emp_id", emp_id);
-                  $.ajax({
-                        url: "upload_emp_image.php",
-                        method: "POST",
-                        data: form_data,
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-
-                        success: function(data) {
-                              $('.emp-profile-img').empty().html(data);
-                        }
-                  });
-            }
-      });
+                                                success: function(data) {
+                                                      $('.emp-profile-img').empty().html(data);
+                                                }
+                                          });
+                                    }
+                              });
 
 
-});
+                        });
 
-// for the image preview
+                        // for the image preview
 
-//   function previewFile(input) {
-//       var file = $("input[type=file]").get(0).files[0];
+                        //   function previewFile(input) {
+                        //       var file = $("input[type=file]").get(0).files[0];
 
-//       if (file) {
-//             var reader = new FileReader();
+                        //       if (file) {
+                        //             var reader = new FileReader();
 
-//             reader.onload = function () {
-//                   $("#previewImg").attr("src", reader.result);
-//             }
+                        //             reader.onload = function () {
+                        //                   $("#previewImg").attr("src", reader.result);
+                        //             }
 
-//             reader.readAsDataURL(file);
-//       }
-// }
-</script>
+                        //             reader.readAsDataURL(file);
+                        //       }
+                        // }
+                  </script>

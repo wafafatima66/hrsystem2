@@ -8,7 +8,8 @@ if (isset($_POST['id'])) {
     $id = $_POST['id'];
     
 
-    $query = "SELECT * FROM publication WHERE id = '$id'";
+    // $query = "SELECT * FROM publication WHERE id = '$id'";
+    $query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number FROM publication p join item i on i.item_no = p.item_number WHERE p.id = '$id'";
 
     $runquery = $conn->query($query);
     if ($runquery == true) {
@@ -21,7 +22,7 @@ if (isset($_POST['id'])) {
 
                 <form method="post" action="" enctype="multipart/form-data">
 
-                <input type="hidden" name="id"  value="<?php echo $mydata['id']; ?>">
+                <input type="hidden" name="id"  value="<?php echo $mydata['publication_id']; ?>">
 
                     <div class="form-row">
                         <div class="col-lg-3 col-sm-6">
@@ -36,12 +37,10 @@ if (isset($_POST['id'])) {
                         </div>
                     </div>
 
-                    <div class="form-row">
+                    <div class="form-row mb-2">
 
-                        <!-- <div class="col-lg-3 col-sm-6">
-        <input type="text" class="form-control text-input" name="item_number" placeholder="Select Item">
-    </div> -->
-                        <div class="col-lg-3 col-sm-6">
+                    
+                        <div class="col-lg-5 col-sm-6">
                             <select class="form-control text-input" name="item_number" id="item_number">
 
 
@@ -51,20 +50,20 @@ if (isset($_POST['id'])) {
                                     echo "<option value= '" . $mydata['item_number'] . "'>" . $mydata['item_number'] . "</option>";
                                 }
 
-                                    $query = "SELECT item_no FROM item ";
-                                    $result2 = mysqli_query($conn, $query);
-                                    if (mysqli_num_rows($result2) > 0) {
+                                    // $query = "SELECT item_no FROM item ";
+                                    // $result2 = mysqli_query($conn, $query);
+                                    // if (mysqli_num_rows($result2) > 0) {
 
-                                        if(empty($mydata['item_number'])){
-                                            echo "<option value=''> Select Item </option> ";
-                                        }
+                                    //     if(empty($mydata['item_number'])){
+                                    //         echo "<option value=''> Select Item </option> ";
+                                    //     }
 
-                                        while ($mydata2 = mysqli_fetch_assoc($result2)) {
-                                            echo "<option value= '" . $mydata2['item_no'] . "'>" . $mydata2['item_no'] . "</option>";
-                                        }
-                                    } else {
-                                        echo "<option value=''> Select Item </option>";
-                                    }
+                                    //     while ($mydata2 = mysqli_fetch_assoc($result2)) {
+                                    //         echo "<option value= '" . $mydata2['item_no'] . "'>" . $mydata2['item_no'] . "</option>";
+                                    //     }
+                                    // } else {
+                                    //     echo "<option value=''> Select Item </option>";
+                                    // }
                                 
 
                                 
@@ -75,11 +74,11 @@ if (isset($_POST['id'])) {
                             </select>
                         </div>
 
-                        <div class="col-lg-3 col-sm-6">
-                            <input type="text" class="form-control text-input" name="plantilla" placeholder="Plantilla" id="plantilla" value="<?php echo $mydata['plantilla']; ?>">
+                        <!-- <div class="col-lg-2 col-sm-6">
+                            <input type="text" class="form-control text-input" name="plantilla" placeholder="Plantilla" id="plantilla" value="<?php echo $mydata['position']; ?>">
                         </div>
 
-                        <div class="col-lg-3 col-sm-6">
+                        <div class="col-lg-1 col-sm-6">
                             <input type="text" class="form-control text-input" name="salary_grade" placeholder="Salary Grade" id="salary_grade" value="<?php echo $mydata['salary_grade']; ?>">
                         </div>
 
@@ -87,12 +86,12 @@ if (isset($_POST['id'])) {
                             <input type="text" class="form-control text-input" name="place_of_assignment" placeholder="Place of assignment" id="place_of_assignment" value="<?php echo $mydata['place_of_assignment']; ?>">
                         </div>
 
-                        <div class="col-lg-3 col-sm-6 mt-2">
+                        <div class="col-lg-3 col-sm-6">
                             <div class="d-flex flex-column">
                                 <input type="date" class="form-control text-input" name="date_created" id="date_created" value="<?php echo $mydata['date_created']; ?>">
                                 <small class="text-muted"> (Date created)</small>
                             </div>
-                        </div>
+                        </div> -->
 
 
                     </div>
@@ -103,6 +102,7 @@ if (isset($_POST['id'])) {
                         </button>
                         <button type="submit" name="edit_publication" class="btn button-1 ">Submit</button>
                     </div>
+
                 </form>
 
             </div>

@@ -3,6 +3,17 @@
 include SITE_ROOT . '/includes/header.php'; ?>
 
 
+<!-- delete message -->
+<?php 
+if(isset($_GET['publication_delete'])){
+    if(isset($_GET['publication_delete']) =='success'){
+        echo  '<script>toastr.success("Publication deleted successfully")</script>';
+    }else if(isset($_GET['publication_delete']) =='fail'){
+        echo  '<script>toastr.error("Publication not deleted. Try again !")</script>';
+    }
+}
+?>
+
 
 <style>
     .switch-tab {

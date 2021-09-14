@@ -17,26 +17,31 @@ if (isset($_POST['page_no'])) {
 
 $offset = ($page_no - 1) * $limit;
 
+if (isset($_POST['search_pub']) && (!empty($_POST['search_pub']))) {
+	$search_pub = $_POST['search_pub'];
+	$query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number FROM publication p join item i on i.item_no = p.item_number WHERE item_number LIKE '%{$search_pub}%' LIMIT $offset, $limit";
+}
 
-if (isset($_POST['dept'])  && (!empty($_POST['dept']))) {
+
+else if (isset($_POST['dept'])  && (!empty($_POST['dept']))) {
   $dept = $_POST['dept'];
-  $query = "SELECT * FROM publication where department = '$dept'  LIMIT $offset, $limit ";
+  $query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number FROM publication p join item i on i.item_no = p.item_number where division = '$dept'  LIMIT $offset, $limit ";
 
 } 
 
 else if (isset($_POST['office']) && (!empty($_POST['office'])) ) {
   $office = $_POST['office'];
-  $query = "SELECT * FROM publication where  office = '$office'  LIMIT $offset, $limit ";
+  $query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number FROM publication p join item i on i.item_no = p.item_number where area_wrk_assign = '$office'  LIMIT $offset, $limit ";
 }  
 
 else if ((isset($_POST['dept'])) && (isset($_POST['office'])) && (!empty($_POST['dept'])) && (!empty($_POST['office']))  ){
 
   $dept = $_POST['dept'];
   $office = $_POST['office'];
-  $query = "SELECT * FROM publication where department = '$dept' and office = '$office'  LIMIT $offset, $limit ";
+  $query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number FROM publication p join item i on i.item_no = p.item_number where division = '$dept' and area_wrk_assign = '$office'  LIMIT $offset, $limit ";
 } 
 else  {
-  $query = "SELECT * FROM publication  LIMIT $offset, $limit ";
+  $query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number FROM publication p join item i on i.item_no = p.item_number LIMIT $offset, $limit ";
 }
 
 
@@ -44,7 +49,7 @@ $result = mysqli_query($conn, $query);
 
 $output = '';
 
-$output .= '<table class="table home-page-table mt-4 table-striped table-responsive-sm table-sm">
+$output .= '<table class="table home-page-table mt-4 table-striped table-responsive-sm">
 <thead>
   <tr>
     <th scope="col">Date of publication</th>
@@ -64,15 +69,19 @@ if (mysqli_num_rows($result) > 0) {
     $output .= "<tr>
         <td>{$mydata['date_of_publication']}</td>
         <td> {$mydata['item_number']} </td>
-        <td>{$mydata['plantilla']}</td>
+        <td>{$mydata['position']}</td>
         <td>{$mydata['salary_grade']}</td>
-        <td>{$mydata['department']}</td>
-        <td>{$mydata['office']}</td>
-        <td><a class='view_publication_btn' data-toggle='modal' data-target='#view_publication' data-id='{$mydata['id']}'><i class='fa fa-edit mx-2'></i></a>
+        <td>{$mydata['division']}</td>
+        <td>{$mydata['area_wrk_assign']}</td>
+        <td>
+                <a class='view_publication_btn' data-toggle='modal' data-target='#view_publication' data-id='{$mydata['publication_id']}'><i class='fa fa-edit mx-2'></i></a>
 
                 <a href='applicant.php?item_no={$mydata['item_number']}'><i class='fa fa-file-alt mx-2'></i></a>
 
                 <a href='permanent_appointment.php?item-no={$mydata['item_number']}'><i class='fa fa-user-edit mx-2'></i></a>
+
+                <a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='publication_id={$mydata['publication_id']}'><i class='fa fa-trash mx-2'></i></a>
+
               </td>
         </tr>";
 
@@ -106,7 +115,25 @@ if (mysqli_num_rows($result) > 0) {
 
 } else {
 
-  $output .= "<tr><td colspan='6'>No data Available</td> </tr> </tbody></table>";
+  $output .= "<tr><td colspan='7'>No data Available</td> </tr> </tbody></table>";
 
   echo $output;
 }
+?>
+
+
+<script>
+$(".view_publication_btn").click(function() {
+  console.log('hi');
+  $.ajax({
+    type: 'POST',
+    url: 'get_publication_details.php',
+    data: {
+      id: $(this).data("id")
+    },
+    success: function(data) {
+      $("#view_publication_details").html(data); //the data is displayed in id=display_details
+    }
+  });
+});
+</script>

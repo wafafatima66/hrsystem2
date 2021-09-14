@@ -23,11 +23,11 @@ if (isset($_POST['search_employee'])) {
 
 	$search_employee = $_POST['search_employee'];
 
-	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , p.job_type , p.office , p.position  FROM employee e join employee_agency p on e.emp_id = p.emp_id 
+	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , p.job_type , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id 
 	WHERE e.emp_first_name LIKE '%{$search_employee}%' OR e.emp_last_name LIKE '%{$search_employee}%' OR e.emp_id LIKE '%{$search_employee}%' LIMIT $offset, $limit";
 } else {
 
-	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , p.job_type , p.office , p.position  FROM employee e join employee_agency p on e.emp_id = p.emp_id  LIMIT $offset, $limit";
+	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , p.job_type , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id  LIMIT $offset, $limit";
 }
 
 
@@ -62,7 +62,7 @@ if (mysqli_num_rows($result) > 0) {
                         <td> {$mydata['emp_gender']} </td>
 						<td>{$mydata['job_type']}</td>
 						<td>{$mydata['position']}</td>
-						<td>{$mydata['office']}</td>
+						<td>{$mydata['area_wrk_assign']}</td>
                   </tr>";
 	}
 	$output .= "</tbody>
@@ -71,7 +71,7 @@ if (mysqli_num_rows($result) > 0) {
 
 	// pagination
 
-	$sql = 'SELECT e.id FROM employee e join employee_agency p on e.emp_id = p.emp_id';
+	$sql = 'SELECT e.id FROM employee e join item p on e.emp_id = p.emp_id';
 
 	$records = mysqli_query($conn, $sql);
 	$totalRecords = mysqli_num_rows($records);

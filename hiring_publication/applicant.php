@@ -329,9 +329,9 @@ if (isset($_GET['item_no']) || isset($_GET['position_no']) ) {
                             <td>{$mydata['applicant_rank']} </td>
                             <td>
                                 <a class='view_applicant_btn' data-toggle='modal' data-target='#view_applicant' data-id=' {$mydata['id']} '><i class='fa fa-edit mx-2'></i></a>
+                            
+                                <a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='applicant_id={$mydata['applicant_id']}'><i class='fa fa-trash mx-2'></i></a>
 
-                                
-                                <a href='delete_applicant.php?applicant_id={$mydata['applicant_id']}&del_id={$del_id}' onClick=\"return confirm('Are you sure you want to delete the applicant');\"><i class='fa fa-trash mx-2'></i></a>
                             </td>
                         </tr>";
                         
@@ -345,11 +345,6 @@ if (isset($_GET['item_no']) || isset($_GET['position_no']) ) {
                 } ?>
             </tbody>
         </table>
-
-
-
-
-
 
         <div class="text-right">
             <a href="../hiring_publication/" class="btn button-1 mt-2 ">Back</a>
@@ -383,6 +378,9 @@ if (isset($_GET['item_no']) || isset($_GET['position_no']) ) {
         </div>
     </div>
 
+    <!-- delete modal -->
+<?php include "../includes/delete_modal.php";  ?>
+
    
 
 <?php } ?>
@@ -403,6 +401,14 @@ $(document).ready(function(){
             }
         }); 
     });
+
+      // delete 
+      $(document).on('click', '.delete_modal', function() {
+     var id = $(this).data('id');
+     var url = '../includes/delete.php?' ;
+     var newHref = url.concat(id);
+    $('#delete_confirm_btn').attr('href', newHref);
+});
 
 });
 </script>

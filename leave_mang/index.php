@@ -215,6 +215,7 @@ if (isset($_POST['edit_leave_approve'])) {
 
 
             $("#emp_id").keyup(function() {
+                  // console.log('hi');
                   $.ajax({
                         url: 'get_info_emp_id.php',
                         type: 'post',
