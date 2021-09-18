@@ -71,6 +71,10 @@
     </select>
   </div>
 
+  <div class="col-lg-2 col-sm-6">
+    <input type="date" id="pub_date" class="form-control text-input"/>
+  </div>
+
 
 </div>
 
@@ -112,7 +116,7 @@
 
     
 
-    function loadData(page, limit , dept , office , search_pub) {
+    function loadData(page, limit , dept , office , search_pub, pub_date) {
       $.ajax({
         url: "permanent_pagination.php",
         type: "POST",
@@ -122,7 +126,8 @@
           limit: limit,
           dept:dept , 
           office : office,
-          search_pub : search_pub
+          search_pub : search_pub,
+          pub_date : pub_date
         },
         success: function(response) {
           $("#table-data").html(response);
@@ -135,45 +140,55 @@
       var dept = $('#dept_dropdown').val();
       var office = $('#office_dropdown').val();
       var search_pub = $('.search_pub').val();
-      return [limit, dept, office , search_pub];
+      var pub_date = $('#pub_date').val();
+      return [limit, dept, office , search_pub , pub_date];
     }
 
     loadData();
 
     $(document).on("click", ".page-item", function() {
       var page = $(this).attr("id");
-      var [limit,dept,office , search_pub] = loadDataVariables();
-      loadData(page, limit , dept , office , search_pub);
+      var [limit,dept,office , search_pub , pub_date] = loadDataVariables();
+      loadData(page, limit , dept , office , search_pub , pub_date);
     });
 
     $('#limit_dropdown').on('change', function() {
       var page = 1 ; 
-      var [limit,dept,office , search_pub] = loadDataVariables();
-      loadData(page, limit , dept , office, search_pub);
+      var [limit,dept,office , search_pub , pub_date] = loadDataVariables();
+      loadData(page, limit , dept , office , search_pub , pub_date);
     });
 
     $('#dept_dropdown').on('change', function() {
       var page = 1 ; 
-      var [limit,dept,office , search_pub] = loadDataVariables();
-      loadData(page, limit , dept , office , search_pub);
+      var [limit,dept,office , search_pub , pub_date] = loadDataVariables();
+      loadData(page, limit , dept , office , search_pub , pub_date);
     });
 
     $('#office_dropdown').on('change', function() {
       var page = 1 ; 
-      var [limit,dept,office , search_pub ] = loadDataVariables();
-      loadData(page, limit , dept , office , search_pub);
+      var [limit,dept,office , search_pub , pub_date ] = loadDataVariables();
+      loadData(page, limit , dept , office , search_pub , pub_date);
     });
 
     $('#search_pub_btn').on('click', function() {
           var page = 1;
-          var [limit, dept, office, status,search_pub] = loadDataVariables();
-          loadData(page, limit, dept, office, status , search_pub);
+          var [limit, dept, office, search_pub , pub_date] = loadDataVariables();
+          loadData(page, limit , dept , office , search_pub , pub_date);
     });
+
+    $('#pub_date').on('change', function() {
+      var page = 1 ; 
+      var [limit,dept,office , search_pub , pub_date ] = loadDataVariables();
+      loadData(page, limit , dept , office , search_pub , pub_date);
+     
+    });
+
+   
 
     // delete 
     $(document).on('click', '.delete_modal', function() {
      var id = $(this).data('id');
-     var url = '../includes/delete.php?' ;
+     var url = '../includes/delete.php?' ; 
      var newHref = url.concat(id);
     $('#delete_confirm_btn').attr('href', newHref);
 });

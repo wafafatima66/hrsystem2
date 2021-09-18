@@ -40,6 +40,12 @@ else if ((isset($_POST['dept'])) && (isset($_POST['office'])) && (!empty($_POST[
   $office = $_POST['office'];
   $query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number FROM publication p join item i on i.item_no = p.item_number where division = '$dept' and area_wrk_assign = '$office'  LIMIT $offset, $limit ";
 } 
+
+else if (isset($_POST['pub_date']) && (!empty($_POST['pub_date'])) ) {
+  $pub_date = $_POST['pub_date'];
+  $query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number FROM publication p join item i on i.item_no = p.item_number where p.date_of_publication = '$pub_date'  LIMIT $offset, $limit ";
+} 
+
 else  {
   $query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number FROM publication p join item i on i.item_no = p.item_number LIMIT $offset, $limit ";
 }
@@ -89,6 +95,8 @@ if (mysqli_num_rows($result) > 0) {
 
   $output .= "</tbody> </table> ";
 
+  
+
   // pagination
 
   $sql = 'SELECT id FROM publication';
@@ -100,7 +108,7 @@ if (mysqli_num_rows($result) > 0) {
 
   $output .= '<div class=" d-flex justify-content-between mt-4 ">
               <div>
-              <button class="btn button-1 mr-3" style="height:35px"><i class="fa fa-print"></i></button>
+              <a href="" class="btn button-1 mr-3" style="height:35px" id="publication_print"><i class="fa fa-print"></i></a>
               <p class="text-lowercase " style="display: contents;">' . $limit . ' ' . "of" . '  ' . $totalRecords . '</p>
               </div> ';
 
@@ -136,4 +144,18 @@ $(".view_publication_btn").click(function() {
     }
   });
 });
+
+// console.log(pub_date);
+      // var url = '../includes/export_excel.php?publication?' ;
+      // var newHref = url.concat(pub_date);
+      // $('#publication_print').attr('href', newHref);
+
+       $('#publication_print').on('click', function() {
+      var pub_date = $('#pub_date').val();
+      var url = '../includes/export_excel.php?publication=' ;
+     var newHref = url.concat(pub_date);
+     console.log(pub_date);
+    $('#publication_print').attr('href', newHref);
+    });
+
 </script>

@@ -24,7 +24,6 @@ if (!empty($_FILES["file"]["name"])) {
 
 
     //checking file extension
-
     $text1 = explode('.', $_FILES['file']['name']);
     $text = strtolower(end($text1));
     $file_ext = strtolower($text);

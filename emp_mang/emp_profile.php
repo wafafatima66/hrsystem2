@@ -22,10 +22,10 @@ if (isset($_GET['id'])) {
 
       $id =  $_GET['id'];
 
-      
+
       $query = "SELECT * FROM employee WHERE id = '$id'";
       // $query =  "SELECT e.* , a.position FROM employee e join item a on e.emp_id = a.emp_id WHERE e.id = '$id'";
-     
+
 
       $runquery = $conn->query($query);
       if ($runquery == true) {
@@ -82,7 +82,7 @@ if (isset($_GET['id'])) {
                               <div class="col-lg-3 col-sm-4 align-self-end">
 
                                     <h4 style="color: #FFDF88;"><?php echo $mydata["emp_first_name"] . " " . $mydata["emp_middle_name"] . " " . $mydata["emp_last_name"] . " " . $mydata["emp_ext"] ?></h4>
-                                    <h6>Position / <?php echo $position ;  ?></h6>
+                                    <h6>Position / <?php echo $position;  ?></h6>
 
                               </div>
                               <div class="col-lg-1 col-sm-4"></div>

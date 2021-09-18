@@ -8,13 +8,14 @@ if (isset($_POST['submit'])) {
     $place_of_assignment = $_POST['place_of_assignment'];
     $department = $_POST['department'];
     $office = $_POST['office'];
+    $description = $_POST['description'];
     $filled = 0;
     $date_posted = date('Y-m-d');
     // $nature = 'Original';
     $job_type = 'Permanent';
 
     $sql = "INSERT INTO item (
-         item_no  , position , salary_grade , date_created , filled , place_of_assignment , date_posted , job_type , division , area_wrk_assign) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled' , '$place_of_assignment' , '$date_posted' , '$job_type' , '$department' , '$office' )";
+         item_no  , position , salary_grade , date_created , filled , place_of_assignment , date_posted , job_type , division , area_wrk_assign , description) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled' , '$place_of_assignment' , '$date_posted' , '$job_type' , '$department' , '$office' , '$description' )";
 
     if (!empty($_POST['hiring_education'])) {
         for ($i = 0; $i < count($_POST['hiring_education']); $i++) {
@@ -274,6 +275,13 @@ if (isset($_POST['submit'])) {
                                 <button type="button" class="btn button-1 float-right add_com_4 pr-1 pl-1 pt-0 pb-0">+</button>
                             </div>
 
+                        </div>
+
+                        <div class="form-row mb-2 ">
+                            <div class="col-lg-12 col-sm-6">
+                            <textarea name="description" id="" cols="30" rows="5" class="form-control text-input mt-2 mb-1" placeholder="Description"></textarea>
+                            </div>
+                            
                         </div>
 
 
