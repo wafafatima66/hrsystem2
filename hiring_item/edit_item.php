@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
     $place_of_assignment = $_POST['place_of_assignment'];
     $department = $_POST['department'];
     $office = $_POST['office'];
+    $description = $_POST['description'];
     $filled = 0;
     $date_posted = date('Y-m-d');
     //  $nature = 'Original';
@@ -40,7 +41,7 @@ if (isset($_POST['submit'])) {
 
 
     $sql = "INSERT INTO item (
-            item_no  , position , salary_grade , date_created , filled , place_of_assignment , date_posted , job_type , division , area_wrk_assign) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled' , '$place_of_assignment' , '$date_posted' , '$job_type' , '$department' , '$office' )";
+            item_no  , position , salary_grade , date_created , filled , place_of_assignment , date_posted , job_type , division , area_wrk_assign, description) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled' , '$place_of_assignment' , '$date_posted' , '$job_type' , '$department' , '$office' , '$description' )";
 
     if (!empty($_POST['hiring_education'])) {
         for ($i = 0; $i < count($_POST['hiring_education']); $i++) {
@@ -217,16 +218,23 @@ if (isset($_GET['item_no'])) {
                         </div>
 
                         <div class="col-lg-3 col-sm-6">
-                        <label for="">Department</label>
-                                <input type="text" class="form-control text-input" name="department" placeholder="Department" value="<?php echo $mydata['division'] ?>">
-                            </div>
+                            <label for="">Department</label>
+                            <input type="text" class="form-control text-input" name="department" placeholder="Department" value="<?php echo $mydata['division'] ?>">
+                        </div>
 
-                            <div class="col-lg-3 col-sm-6">
+                        <div class="col-lg-3 col-sm-6">
                             <label for="">Office</label>
-                                <input type="text" class="form-control text-input" name="office" placeholder="Office" value="<?php echo $mydata['area_wrk_assign'] ?>">
-                            </div>
+                            <input type="text" class="form-control text-input" name="office" placeholder="Office" value="<?php echo $mydata['area_wrk_assign'] ?>">
+                        </div>
 
                     </div>
+
+                    <div class="form-row mb-2 ">
+                            <div class="col-lg-12 col-sm-6">
+                            <textarea name="description" id="" cols="30" rows="5" class="form-control text-input mt-2 mb-1" placeholder="Description"><?php echo $mydata['description'] ?></textarea>
+                            </div>
+                            
+                        </div>
 
                     <div class="form-row mt-4">
                         <div class="col-lg-12 col-sm-12">

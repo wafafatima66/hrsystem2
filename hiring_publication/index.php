@@ -12,6 +12,12 @@ if(isset($_GET['publication_delete'])){
         echo  '<script>toastr.error("Publication not deleted. Try again !")</script>';
     }
 }
+
+if(isset($_GET['export'])){
+    if(isset($_GET['export']) =='fail'){
+        echo  '<script>toastr.success("Publication date not specified ! ")</script>';
+    }
+}
 ?>
 
 
