@@ -20,7 +20,7 @@ if (!empty($_FILES["file"]["name"])) {
     $emp_image = "employee - " . $emp_id . "-" . $_FILES["file"]["name"];
 
     $tempname = $_FILES["file"]["tmp_name"];
-    $folder = "../img/" . $emp_image;
+    $folder = "../emp_img/" . $emp_image;
 
 
     //checking file extension

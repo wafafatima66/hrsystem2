@@ -245,33 +245,33 @@ if (isset($_GET["publication"])) {
 
         $spreadsheet
             ->getSheet(0)
-            ->setCellValue("E" . $count, $education);
+            ->setCellValue("F" . $count, $education);
         $spreadsheet->getActiveSheet()->getStyle("F" . $count)->getAlignment()->setWrapText(true);
 
         $spreadsheet
             ->getSheet(0)
-            ->setCellValue("F" . $count, $training);
+            ->setCellValue("G" . $count, $training);
         $spreadsheet->getActiveSheet()->getStyle("G" . $count)->getAlignment()->setWrapText(true);
 
         $spreadsheet
             ->getSheet(0)
-            ->setCellValue("G" . $count, $work);
+            ->setCellValue("H" . $count, $work);
         $spreadsheet->getActiveSheet()->getStyle("H" . $count)->getAlignment()->setWrapText(true);
 
         $spreadsheet
             ->getSheet(0)
-            ->setCellValue("H" . $count, $eligibility);
+            ->setCellValue("I" . $count, $eligibility);
         $spreadsheet->getActiveSheet()->getStyle("I" . $count)->getAlignment()->setWrapText(true);
 
 
         $spreadsheet
             ->getSheet(0)
-            ->setCellValue("I" . $count, $competency);
+            ->setCellValue("J" . $count, $competency);
         $spreadsheet->getActiveSheet()->getStyle("J" . $count)->getAlignment()->setWrapText(true);
 
         $spreadsheet
             ->getSheet(0)
-            ->setCellValue("J" . $count, $row->description);
+            ->setCellValue("K" . $count, $row->description);
         $spreadsheet->getActiveSheet()->getStyle("K" . $count)->getAlignment()->setWrapText(true);
 
         $spreadsheet

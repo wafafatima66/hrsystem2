@@ -32,7 +32,7 @@ if (isset($_GET['id'])) {
             while ($mydata = $runquery->fetch_assoc()) {
 
                   $emp_id = $mydata['emp_id'];
-                  $photo_to_show = '../img/' . $mydata['emp_image'];
+                  $photo_to_show = '../emp_img/' . $mydata['emp_image'];
 
                   // getting position 
                   $get = mysqli_fetch_assoc(mysqli_query($conn, "SELECT position FROM item WHERE emp_id = '$emp_id'"));
