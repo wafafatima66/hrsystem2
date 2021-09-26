@@ -54,7 +54,7 @@ if (mysqli_num_rows($result) > 0) {
 	while ($mydata = mysqli_fetch_assoc($result)) {
 
 		if(empty($mydata['emp_image'])){
-				$emp_image = 'no_image.jpg';
+				$emp_image = 'no_image.jpeg';
 		}else {
 			$emp_image = $mydata['emp_image'];
 		}
@@ -62,7 +62,7 @@ if (mysqli_num_rows($result) > 0) {
 		$output .= "<tr class='clickable-row' data-href='../emp_mang/emp_profile.php?id={$mydata["id"]}' >
                         <td>{$mydata['emp_id']}</td>
                         <td>
-                              <img src='../emp_img/{$emp_image}' alt='' style='width: 50px; height:50px'>
+                              <img src='../emp_img/{$emp_image}' alt='' style='width: 50px; height:50px; border-radius: 100%; margin-right: 12px;'>
                               <span> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
                         </td>
                         <td> {$mydata['emp_gender']} </td>

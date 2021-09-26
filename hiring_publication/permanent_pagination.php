@@ -72,8 +72,8 @@ $output .= '<table class="table home-page-table mt-4 table-striped table-respons
 if (mysqli_num_rows($result) > 0) {
   while ($mydata = mysqli_fetch_assoc($result)) {
 
-    $output .= "<tr>
-        <td>{$mydata['date_of_publication']}</td>
+    $output .= "<tr ".(($mydata['filled']=="1")?"style='background:#fc7e4340'":'').">" ;
+    $output .=  "<td>{$mydata['date_of_publication']}</td>
         <td> {$mydata['item_number']} </td>
         <td>{$mydata['position']}</td>
         <td>{$mydata['salary_grade']}</td>
@@ -86,7 +86,12 @@ if (mysqli_num_rows($result) > 0) {
 
                 <a href='permanent_appointment.php?item-no={$mydata['item_number']}'><i class='fa fa-user-edit mx-2'></i></a>
 
+                <a href='../includes/export_doc.php?appointment={$mydata['item_number']}' id='appointment_print'><i class='fa fa-print mx-2' style='color:#505a43;'></i></a>
+
+
                 <a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='publication_id={$mydata['publication_id']}'><i class='fa fa-trash mx-2'></i></a>
+
+
 
               </td>
         </tr>";
@@ -158,5 +163,14 @@ $(".view_publication_btn").click(function() {
      console.log(pub_date);
     $('#publication_print').attr('href', newHref);
     });
+
+    // $('#appointment_print').on('click', function() {
+    //   console.log('hi');
+    //   var item_no = $('#item_no').val();
+    //   var url = '../includes/export_doc.php?appointment=' ;
+    //  var newHref = url.concat(item_no);
+    //  console.log(item_no);
+    // $('#appointment_print').attr('href', newHref);
+    // });
 
 </script>

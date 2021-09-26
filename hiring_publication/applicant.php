@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
     }
 
     $sql = "INSERT INTO applicant (
-        item_no  , position_no, applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_country, applicant_state, applicant_municipal, applicant_zip ) VALUES (  '$item_no' , '$position_no', '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_country', '$applicant_state', '$applicant_municipal','$applicant_zip' )";
+        item_no  , position_no, applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_country, applicant_state, applicant_municipal, applicant_zip , appointmented) VALUES (  '$item_no' , '$position_no', '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_country', '$applicant_state', '$applicant_municipal','$applicant_zip' , '0' )";
 
 
     if (!empty($_POST['hiring_education'])) {

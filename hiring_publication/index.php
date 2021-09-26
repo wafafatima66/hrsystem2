@@ -15,9 +15,21 @@ if(isset($_GET['publication_delete'])){
 
 if(isset($_GET['export'])){
     if(isset($_GET['export']) =='fail'){
-        echo  '<script>toastr.success("Publication date not specified ! ")</script>';
+        echo  '<script>toastr.error("Publication date not specified ! ")</script>';
     }
 }
+
+
+
+    if(isset($_GET['appointment_fail']) ){
+        echo  '<script>toastr.error("No item number found ! ")</script>';
+    }
+   else if(isset($_GET['appointment_no']) ){
+        echo  '<script>toastr.error("No Employee appointmented for this item! ")</script>';
+    }
+    
+
+
 ?>
 
 

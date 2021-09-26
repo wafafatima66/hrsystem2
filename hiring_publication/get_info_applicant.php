@@ -22,8 +22,12 @@ if(isset($_POST['applicant_id'])){
         $applicant_first_name = $mydata["applicant_first_name"];
         $applicant_middle_name = $mydata["applicant_middle_name"];
         $applicant_ext = $mydata["applicant_ext"];
+        $applicant_rating = $mydata["applicant_rating"];
+        $applicant_rank = $mydata["applicant_rank"];
 
-        echo json_encode( array('applicant_last_name'=>$applicant_last_name,'applicant_first_name'=>$applicant_first_name,'applicant_middle_name'=>$applicant_middle_name,'applicant_ext'=>$applicant_ext));
+        $applicant_name = $applicant_last_name ." ".  $applicant_first_name ." ".  $applicant_middle_name ." ".  $applicant_ext  ; 
+
+        echo json_encode( array('applicant_name'=>$applicant_name,'applicant_rating'=>$applicant_rating,'applicant_rank'=>$applicant_rank));
 
 }
     }

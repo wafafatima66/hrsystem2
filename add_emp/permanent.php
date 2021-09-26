@@ -20,13 +20,11 @@ if(isset($_POST['submit-per'])){
     $emp_ext=$_POST['emp_ext'];
     $emp_gender=$_POST['emp_gender'];
 
-    // $sql2 = "INSERT INTO employee_job_type (emp_id,job_type , item_no, position, salary_grade, date_created,department,unit,nature,designation,date_of_expiry)
+     $sql2 = "UPDATE item SET emp_id = '$emp_id'  WHERE item_no='$item_no'";
 
-    // VALUES ('$emp_id','$job_type', '$item_no', '$position', '$salary_grade', '$date_created','$department','$unit','$nature','$designation','$date_of_expiry')";
+    // $sql2 = "INSERT INTO employee_agency (emp_id, job_type , item_no, position, salary_grade, date_created,department,office ,nature,designation,date_of_expiry)
 
-    $sql2 = "INSERT INTO employee_agency (emp_id, job_type , item_no, position, salary_grade, date_created,department,office ,nature,designation,date_of_expiry)
-
-    VALUES ('$emp_id','$job_type', '$item_no', '$position', '$salary_grade', '$date_created','$department','$office','$nature','$designation','$date_of_expiry')";
+    // VALUES ('$emp_id','$job_type', '$item_no', '$position', '$salary_grade', '$date_created','$department','$office','$nature','$designation','$date_of_expiry')";
 
 
     $sql3 = "INSERT INTO employee (emp_id , emp_first_name, emp_last_name, emp_middle_name, emp_ext,emp_gender)
@@ -41,7 +39,7 @@ if(isset($_POST['submit-per'])){
         $sql4 = "INSERT INTO `leave_credits_result` (`emp_id`, `year`, `vl_pts_1`, `vl_pts_2`, `vl_pts_3`, `vl_pts_4`, `vl_pts_5`, `vl_pts_6`, `vl_pts_7`, `vl_pts_8`, `vl_pts_9`, `vl_pts_10`, `vl_pts_11`, `vl_pts_12`, `sl_pts_1`, `sl_pts_2`, `sl_pts_3`, `sl_pts_4`, `sl_pts_5`, `sl_pts_6`, `sl_pts_7`, `sl_pts_8`, `sl_pts_9`, `sl_pts_10`, `sl_pts_11`, `sl_pts_12`) VALUES ('$emp_id', '$year', '16.25', '17.5', '18.75', '20', '21.25', '22.5', '23.75', '25', '26.25', '27.5', '28.75', '30', '16.25', '17.5', '18.75', '20', '21.25', '22.5', '23.75', '25', '26.25', '27.5', '28.75', '30');";
 
 
-    if (mysqli_query($conn, $sql3) && mysqli_query($conn, $sql2) && mysqli_query($conn, $sql4)) {
+    if (mysqli_query($conn, $sql2)  && mysqli_query($conn, $sql3)   && mysqli_query($conn, $sql4)) {
    
      echo  '<script>toastr.success("Employee added successfully")</script>';
     } else {
@@ -71,7 +69,7 @@ if(isset($_POST['submit-per'])){
 
     <div class="form-row">
         <div class="col-lg-3 col-sm-6">
-            <select class="form-control text-input" name="item_no" id="select_item">
+            <select class="form-control text-input" name="item_no" id="select_item" required>
             <?php
                     $query = "SELECT item_no FROM item  ";
                     $result = mysqli_query($conn, $query);
