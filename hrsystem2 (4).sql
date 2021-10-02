@@ -5007,6 +5007,74 @@ ALTER TABLE `applicant` ADD `appointmented` INT NULL AFTER `applicant_zip`;
 
 ALTER TABLE `item` CHANGE `division` `division` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
 
+ALTER TABLE `publication` ADD `end_of_publication` DATE NULL AFTER `date_of_publication`;
+
+ALTER TABLE `employee` ADD `active` INT(100) NULL AFTER `condition_12_des`;
+
+ALTER TABLE `employee`
+  DROP `emp_spouse_lastname`,
+  DROP `emp_spouse_firstname`,
+  DROP `emp_spouse_middlename`,
+  DROP `emp_spouse_extname`,
+  DROP `emp_sp_occupation`,
+  DROP `emp_sp_employer`,
+  DROP `emp_sp_add`,
+  DROP `emp_sp_tel`;
+
+  create TABLE `emp_spouse`(
+   `emp_spouse_lastname` varchar(100) ,
+   `emp_spouse_firstname` varchar(100),
+   `emp_spouse_middlename`varchar(100),
+   `emp_spouse_extname`varchar(100),
+   `emp_sp_occupation`varchar(100),
+   `emp_sp_employer`varchar(100),
+   `emp_sp_add`varchar(100),
+   `emp_sp_tel` varchar(100))
+
+   ALTER TABLE `emp_spouse` ADD `emp_id` VARCHAR(255) NOT NULL FIRST;
+
+   ALTER TABLE `emp_spouse` ADD `id` INT(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+
+   ALTER TABLE `employee`
+  DROP `coll_school_name`,
+  DROP `coll_degree`,
+  DROP `coll_from_date`,
+  DROP `coll_to_date`,
+  DROP `coll_units`,
+  DROP `coll_award`,
+  DROP `coll_graduation`,
+  DROP `gra_school_name`,
+  DROP `gra_degree`,
+  DROP `gra_from_date`,
+  DROP `gra_to_date`,
+  DROP `gra_units`,
+  DROP `gra_award`,
+  DROP `gra_graduation`;
+
+  create table emp_education(
+    id int not null AUTO_INCREMENT PRIMARY key , 
+    emp_id varchar (255),
+    school_name varchar (255) ,
+    `degree` varchar (255),
+    `from_date` date,
+    `to_date` date,
+    `units`int(100),
+    `award` varchar (255),
+    `graduation`int(50),
+    type varchar(255)
+);
+
+ALTER TABLE `emp_training` ADD `file` VARCHAR(255) NULL AFTER `training_conducted_by`;
+
+ALTER TABLE `item` ADD `date_accomplished` DATE NULL AFTER `description`;
+
+create table emp_folder (
+id int not null AUTO_INCREMENT primary key ,
+    emp_id varchar(255) ,
+    folder_name varchar(255)
+)
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -116,7 +116,7 @@
    
    while($mydata = $runquery -> fetch_assoc()){  ?>
 
-<div class=" form-row ">
+<div class=" form-row  mt-3">
         <div class="col-lg-5 col-sm-12">
             <input type="text" class="form-control text-input " placeholder="Write the type of govt id . Example(Passport) " name="emp_gov_issued_id_type[]" value="<?php echo $mydata['emp_gov_issued_id_type']?>">
         </div>
@@ -127,7 +127,7 @@
         </div>
         <?php }} else {?>
 
-            <div class=" form-row ">
+            <div class=" form-row mt-3 ">
             <div class="col-lg-5 col-sm-12">
             <input type="text" class="form-control text-input " placeholder="Write the type of govt id . Example(Passport) " name="emp_gov_issued_id_type[]" value="">
         </div>

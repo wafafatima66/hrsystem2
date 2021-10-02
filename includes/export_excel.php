@@ -55,6 +55,7 @@ if (isset($_GET["publication"])) {
     $spreadsheet->getActiveSheet()->setCellValue("J14", "HRMO");
 
     $spreadsheet->getActiveSheet()->setCellValue("I16", "Date:");
+    $spreadsheet->getActiveSheet()->setCellValue("J16", $date);
     $spreadsheet->getActiveSheet()->mergeCells("J16:L16");
 
     // TABLE STARTING
@@ -62,13 +63,15 @@ if (isset($_GET["publication"])) {
     $spreadsheet->getActiveSheet()->setCellValue("A18", "NO.");
 
     $spreadsheet->getActiveSheet()->mergeCells("B18:B19");
-    $spreadsheet->getActiveSheet()->setCellValue("B18", "Position Title");
+    $spreadsheet->getActiveSheet()->setCellValue("B18", "Position Title\n(Parenthetical Title,if applicable)");
 
     $spreadsheet->getActiveSheet()->mergeCells("C18:C19");
     $spreadsheet->getActiveSheet()->setCellValue("C18", "Plantilla Item No.");
 
+    
     $spreadsheet->getActiveSheet()->mergeCells("D18:D19");
     $spreadsheet->getActiveSheet()->setCellValue("D18", "Salary / Job / Pay Grade");
+    
 
     $spreadsheet->getActiveSheet()->mergeCells("E18:E19");
     $spreadsheet->getActiveSheet()->setCellValue("E18", "Monthly Salary");
@@ -80,7 +83,7 @@ if (isset($_GET["publication"])) {
     $spreadsheet->getActiveSheet()->setCellValue("G19", "Training");
     $spreadsheet->getActiveSheet()->setCellValue("H19", "Experience");
     $spreadsheet->getActiveSheet()->setCellValue("I19", "Eligibility");
-    $spreadsheet->getActiveSheet()->setCellValue("J19", "Competency (If Applicable)");
+    $spreadsheet->getActiveSheet()->setCellValue("J19", "Competency\n(If Applicable)");
 
     $spreadsheet->getActiveSheet()->mergeCells("K18:K19");
     $spreadsheet->getActiveSheet()->setCellValue("K18", "Brief Description of function");
@@ -88,47 +91,7 @@ if (isset($_GET["publication"])) {
     $spreadsheet->getActiveSheet()->mergeCells("L18:L19");
     $spreadsheet->getActiveSheet()->setCellValue("L18", "Place of Assignment");
 
-    //end of main changes
-
-
-    //MERGE CELLS FOR GAP 
-    // $spreadsheet->getActiveSheet()->mergeCells("A1:H5");
-    // $spreadsheet->getActiveSheet()->mergeCells("I1:K4");
-    // $spreadsheet->getActiveSheet()->mergeCells("A6:K7");
-
-
-    // //PLACING DATE
-    // $spreadsheet->getActiveSheet()->mergeCells("I5:K5");
-    // $spreadsheet->getActiveSheet()->setCellValue("I5", "Date :" . $date);
-
-    // //merge cells 
-    // $spreadsheet->getActiveSheet()->mergeCells("A8:D8");
-    // $spreadsheet->getActiveSheet()->mergeCells("E8:I8");
-    // $spreadsheet->getActiveSheet()->mergeCells("J8:K8");
-
-    // //SET HEADINGS
-    // $spreadsheet->getActiveSheet()->setCellValue("A8", "");
-    // $spreadsheet->getActiveSheet()->setCellValue("E8", "Qualification standards");
-    // $spreadsheet->getActiveSheet()->setCellValue("J8", "");
-
-    //SETTING SUB HEADINGS
-    // $spreadsheet->getActiveSheet()->setCellValue("A9", "NO.");
-    // $spreadsheet->getActiveSheet()->setCellValue("B9", "Position Title");
-    // $spreadsheet->getActiveSheet()->setCellValue("C9", "Item No.");
-    // $spreadsheet->getActiveSheet()->setCellValue("D9", "Salary / Job / Pay Grade");
-    // $spreadsheet->getActiveSheet()->setCellValue("E9", "Education");
-    // $spreadsheet->getActiveSheet()->setCellValue("F9", "Training");
-    // $spreadsheet->getActiveSheet()->setCellValue("G9", "Experience");
-    // $spreadsheet->getActiveSheet()->setCellValue("H9", "Eligibility");
-    // $spreadsheet->getActiveSheet()->setCellValue("I9", "Competency (If Applicable)");
-    // $spreadsheet->getActiveSheet()->setCellValue("J9", "Brief Description of function");
-    // $spreadsheet->getActiveSheet()->setCellValue("K9", "Place of Assignment");
-
-    //SET ROW HEIGHT
-    // $spreadsheet->getActiveSheet()->getRowDimension('8')->setRowHeight(20);
-    // $spreadsheet->getActiveSheet()->getRowDimension('9')->setRowHeight(30);
-
-    //TO SET VERTICAL AND HORIZONTAL CENTER
+    
    
 
     //STYLING
@@ -194,14 +157,34 @@ if (isset($_GET["publication"])) {
     foreach (range('A', 'L') as $columnID) {
         $spreadsheet->getActiveSheet()->getColumnDimension($columnID)
             ->setAutoSize(true);
+            $spreadsheet->getActiveSheet()->getStyle($columnID)
+            ->getAlignment()->setWrapText(true);
     }
 
+    $spreadsheet->getActiveSheet()->getColumnDimension('B')->setAutoSize(false);
+    $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth('28');
+
+    $spreadsheet->getActiveSheet()->getColumnDimension('C')->setAutoSize(false);
+    $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth('20');
+
+    $spreadsheet->getActiveSheet()->getColumnDimension('D')->setAutoSize(false);
+    $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth('10');
+
+    $spreadsheet->getActiveSheet()->getColumnDimension('E')->setAutoSize(false);
+    $spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth('12');
+
+    $spreadsheet->getActiveSheet()->getColumnDimension('J')->setAutoSize(false);
+    $spreadsheet->getActiveSheet()->getColumnDimension('J')->setWidth('20');
+
+    $spreadsheet->getActiveSheet()->getColumnDimension('K')->setAutoSize(false);
+    $spreadsheet->getActiveSheet()->getColumnDimension('K')->setWidth('25');
+    
 
 
 
     //  $query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number FROM publication p join item i on i.item_no = p.item_number where p.date_of_publication = '$date'";
 
-    $query = "SELECT i.* , p.date_of_publication , p.item_number , GROUP_CONCAT(DISTINCT c.add_com SEPARATOR ',') as competency , GROUP_CONCAT(DISTINCT e.hiring_education SEPARATOR ',') as education , GROUP_CONCAT(DISTINCT f.hiring_eligibility SEPARATOR ',') as eligibility , GROUP_CONCAT(DISTINCT t.hiring_training SEPARATOR ',') as training , GROUP_CONCAT(DISTINCT w.hiring_work_exp SEPARATOR ',') as work FROM publication p join item i on i.item_no = p.item_number join hiring_competency c on i.item_no = c.item_no join hiring_education e on i.item_no = e.item_no join hiring_eligibility f on i.item_no = f.item_no join hiring_training t on i.item_no = t.item_no join hiring_work_exp w on i.item_no = w.item_no where p.date_of_publication = '$date' GROUP BY p.item_number";
+    $query = "SELECT i.* , p.date_of_publication , p.item_number , p.end_of_publication , GROUP_CONCAT(DISTINCT c.add_com SEPARATOR ',') as competency , GROUP_CONCAT(DISTINCT e.hiring_education SEPARATOR ',') as education , GROUP_CONCAT(DISTINCT f.hiring_eligibility SEPARATOR ',') as eligibility , GROUP_CONCAT(DISTINCT t.hiring_training SEPARATOR ',') as training , GROUP_CONCAT(DISTINCT w.hiring_work_exp SEPARATOR ',') as work FROM publication p join item i on i.item_no = p.item_number join hiring_competency c on i.item_no = c.item_no join hiring_education e on i.item_no = e.item_no join hiring_eligibility f on i.item_no = f.item_no join hiring_training t on i.item_no = t.item_no join hiring_work_exp w on i.item_no = w.item_no where p.date_of_publication = '$date' GROUP BY p.item_number";
 
     $result = mysqli_query($conn, $query);
 
@@ -213,6 +196,7 @@ if (isset($_GET["publication"])) {
     // Start from second row
     $id = 1;
     $count = 20;
+    $end_of_publication = "";
 
     while ($row = mysqli_fetch_object($result)) {
 
@@ -221,6 +205,10 @@ if (isset($_GET["publication"])) {
         $eligibility = str_replace(',', "\n", $row->eligibility);
         $training = str_replace(',', "\n", $row->training);
         $work = str_replace(',', "\n", $row->work);
+
+        $monthly_salary = "P " . number_format($row->monthly_salary);
+
+        $end_of_publication = $row->end_of_publication;
 
         // Add required data
         $spreadsheet
@@ -241,7 +229,7 @@ if (isset($_GET["publication"])) {
 
         $spreadsheet
         ->getSheet(0)
-        ->setCellValue("E" . $count, $row->monthly_salary);
+        ->setCellValue("E" . $count, $monthly_salary);
 
         $spreadsheet
             ->getSheet(0)
@@ -297,8 +285,15 @@ if (isset($_GET["publication"])) {
 //     exit;
 
     
-    $spreadsheet->getActiveSheet()->mergeCells("A" .$newcount.":L" .$newcount);
-    $spreadsheet->getActiveSheet()->setCellValue("A" .$newcount,   " Interested and QUALIFIED applicants should signify their interest in writing. Attach the following documents to the application letter and send to the address below not later than _______________________.");
+    $spreadsheet->getActiveSheet()->mergeCells("A" .$newcount.":J" .$newcount);
+    $spreadsheet->getActiveSheet()->setCellValue("A" .$newcount,   " Interested and QUALIFIED applicants should signify their interest in writing. Attach the following documents to the application letter and send to the address below not later than ");
+
+    $spreadsheet->getActiveSheet()->mergeCells("K" .$newcount.":L" .$newcount);
+    $spreadsheet->getActiveSheet()->setCellValue("K" .$newcount, $end_of_publication);
+    $spreadsheet->getActiveSheet()
+        ->getStyle("K" .$newcount.":L" .$newcount)
+        ->applyFromArray($border_bottom);
+    $spreadsheet->getActiveSheet()->getStyle("K" .$newcount.":L" .$newcount)->getAlignment()->setHorizontal('center');
 
     $newcount = $newcount + 2 ;
 

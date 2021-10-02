@@ -4,7 +4,6 @@ if (isset($_POST['submit'])) {
 
   $emp_id = $_POST['emp_id'];
 
-
   $file_date = date("Y-m-d"); //date("l jS \of F Y ");
   $file_folder = $_POST["folder"];
 
@@ -40,6 +39,22 @@ if (isset($_POST['submit'])) {
   }
 }
 
+//create folder
+if (isset($_POST['create_folder'])) {
+
+  $emp_id = $_POST['emp_id'];
+  
+  $folder_name = $_POST["folder_name"];
+  
+    $sql = "INSERT INTO emp_folder (emp_id ,folder_name) VALUE ('$emp_id' ,'$folder_name')";
+  
+    if (mysqli_query($conn, $sql)) {
+      echo  '<script>toastr.success("Folder created succesfully !")</script>';
+    } else {
+      // echo  $conn->error;
+      echo  '<script>toastr.error("Folder not created!")</script>';
+    }
+    } 
 
 ?>
 
@@ -48,27 +63,43 @@ if (isset($_POST['submit'])) {
 
   <div class="form-row">
 
-    <div class="col-lg-3 col-sm-6 text-center">
+    <div class="col-lg-3 col-sm-6 text-center mt-5">
       <h5>PDS</h5>
 
       <a data-id="<?php echo $emp_id ?>" data-folder="pds" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open" name="pds"></i></a>
     </div>
 
-    <div class="col-lg-3 col-sm-6 text-center">
+    <div class="col-lg-3 col-sm-6 text-center mt-5 ">
       <h5>IPCR</h5>
 
       <a data-id="<?php echo $emp_id ?>" data-folder="ipcr" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open" name="ipcr"></i></a>
     </div>
 
 
-    <div class="col-lg-3 col-sm-6 text-center">
+    <div class="col-lg-3 col-sm-6 text-center mt-5">
       <h5>SALN</h5>
       <a data-id="<?php echo $emp_id ?>" data-folder="saln" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
     </div>
 
-    <div class="col-lg-3 col-sm-6 text-center">
-      <h5>OTHERS</h5>
-      <a data-id="<?php echo $emp_id ?>" data-folder="others" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
+<?php 
+
+$sql = "SELECT * FROM emp_folder WHERE emp_id = '$emp_id'  ";
+
+  $result = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($result) > 0) {
+    while ($mydata = mysqli_fetch_assoc($result)) {?>
+
+  <div class="col-lg-3 col-sm-6 text-center mt-5">
+      <h5><?= $mydata['folder_name'] ?></h5>
+      <a data-id="<?= $mydata['emp_id'] ?>" data-folder="<?= $mydata['folder_name'] ?>" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
+  </div>
+
+  <?php  }} ?>
+   
+
+    <div class="col-lg-3 col-sm-6 text-center mt-5">
+      <h5>ADD FOLDER</h5>
+      <a data-id="<?php echo $emp_id ?>" data-toggle="modal" data-target="#create_modal" class="create_folder"><i class="fa fa-plus"></i></a>
     </div>
 
 
@@ -87,19 +118,30 @@ if (isset($_POST['submit'])) {
           <option value="pds"> PDS</option>
           <option value="ipcr">IPCR</option>
           <option value="saln">SALN</option>
-          <option value="others">OTHERS</option>
+          <!-- <option value="others">OTHERS</option> -->
+          <?php 
+
+              $sql = "SELECT * FROM emp_folder WHERE emp_id = '$emp_id'  ";
+
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                  while ($mydata = mysqli_fetch_assoc($result)) {
+
+              echo " <option value='{$mydata['folder_name']}'>{$mydata['folder_name']}</option>" ;
+                 }} ?>
+
         </select>
 
 
 
       </div>
 
-      <div class="col-lg-4 col-sm-6 mt-1">
+      <div class="col-lg-4 col-sm-6 ">
         <input type="file" name="upload_file" class="form-control text-input" />
       </div>
 
 
-      <div class="col-lg-2 col-sm-6 mt-1">
+      <div class="col-lg-2 col-sm-6 ">
         <button class="btn button-2" type="submit" name="submit">UPLOAD</button>
       </div>
 
@@ -114,6 +156,22 @@ if (isset($_POST['submit'])) {
 
 </div>
 
+<!-- create folder modal -->
+<?php 
+
+   ?>
+<div class="modal fade" id="create_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered modal " >
+
+    <div class="modal-content">
+        <div id="table-data-folder"></div>
+     
+    </div>
+  </div>
+</div>
+
+<!-- opening folder -->
 <div class="modal fade" id="modal-popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
   <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
@@ -133,7 +191,6 @@ if (isset($_POST['submit'])) {
     $('.view_file').click(function() {
       var folder = $(this).data('folder');
       var emp_id = $(this).data('id');
-
       $.ajax({
         url: "../emp_mang/file-table.php",
         type: "POST",
@@ -146,7 +203,22 @@ if (isset($_POST['submit'])) {
           $("#table-data").html(response);
         }
       });
+    });
 
+
+    $('.create_folder').click(function() {
+      var emp_id = $(this).data('id');
+      $.ajax({
+        url: "../emp_mang/file-create-folder.php",
+        type: "POST",
+        cache: false,
+        data: {
+          emp_id: emp_id
+        },
+        success: function(response) {
+          $("#table-data-folder").html(response);
+        }
+      });
     });
 
   });

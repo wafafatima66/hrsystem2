@@ -71,7 +71,7 @@ if(isset($_POST['submit-per'])){
         <div class="col-lg-3 col-sm-6">
             <select class="form-control text-input" name="item_no" id="select_item" required>
             <?php
-                    $query = "SELECT item_no FROM item  ";
+                    $query = "SELECT item_no FROM item where filled = 0  ";
                     $result = mysqli_query($conn, $query);
                     if (mysqli_num_rows($result) > 0) {
                         echo "<option value=''> Select Item </option> ";

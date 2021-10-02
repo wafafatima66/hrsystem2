@@ -76,8 +76,8 @@
       </div>
 
       <div class="col-lg-2 col-sm-6">
-        <label for="">Salary</label>
-        <input type="text" name="salary_grade" class="form-control text-input" value="<?php echo $mydata['monthly_salary']?>" />
+        <label for="">Monthly Salary</label>
+        <input type="text" name="salary_grade" class="form-control text-input" value="<?php echo "P ". number_format($mydata['monthly_salary'])?>" />
       </div>
 
     </div>
@@ -100,7 +100,12 @@
 
       <div class="col-lg-3 col-sm-6">
         <label for="">Designation</label>
-        <input type="text" name="office" class="form-control text-input" value=""/>
+        <input type="text" name="" class="form-control text-input" value=""/>
+      </div>
+
+      <div class="col-lg-3 col-sm-6">
+        <label for="">Reassignment</label>
+        <input type="text" name="" class="form-control text-input" value=""/>
       </div>
 
     </div>

@@ -115,7 +115,7 @@
 
                         <div class="form-row mt-4">
                             <div class="col-lg-12 col-sm-12">
-                                <label for="" class="h6">Minimum Qualification</label>
+                                <label for="" class="h6">Applicant Qualification</label>
                             </div>
                         </div>
 
@@ -165,7 +165,7 @@
 
                         <div class="form-row mt-4">
                             <div class="col-lg-12 col-sm-12">
-                                <label for="" class="h6">Credentials</label>
+                                <label for="" class="h6">Credentials( PDS, Resume, Application Letter, Certificates, etc)</label>
                             </div>
                         </div>
 
@@ -186,8 +186,6 @@
 
                             </div>
                             
-                                
-                           
                         </div>
 
 

@@ -2,6 +2,7 @@
 if (isset($_POST['submit'])) {
 
     $date_of_publication = $_POST['date_of_publication'];
+    $end_of_publication = $_POST['end_of_publication'];
 
 
     if (!empty($_POST['item_number'])) {
@@ -17,7 +18,7 @@ if (isset($_POST['submit'])) {
             // $office = $_POST['office'][$i];
 
             $sql = "INSERT INTO publication (
-                date_of_publication  , item_number  ) VALUES (  '$date_of_publication'  , '$item_number' )";
+                date_of_publication  ,end_of_publication, item_number  ) VALUES (  '$date_of_publication' , '$end_of_publication'  , '$item_number' )";
 
             if (mysqli_query($conn, $sql)) {
                 echo  '<script>toastr.success("Item added to Publication added successfully")</script>';
@@ -65,6 +66,11 @@ if (isset($_POST['submit'])) {
                                 <label for="">Date of publication</label>
                                 <input type="date" class="form-control text-input" name="date_of_publication" placeholder="" required>
                             </div>
+
+                            <div class="col-lg-3 col-sm-6 ">
+                                <label for="">End of publication</label>
+                                        <input type="date" class="form-control text-input" name="end_of_publication" required>
+                                </div>
                         </div>
 
                         <div class="add_item_wrapper">
@@ -77,7 +83,7 @@ if (isset($_POST['submit'])) {
 
                             <div class="form-row">
 
-                                <div class="col-lg-3 col-sm-6">
+                                <div class="col-lg-5 col-sm-6">
                                     <select class="form-control text-input item_number" name="item_number[]" id="item_number_1">
 
 
@@ -111,12 +117,7 @@ if (isset($_POST['submit'])) {
                                     <input type="text" class="form-control text-input" name="place_of_assignment[]" placeholder="Place of assignment" id="place_of_assignment_1">
                                 </div>
 
-                                <div class="col-lg-3 col-sm-6 ">
-                                    <div class="d-flex flex-column">
-                                        <input type="date" class="form-control text-input" name="date_created[]" id="date_created_1">
-                                        <small class="text-muted"> (Date created)</small>
-                                    </div>
-                                </div>
+                        
 
                                 <!-- <div class="col-lg-3 col-sm-6 mt-2">
                                     <select class="form-control text-input department_name" name="department[]" id="department_name_1">
@@ -240,7 +241,7 @@ if (isset($_POST['submit'])) {
         $('.add_item_btn').click(function() {
             if (x < maxField) {
                 x++;
-                var fieldHtml = '<div class="form-row mt-2"> <div class="col-lg-12 col-sm-12"> <label for="" class="h6">Item Details</label> </div> </div> <div class="form-row"> <div class="col-lg-3 col-sm-6"> <select class="form-control text-input item_number " name="item_number[]" id="item_number_' + x + '"> ' + item_list + ' </select> </div> <div class="col-lg-2 col-sm-6"> <input type="text" class="form-control text-input" name="plantilla[]" placeholder="Plantilla" id="plantilla_' + x + '"> </div> <div class="col-lg-1 col-sm-6"> <input type="text" class="form-control text-input" name="salary_grade[]" placeholder="SG" id="salary_grade_' + x + '"> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="place_of_assignment[]" placeholder="Place of assignment" id="place_of_assignment_' + x + '"> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <input type="date" class="form-control text-input" name="date_created[]" id="date_created_' + x + '"> <small class="text-muted"> (Date created)</small> </div> </div> </div> ';
+                var fieldHtml = '<div class="form-row mt-2"> <div class="col-lg-12 col-sm-12"> <label for="" class="h6">Item Details</label> </div> </div> <div class="form-row"> <div class="col-lg-5 col-sm-6"> <select class="form-control text-input item_number " name="item_number[]" id="item_number_' + x + '"> ' + item_list + ' </select> </div> <div class="col-lg-2 col-sm-6"> <input type="text" class="form-control text-input" name="plantilla[]" placeholder="Plantilla" id="plantilla_' + x + '"> </div> <div class="col-lg-1 col-sm-6"> <input type="text" class="form-control text-input" name="salary_grade[]" placeholder="SG" id="salary_grade_' + x + '"> </div> <div class="col-lg-3 col-sm-6"> <input type="text" class="form-control text-input" name="place_of_assignment[]" placeholder="Place of assignment" id="place_of_assignment_' + x + '"> </div>  </div> ';
 
                 $('.add_item_wrapper').append(fieldHtml);
                 // console.log(fieldHtml);

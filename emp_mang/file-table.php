@@ -54,6 +54,8 @@ if(isset($_POST['folder']) && isset($_POST['emp_id']) ){
 		</div>
 		";
 
+	} else {
+		$output.="NO FILES AVAILABLE ! ";
 	}
 
 

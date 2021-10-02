@@ -12,10 +12,10 @@ if (isset($_POST['submit'])) {
     $filled = 0;
     $date_posted = date('Y-m-d');
     // $nature = 'Original';
-    $job_type = 'Permanent';
+    $job_type = 'P';
 
     $sql = "INSERT INTO item (
-         item_no  , position , salary_grade , date_created , filled , place_of_assignment , date_posted , job_type , division , area_wrk_assign , description) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled' , '$place_of_assignment' , '$date_posted' , '$job_type' , '$department' , '$office' , '$description' )";
+         item_no  , position , salary_grade , date_created , filled , place_of_assignment , date_posted , appt_stat , division , area_wrk_assign , description) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled' , '$place_of_assignment' , '$date_posted' , '$job_type' , '$department' , '$office' , '$description' )";
 
     if (!empty($_POST['hiring_education'])) {
         for ($i = 0; $i < count($_POST['hiring_education']); $i++) {

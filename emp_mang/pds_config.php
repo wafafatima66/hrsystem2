@@ -48,15 +48,6 @@ if (isset($_POST['submit'])) {
     $emp_contact_agency = $_POST['emp_contact_agency'];
 
     //family_background
-    $emp_spouse_lastname = $_POST['emp_spouse_lastname'];
-    $emp_spouse_firstname = $_POST['emp_spouse_firstname'];
-    $emp_spouse_middlename = $_POST['emp_spouse_middlename'];
-    $emp_spouse_extname = $_POST['emp_spouse_extname'];
-
-    $emp_sp_occupation = $_POST['emp_sp_occupation'];
-    $emp_sp_employer = $_POST['emp_sp_employer'];
-    $emp_sp_add = $_POST['emp_sp_add'];
-    $emp_sp_tel = $_POST['emp_sp_tel'];
 
 
     $emp_father_lastname = $_POST['emp_father_lastname'];
@@ -96,22 +87,6 @@ if (isset($_POST['submit'])) {
     $voc_units = $_POST['voc_units'];
     $voc_award = $_POST['voc_award'];
     $voc_graduation = $_POST['voc_graduation'];
-
-    $coll_school_name = $_POST['coll_school_name'];
-    $coll_degree = $_POST['coll_degree'];
-    $coll_from_date = $_POST['coll_from_date'];
-    $coll_to_date = $_POST['coll_to_date'];
-    $coll_units = $_POST['coll_units'];
-    $coll_award = $_POST['coll_award'];
-    $coll_graduation = $_POST['coll_graduation'];
-
-    $gra_school_name = $_POST['gra_school_name'];
-    $gra_degree = $_POST['gra_degree'];
-    $gra_from_date = $_POST['gra_from_date'];
-    $gra_to_date = $_POST['gra_to_date'];
-    $gra_units = $_POST['gra_units'];
-    $gra_award = $_POST['gra_award'];
-    $gra_graduation = $_POST['gra_graduation'];
 
 
     // other
@@ -153,53 +128,315 @@ if (isset($_POST['submit'])) {
     $runquery = $conn->query($query);
     $rowcount = mysqli_num_rows($runquery);
     if ($rowcount > 0) {
-        
-
-            // image for employee
-
-            if (!empty($_FILES["emp_image"]["name"])) {
-                $emp_image = "employee" . $emp_id . "-" . $_FILES["emp_image"]["name"];
-
-                $tempname = $_FILES["emp_image"]["tmp_name"];
-                $folder = "../img/" . $emp_image;
 
 
-                //checking file extension
+        // image for employee
 
-                $text1 = explode('.', $_FILES['emp_image']['name']);
-                $text = strtolower(end($text1));
-                $file_ext = strtolower($text);
-                $extensions = array("jpeg", "jpg", "png");
+        if (!empty($_FILES["emp_image"]["name"])) {
+            $emp_image = "employee" . $emp_id . "-" . $_FILES["emp_image"]["name"];
 
-                if (in_array($file_ext, $extensions) === false) {
-                    echo  '<script>toastr.error("Image must be JPG , JPEG ,PNG format ! ")</script>';
-                } else {
-                    (move_uploaded_file($tempname, $folder));
-                }
+            $tempname = $_FILES["emp_image"]["tmp_name"];
+            $folder = "../img/" . $emp_image;
+
+
+            //checking file extension
+
+            $text1 = explode('.', $_FILES['emp_image']['name']);
+            $text = strtolower(end($text1));
+            $file_ext = strtolower($text);
+            $extensions = array("jpeg", "jpg", "png");
+
+            if (in_array($file_ext, $extensions) === false) {
+                echo  '<script>toastr.error("Image must be JPG , JPEG ,PNG format ! ")</script>';
             } else {
-                while ($mydata = $runquery->fetch_assoc()) {
+                (move_uploaded_file($tempname, $folder));
+            }
+        } else {
+            while ($mydata = $runquery->fetch_assoc()) {
                 $emp_image = $mydata['emp_image'];
             }
         }
 
         $sql = "DELETE FROM employee WHERE emp_id='$emp_id'";
         $conn->query($sql);
-        
     }
 
-        
+
 
     $sql1 = "INSERT INTO employee (
-emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_ext , emp_dob , emp_gender , emp_civil_status  , emp_height , emp_weight , emp_blood , emp_citizen , emp_nationality , emp_resi_add , emp_resi_add_street  , emp_resi_add_municipal  , emp_resi_add_barangay  , emp_resi_add_zipcode  , emp_per_add , emp_per_add_street  , emp_per_add_municipal  , emp_per_add_barangay  , emp_per_add_zipcode  , emp_tel_no  , emp_mb_no  , emp_email , emp_contact_gs , emp_contact_pag , emp_contact_ph , emp_contact_ss , emp_contact_tin , emp_contact_agency , emp_spouse_lastname  , emp_spouse_firstname  , emp_spouse_middlename  , emp_spouse_extname  , emp_sp_occupation  , emp_sp_employer  , emp_sp_add  , emp_sp_tel  , emp_father_lastname  , emp_father_firstname  , emp_father_middlename  , emp_father_extname  , emp_mother_lastname  , emp_mother_firstname  , emp_mother_middlename  , emp_mother_extname  , ele_school_name  , ele_degree  , ele_from_date  , ele_to_date  , ele_units  , ele_award  , ele_graduation  , sec_school_name  , sec_degree  , sec_from_date  , sec_to_date  , sec_units  , sec_award  , sec_graduation  , voc_school_name  , voc_degree  , voc_from_date  , voc_to_date  , voc_units  , voc_award  , voc_graduation  , coll_school_name  , coll_degree  , coll_from_date  , coll_to_date  , coll_units  , coll_award  , coll_graduation  , gra_school_name  , gra_degree  , gra_from_date  , gra_to_date  , gra_units  , gra_award  , gra_graduation  , condition_1  , condition_2  , condition_2_des  , condition_3  , condition_3_des  , condition_4  , condition_4_des  , condition_4_date  , condition_4_status  , condition_5  , condition_5_des  , condition_6  , condition_6_des  , condition_7  , condition_7_des  , condition_8  , condition_8_des  , condition_9  , condition_9_des  , condition_10  , condition_10_des  , condition_11  , condition_11_des  , condition_12  , condition_12_des ) VALUES ( '$emp_id'  , '$emp_image'  , '$emp_first_name' , '$emp_middle_name' ,' $emp_last_name' , '$emp_ext' , '$emp_dob' , '$emp_gender' , '$emp_civil_status'  , '$emp_height' , '$emp_weight' , '$emp_blood' , '$emp_citizen' , '$emp_nationality' , '$emp_resi_add' , '$emp_resi_add_street'  , '$emp_resi_add_municipal'  , '$emp_resi_add_barangay'  , '$emp_resi_add_zipcode'  , '$emp_per_add' , '$emp_per_add_street'  , '$emp_per_add_municipal'  , '$emp_per_add_barangay'  , '$emp_per_add_zipcode'  , '$emp_tel_no'  , '$emp_mb_no'  , '$emp_email' , '$emp_contact_gs' , '$emp_contact_pag' , '$emp_contact_ph' , '$emp_contact_ss' , '$emp_contact_tin' , '$emp_contact_agency' , '$emp_spouse_lastname'  , '$emp_spouse_firstname'  , '$emp_spouse_middlename'  , '$emp_spouse_extname'  , '$emp_sp_occupation'  , '$emp_sp_employer'  , '$emp_sp_add'  , '$emp_sp_tel'  , '$emp_father_lastname'  , '$emp_father_firstname'  , '$emp_father_middlename'  , '$emp_father_extname' , '$emp_mother_lastname'  ,' $emp_mother_firstname'  , '$emp_mother_middlename'  , '$emp_mother_extname'  , '$ele_school_name'  , '$ele_degree'  , '$ele_from_date'  , '$ele_to_date'  , '$ele_units'  , '$ele_award'  , '$ele_graduation'  , '$sec_school_name'  , '$sec_degree'  , '$sec_from_date'  , '$sec_to_date'  , '$sec_units'  , '$sec_award ' , '$sec_graduation'  , '$voc_school_name'  , '$voc_degree'  , '$voc_from_date'  , '$voc_to_date'  , '$voc_units'  , '$voc_award'  , '$voc_graduation'  , '$coll_school_name'  , '$coll_degree'  , '$coll_from_date'  , '$coll_to_date'  ,' $coll_units'  , '$coll_award'  , '$coll_graduation'  , '$gra_school_name'  , '$gra_degree'  , '$gra_from_date'  , '$gra_to_date'  , '$gra_units'  , '$gra_award'  , '$gra_graduation'  , '$condition_1'  , '$condition_2'  , '$condition_2_des ' , '$condition_3'  , '$condition_3_des'  , '$condition_4'  , '$condition_4_des'  , '$condition_4_date'  , '$condition_4_status'  , '$condition_5'  , '$condition_5_des'  , '$condition_6'  , '$condition_6_des'  , '$condition_7'  , '$condition_7_des'  , '$condition_8'  , '$condition_8_des ' , '$condition_9'  , '$condition_9_des'  , '$condition_10'  , '$condition_10_des ' , '$condition_11'  , '$condition_11_des'  , '$condition_12'  , '$condition_12_des'  
+                    emp_id  ,  
+                    emp_image  ,
+                    emp_first_name , 
+                    emp_middle_name , 
+                    emp_last_name , 
+                    emp_ext , 
+                    emp_dob ,
+                    emp_gender ,
+                    emp_civil_status  ,
+                    emp_height ,
+                    emp_weight ,
+                    emp_blood , 
+                    emp_citizen , 
+                    emp_nationality ,
+                    emp_resi_add ,
+                    emp_resi_add_street  ,
+                    emp_resi_add_municipal  ,
+                    emp_resi_add_barangay  ,
+                    emp_resi_add_zipcode  , 
+                    emp_per_add ,
+                    emp_per_add_street  , 
+                    emp_per_add_municipal  ,
+                    emp_per_add_barangay  ,
+                    emp_per_add_zipcode  , 
+                    emp_tel_no  ,
+                    emp_mb_no  , 
+                    emp_email ,
+                    emp_contact_gs , 
+                    emp_contact_pag , 
+                    emp_contact_ph ,
+                    emp_contact_ss ,
+                    emp_contact_tin ,
+                    emp_contact_agency   , 
+                    emp_father_lastname  , 
+                    emp_father_firstname  ,
+                    emp_father_middlename  , 
+                    emp_father_extname  ,
+                    emp_mother_lastname  , 
+                    emp_mother_firstname  , 
+                    emp_mother_middlename  , 
+                    emp_mother_extname  , 
+                    ele_school_name  , 
+                    ele_degree  , 
+                    ele_from_date  , 
+                    ele_to_date  , 
+                    ele_units  ,
+                    ele_award  , 
+                    ele_graduation  ,
+                    sec_school_name  , 
+                    sec_degree  , 
+                    sec_from_date  ,
+                    sec_to_date  , 
+                    sec_units  , 
+                    sec_award  , 
+                    sec_graduation  ,
+                    voc_school_name  ,
+                    voc_degree  , 
+                    voc_from_date , 
+                    voc_to_date  ,
+                    voc_units  , 
+                    voc_award  ,
+                    voc_graduation  , 
+                    condition_1  , 
+                    condition_2  , 
+                    condition_2_des  ,
+                    condition_3  , 
+                    condition_3_des  ,
+                    condition_4  , 
+                    condition_4_des  ,
+                    condition_4_date  , 
+                    condition_4_status  , 
+                    condition_5  ,
+                    condition_5_des  , 
+                    condition_6  , 
+                    condition_6_des  , 
+                    condition_7  , 
+                    condition_7_des  , 
+                    condition_8  , 
+                    condition_8_des  ,
+                    condition_9  , 
+                    condition_9_des  , 
+                    condition_10  , 
+                    condition_10_des  , 
+                    condition_11  , 
+                    condition_11_des  ,
+                    condition_12  ,
+                    condition_12_des 
+                    ) VALUES ( 
+                    '$emp_id'  ,
+                    '$emp_image'  ,
+                    '$emp_first_name' , 
+                    '$emp_middle_name' ,
+                    ' $emp_last_name' , 
+                    '$emp_ext' , 
+                    '$emp_dob' , 
+                    '$emp_gender' ,
+                    '$emp_civil_status'  , 
+                    '$emp_height' ,
+                    '$emp_weight' , 
+                    '$emp_blood' , 
+                    '$emp_citizen' , 
+                    '$emp_nationality' ,
+                    '$emp_resi_add' , 
+                    '$emp_resi_add_street'  ,
+                    '$emp_resi_add_municipal'  ,
+                    '$emp_resi_add_barangay'  , 
+                    '$emp_resi_add_zipcode'  , 
+                    '$emp_per_add' , 
+                    '$emp_per_add_street'  , 
+                    '$emp_per_add_municipal'  ,
+                    '$emp_per_add_barangay'  ,
+                    '$emp_per_add_zipcode'  , 
+                    '$emp_tel_no'  , 
+                    '$emp_mb_no'  , 
+                    '$emp_email' , 
+                    '$emp_contact_gs' , 
+                    '$emp_contact_pag' ,
+                    '$emp_contact_ph' ,
+                    '$emp_contact_ss' , 
+                    '$emp_contact_tin' ,
+                    '$emp_contact_agency' , 
+                    '$emp_father_lastname'  , 
+                    '$emp_father_firstname'  , 
+                    '$emp_father_middlename'  , 
+                    '$emp_father_extname' , 
+                    '$emp_mother_lastname'  ,
+                    ' $emp_mother_firstname'  ,
+                    '$emp_mother_middlename'  ,
+                    '$emp_mother_extname'  , 
+                    '$ele_school_name'  , 
+                    '$ele_degree'  , 
+                    '$ele_from_date'  , 
+                    '$ele_to_date'  ,
+                    '$ele_units'  , 
+                    '$ele_award'  , 
+                    '$ele_graduation'  , 
+                    '$sec_school_name'  ,
+                    '$sec_degree'  , 
+                    '$sec_from_date'  , 
+                    '$sec_to_date'  , 
+                    '$sec_units'  , 
+                    '$sec_award ' , 
+                    '$sec_graduation'  , 
+                    '$voc_school_name'  , 
+                    '$voc_degree'  ,
+                    '$voc_from_date'  ,
+                    '$voc_to_date'  , 
+                    '$voc_units'  , 
+                    '$voc_award'  , 
+                    '$voc_graduation'  ,   
+                    '$condition_1'  , 
+                    '$condition_2'  , 
+                    '$condition_2_des ' ,
+                    '$condition_3'  , 
+                    '$condition_3_des'  , 
+                    '$condition_4'  , 
+                    '$condition_4_des'  ,
+                    '$condition_4_date'  ,
+                    '$condition_4_status'  ,
+                    '$condition_5'  , 
+                    '$condition_5_des'  , 
+                    '$condition_6'  , 
+                    '$condition_6_des'  , 
+                    '$condition_7'  , 
+                    '$condition_7_des'  ,
+                    '$condition_8'  , 
+                    '$condition_8_des ' ,
+                    '$condition_9'  , 
+                    '$condition_9_des'  , 
+                    '$condition_10'  ,
+                    '$condition_10_des ' ,
+                    '$condition_11'  , 
+                    '$condition_11_des'  ,
+                    '$condition_12'  , 
+                    '$condition_12_des'  
 )";
 
-    // if (mysqli_query($conn, $sql)) {
-    //     echo "New record created successfully";
-    // } else {
-    //     echo  $conn->error;
-    // }
 
-    // mysqli_query($conn, $sql);
+
+    // employee education
+    $query = "SELECT * FROM emp_education WHERE emp_id = '$emp_id' and type ='college'";
+    $runquery = $conn->query($query);
+    $rowcount = mysqli_num_rows($runquery);
+    if ($rowcount > 0) {
+
+        $sql = "DELETE FROM emp_education WHERE emp_id='$emp_id' and type ='college'";
+        $conn->query($sql);
+    }
+
+    if (!empty($_POST['coll_school_name'])) {
+        for ($i = 0; $i < count($_POST['coll_school_name']); $i++) {
+
+
+            $coll_school_name = $_POST['coll_school_name'][$i];
+            $coll_degree = $_POST['coll_degree'][$i];
+            $coll_from_date = $_POST['coll_from_date'][$i];
+            $coll_to_date = $_POST['coll_to_date'][$i];
+            $coll_units = $_POST['coll_units'][$i];
+            $coll_award = $_POST['coll_award'][$i];
+            $coll_graduation = $_POST['coll_graduation'][$i];
+
+
+            $sql13 = "INSERT INTO emp_education (emp_id,school_name  , degree  , from_date  , to_date  , units  , award  , graduation  , type )
+           VALUES ('$emp_id', '$coll_school_name'  , '$coll_degree'  , '$coll_from_date'  , '$coll_to_date'  ,' $coll_units'  , '$coll_award'  , '$coll_graduation' , 'college')";
+
+            $conn->query($sql13);
+        }
+    }
+
+
+
+    $query = "SELECT * FROM emp_education WHERE emp_id = '$emp_id' and type ='graduation'";
+    $runquery = $conn->query($query);
+    $rowcount = mysqli_num_rows($runquery);
+    if ($rowcount > 0) {
+
+        $sql = "DELETE FROM emp_education WHERE emp_id='$emp_id' and type ='graduation'";
+        $conn->query($sql);
+    }
+
+    if (!empty($_POST['gra_school_name'])) {
+        for ($i = 0; $i < count($_POST['gra_school_name']); $i++) {
+
+            $gra_school_name = $_POST['gra_school_name'][$i];
+            $gra_degree = $_POST['gra_degree'][$i];
+            $gra_from_date = $_POST['gra_from_date'][$i];
+            $gra_to_date = $_POST['gra_to_date'][$i];
+            $gra_units = $_POST['gra_units'][$i];
+            $gra_award = $_POST['gra_award'][$i];
+            $gra_graduation = $_POST['gra_graduation'][$i];
+
+            $sql14 = "INSERT INTO emp_education (emp_id, school_name  , degree  , from_date  , to_date  , units  , award  , graduation  , type )
+           VALUES ('$emp_id', '$gra_school_name'  , '$gra_degree'  , '$gra_from_date'  , '$gra_to_date'  , '$gra_units'  , '$gra_award'  , '$gra_graduation', 'graduation')";
+
+            $conn->query($sql14);
+        }
+    }
+
+
+
+    // employee spouse 
+    $query = "SELECT * FROM emp_spouse WHERE emp_id = '$emp_id'";
+    $runquery = $conn->query($query);
+    $rowcount = mysqli_num_rows($runquery);
+    if ($rowcount > 0) {
+
+        $sql = "DELETE FROM emp_spouse WHERE emp_id='$emp_id'";
+        $conn->query($sql);
+    }
+    if (!empty($_POST['emp_spouse_lastname'])) {
+        for ($i = 0; $i < count($_POST['emp_spouse_lastname']); $i++) {
+
+            $emp_spouse_lastname = $_POST['emp_spouse_lastname'][$i];
+            $emp_spouse_firstname = $_POST['emp_spouse_firstname'][$i];
+            $emp_spouse_middlename = $_POST['emp_spouse_middlename'][$i];
+            $emp_spouse_extname = $_POST['emp_spouse_extname'][$i];
+
+            $emp_sp_occupation = $_POST['emp_sp_occupation'][$i];
+            $emp_sp_employer = $_POST['emp_sp_employer'][$i];
+            $emp_sp_add = $_POST['emp_sp_add'][$i];
+            $emp_sp_tel = $_POST['emp_sp_tel'][$i];
+
+
+            $sql12 = "INSERT INTO emp_spouse (emp_id,emp_spouse_lastname,emp_spouse_firstname,emp_spouse_middlename,emp_spouse_extname,emp_sp_occupation,emp_sp_employer,emp_sp_add,emp_sp_tel)
+            VALUES ('$emp_id', '$emp_spouse_lastname', '$emp_spouse_firstname', '$emp_spouse_middlename', '$emp_spouse_extname', '$emp_sp_occupation', '$emp_sp_employer', '$emp_sp_add', '$emp_sp_tel')";
+
+            $conn->query($sql12);
+        }
+    }
+
+
+
+
 
     // employee children 
 
@@ -212,24 +449,21 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
         $conn->query($sql);
     }
     if (!empty($_POST['emp_child_name'])) {
-    for ($i = 0; $i < count($_POST['emp_child_name']); $i++) {
+        for ($i = 0; $i < count($_POST['emp_child_name']); $i++) {
 
-        $emp_child_name = $_POST['emp_child_name'][$i];
-        $emp_child_dob = $_POST['emp_child_dob'][$i];
+            $emp_child_name = $_POST['emp_child_name'][$i];
+            $emp_child_dob = $_POST['emp_child_dob'][$i];
 
 
-        $sql2 = "INSERT INTO emp_children (emp_id,emp_child_name,emp_child_dob)
+            $sql2 = "INSERT INTO emp_children (emp_id,emp_child_name,emp_child_dob)
             VALUES ('$emp_id', '$emp_child_name', '$emp_child_dob')";
 
-        // mysqli_query($conn, $sql2);
+            $conn->query($sql2);
+        }
+    }
 
-        // if (mysqli_query($conn, $sql2)) {
-        //     echo "New record created successfully 2";
-        // } else {
-        //     echo "Error: " . mysqli_error($conn);
-        // }
-    }
-    }
+    // var_dump('bye');
+    // exit;
 
     // civil service
 
@@ -243,28 +477,22 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
     }
 
     if (!empty($_POST['civil_exam_type'])) {
-    for ($i = 0; $i < count($_POST['civil_exam_type']); $i++) {
+        for ($i = 0; $i < count($_POST['civil_exam_type']); $i++) {
 
 
-        $civil_exam_type = $_POST['civil_exam_type'][$i];
-        $civil_exam_name = $_POST['civil_exam_name'][$i];
-        $civil_exam_rating = $_POST['civil_exam_rating'][$i];
-        $civil_exam_date = $_POST['civil_exam_date'][$i];
-        $civil_exam_place = $_POST['civil_exam_place'][$i];
-        $civil_exam_licence_no = $_POST['civil_exam_licence_no'][$i];
-        $civil_exam_licence_val = $_POST['civil_exam_licence_val'][$i];
+            $civil_exam_type = $_POST['civil_exam_type'][$i];
+            $civil_exam_name = $_POST['civil_exam_name'][$i];
+            $civil_exam_rating = $_POST['civil_exam_rating'][$i];
+            $civil_exam_date = $_POST['civil_exam_date'][$i];
+            $civil_exam_place = $_POST['civil_exam_place'][$i];
+            $civil_exam_licence_no = $_POST['civil_exam_licence_no'][$i];
+            $civil_exam_licence_val = $_POST['civil_exam_licence_val'][$i];
 
-        $sql3 = "INSERT INTO emp_civil_service (emp_id, civil_exam_type, civil_exam_name, civil_exam_rating,civil_exam_date, civil_exam_place, civil_exam_licence_no, civil_exam_licence_val)
+            $sql3 = "INSERT INTO emp_civil_service (emp_id, civil_exam_type, civil_exam_name, civil_exam_rating,civil_exam_date, civil_exam_place, civil_exam_licence_no, civil_exam_licence_val)
         VALUES ('$emp_id', '$civil_exam_type', '$civil_exam_name', '$civil_exam_rating', '$civil_exam_date', '$civil_exam_place', '$civil_exam_licence_no', '$civil_exam_licence_val')";
 
-// mysqli_query($conn, $sql3);
-
-        // if (mysqli_query($conn, $sql3)) {
-        //     echo "New record created successfully 3";
-        // } else {
-        //     echo "Error: " . mysqli_error($conn);
-        // }
-    }
+            $conn->query($sql3);
+        }
     }
 
     //work experience 
@@ -279,28 +507,22 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
     }
 
     if (!empty($_POST['work_position'])) {
-    for ($i = 0; $i < count($_POST['work_position']); $i++) {
+        for ($i = 0; $i < count($_POST['work_position']); $i++) {
 
-        $work_from_date = $_POST['work_from_date'][$i];
-        $work_to_date = $_POST['work_to_date'][$i];
-        $work_position = $_POST['work_position'][$i];
-        $work_employer = $_POST['work_employer'][$i];
-        $work_govt_service = $_POST['work_govt_service'][$i];
-        $work_monthly_sal = $_POST['work_monthly_sal'][$i];
-        $work_increment = $_POST['work_increment'][$i];
-        $work_status = $_POST['work_status'][$i];
+            $work_from_date = $_POST['work_from_date'][$i];
+            $work_to_date = $_POST['work_to_date'][$i];
+            $work_position = $_POST['work_position'][$i];
+            $work_employer = $_POST['work_employer'][$i];
+            $work_govt_service = $_POST['work_govt_service'][$i];
+            $work_monthly_sal = $_POST['work_monthly_sal'][$i];
+            $work_increment = $_POST['work_increment'][$i];
+            $work_status = $_POST['work_status'][$i];
 
-        $sql4 = "INSERT INTO emp_work_experience (emp_id, work_to_date, work_from_date, work_position, work_employer, work_govt_service, work_monthly_sal, work_increment ,work_status)
+            $sql4 = "INSERT INTO emp_work_experience (emp_id, work_to_date, work_from_date, work_position, work_employer, work_govt_service, work_monthly_sal, work_increment ,work_status)
         VALUES ('$emp_id', '$work_to_date', '$work_from_date', '$work_position', '$work_employer', '$work_govt_service', '$work_monthly_sal', '$work_increment' , '$work_status')";
 
-// mysqli_query($conn, $sql4);
-
-        // if (mysqli_query($conn, $sql4)) {
-        //     echo "New record created successfully 4";
-        // } else {
-        //     echo "Error: " . mysqli_error($conn);
-        // }
-    }
+            $conn->query($sql4);
+        }
     }
     //voluntary 
 
@@ -326,12 +548,7 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql5 = "INSERT INTO emp_voluntary_work (emp_id, vol_name_org, vol_org_add, vol_from_date, vol_to_date, vol_no_of_hrs, vol_position )
         VALUES ('$emp_id', '$vol_name_org', '$vol_org_add', '$vol_from_date', '$vol_to_date', '$vol_no_of_hrs', '$vol_position')";
 
-// mysqli_query($conn, $sql5);
-            // if (mysqli_query($conn, $sql5)) {
-            //     echo "New record created successfully 5";
-            // } else {
-            //     echo "Error: " . mysqli_error($conn);
-            // }
+            $conn->query($sql5);
         }
     }
     // training
@@ -355,16 +572,22 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $training_to_date = $_POST['training_to_date'][$i];
             $training_conducted_by = $_POST['training_conducted_by'][$i];
 
-            $sql6 = "INSERT INTO emp_training (emp_id, title_of_training, training_type_of_position, training_no_of_hrs, training_from_date, training_to_date, training_conducted_by)
-        VALUES ('$emp_id', '$title_of_training', '$training_type_of_position', '$training_no_of_hrs', '$training_from_date', '$training_to_date', '$training_conducted_by')";
 
-// mysqli_query($conn, $sql6);
+            if (!empty($_FILES["training_files"]["name"][$i])) {
+                // $emp_id =  $_POST['emp_id'];
+                $filename = "employee - " . $emp_id . "-" . $_FILES["training_files"]["name"][$i];
 
-            // if (mysqli_query($conn, $sql6)) {
-            //     echo "New record created successfully 6";
-            // } else {
-            //     echo "Error: " . mysqli_error($conn);
-            // }
+                $tempname = $_FILES["training_files"]["tmp_name"][$i];
+                $folder = "../files/" . $filename;
+                move_uploaded_file($tempname, $folder);
+            } else {
+                $filename = "";
+            }
+
+            $sql6 = "INSERT INTO emp_training (emp_id, title_of_training, training_type_of_position, training_no_of_hrs, training_from_date, training_to_date, training_conducted_by,file)
+        VALUES ('$emp_id', '$title_of_training', '$training_type_of_position', '$training_no_of_hrs', '$training_from_date', '$training_to_date', '$training_conducted_by','$filename')";
+
+            $conn->query($sql6);
         }
     }
     //membership
@@ -387,13 +610,7 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql7 = "INSERT INTO emp_membership (emp_id, emp_membership)
         VALUES ('$emp_id', '$emp_membership')";
 
-// mysqli_query($conn, $sql7);
-
-            // if (mysqli_query($conn, $sql7)) {
-            //     echo "New record created successfully 7";
-            // } else {
-            //     echo "Error: " . mysqli_error($conn);
-            // }
+            $conn->query($sql7);
         }
     }
     // aacademic 
@@ -415,12 +632,7 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql8 = "INSERT INTO emp_non_academic (emp_id, emp_non_academic)
         VALUES ('$emp_id', '$emp_non_academic')";
 
-// mysqli_query($conn, $sql8);
-            // if (mysqli_query($conn, $sql8)) {
-            //     echo "New record created successfully 8";
-            // } else {
-            //     echo "Error: " . mysqli_error($conn);
-            // }
+            $conn->query($sql8);
         }
     }
     // special skills
@@ -445,12 +657,7 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql9 = "INSERT INTO emp_special_skills (emp_id, emp_special_skills)
         VALUES ('$emp_id', '$emp_special_skills')";
 
-// mysqli_query($conn, $sql9);
-            // if (mysqli_query($conn, $sql9)) {
-            //     echo "New record created successfully 9";
-            // } else {
-            //     echo "Error: " . mysqli_error($conn);
-            // }
+            $conn->query($sql9);
         }
     }
 
@@ -476,12 +683,7 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql10 = "INSERT INTO emp_reference (emp_id, ref_full_name, ref_add, ref_tel)
         VALUES ('$emp_id', '$ref_full_name', '$ref_add', '$ref_tel')";
 
-// mysqli_query($conn, $sql10);
-            // if (mysqli_query($conn, $sql10)) {
-            //     echo "New record created successfully 10";
-            // } else {
-            //     echo "Error: " . mysqli_error($conn);
-            // }
+            $conn->query($sql10);
         }
     }
     // govt id 
@@ -504,27 +706,19 @@ emp_id  ,  emp_image  , emp_first_name , emp_middle_name , emp_last_name , emp_e
             $sql11 = "INSERT INTO emp_govt_id (emp_id,emp_gov_issued_id, emp_gov_issued_id_type)
         VALUES ('$emp_id', '$emp_gov_issued_id', '$emp_gov_issued_id_type')";
 
-// mysqli_query($conn, $sql11);
-            // if (mysqli_query($conn, $sql11)) {
-            //     echo "New record created successfully 11";
-            // } else {
-            //     echo "Error: " . mysqli_error($conn);
-            // }
+            $conn->query($sql11);
         }
     }
 
-    if (mysqli_query($conn, $sql1) && mysqli_query($conn, $sql2) && mysqli_query($conn, $sql3) && mysqli_query($conn, $sql4) && mysqli_query($conn, $sql5) && mysqli_query($conn, $sql6) && mysqli_query($conn, $sql7) && mysqli_query($conn, $sql8) && mysqli_query($conn, $sql9) && mysqli_query($conn, $sql10) && mysqli_query($conn, $sql11))
-     {
-       
-        $sql = mysqli_query($conn,"select id from employee where emp_id = '$emp_id' ");
-   
-        $row = mysqli_fetch_array($sql,MYSQLI_ASSOC);
+    if (mysqli_query($conn, $sql1)) {
+
+        $sql = mysqli_query($conn, "select id from employee where emp_id = '$emp_id' ");
+
+        $row = mysqli_fetch_array($sql, MYSQLI_ASSOC);
         $id = $row['id'];
 
-        header("Location:../emp_mang/emp_profile.php?id=".$id."&success");
-    
-       } else {
-           echo  '<script>toastr.error("Employee not updated. Try again !")</script>';
-        
-       }
+        header("Location:../emp_mang/emp_profile.php?id=" . $id . "&success");
+    } else {
+        echo  '<script>toastr.error("Employee not updated. Try again !")</script>';
+    }
 }

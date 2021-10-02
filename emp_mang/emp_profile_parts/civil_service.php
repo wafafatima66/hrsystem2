@@ -32,6 +32,12 @@
                  <option value="Civil Service Examination" <?php if ($mydata['civil_exam_type'] == "Civil Service Examination"  ) {
                     echo 'selected';
                  }?> >Civil Service Examination</option>
+
+                <option value="Others" <?php if ($mydata['civil_exam_type'] == "Others"  ) {
+                    echo 'selected';
+                 }?> >Others</option>
+
+
              </select>
          </div>
      </div>
@@ -110,6 +116,7 @@
              <option value="">SELECT</option>
              <option value="Board Examination">Board Examination</option>
              <option value="Civil Service Examination">Civil Service Examination</option>
+             <option value="Others">Others</option>
          </select>
      </div>
  </div>
@@ -183,7 +190,7 @@
          var addButton = $('.add_civil_button'); //Add button selector
          var wrapper = $('.civil_wrapper'); //Input field wrapper
          var fieldHTML =
-             ' <div class="form-row mt-5"> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">TYPE</label> <select class="form-control text-input"  name="civil_exam_type[]"> <option value="">SELECT</option> <option value="Board Examination">Board Examination</option> <option value="Civil Service Examination">Civil Service Examination</option> </select> </div> </div> <div class="col-lg-5 col-sm-12"> <div class="d-flex flex-column"> <label for="">NAME OF EXAMINATION</label> <input type="text" class="form-control text-input" name="civil_exam_name[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">EXAMINATION DATE</label> <input type="date" class="form-control text-input" name="civil_exam_date[]"> </div> </div> </div> <div class="form-row mt-3"> <div class="col-lg-2 col-sm-6"> <div class="d-flex flex-column"> <label for="">RATING <span class="text-muted"> (if applicable) </span></label> <input type="text" class="form-control text-input" name="civil_exam_rating[]"> </div> </div> <div class="col-lg-4 col-sm-12"> <div class="d-flex flex-column"> <label for="">PLACE OF EXAMINATION</label> <input type="text" class="form-control text-input" name="civil_exam_place[]" > </div> </div> <div class="col-lg-3 col-sm-6"> <label for="">LICENCE <span class="text-muted">(If Applicable)</span></label> <input type="text" class="form-control text-input" name="civil_exam_licence_no[]" > </div> <!-- <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">NUMBER</label> <input type="text" class="form-control text-input" name="licence_no[]" > </div> </div> --> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">VALIDITY</label> <input type="date" class="form-control text-input" name="civil_exam_licence_val[]"> </div> </div> </div>';
+             ' <div class="form-row mt-5"> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">TYPE</label> <select class="form-control text-input"  name="civil_exam_type[]"> <option value="">SELECT</option> <option value="Board Examination">Board Examination</option> <option value="Civil Service Examination">Civil Service Examination</option> <option value="Others">Others</option> </select> </div> </div> <div class="col-lg-5 col-sm-12"> <div class="d-flex flex-column"> <label for="">NAME OF EXAMINATION</label> <input type="text" class="form-control text-input" name="civil_exam_name[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">EXAMINATION DATE</label> <input type="date" class="form-control text-input" name="civil_exam_date[]"> </div> </div> </div> <div class="form-row mt-3"> <div class="col-lg-2 col-sm-6"> <div class="d-flex flex-column"> <label for="">RATING <span class="text-muted"> (if applicable) </span></label> <input type="text" class="form-control text-input" name="civil_exam_rating[]"> </div> </div> <div class="col-lg-4 col-sm-12"> <div class="d-flex flex-column"> <label for="">PLACE OF EXAMINATION</label> <input type="text" class="form-control text-input" name="civil_exam_place[]" > </div> </div> <div class="col-lg-3 col-sm-6"> <label for="">LICENCE <span class="text-muted">(If Applicable)</span></label> <input type="text" class="form-control text-input" name="civil_exam_licence_no[]" > </div> <!-- <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">NUMBER</label> <input type="text" class="form-control text-input" name="licence_no[]" > </div> </div> --> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">VALIDITY</label> <input type="date" class="form-control text-input" name="civil_exam_licence_val[]"> </div> </div> </div>';
 
          //New input field html 
          var x = 1; //Initial field counter is 1

@@ -42,64 +42,78 @@ if (isset($_GET['id'])) {
 
 
                   <div class="container ">
-                        <div class="row emp-profile-box-1">
-                              <div class="col-lg-3 col-sm-4">
-                                    <!-- <div class="emp-profile-img">
-                        <img src="" alt="">
-                  </div>
-                  <div class="text-lg-right  mt-2">
-                        <i class="fa fa-camera"> </i>
-                  </div> -->
+                        <div class="emp-profile-box-1">
+                              <div class="row ">
+                                    <div class="col-lg-3 col-sm-4">
 
-                                    <div class="emp-profile-img">
+                                          <div class="emp-profile-img">
+                                                <img src="<?php echo  $photo_to_show; ?>" alt="" style="width:100%;height:100%">
+                                          </div>
 
-                                          <!-- <img src="<?php echo  $photo_to_show; ?>" alt="" id="previewImg"
-                                    style="width:100%;height:100%"> -->
-
-                                          <img src="<?php echo  $photo_to_show; ?>" alt="" style="width:100%;height:100%">
-                                    </div>
-
-                                    <div class="text-lg-right  mt-2">
+                                          <div class="text-lg-right  mt-2">
 
 
-                                          <label>
-                                                <i class="fa fa-camera"> </i>
-                                                <!-- <input type="file" style="display: none;" name="emp_image"
-                                    onchange="previewFile(this);"  form="emp_profile_form"> -->
+                                                <label>
+                                                      <i class="fa fa-camera"> </i>
 
-                                                <input type="file" style="display: none;" name="emp_image" id="emp_image">
-                                                <input type="hidden" name="emp_id" value="<?php echo $emp_id ?>">
+                                                      <input type="file" style="display: none;" name="emp_image" id="emp_image">
+                                                      <input type="hidden" name="emp_id" value="<?php echo $emp_id ?>">
 
-                                          </label>
+                                                </label>
+
+
+                                          </div>
 
 
                                     </div>
+                                    <div class="col-lg-9 col-sm-12 d-flex  flex-column ">
+
+                                          <div class="d-flex justify-content-end">
+                                                <h5 class="emp_profile_button emp_profile_button_active" id="agency">Agency Profile | </h5>
+                                                <h5 class="emp_profile_button" id="pds">PDS | </h5>
+                                                <h5 class="emp_profile_button" id="leave">Leave ledger | </h5>
+                                                <h5 class="emp_profile_button" id="file">File 201</h5>
+                                          </div>
+
+                                          <div class=" mt-auto">
+
+                                                <h4 style="color: #FFDF88; white-space: nowrap"><?php echo $mydata["emp_first_name"] . " " . $mydata["emp_middle_name"] . " " . $mydata["emp_last_name"] . " " . $mydata["emp_ext"] ?></h4>
+
+                                                <div class="d-flex justify-content-between">
+                                                      <h5><?php echo $position;  ?></h5>
+                                                      <h5>Emp.ID : <?php echo $mydata["emp_id"]  ?> </h5>
+                                                      <input type="hidden" name="emp_id" value="<?php echo $mydata['emp_id'] ?>" form="emp_profile_form" class="emp_id">
+
+                                                      <label class="switch mr-5">
+                                                            <input type="checkbox" <?php echo ($mydata["active"] == '1' ? 'checked' : '') ?> id="emp_active" value="<?php echo $mydata["emp_id"]  ?>">
+                                                            <span class="slider round"></span>
+                                                      </label>
+
+                                                </div>
+                                          </div>
 
 
+
+
+                                    </div>
+
+                                    <!-- <div class="col-lg-1 col-sm-4"></div> -->
+
+                                    <!-- <div class="col-lg-5 col-sm-12 d-flex align-items-start flex-column ">
+                                         
+
+                                          <div class="mt-auto"> 
+                                          
+
+                                    </div> 
+
+
+
+                              </div> -->
 
 
                               </div>
-                              <div class="col-lg-3 col-sm-4 align-self-end">
 
-                                    <h4 style="color: #FFDF88;"><?php echo $mydata["emp_first_name"] . " " . $mydata["emp_middle_name"] . " " . $mydata["emp_last_name"] . " " . $mydata["emp_ext"] ?></h4>
-                                    <h6>Position / <?php echo $position;  ?></h6>
-
-                              </div>
-                              <div class="col-lg-1 col-sm-4"></div>
-
-                              <div class="col-lg-5 col-sm-12 d-flex align-items-start flex-column ">
-                                    <div class="d-flex justify-content-center">
-                                          <h5 class="emp_profile_button emp_profile_button_active" id="agency">Agency Profile | </h5>
-                                          <h5 class="emp_profile_button" id="pds">PDS | </h5>
-                                          <h5 class="emp_profile_button" id="leave">Leave ledger | </h5>
-                                          <h5 class="emp_profile_button" id="file">File 201</h5>
-                                    </div>
-
-                                    <div class="mt-auto">
-                                          <h5>Emp.ID : <?php echo $mydata["emp_id"]  ?> </h5>
-                                          <input type="hidden" name="emp_id" value="<?php echo $mydata['emp_id'] ?>" form="emp_profile_form">
-                                    </div>
-                              </div>
                         </div>
 
       <?php }
@@ -131,6 +145,34 @@ if (isset($_GET['id'])) {
 
                   <script>
                         $(document).ready(function() {
+
+                              //active button
+                              $('#emp_active').click(function() {
+                                    var active = 0;
+                                    if ($('#emp_active').is(":checked")) {
+                                          var active = 1;
+                                    } else {
+                                          var active = 0;
+                                    }
+                                    var id = $(this).val();
+                                    $.ajax({
+                                          url: "emp_active_button.php",
+                                          method: "POST",
+                                          data: {
+                                                active: active,
+                                                id: id,
+                                          },
+                                          success: function(data) {
+                                                if (data == "success") {
+                                                      toastr.success("Employee active status updated !");
+                                                } else if (data == "fail") {
+                                                      toastr.error("Employee active status not updated !");
+                                                }
+                                          },
+                                    });
+
+                              });
+
                               $('.emp_profile_button').click(function() {
                                     $('.emp_profile_button').removeClass('emp_profile_button_active');
                                     $(this).addClass('emp_profile_button_active');
@@ -171,6 +213,7 @@ if (isset($_GET['id'])) {
 
                                                 success: function(data) {
                                                       $('.emp-profile-img').empty().html(data);
+                                                      toastr.success("Employee Profile Image Updated !");
                                                 }
                                           });
                                     }

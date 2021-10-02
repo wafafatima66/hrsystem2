@@ -23,11 +23,11 @@ if (isset($_POST['search_employee'])) {
 
 	$search_employee = $_POST['search_employee'];
 
-	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.job_type , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id 
+	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.appt_stat , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id 
 	WHERE e.emp_first_name LIKE '%{$search_employee}%' OR e.emp_last_name LIKE '%{$search_employee}%' OR e.emp_id LIKE '%{$search_employee}%' LIMIT $offset, $limit";
 } else {
 
-	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.job_type , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id  LIMIT $offset, $limit";
+	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.appt_stat , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id  LIMIT $offset, $limit";
 }
 
 
@@ -66,7 +66,7 @@ if (mysqli_num_rows($result) > 0) {
                               <span> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
                         </td>
                         <td> {$mydata['emp_gender']} </td>
-						<td>{$mydata['job_type']}</td>
+						<td>{$mydata['appt_stat']}</td>
 						<td>{$mydata['position']}</td>
 						<td>{$mydata['area_wrk_assign']}</td>
                   </tr>";
