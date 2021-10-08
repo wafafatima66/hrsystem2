@@ -6,6 +6,7 @@ if (isset($_POST['edit_publication'])) {
 
   $id = $_POST['id'];
   $date_of_publication = $_POST['date_of_publication'];
+  $end_of_publication = $_POST['end_of_publication'];
   $item_number = $_POST['item_number'];
   // $salary_grade = $_POST['salary_grade'];
   // $plantilla = $_POST['plantilla'];
@@ -17,7 +18,7 @@ if (isset($_POST['edit_publication'])) {
   $conn->query($del_sql_1);
 
   $sql = "INSERT INTO publication (
-    date_of_publication  , item_number  ) VALUES (  '$date_of_publication'  , '$item_number' )";
+    date_of_publication  , item_number  , end_of_publication) VALUES (  '$date_of_publication'  , '$item_number' , '$end_of_publication')";
 
 
 

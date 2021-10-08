@@ -40,9 +40,9 @@ if (isset($_GET['id'])) {
                             echo "<option value='' > Sex </option>";
                         } ?>
 
-                        <option value='Male' <?php echo ($mydata['emp_gender'] == 'male' ? 'style="display: none;"' : '') ?>> Male </option>
-                        <option value='Female' <?php echo ($mydata['emp_gender'] == 'female' ? 'style="display: none;"' : '') ?>> Female </option>
-                        <!-- <option value='Other' <?php echo ($mydata['emp_gender'] == 'other' ? 'style="display: none;"' : '') ?>> Other </option> -->
+                        <option value='Male' <?php echo ($mydata['emp_gender'] == 'Male' ? 'style="display: none;"' : '') ?>> Male </option>
+                        <option value='Female' <?php echo ($mydata['emp_gender'] == 'Female' ? 'style="display: none;"' : '') ?>> Female </option>
+                        <!-- <option value='Other' <?php echo ($mydata['emp_gender'] == 'Other' ? 'style="display: none;"' : '') ?>> Other </option> -->
 
                     </select>
 

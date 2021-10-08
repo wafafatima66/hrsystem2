@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
     $applicant_middle_name = $_POST['applicant_middle_name'];
     $applicant_ext = $_POST['applicant_ext'];
     $applicant_gender = $_POST['applicant_gender'];
-    $applicant_country = $_POST['applicant_country'];
+    $applicant_barangay = $_POST['applicant_barangay'];
     $applicant_state = $_POST['applicant_state'];
     $applicant_municipal = $_POST['applicant_municipal'];
     $applicant_zip = $_POST['applicant_zip'];
@@ -68,7 +68,7 @@ if (isset($_POST['submit'])) {
     }
 
     $sql = "INSERT INTO applicant (
-        item_no  , position_no, applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_country, applicant_state, applicant_municipal, applicant_zip , appointmented) VALUES (  '$item_no' , '$position_no', '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_country', '$applicant_state', '$applicant_municipal','$applicant_zip' , '0' )";
+        item_no  , position_no, applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_barangay, applicant_state, applicant_municipal, applicant_zip , appointmented) VALUES (  '$item_no' , '$position_no', '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_barangay', '$applicant_state', '$applicant_municipal','$applicant_zip' , '0' )";
 
 
     if (!empty($_POST['hiring_education'])) {
@@ -148,7 +148,7 @@ if (isset($_POST['edit_applicant'])) {
     $applicant_middle_name = $_POST['applicant_middle_name'];
     $applicant_ext = $_POST['applicant_ext'];
     $applicant_gender = $_POST['applicant_gender'];
-    $applicant_country = $_POST['applicant_country'];
+    $applicant_barangay = $_POST['applicant_barangay'];
     $applicant_state = $_POST['applicant_state'];
     $applicant_municipal = $_POST['applicant_municipal'];
     $applicant_zip = $_POST['applicant_zip'];
@@ -196,7 +196,7 @@ if (isset($_POST['edit_applicant'])) {
     }
 
     $sql = "INSERT INTO applicant (
-    item_no  , position_no,  applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_country, applicant_state, applicant_municipal, applicant_zip ) VALUES (  '$item_no'  , '$position_no',  '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_country', '$applicant_state', '$applicant_municipal','$applicant_zip' )";
+    item_no  , position_no,  applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_barangay, applicant_state, applicant_municipal, applicant_zip ) VALUES (  '$item_no'  , '$position_no',  '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_barangay', '$applicant_state', '$applicant_municipal','$applicant_zip' )";
 
 
     if (!empty($_POST['hiring_education'])) {
@@ -324,7 +324,7 @@ if (isset($_GET['item_no']) || isset($_GET['position_no']) ) {
                             <td>
                                 {$mydata['applicant_first_name']}  {$mydata['applicant_middle_name']} {$mydata['applicant_last_name']} {$mydata['applicant_ext']} 
                             </td>
-                            <td> {$mydata['applicant_country']} </td>
+                            <td> {$mydata['applicant_barangay']} </td>
                             <td>{$mydata['applicant_rating']} </td>
                             <td>{$mydata['applicant_rank']} </td>
                             <td>

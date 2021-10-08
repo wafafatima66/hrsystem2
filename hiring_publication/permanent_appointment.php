@@ -25,10 +25,11 @@ if (isset($_POST['submit'])) {
         $applicant_state = $mydata['applicant_state'];
         $applicant_municipal = $mydata['applicant_municipal'];
         $applicant_zip = $mydata['applicant_zip'];
+        $applicant_barangay = $mydata['applicant_barangay'];
     }
 
-    $sql1 = "INSERT INTO employee (emp_id , emp_first_name , emp_middle_name , emp_last_name , emp_ext , emp_gender , emp_nationality , emp_resi_add  , emp_resi_add_municipal  , emp_resi_add_zipcode)
-    VALUES ('$emp_id', '$applicant_first_name', '$applicant_middle_name', '$applicant_last_name', '$applicant_ext', '$applicant_gender', '$applicant_country', '$applicant_state', '$applicant_municipal', '$applicant_zip')";
+    $sql1 = "INSERT INTO employee (emp_id , emp_first_name , emp_middle_name , emp_last_name , emp_ext , emp_gender , emp_nationality , emp_resi_add  , emp_resi_add_municipal  , emp_resi_add_zipcode,emp_resi_add_barangay)
+    VALUES ('$emp_id', '$applicant_first_name', '$applicant_middle_name', '$applicant_last_name', '$applicant_ext', '$applicant_gender', '$applicant_country', '$applicant_state', '$applicant_municipal', '$applicant_zip' , '$applicant_barangay' )";
 
 
 

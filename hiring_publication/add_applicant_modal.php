@@ -20,7 +20,7 @@
                     //         while ($mydata = $runquery->fetch_assoc()) {
 
                     //             $item_no =  $mydata['item_no'];
-                                
+
                     //         }
                     //     }
                     // }
@@ -28,20 +28,18 @@
                     if (isset($_GET['item_no'])) {
 
                         $item_no =  $_GET['item_no'];
-                        $input = '<input type="hidden" name="item_no" value="'.$item_no.'">';
-                     
-                    }else if (isset($_GET['position_no'])) {
+                        $input = '<input type="hidden" name="item_no" value="' . $item_no . '">';
+                    } else if (isset($_GET['position_no'])) {
 
                         $position_no =  $_GET['position_no'];
-                        $input = '<input type="hidden" name="position_no" value="'.$position_no.'">';
-                     
+                        $input = '<input type="hidden" name="position_no" value="' . $position_no . '">';
                     }
 
                     ?>
 
                     <form method="post" action="" enctype="multipart/form-data">
 
-                        <?php echo $input ;  ?>
+                        <?php echo $input;  ?>
 
                         <div class="form-row">
 
@@ -84,30 +82,37 @@
                                 <input type="text" class="form-control text-input" placeholder="ext" name="applicant_ext" value="">
                             </div>
                             <div class="col-lg-2 col-sm-6">
-                                <input type="text" class="form-control text-input" placeholder="Sex" name="applicant_gender" value="">
+                                <!-- <input type="text" class="form-control text-input" placeholder="Sex" name="applicant_gender" value=""> -->
+
+                                <select class="form-control text-input" name="applicant_gender">
+                                    <option value='Male'> Male </option>
+                                    <option value='Female'> Female </option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-row mt-3">
 
+                            
                             <div class="col-lg-3 col-sm-6">
-                                <!-- <input type="text" class=" form-control text-input" placeholder="Country" name="applicant_country" value=""> -->
-
-                                <select class="form-control text-input" name="applicant_country" >
-                                    <option value="">Select Country</option>
-                                    <?php  include '../includes/countries.php' ?>
+                                <!-- <input type="text" class=" form-control text-input" placeholder="Province/State" name="applicant_state" value=""> -->
+                                <select class="form-control text-input" name="applicant_state">
+                                    <?php
+                                    echo "<option value='' > State/Province </option>";
+                                    include '../includes/provinces.php'
+                                    ?>
                                 </select>
-
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <input type="text" class=" form-control text-input" placeholder="Province/State" name="applicant_state" value="">
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <input type="text" class="form-control text-input" placeholder="Municipality" name="applicant_municipal" value="">
                             </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <input type="text" class="form-control text-input" placeholder="Barangay" name="applicant_barangay" value="">
+                            </div>
                             <div class="col-lg-1 col-sm-6">
                                 <input type="text" class="form-control text-input" placeholder="Zip code" name="applicant_zip" value="">
                             </div>
+
 
                         </div>
 
@@ -171,21 +176,17 @@
 
                         <div class="form-row mt-2 mb-2">
                             <div class="col-lg-4 col-sm-6">
-                                
+                                <label style="width: 100%;">
 
-                             <label style="width: 100%;" >
-                             
-                             <div class="inner-upload-field p-2">
-                                   <h6 class="text-center">Upload Files</h6>
-                             </div>
+                                    <div class="inner-upload-field p-2">
+                                        <h6 class="text-center">Upload Files</h6>
+                                    </div>
 
-                                    <input type="file" name="applicant_files[]" id="applicant_files" multiple style="display: none;" >
-                              </label>
+                                    <input type="file" name="applicant_files[]" id="applicant_files" multiple style="display: none;">
+                                </label>
 
-                              <div id="total" class="text-success"></div>
-
+                                <div id="total" class="text-success"></div>
                             </div>
-                            
                         </div>
 
 
@@ -211,27 +212,26 @@
 </div>
 
 <script>
-     $("#applicant_files").change(function(){
-            $("#total").html($("#applicant_files")[0].files.length + " Files uploaded");
-      });
+    $("#applicant_files").change(function() {
+        $("#total").html($("#applicant_files")[0].files.length + " Files uploaded");
+    });
 
-      function checkAvailability() {
-    // $("#loaderIcon").show();
+    function checkAvailability() {
+        // $("#loaderIcon").show();
 
         var applicant_id = 'applicant_id=' + $("#applicant_id").val();
 
         console.log(applicant_id);
 
         jQuery.ajax({
-        url: "check_applicant_id.php",
-        data: applicant_id,
-        type: "POST",
-        success: function(data) {
-            $("#user-availability-status").html(data);
-            // $("#loaderIcon").hide();
-        },
-        error: function() {}
+            url: "check_applicant_id.php",
+            data: applicant_id,
+            type: "POST",
+            success: function(data) {
+                $("#user-availability-status").html(data);
+                // $("#loaderIcon").hide();
+            },
+            error: function() {}
         });
-  }
-
+    }
 </script>

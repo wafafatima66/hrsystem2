@@ -15,14 +15,14 @@ if (isset($_POST['id'])) {
         while ($mydata = $runquery->fetch_assoc()) {
             $applicant_id =  $mydata['applicant_id'];
 
-            if(!empty($mydata['item_no'])){
+            if (!empty($mydata['item_no'])) {
                 $item_no =  $mydata['item_no'];
-                $input = '<input type="hidden" name="item_no" value="'.$item_no.'">';
-            }else if(!empty($mydata['position_no'])){
+                $input = '<input type="hidden" name="item_no" value="' . $item_no . '">';
+            } else if (!empty($mydata['position_no'])) {
                 $position_no =  $mydata['position_no'];
-                $input = '<input type="hidden" name="position_no" value="'.$position_no.'">';
+                $input = '<input type="hidden" name="position_no" value="' . $position_no . '">';
             }
-            
+
 
 
 ?>
@@ -31,13 +31,13 @@ if (isset($_POST['id'])) {
 
                 <form method="post" action="" enctype="multipart/form-data">
 
-                   <?php echo $input ; ?>
+                    <?php echo $input; ?>
 
                     <div class="form-row">
 
                         <div class="col-lg-3 col-sm-6">
                             <label for="" class="text-secondary">Applicant ID</label>
-                            <input type="text" class="form-control text-input"  placeholder="Applicant ID" value="<?php echo $mydata['applicant_id']; ?>"  disabled>
+                            <input type="text" class="form-control text-input" placeholder="Applicant ID" value="<?php echo $mydata['applicant_id']; ?>" disabled>
 
                             <input type="hidden" name="applicant_id" value="<?php echo $mydata['applicant_id']; ?>">
 
@@ -79,38 +79,52 @@ if (isset($_POST['id'])) {
                             <label for="" class="text-secondary">Ext </label>
                             <input type="text" class="form-control text-input" placeholder="ext" name="applicant_ext" value="<?php echo $mydata['applicant_ext']; ?>">
                         </div>
+
                         <div class="col-lg-2 col-sm-6">
                             <label for="" class="text-secondary">Gender </label>
-                            <input type="text" class="form-control text-input" placeholder="Sex" name="applicant_gender" value="<?php echo $mydata['applicant_gender']; ?>">
+                            <!-- <input type="text" class="form-control text-input" placeholder="Sex" name="applicant_gender" value="<?php echo $mydata['applicant_gender']; ?>"> -->
+                            <select class="form-control text-input" name="applicant_gender">
+
+                        <?php if (!empty($mydata['applicant_gender'])) {
+                            echo "<option value= '" . $mydata['applicant_gender'] . "'>" . $mydata['applicant_gender'] . "</option>";
+                        } else {
+                            echo "<option value='' > Sex </option>";
+                        } ?>
+
+                        <option value='Male' <?php echo ($mydata['applicant_gender'] == 'Male' ? 'style="display: none;"' : '') ?>> Male </option>
+                        <option value='Female' <?php echo ($mydata['applicant_gender'] == 'Female' ? 'style="display: none;"' : '') ?>> Female </option>
+                       
+
+                    </select>
                         </div>
+
                     </div>
 
                     <div class="form-row mt-3">
 
                         <div class="col-lg-3 col-sm-6">
-                            <label for="" class="text-secondary">Country </label>
-                            <!-- <input type="text" class=" form-control text-input" placeholder="Country" name="applicant_country" value="<?php echo $mydata['applicant_country']; ?>"> -->
-
-                            <select class="form-control text-input" name="applicant_country" >
-
-                            <?php if(!empty($mydata['applicant_country'])){
-                                    echo "<option value= '" . $mydata['applicant_country'] . "'>" . $mydata['applicant_country'] . "</option>" ; 
+                        <label for="" class="text-secondary">State/Provinve</label>
+                            <select class="form-control text-input" name="applicant_state">
+                                <?php if (!empty($mydata['applicant_state'])) {
+                                    echo "<option value= '" . $mydata['applicant_state'] . "'>" . $mydata['applicant_state'] . "</option>";
                                 } else {
-                                    echo "<option value='' > Select Country </option>" ;  
-                                }?>
+                                    echo "<option value='' > State/Province </option>";
+                                } ?>
 
-                            <?php include '../includes/countries.php' ?>
+                                <?php include '../includes/provinces.php' ?>
                             </select>
+                        </div>
 
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <label for="" class="text-secondary">Province/State</label>
-                            <input type="text" class=" form-control text-input" placeholder="Province/State" name="applicant_state" value="<?php echo $mydata['applicant_state']; ?>">
-                        </div>
                         <div class="col-lg-3 col-sm-6">
                             <label for="" class="text-secondary">Municipality</label>
                             <input type="text" class="form-control text-input" placeholder="Municipality" name="applicant_municipal" value="<?php echo $mydata['applicant_municipal']; ?>">
                         </div>
+
+                        <div class="col-lg-3 col-sm-6">
+                            <label for="" class="text-secondary">Barangay</label>
+                            <input type="text" class="form-control text-input" placeholder="Barangay" name="applicant_barangay" value="<?php echo $mydata['applicant_barangay']; ?>">
+                        </div>
+
                         <div class="col-lg-3 col-sm-6">
                             <label for="" class="text-secondary">Zip</label>
                             <input type="text" class="form-control text-input" placeholder="Zip code" name="applicant_zip" value="<?php echo $mydata['applicant_zip']; ?>">
@@ -242,7 +256,7 @@ if (isset($_POST['id'])) {
 
                     <div class="form-row mt-4">
                         <div class="col-lg-12 col-sm-12">
-                            <label for="" class="h6">Credentials</label>
+                            <label for="" class="h6">Credentials( PDS, Resume, Application Letter, Certificates, etc)</label>
                         </div>
                     </div>
 
@@ -320,9 +334,9 @@ if (isset($_POST['id'])) {
             }
         });
 
-        $("#applicant_files_edit").change(function(){
+        $("#applicant_files_edit").change(function() {
             $("#total_edit").html($("#applicant_files_edit")[0].files.length + "  Files uploaded");
-      });
+        });
 
     });
 </script>

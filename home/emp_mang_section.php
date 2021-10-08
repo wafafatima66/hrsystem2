@@ -9,7 +9,7 @@
                         <i class="fa fa-search"></i>
                   </button>
 
-                  <button type="button" class="ml-3 btn button-1" data-toggle="modal" data-target="#addemployee">Add</button>
+                  <!-- <button type="button" class="ml-3 btn button-1" data-toggle="modal" data-target="#addemployee">Add</button> -->
 
 
             </div>

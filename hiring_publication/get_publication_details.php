@@ -9,7 +9,7 @@ if (isset($_POST['id'])) {
     
 
     // $query = "SELECT * FROM publication WHERE id = '$id'";
-    $query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number FROM publication p join item i on i.item_no = p.item_number WHERE p.id = '$id'";
+    $query = "SELECT i.* , p.id as publication_id, p.date_of_publication , p.item_number , p.end_of_publication FROM publication p join item i on i.item_no = p.item_number WHERE p.id = '$id'";
 
     $runquery = $conn->query($query);
     if ($runquery == true) {
@@ -29,6 +29,12 @@ if (isset($_POST['id'])) {
                             <label for="">Date of publication</label>
                             <input type="date" class="form-control text-input" name="date_of_publication" value="<?php echo $mydata['date_of_publication']; ?>">
                         </div>
+
+                        <div class="col-lg-3 col-sm-6 ">
+                                <label for="">End of publication</label>
+                                        <input type="date" class="form-control text-input" name="end_of_publication"  value="<?php echo $mydata['end_of_publication']; ?>" required>
+                                </div>
+
                     </div>
 
                     <!-- <div class="form-row mt-2">

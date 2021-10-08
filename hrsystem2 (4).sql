@@ -5029,7 +5029,7 @@ ALTER TABLE `employee`
    `emp_sp_occupation`varchar(100),
    `emp_sp_employer`varchar(100),
    `emp_sp_add`varchar(100),
-   `emp_sp_tel` varchar(100))
+   `emp_sp_tel` varchar(100));
 
    ALTER TABLE `emp_spouse` ADD `emp_id` VARCHAR(255) NOT NULL FIRST;
 
@@ -5072,7 +5072,27 @@ create table emp_folder (
 id int not null AUTO_INCREMENT primary key ,
     emp_id varchar(255) ,
     folder_name varchar(255)
-)
+);
+
+ALTER TABLE `applicant` ADD `applicant_barangay` VARCHAR(255) NULL AFTER `applicant_municipal`;
+
+UPDATE employee SET active = 1 ;
+
+UPDATE employee SET emp_gender = "Male";
+
+create table termination(
+id int not null AUTO_INCREMENT PRIMARY key , 
+    emp_id varchar(255),
+    termination_reason varchar(255),
+    date_of_effectivity date ,
+    termination_details varchar(255)
+);
+
+create table termination_file (
+id int not null AUTO_INCREMENT PRIMARY key , 
+    emp_id varchar(255),
+    file_name varchar(255)
+);
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

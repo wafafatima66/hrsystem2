@@ -96,7 +96,7 @@ function list_active($currect_page){
 
     <li class="float-right <?php list_active('hiring_publication');?> "><a href="../hiring_publication"><span class="d-md-inline ">Publication Management</span></a></li>
 
-    <li class="float-right <?php list_active('hiring_resignation');?>"><a href="../hiring_resignation"><span class="d-md-inline ">Resignation & Retirement</span></a></li>
+    <li class="float-right <?php list_active('hiring_resignation');?>"><a href="../hiring_resignation"><span class="d-md-inline ">Termination Management</span></a></li>
 
   </ul>
 <!-- 

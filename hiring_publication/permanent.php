@@ -114,8 +114,6 @@
 <script>
   $(document).ready(function() {
 
-    
-
     function loadData(page, limit , dept , office , search_pub, pub_date) {
       $.ajax({
         url: "permanent_pagination.php",

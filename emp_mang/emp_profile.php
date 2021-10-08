@@ -141,6 +141,9 @@ if (isset($_GET['id'])) {
 
                   </div>
 
+                  <?php include "inactiveModal.php" ?>
+
+
 
 
                   <script>
@@ -149,28 +152,47 @@ if (isset($_GET['id'])) {
                               //active button
                               $('#emp_active').click(function() {
                                     var active = 0;
-                                    if ($('#emp_active').is(":checked")) {
-                                          var active = 1;
-                                    } else {
-                                          var active = 0;
-                                    }
-                                    var id = $(this).val();
-                                    $.ajax({
-                                          url: "emp_active_button.php",
-                                          method: "POST",
-                                          data: {
-                                                active: active,
-                                                id: id,
-                                          },
-                                          success: function(data) {
-                                                if (data == "success") {
-                                                      toastr.success("Employee active status updated !");
-                                                } else if (data == "fail") {
-                                                      toastr.error("Employee active status not updated !");
-                                                }
-                                          },
-                                    });
+                                    // // if ($('#emp_active').is(":checked")) {
+                                    //      if($('#emp_active').attr('checked', true)) {
+                                    //       // var active = 1;
+                                    //       $("#myModal").modal('hide');
+                                    // } else {
+                                    //       // var active = 0;
+                                    //       $('#myModal').modal();
+                                    // }
 
+                                    if ($("#emp_active").prop('checked') == false) 
+                                    {
+                                          event.preventDefault();
+                                          jQuery.noConflict();
+                                          var emp_id = $(this).val();
+                                          $('#inactiveModal').modal('show');
+                                          $("#modal_emp_id").val( emp_id );
+                                          
+                                    }
+                                    
+                                    else if ($('#emp_active').is(":checked")) {
+                                          var active = 1;
+                                     
+                                          var id = $(this).val();
+
+                                          $.ajax({
+                                                url: "emp_active_button.php",
+                                                method: "POST",
+                                                data: {
+                                                      active: active,
+                                                      id: id,
+                                                },
+                                                success: function(data) {
+                                                      if (data == "success") {
+                                                            toastr.success("Employee active status updated !");
+                                                      } else if (data == "fail") {
+                                                            toastr.error("Employee active status not updated !");
+                                                      }
+                                                },
+                                          });
+                                    
+                                    }
                               });
 
                               $('.emp_profile_button').click(function() {

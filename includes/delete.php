@@ -5,14 +5,23 @@ if (!empty($_GET["publication_id"])) {
 
   $id = $_GET["publication_id"];
 
+  $sql = "SELECT item_number FROM publication where id = '$id'";
+
+  $result = mysqli_query($conn, $sql);
+  $mydata = mysqli_fetch_assoc($result);
+  $item_no = $mydata['item_number'];
+
   $del_sql = "DELETE FROM publication WHERE id='$id'";
 
+  $sql2 = "UPDATE item SET  filled = 0  WHERE item_no='$item_no'";
+  mysqli_query($conn, $sql2);
 
   if (mysqli_query($conn, $del_sql)) {
     header("Location:../hiring_publication/index.php?publication_delete=success");
   } else {
     header("Location:../hiring_publication/index.php?publication_delete=fail");
   }
+
 }
 
 if (!empty($_GET["item_id"])) {
@@ -66,6 +75,23 @@ if (!empty($_GET["applicant_id"])) {
     header("Location:../hiring_publication/applicant.php?" . $item_no . "&delete=success");
   } else {
     header("Location:../hiring_publication/applicant.php?delete=fail");
+  }
+}
+
+if (!empty($_GET["termination_id"])) {
+
+  $termination_id = $_GET["termination_id"];
+
+
+
+  $del_sql_1 = "DELETE FROM termination WHERE id='$termination_id'";
+  // $conn->query($del_sql_1);
+  
+
+  if (mysqli_query($conn, $del_sql_1)) {
+    header("Location:../hiring_resignation/index.php?delete=success");
+  } else {
+    header("Location:../hiring_resignation/index.php?delete=fail");
   }
 }
 
