@@ -8,7 +8,7 @@
                 <?php
                 require '../includes/conn.php';
 
-                $query = "SELECT * FROM office ";
+                $query = "SELECT * FROM ( SELECT DISTINCT division, area_wrk_assign from item UNION SELECT DISTINCT department_name , office_name FROM office ) as tableC WHERE tableC.area_wrk_assign != '' ";
 
                 $result = mysqli_query($conn, $query);
                 $i = 1;
@@ -31,8 +31,8 @@
 
                         $output .= "	<tr>
                                         <td>{$i}</td>
-                                        <td>{$mydata['office_name']}</td>
-                                        <td>{$mydata['department_name']}</td>
+                                        <td>{$mydata['division']}</td>
+                                        <td>{$mydata['area_wrk_assign']}</td>
                                 </tr>";
                         $i++;
                     }

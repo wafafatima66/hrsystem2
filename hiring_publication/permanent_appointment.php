@@ -28,12 +28,13 @@ if (isset($_POST['submit'])) {
         $applicant_barangay = $mydata['applicant_barangay'];
     }
 
-    $sql1 = "INSERT INTO employee (emp_id , emp_first_name , emp_middle_name , emp_last_name , emp_ext , emp_gender , emp_nationality , emp_resi_add  , emp_resi_add_municipal  , emp_resi_add_zipcode,emp_resi_add_barangay)
-    VALUES ('$emp_id', '$applicant_first_name', '$applicant_middle_name', '$applicant_last_name', '$applicant_ext', '$applicant_gender', '$applicant_country', '$applicant_state', '$applicant_municipal', '$applicant_zip' , '$applicant_barangay' )";
+    $sql1 = "INSERT INTO employee (emp_id , emp_first_name , emp_middle_name , emp_last_name , emp_ext , emp_gender , emp_nationality , emp_resi_add  , emp_resi_add_municipal  , emp_resi_add_zipcode,emp_resi_add_barangay , active)
+    VALUES ('$emp_id', '$applicant_first_name', '$applicant_middle_name', '$applicant_last_name', '$applicant_ext', '$applicant_gender', '$applicant_country', '$applicant_state', '$applicant_municipal', '$applicant_zip' , '$applicant_barangay' , '1' )";
 
 
 
-    $sql2 = "UPDATE item SET  emp_id = '$emp_id' , date_orgappnt_lhmrh = '$appointment_date', nature = '$nature' ,  filled = 1  WHERE item_no='$item_no'";
+    $sql2 = "UPDATE item SET  emp_id = '$emp_id' , date_orgappnt_lhmrh = '$appointment_date', nature = '$nature' ,  filled = 1 , appt_stat = 'P'  WHERE item_no='$item_no'";
+
 
     $year = date("Y");
 

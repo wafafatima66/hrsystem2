@@ -32,7 +32,7 @@ body {
     /* font-family: 'Merriweather'; */
     /* font-weight: 300; */
     font-size: 15px;
-    text-transform:capitalize ; 
+    text-transform: none ; 
 }
 /* global */
 .main-header {
@@ -59,7 +59,7 @@ body {
 .text-input{
     border: solid 1px #fc7e43;
     border-radius: 0;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 .h4-heading{
    color: #505A43;

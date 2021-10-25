@@ -16,19 +16,19 @@
         
                 $emp_first_name = $mydata["emp_first_name"];
                 $emp_last_name = $mydata["emp_last_name"];
-                // $emp_middle_name = $mydata["emp_middle_name"];
-                // $emp_ext = $mydata["emp_ext"];
+                $emp_middle_name = $mydata["emp_middle_name"];
+                $emp_ext = $mydata["emp_ext"];
       
             }
-            $emp_name = $emp_first_name . " " .$emp_last_name  ; 
+            $emp_name = $emp_first_name . " " .$emp_last_name . " " . $emp_middle_name . " " .$emp_ext  ; 
             echo $emp_name ; 
         
         } else echo "Query not runned !";
       } else {
-        echo  'Wrong Id !';
+        echo  'Wrong Id typed';
       }
     
   
-  } else echo "No ID Received !" ; 
+  } else echo "No ID typed" ; 
 
 ?>

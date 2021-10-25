@@ -229,4 +229,72 @@
             });
 
       });
+
+     
+      $('#emp_resi_add_street').change(function() {
+            var state = $("#emp_resi_add_street").val();
+            // console.log(state);
+            jQuery.ajax({
+                  url: "../includes/get_city.php",
+                  data: {
+                        state: state
+                  },
+                  type: "POST",
+                  success: function(data) {
+                        $("#emp_resi_add_municipal").html(data);
+                  },
+                  error: function() {}
+            });
+      });
+
+      $('#emp_resi_add_municipal').change(function() {
+            var city = $("#emp_resi_add_municipal").val();
+            console.log(city);
+            jQuery.ajax({
+                  url: "../includes/get_zipcodes.php",
+                  data: {
+                        city: city
+                  },
+                  type: "POST",
+                  success: function(data) {
+                        $("#emp_resi_add_zipcode").html(data);
+                        console.log(data);
+                  },
+                  error: function() {}
+            });
+      });
+
+      $('#emp_per_add_street').change(function() {
+            var state = $("#emp_per_add_street").val();
+            // console.log(state);
+            jQuery.ajax({
+                  url: "../includes/get_city.php",
+                  data: {
+                        state: state
+                  },
+                  type: "POST",
+                  success: function(data) {
+                        $("#emp_per_add_municipal").html(data);
+                  },
+                  error: function() {}
+            });
+      });
+
+      $('#emp_per_add_municipal').change(function() {
+            var city = $("#emp_per_add_municipal").val();
+            // console.log(city);
+            jQuery.ajax({
+                  url: "../includes/get_zipcodes.php",
+                  data: {
+                        city: city
+                  },
+                  type: "POST",
+                  success: function(data) {
+                        $("#emp_per_add_zipcode").html(data);
+                        // console.log(data);
+                  },
+                  error: function() {}
+            });
+      });
+
 </script>

@@ -223,8 +223,8 @@ if (isset($_GET['id'])) {
                                         <h3><?php echo $i++ ?></h3>
                                     </div> -->
 
-                                    <div class="col-lg-10 col-sm-9">
-                                        <input type="text" class="form-control text-input" name="emp_child_name[]" value="<?php echo $mydata['emp_child_name'] ?>">
+                                    <div class="col-lg-12 col-sm-9">
+                                        <input type="text" class="form-control text-input" name="emp_child_name[]" value="<?php echo $mydata['emp_child_name'] ?>" placeholder="First Name , Middle Name , Last Name">
                                     </div>
 
 
@@ -249,8 +249,8 @@ if (isset($_GET['id'])) {
                                     <h3><?php echo $i++ ?></h3>
                                 </div> -->
 
-                                <div class="col-lg-10 col-sm-9">
-                                    <input type="text" class="form-control text-input" name="emp_child_name[]">
+                                <div class="col-lg-12 col-sm-9">
+                                    <input type="text" class="form-control text-input" name="emp_child_name[]" placeholder="First Name , Middle Name , Last Name">
                                 </div>
 
                                 <!-- <div class="col-lg-2 col-sm-3">
@@ -298,7 +298,7 @@ if (isset($_GET['id'])) {
             if (x < maxField) {
                 x++;
 
-                $('.family_wrapper').append('<div class="form-row mt-3  "> <div class="col-lg-10 col-sm-9"> <input type="text" class="form-control text-input" name="emp_child_name[]" value=""> </div>  <div class="col-lg-7 col-sm-9 mt-1"> <input type="date" class="form-control text-input" name="emp_child_dob[]" value=""><small class="text-muted">Date of birth</small> </div>   <a class="ml-4 btn button-1 remove_fam_button mt-1" style="height: fit-content;">-</a> </div>');
+                $('.family_wrapper').append('<div class="form-row mt-3  "> <div class="col-lg-12 col-sm-9"> <input type="text" class="form-control text-input" name="emp_child_name[]" value="" placeholder="First Name , Middle Name , Last Name"> </div>  <div class="col-lg-7 col-sm-9 mt-1"> <input type="date" class="form-control text-input" name="emp_child_dob[]" value=""><small class="text-muted">Date of birth</small> </div>   <a class="ml-4 btn button-1 remove_fam_button mt-1" style="height: fit-content;">-</a> </div>');
 
             }
         });

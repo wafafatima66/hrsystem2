@@ -1,22 +1,18 @@
 <?php
 require '../includes/conn.php';
 
-	// $limit = 5;
+	$limit = 5;
 
-	// if (isset($_POST['page_no'])) {
-	//     $page_no = $_POST['page_no'];
-	// }else{
-	//     $page_no = 1;
-	// }
+	if (isset($_POST['page_no'])) {
+	    $page_no = $_POST['page_no'];
+	}else{
+	    $page_no = 1;
+	}
 
-	// $offset = ($page_no-1) * $limit;
+	$offset = ($page_no-1) * $limit;
 
-	// $query = "SELECT u.id, u.emp_id , u.name , u.role , e.department , e.office
-	// FROM users u
-	// LEFT JOIN employee_agency e
-	// ON u.emp_id = e.emp_id  LIMIT $offset, $limit";
 
-	// $query = "SELECT * FROM users   LIMIT $offset, $limit";
+	// $query = "SELECT u.id , u.role , u.name , i.emp_id , i.area_wrk_assign , i.division FROM users u join item i on i.emp_id = u.emp_id    LIMIT $offset, $limit";
 	
 	$query = "SELECT * FROM users ";
 
@@ -24,9 +20,22 @@ require '../includes/conn.php';
 
 	$output = '';
 
+	$output.=" <table class='table home-page-table mt-3 table-striped table-responsive-sm '>
+	<thead>
+		  <tr>
+			<th scope='col'>Employee Id</th>
+			<th scope='col'>Name</th>
+			<th scope='col'>User Role</th>
+			<th scope='col'>Department</th>
+			<th scope='col'>Office</th>
+			<th scope='col'>Action</th>
+		  </tr>
+	</thead>
+	<tbody>";
+
 	if (mysqli_num_rows($result) > 0) {
 
-	$output.="<tbody>";
+	
     
     while ($mydata = mysqli_fetch_assoc($result)) {
 
@@ -39,52 +48,42 @@ require '../includes/conn.php';
 				<td>
 				<a class='view_user_btn' data-toggle='modal' data-target='#view_user' data-id=' {$mydata['id']} '><i class='fa fa-edit mx-2'></i></a>
 				
-				<a href='delete_user.php?user_id={$mydata['id']}' onClick=\"return confirm('Are you sure you want to delete the applicant');\"><i class='fa fa-trash mx-2'></i></a>
+				<a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='user_id={$mydata['id']}'><i class='fa fa-trash mx-2'></i></a>
+
 			</td>
 		</tr>";
 	} 
-	$output.="</tbody>";
+	$output .= "</tbody>
+	</table>
+	";
 
-// 	$sql = 'SELECT id  FROM users';
+	$sql = 'SELECT id  FROM users';
 
-// 	$records = mysqli_query($conn, $sql);
+	$records = mysqli_query($conn, $sql);
+	$totalRecords = mysqli_num_rows($records);
+	$totalPage = ceil($totalRecords / $limit);
+	$showpageli = 3;
 
-// 	$totalRecords = mysqli_num_rows($records);
+	$output .= '<div class=" d-flex justify-content-between mt-4 ">
+				<div>
+				<button class="btn button-1 mr-3" style="height:35px"><i class="fa fa-print"></i></button>
+				<a href="index.php" class="btn button-1 mr-3" style="height:35px"><i class="fas fa-sync-alt"></i></a>
+				<p class="text-lowercase " style="display: contents;">' . $limit . ' ' . "of" . '  ' . $totalRecords . '</p>
+				</div> ';
 
-// 	$totalPage = ceil($totalRecords/$limit);
+				$output .= "<ul class='pagination '>";
 
-// 	$output .= '<div class=" d-flex justify-content-between mt-4 ">
-
-// 	<button class="btn button-1 " style="height:35px"><i class="fa fa-print"></i></button>
-  
-  
-//   ';
-
-// 	$output.="<ul class='pagination  '>";
-
-// 	for ($i=1; $i <= $totalPage ; $i++) { 
-// 	   if ($i == $page_no) {
-// 		$active = 'active';
-// 	   }else{
-// 		$active = '';
-// 	   }
-
-// 	    $output.="<li class='page-item $active'><a class='page-link' id='$i' href=''>$i</a></li>";
-// 	}
-
-// 	$output .= '</ul> </div>';
-	echo $output ; 
-	
-	} else {
-		$output.="
-		<tbody>
-		<tr>
-		<td colspan='6'>No data Available</td>
-                  </tr>
-				  </tbody>";
-
-		echo $output ; 
-	}
+				include "../includes/pagination_ul.php"; //getting pagination to work
+			
+				$output .= '</ul> </div>';
+				echo $output;
+			
+			} else {
+			
+				$output .= "<tr><td colspan='6'>No data Available</td> </tr> </tbody></table>";
+			
+				echo $output;
+			}
 
 ?>
 

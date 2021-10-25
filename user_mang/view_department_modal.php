@@ -8,7 +8,7 @@
                 <?php
                 require '../includes/conn.php';
 
-                $query = "SELECT * FROM department ";
+                $query = "select * from (SELECT DISTINCT department_name FROM department union select division from item ) as tablec where tablec.department_name != '' ";
 
                 $result = mysqli_query($conn, $query);
                 $i = 1;

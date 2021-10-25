@@ -159,6 +159,11 @@ if (isset($_POST['submit'])) {
 
         $sql = "DELETE FROM employee WHERE emp_id='$emp_id'";
         $conn->query($sql);
+
+        $date_modified = date('d/m/Y'); 
+
+        $item_update = "UPDATE item SET date_modified = '$date_modified' WHERE emp_id='$emp_id'"; $conn->query($item_update);
+
     }
 
 

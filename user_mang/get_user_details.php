@@ -21,9 +21,13 @@ if (isset($_POST['id'])) {
 
 
             <form action="" method="post">
-            <div class="row ">
+                <div class="form-row">
+                <div class="col-lg-6 col-sm-12 mt-3">
+                      <label for="">Full Name</label>
+                        <input type="text" class="form-control text-input" placeholder="Full name"  value="<?php echo $mydata['name']; ?>" disabled>
+                  </div>
 
-            <div class="col-lg-3 col-sm-12 mt-3">
+                  <div class="col-lg-3 col-sm-12 mt-3">
                       <label for="">Username</label>
                         <input type="text" class="form-control text-input" placeholder="Username" name="username" value="<?php echo $mydata['username']; ?>">
                   </div>
@@ -33,34 +37,79 @@ if (isset($_POST['id'])) {
                         <input type="text" class="form-control text-input" placeholder="Password" name="password" value="<?php echo $mydata['password']; ?>">
                   </div>
 
-                  <!-- <div class="col-lg-3 col-sm-12 mt-3">
-                      <label for="">Employee Id</label>
-                        <input type="text" class="form-control text-input" placeholder="Type id" name="emp_id" value="<?php echo $mydata['emp_id']; ?>" >
-                  </div>
+                </div>
+          
 
-                  <div class="col-lg-3 col-sm-12 mt-3">
-                      <label for="">Name</label>
-                        <input type="text" class="form-control text-input" placeholder="Full name"  name="emp_name" value="<?php echo $mydata['name']; ?>">
-                  </div> -->
+                  <div class="form-row">
 
-                  <div class="col-lg-5 col-sm-12 mt-3">
+                  <div class="col-lg-6 col-sm-12 mt-3">
                       <label for="">Role</label>
                         <select name="role" class="form-control text-input">
                               <option value="<?php echo $mydata['role']; ?>"><?php echo $mydata['role']; ?></option>
-                              <option value="Super Administrator">Super Administrator</option>
-                              <option value="HR Administrator">HR Administrator</option>
-                              <option value="Department Head">Department Head</option>
-                              <option value="Employee">Employee</option>
+                              <option value="Super Administrator" <?php echo ($mydata['role'] == "Super Administrator") ? "hidden" : "" ?>>Super Administrator</option>
+
+                              <option value="HR Administrator" <?php echo ($mydata['role'] == "HR Administrator") ? "hidden" : "" ?>>HR Administrator</option>
+
+                              <option value="Department Head"<?php echo ($mydata['role'] == "Department Head") ? "hidden" : "" ?>>Department Head</option>
+
+                              <option value="Employee" <?php echo ($mydata['role'] == "Employee") ? "hidden" : "" ?>>Employee</option>
+
                         </select>
                   </div>
 
+                  <div class="col-lg-3 col-sm-12 mt-3">
+                      <label for="">Department</label>
+                        <!-- <input type="text" class="form-control text-input" placeholder="Department" name="department" value="<?php echo $mydata['department']; ?>"> -->
+
+                        <select name="department" class="form-control text-input ">
+                        <option value= '<?=$mydata['department']?>'><?=$mydata['department']?></option>
+                              <?php
+                              $query = "select * from (SELECT DISTINCT department_name FROM department union select division from item ) as tablec where tablec.department_name != ''  ";
+                              $result = mysqli_query($conn, $query);
+                              if (mysqli_num_rows($result) > 0) {
+                                    echo "<option value=''> Select Department </option> ";
+                                    while ($mydata1 = mysqli_fetch_assoc($result)) {
+                                          echo "<option value= '" . $mydata1['department_name'] . "'>" . $mydata1['department_name'] . "</option>";
+                                    }
+                              } else {
+                                    echo "<option value='' > Select Department </option>";
+                              }
+                              ?>
+
+                        </select>
+
+                  </div>
+
+                  <div class="col-lg-3 col-sm-12 mt-3">
+                      <label for="">Office</label>
+                        <!-- <input type="text" class="form-control text-input" placeholder="Office" name="office" value="<?php echo $mydata['office']; ?>"> -->
+
+                        
+
+                        <select name="office" class="form-control text-input ">
+                        <option value= '<?=$mydata['office']?>'><?=$mydata['office']?></option>
+                              <?php
+                              $query = "SELECT * FROM ( SELECT DISTINCT area_wrk_assign from item UNION SELECT DISTINCT  office_name FROM office ) as tableC WHERE tableC.area_wrk_assign != ''  ";
+                              $result = mysqli_query($conn, $query);
+                              if (mysqli_num_rows($result) > 0) {
+                                    echo "<option value=''> Select Office/Unit </option> ";
+                                    while ($mydata2 = mysqli_fetch_assoc($result)) {
+                                          echo "<option value= '" . $mydata2['area_wrk_assign'] . "'>" . $mydata2['area_wrk_assign'] . "</option>";
+                                    }
+                              } else {
+                                    echo "<option value='' > Select Office/Unit </option>";
+                              }
+                              ?>
+
+                        </select>
+
+                  </div>
+
+
                   <input type="hidden" class="form-control text-input"  name="emp_id" value="<?php echo $mydata['emp_id']; ?>">
 
-                        <input type="hidden" class="form-control text-input" placeholder="Department" name="department" value="<?php echo $mydata['department']; ?>" >
-                  
+                  <input type="hidden" class="form-control text-input"  name="emp_name" value="<?php echo $mydata['name']; ?>">
 
-                        <input type="hidden" class="form-control text-input" placeholder="Office/Unit"  name="office" value="<?php echo $mydata['office']; ?>">
-                  
 
             </div>
 
