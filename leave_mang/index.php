@@ -34,7 +34,7 @@ if (isset($_POST['edit_leave_approve'])) {
       <div class="row ">
             <h4 class="background-title-1">LEAVE FORM</h4>
 
-            <div class="leave-mang-box-1" style="width: 100%;">
+            <div class="leave-mang-box-1 container-box" style="width: 100%;">
 
                   <form method="post" action="save_leave_form.php">
 
@@ -67,10 +67,22 @@ if (isset($_POST['edit_leave_approve'])) {
                                     <select class="form-control text-input" name="type_of_leave" id="type_of_leave">
                                           <option value="">Select Type of leave</option>
                                           <option value="Vacation leave">Vacation Leave</option>
+                                          <option value="Mandatory/Forced Leave">Mandatory/Forced Leave</option>
                                           <option value="Sick leave">Sick Leave</option>
+                                          <option value="Maternity Leave">Maternity Leave</option>
+                                          <option value="Paternity Leave">Paternity Leave</option>
                                           <option value="Special priviledge leave">Special priviledge Leave</option>
-                                          <option value="Force leave">Force Leave</option>
-                                          <option value="Leave without pay">Leave without pay</option>
+                                          <option value="Solo Parent Leave">Solo Parent Leave</option>
+                                          <option value="Study Leave">Study Leave</option>
+                                          <option value="10-day VAWC Leave">10-day VAWC Leave</option>
+                                          <option value="Rehabilitation Privilege">Rehabilitation Privilege</option>
+                                          <option value="Special Leave Benefits for Women">Special Leave Benefits for Women</option>
+                                          <option value="Special Emergency Leave">Special Emergency Leave</option>
+                                          <option value="Adoption Leave">Adoption Leavee</option>
+                                         
+                                          <option value="Others">Others</option>
+                                          
+
                                     </select>
                               </div>
 
@@ -90,6 +102,11 @@ if (isset($_POST['edit_leave_approve'])) {
                               <div class="col-lg-4 col-sm-6 form-inline">
                                     <label for="" class="responsive-label">To date</label>
                                     <input type="date" class="form-control text-input ml-3" placeholder="Date Picker" name="leave_to_date" id="leave_to_date">
+                              </div>
+
+                              <div class="col-lg-4 col-sm-6 form-inline">
+                                    <label for="" class="responsive-label">Date of filing</label>
+                                    <input type="date" class="form-control text-input ml-3" placeholder="Date Picker" name="date_filled" >
                               </div>
 
                         </div>
@@ -150,22 +167,29 @@ if (isset($_POST['edit_leave_approve'])) {
       </div>
       <!-- end of first part -->
 
-      <div class="row mt-5 mr-2 ml-2">
+
+      
+
+
+<!-- leave summary -->
+
+      <div class="row mt-5 ">
             <h4 class="background-title-1">LEAVE SUMMARY</h4>
 
-            <div class="form-row mx-auto mt-3 ">
+            <div class="form-row ml-2 mr-2 mt-3 " style="width: 100%;">
 
                   <!-- <form action="" method="post" class="form-inline "> -->
 
-                        <div class="col-lg-5 col-sm-5">
+                        <div class="col-lg-2 col-sm-5">
                               <input type="date" class="form-control text-input" placeholder="Date Picker" style="width:100%" id="from_date">
                         </div>
 
-                        <div class="col-lg-1 col-sm-1">
-                              <span>to</span>
-                        </div>
+                        
+                              
+                        <span class="ml-2 mr-2 mt-2">to</span>
 
-                        <div class="col-lg-5 col-sm-5">
+                        <div class="col-lg-2 col-sm-5">
+                        
                               <input type="date" class="form-control text-input" placeholder="Date Picker" style="width:100%" id="to_date">
                         </div>
 
@@ -173,42 +197,62 @@ if (isset($_POST['edit_leave_approve'])) {
                               <button type="submit" id="search_leave" class="btn button-1">Search </button>
                         </div>
 
+                        <div class="col-lg-3"></div>
+
+                        <div class="col-lg-2 col-sm-6">
+            
+                  <select name="search_approve" id="search_approve" class="form-control text-input" >
+                        <option value="0">Status</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Refused">Refused</option>
+                  </select>
+            
+      </div>
+
+      <div class="col-lg-1 col-sm-1 ml-5 ">
+      <button class="btn button-1 " style="height:35px ; " id="print_leave" onclick="printDiv('printableArea_leave_summary')"><i class="fa fa-print"></i></button>
+      </div>
 
                   <!-- </form> -->
 
             </div>
       </div>
 
+      
+      
+      <?php
+      
+      echo '<div id="table-data"> </div>';
 
-            
+      ?>
 
-                  <?php
-               
-                  echo '<div id="table-data"> </div>';
 
-                  ?>
 
 
 
 </div>
 
-<!-- view status modal -->
-<div class="modal fade " id="edit_leave" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content">
 
-                  <h3 class=" background-title-1 p-3">View Applicant</h3>
 
-                  <div class="modal-body" id="view_status_details">
+<?php include "statusModal.php" ?>
 
-                  </div>
-            </div>
-      </div>
-</div>
+<?php include "leave_summary_print_section.php" ?>
 
 
 
 <script>
+      // print
+        function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
       // to get the info
       $(document).ready(function() {
 
@@ -268,7 +312,9 @@ if (isset($_POST['edit_leave_approve'])) {
                   });
             });
 
-            function loadData(page , from_date , to_date) {
+            
+
+            function loadData(page , from_date , to_date , search_approve) {
                   $.ajax({
                         url: "../leave_mang/pagination.php",
                         type: "POST",
@@ -276,7 +322,8 @@ if (isset($_POST['edit_leave_approve'])) {
                         data: {
                               page_no: page ,
                               from_date : from_date, 
-                              to_date : to_date
+                              to_date : to_date,
+                              search_approve :search_approve
                         },
                         success: function(response) {
                               $("#table-data").html(response);
@@ -290,15 +337,30 @@ if (isset($_POST['edit_leave_approve'])) {
                   var from_date = $('#from_date').val();
                   var to_date = $('#to_date').val();
                   var pageId = $(this).attr("id");
-                  loadData(pageId , from_date , to_date);
+                  var search_approve = $('#search_approve').val();
+                  loadData(pageId , from_date , to_date , search_approve );
             });
 
             $(document).on("click", "#search_leave", function() {
                   var from_date = $('#from_date').val();
                   var to_date = $('#to_date').val();
                   var pageId = 1;
-                  loadData(pageId , from_date , to_date);
+                  var search_approve = $('#search_approve').val();
+                  loadData(pageId , from_date , to_date , search_approve );
             });
 
+            $(document).on("change", "#search_approve", function() {
+                  var search_approve = $('#search_approve').val();
+                  var from_date = $('#from_date').val();
+                  var to_date = $('#to_date').val();
+                  var pageId = 1;
+            
+                  loadData(pageId , from_date , to_date , search_approve );
+            });
+            
+
+          
       });
+
+
 </script>

@@ -3,7 +3,7 @@ require '../includes/conn.php';
 
 if(isset($_POST['submit'])){
 
-    $date_filled = date('Y-m-d');
+    // $date_filled = date('Y-m-d');
     $year = date("Y");
     $emp_id=$_POST['emp_id'];
 
@@ -13,9 +13,11 @@ if(isset($_POST['submit'])){
     $leave_to_date=$_POST['leave_to_date'];
     $details_of_leave=$_POST['details_of_leave'];
     $no_of_working_days=$_POST['no_of_working_days'];
+    $date_filled=$_POST['date_filled'];
 
     $from_date = strtotime($leave_from_date); // or your date as well
     $to_date = strtotime($leave_to_date);
+    
 
 
     $date_diff = round(($to_date - $from_date )/ (60 * 60 * 24))+1;
