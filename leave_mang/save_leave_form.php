@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
 
     $date_diff = round(($to_date - $from_date )/ (60 * 60 * 24))+1;
  
-               $sql="INSERT INTO emp_leaves (emp_id, type_of_leave,leave_from_date,leave_to_date,details_of_leave,date_diff,no_of_working_days , date_filled) VALUE ('$emp_id', '$type_of_leave','$leave_from_date','$leave_to_date','$details_of_leave','$date_diff','$no_of_working_days' , '$date_filled')
+               $sql="INSERT INTO emp_leaves (emp_id, type_of_leave,leave_from_date,leave_to_date,details_of_leave,date_diff,no_of_working_days , date_filled , status) VALUE ('$emp_id', '$type_of_leave','$leave_from_date','$leave_to_date','$details_of_leave','$date_diff','$no_of_working_days' , '$date_filled' , '0')
            
             ";
 

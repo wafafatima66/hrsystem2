@@ -190,7 +190,7 @@
                         </div>
 
                         <div class="">
-                              <button class="btn button-1 " type="submit"><i class="fa fa-print"></i></button>
+                              <!-- <button class="btn button-1 " type="submit"><i class="fa fa-print"></i></button> -->
 
                               <button class="btn button-1 " type="submit" name="submit"><i class="fas fa-check"></i></button>
                         </div>

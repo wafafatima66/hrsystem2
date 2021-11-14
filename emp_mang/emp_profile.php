@@ -83,11 +83,13 @@ if (isset($_GET['id'])) {
                                                       <h5><?php echo $position;  ?></h5>
                                                       <h5>Emp.ID : <?php echo $mydata["emp_id"]  ?> </h5>
                                                       <input type="hidden" name="emp_id" value="<?php echo $mydata['emp_id'] ?>" form="emp_profile_form" class="emp_id">
-
-                                                      <label class="switch mr-5">
+                                                     <div>
+                                                      <label class="switch mr-5 mb-0">
                                                             <input type="checkbox" <?php echo ($mydata["active"] == '1' ? 'checked' : '') ?> id="emp_active" value="<?php echo $mydata["emp_id"]  ?>">
                                                             <span class="slider round"></span>
                                                       </label>
+                                                      <div style="color: #FFDF88" id="status_span" class="ml-2" ><?=($mydata["active"]?"Active" : "Inactive")?></div>
+                                                     </div>
 
                                                 </div>
                                           </div>
@@ -152,14 +154,6 @@ if (isset($_GET['id'])) {
                               //active button
                               $('#emp_active').click(function() {
                                     var active = 0;
-                                    // // if ($('#emp_active').is(":checked")) {
-                                    //      if($('#emp_active').attr('checked', true)) {
-                                    //       // var active = 1;
-                                    //       $("#myModal").modal('hide');
-                                    // } else {
-                                    //       // var active = 0;
-                                    //       $('#myModal').modal();
-                                    // }
 
                                     if ($("#emp_active").prop('checked') == false) 
                                     {
@@ -186,6 +180,7 @@ if (isset($_GET['id'])) {
                                                 success: function(data) {
                                                       if (data == "success") {
                                                             toastr.success("Employee active status updated !");
+                                                            $("#status_span").html( 'Active' );
                                                       } else if (data == "fail") {
                                                             toastr.error("Employee active status not updated !");
                                                       }

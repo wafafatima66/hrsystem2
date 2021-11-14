@@ -14,7 +14,7 @@ require '../includes/conn.php';
 
 	// $query = "SELECT u.id , u.role , u.name , i.emp_id , i.area_wrk_assign , i.division FROM users u join item i on i.emp_id = u.emp_id    LIMIT $offset, $limit";
 	
-	$query = "SELECT * FROM users ";
+	$query = "SELECT * FROM users LIMIT $offset, $limit ";
 
 	$result = mysqli_query($conn, $query);
 

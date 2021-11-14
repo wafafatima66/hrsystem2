@@ -113,8 +113,11 @@ if (mysqli_num_rows($result) > 0) {
 
   $output .= '<div class=" d-flex justify-content-between mt-4 ">
               <div>
+
               <a href="" class="btn button-1 mr-3" style="height:35px" id="publication_print"><i class="fa fa-print"></i></a>
+              
               <a href="index.php" class="btn button-1 mr-3" style="height:35px"><i class="fas fa-sync-alt"></i></a>
+
               <p class="text-lowercase " style="display: contents;">' . $limit . ' ' . "of" . '  ' . $totalRecords . '</p>
               </div> ';
 

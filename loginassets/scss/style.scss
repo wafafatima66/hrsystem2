@@ -1,0 +1,115 @@
+/* =======================================================================
+Template Name: Youtubers
+Author:  SmartEye Technologies
+Author URI: www.smarteyeapps.com
+Version: 1.0
+coder name:Prabin Raja
+Description: This Template is created for Youtubers
+======================================================================= */
+
+/* ===================================== Import Variables ================================== */
+@import 'variable';
+/* ===================================== Basic CSS ==================================== */
+@import 'base/basic_setup';
+
+/* ===================================== Login Page Design CSS ==================================== */
+
+.form-login-body{
+    .top-menu{
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+        background-color: #FFF;
+        .sup{
+            ul{
+                li{
+                    float: right;
+                    padding: 15px;
+                    .btn{
+                        box-shadow: none;
+                        width: 115px;
+                         font-weight: 600;
+                        border-radius: 50px;
+                        i{
+                            margin-right: 5px;
+                        }
+                    }
+                    .btn-outline-primary{
+                        color: #7d60d6;
+                        border-color: #7d60d6;
+                        padding-right: 20px;
+                        padding-left: 20px;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+        .logo{
+            img{
+                max-width: 210px;
+                margin-top: 3px;
+            }
+        }
+    }
+    .login-body{
+        .login-text{
+            padding-top: 25%;
+            @media screen and (max-width: 767px){
+                padding-top: 13px;
+            }
+            max-width: 350px;
+            float: none;
+            margin: auto;
+            h4{
+                font-weight: 600;
+                font-size: 1.3rem;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .form-control{
+                border-radius: 6px;
+            }
+            label{
+                float: right;
+                text-align: right;
+                margin-bottom: 15px;
+                font-size: .85rem;
+                font-weight: 600;
+            }
+            .btn{
+                width: 100%;
+                border-radius: 6px;
+                font-weight: 600;
+            }
+            p{
+                font-weight: 600;
+                font-size: .87rem;
+                margin-top: 15px;
+                text-align: center;
+            }
+            a{
+                color: cornflowerblue;
+            }
+        }
+        .login-img{
+            text-align: center;
+            img{
+                max-width: 70%;
+                padding-top: 7%;
+            }
+        }
+    }
+    .copy{
+        font-size: .83rem;
+        color: #a7a7a7;
+        a{
+            color: #a7a7a7;
+        }
+    }
+}
+
+
+
+
+/* ===================================== Responsive Style CSS ==================================== */
+
+@import 'response/responsive';

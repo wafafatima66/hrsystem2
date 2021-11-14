@@ -602,3 +602,15 @@ input[type="radio"] {
     /* padding: 20px; */
 }
 
+small{
+    font-size:14px;
+}
+
+/* emp report generation box */
+.emp_report_gen_box a{
+    color: #505A43;
+    padding-bottom: 4px;
+    text-decoration: none;
+    margin: 2px 6px;
+    padding: 2px;
+}

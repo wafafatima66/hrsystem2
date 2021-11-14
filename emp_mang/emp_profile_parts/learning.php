@@ -19,30 +19,30 @@
 
                    <div class="col-lg-5 col-sm-12">
                        <div class="d-flex flex-column">
-                           <label for="">TITLE OF TRAINING/PROGRAM ATTENDED</label>
+                        <small>Title of Training/Program Attended</small>
                            <input type="text" class="form-control text-input" name="title_of_training[]" value="<?php echo $mydata['title_of_training'] ?>">
                        </div>
                    </div>
 
                    <div class="col-lg-3 col-sm-6">
                        <div class="d-flex flex-column">
-                           <label for="">TYPE OF PROGRAM</label>
+                        <small>Type of Program</small>
                            <select class="form-control text-input" name="training_type_of_position[]">
                                <option value="">SELECT</option>
 
-                               <option value="technical" <?php if ($mydata['training_type_of_position'] == "technical") {
+                               <option value="Technical" <?php if ($mydata['training_type_of_position'] == "Technical") {
                                                                 echo 'selected';
                                                             } ?>>Technical</option>
 
-                               <option value="managerial" <?php if ($mydata['training_type_of_position'] == "managerial") {
+                               <option value="Managerial" <?php if ($mydata['training_type_of_position'] == "Managerial") {
                                                                 echo 'selected';
                                                             } ?>>Managerial</option>
 
-                               <option value="supervisory" <?php if ($mydata['training_type_of_position'] == "supervisory") {
+                               <option value="Supervisory" <?php if ($mydata['training_type_of_position'] == "Supervisory") {
                                                                 echo 'selected';
                                                             } ?>>Supervisory</option>
 
-                               <option value="clerical" <?php if ($mydata['training_type_of_position'] == "clerical") {
+                               <option value="Clerical" <?php if ($mydata['training_type_of_position'] == "Clerical") {
                                                             echo 'selected';
                                                         } ?>>Clerical</option>
 
@@ -52,7 +52,7 @@
 
                    <div class="col-lg-2 col-sm-6">
                        <div class="d-flex flex-column">
-                           <label for="">NO. OF HOURS</label>
+                          <small>No. of Hours</small>
                            <input type="text" class="form-control text-input" name="training_no_of_hrs[]" value="<?php echo $mydata['training_no_of_hrs'] ?>">
                        </div>
                    </div>
@@ -63,7 +63,7 @@
 
                    <div class="col-lg-6 col-sm-12">
                        <div class="d-flex flex-column">
-                           <label for="">INCLUSIVE DATES</label>
+                        <small>Inclusive Dates</small>
                            <div class="d-md-flex justify-content-center">
 
                                <input type="date" class="form-control text-input mx-sm-1 " name="training_from_date[]" value="<?php echo $mydata['training_from_date'] ?>">
@@ -79,7 +79,7 @@
                    <div class="col-lg-3 col-sm-6">
                        <div class="d-flex">
                            <div class="form-group ">
-                               <label for="">SPONSORS</label>
+                            <small>Sponsors</small>
                                <input type="text" class="form-control text-input" name="training_conducted_by[]" value="<?php echo $mydata['training_conducted_by'] ?>">
                            </div>
                        </div>
@@ -120,10 +120,10 @@
                        <label for="">TYPE OF PROGRAM</label>
                        <select class="form-control text-input" name="training_type_of_position[]">
                            <option value="">SELECT</option>
-                           <option value="technical">Technical</option>
-                           <option value="managerial">Managerial</option>
-                           <option value="supervisory">Supervisory</option>
-                           <option value="clerical">Clerical</option>
+                           <option value="Technical">Technical</option>
+                           <option value="Managerial">Managerial</option>
+                           <option value="Supervisory">Supervisory</option>
+                           <option value="Clerical">Clerical</option>
                        </select>
                    </div>
                </div>
@@ -201,7 +201,7 @@
            var addButton = $('.add_learn_button'); //Add button selector
            var wrapper = $('.learning_wrapper'); //Input field wrapper
            var fieldHTML =
-               '  <div class="form-row mt-5"> <div class="col-lg-5 col-sm-12"> <div class="d-flex flex-column"> <label for="">TITLE OF TRAINING/PROGRAM ATTENDED</label> <input type="text" class="form-control text-input"  name="title_of_training[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">TYPE OF PROGRAM</label> <select class="form-control text-input" name="training_type_of_position[]"> <option value="">SELECT</option> <option value="technical">Technical</option> <option value="managerial">Managerial</option> <option value="supervisory">Supervisory</option> <option value="clerical">Clerical</option> </select> </div> </div> <div class="col-lg-2 col-sm-6"> <div class="d-flex flex-column"> <label for="">NO. OF HOURS</label> <input type="text" class="form-control text-input"  name="training_no_of_hrs[]"> </div> </div> </div> <div class="form-row mt-3"> <div class="col-lg-6 col-sm-12"> <div class="d-flex flex-column"> <label for="">INCLUSIVE DATES</label> <div class="d-md-flex justify-content-center"> <input type="date" class="form-control text-input mx-sm-1 "  name="training_from_date[]"> <input type="date" class="form-control text-input mx-sm-1 "  name="training_to_date[]"> </div> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex"> <div class="form-group "> <label for="">SPONSORS</label> <input type="text" class="form-control text-input"  name="training_conducted_by[]"> </div> </div> </div> <div class="col-lg-3 col-sm-6 mt-3"> <div class="form-group "> <label style="width: 100%;"> <div class="inner-upload-field p-2"> <h6 class="text-center">UPLOAD FILE</h6> </div> <input type="file" name="training_files[]" id="training_files" style="display: none;" > </label> </div> </div> </div>';
+               '  <div class="form-row mt-5"> <div class="col-lg-5 col-sm-12"> <div class="d-flex flex-column"> <label for="">TITLE OF TRAINING/PROGRAM ATTENDED</label> <input type="text" class="form-control text-input"  name="title_of_training[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">TYPE OF PROGRAM</label> <select class="form-control text-input" name="training_type_of_position[]"> <option value="">SELECT</option> <option value="Technical">Technical</option> <option value="Managerial">Managerial</option> <option value="Supervisory">Supervisory</option> <option value="Clerical">Clerical</option> </select> </div> </div> <div class="col-lg-2 col-sm-6"> <div class="d-flex flex-column"> <label for="">NO. OF HOURS</label> <input type="text" class="form-control text-input"  name="training_no_of_hrs[]"> </div> </div> </div> <div class="form-row mt-3"> <div class="col-lg-6 col-sm-12"> <div class="d-flex flex-column"> <label for="">INCLUSIVE DATES</label> <div class="d-md-flex justify-content-center"> <input type="date" class="form-control text-input mx-sm-1 "  name="training_from_date[]"> <input type="date" class="form-control text-input mx-sm-1 "  name="training_to_date[]"> </div> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex"> <div class="form-group "> <label for="">SPONSORS</label> <input type="text" class="form-control text-input"  name="training_conducted_by[]"> </div> </div> </div> <div class="col-lg-3 col-sm-6 mt-3"> <div class="form-group "> <label style="width: 100%;"> <div class="inner-upload-field p-2"> <h6 class="text-center">UPLOAD FILE</h6> </div> <input type="file" name="training_files[]" id="training_files" style="display: none;" > </label> </div> </div> </div>';
 
            //New input field html 
            var x = 1; //Initial field counter is 1

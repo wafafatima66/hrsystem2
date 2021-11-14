@@ -29,14 +29,18 @@ if (isset($_POST['submit'])) {
     $emp_nationality = $_POST['emp_nationality'];
     $emp_resi_add = $_POST['emp_resi_add'];
     $emp_resi_add_street = $_POST['emp_resi_add_street'];
+    $emp_per_add_subvillage = $_POST['emp_per_add_subvillage'];
     $emp_resi_add_municipal = $_POST['emp_resi_add_municipal'];
     $emp_resi_add_barangay = $_POST['emp_resi_add_barangay'];
     $emp_resi_add_zipcode = $_POST['emp_resi_add_zipcode'];
+    $emp_resi_add_province = $_POST['emp_resi_add_province'];
     $emp_per_add = $_POST['emp_per_add'];
     $emp_per_add_street = $_POST['emp_per_add_street'];
+    $emp_resi_add_subvillage = $_POST['emp_resi_add_subvillage'];
     $emp_per_add_municipal = $_POST['emp_per_add_municipal'];
     $emp_per_add_barangay = $_POST['emp_per_add_barangay'];
     $emp_per_add_zipcode = $_POST['emp_per_add_zipcode'];
+    $emp_per_add_province = $_POST['emp_per_add_province'];
     $emp_tel_no = $_POST['emp_tel_no'];
     $emp_mb_no = $_POST['emp_mb_no'];
     $emp_email = $_POST['emp_email'];
@@ -188,11 +192,15 @@ if (isset($_POST['submit'])) {
                     emp_resi_add_municipal  ,
                     emp_resi_add_barangay  ,
                     emp_resi_add_zipcode  , 
+                    emp_resi_add_province  , 
+                    emp_resi_add_subvillage  , 
                     emp_per_add ,
                     emp_per_add_street  , 
                     emp_per_add_municipal  ,
                     emp_per_add_barangay  ,
                     emp_per_add_zipcode  , 
+                    emp_per_add_province  , 
+                    emp_per_add_subvillage  , 
                     emp_tel_no  ,
                     emp_mb_no  , 
                     emp_email ,
@@ -276,11 +284,15 @@ if (isset($_POST['submit'])) {
                     '$emp_resi_add_municipal'  ,
                     '$emp_resi_add_barangay'  , 
                     '$emp_resi_add_zipcode'  , 
+                    '$emp_resi_add_province'  , 
+                    '$emp_resi_add_subvillage'  , 
                     '$emp_per_add' , 
                     '$emp_per_add_street'  , 
                     '$emp_per_add_municipal'  ,
                     '$emp_per_add_barangay'  ,
                     '$emp_per_add_zipcode'  , 
+                    '$emp_per_add_province'  , 
+                    '$emp_per_add_subvillage'  , 
                     '$emp_tel_no'  , 
                     '$emp_mb_no'  , 
                     '$emp_email' , 

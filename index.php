@@ -1,21 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HR SYSTEM</title>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PHRIS - NITIBDEV</title>
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/bootstrap-4-5.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <link rel="shortcut icon" href="loginassets/images/favicon.ico">
+    <link rel="stylesheet" href="loginassets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="loginassets/css/all.min.css">
+    <link rel="stylesheet" href="loginassets/css/animate.css">
+    <link rel="stylesheet" href="loginassets/plugins/slider/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="loginassets/plugins/slider/css/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="loginassets/css/style.css" />
 </head>
 
-<body>
-
-    <?php require dirname(__FILE__) . '/includes/conn.php';
+    <body class="form-login-body"> 
+         <?php require dirname(__FILE__) . '/includes/conn.php';
 
     session_start();
 
@@ -36,20 +40,6 @@
         $_SESSION['login_user'] = $userid;
 
 
-        // If result matched $myusername and $mypassword, table row must be 1 row
-
-        // if ($count == 1 && $row['role'] == 'Super Admin') {
-
-        //     $_SESSION['login_user'] = $userid;
-        //     header("location:home/index.php");
-        // } else if ($count == 1 && $row['role'] == 'Employee') {
-
-        //     $_SESSION['login_user'] = $userid;
-        //     header("location:emp_mang/index.php");
-        // } else {
-        //     header("location:index.php?error");
-        // }
-
         if ($count == 1){
             if($row['role'] == 'Super Administrator'){
                 header("location:home/index.php");
@@ -69,112 +59,56 @@
     }
 
     ?>
-
-
-    <div class="login-page">
-
-
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-sm-6 col-md-6 pr-5 responsive-login-part" style="border-right: solid 4px #505A43;">
-
-                    <div class="mx-auto">
-
-                        <h1 class="h4-heading text-center">Agency name</h1>
-
-                        <h3 class="text-center  mt-5">Vision</h3><br>
-                        <p class="p-3 text-justify ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-                            repellat, modi harum quae quibusdam magni corporis laboriosam? Dignissimos, vero iste.</p>
-                        <h3 class="text-center  mt-5">Vision</h3><br>
-                        <p class="p-3 text-justify ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae quam
-                            quisquam quidem nulla adipisci ipsum cupiditate obcaecati inventore voluptate! Animi!</p>
-                        <h3 class="text-center  mt-5">Vision</h3><br>
-                        <p class="p-3 text-justify ">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam
-                            doloremque fuga quae illum sit nobis laboriosam commodi dolorem accusantium in?.</p>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-sm-6 col-md-6 pl-5">
-                    <div class="text-center mt-3 index-logo">
-                        <img src="img/logo-2.png" alt="">
-
+        
+            <div class="login-body container-fluid">
+                    <div class="container">
                         <form class="mt-4 login-form" action="" method="post">
-
-
-                            <div class=" form-row mt-3">
-
-                                <div class="col-lg-5 col-sm-6 text-right">
-                                    <label for="username" class="mr-4 ">Username:</label><br>
-
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="login-text">
+                                         <!--<img src="img/logo-2.png" alt=""> -->
+                                        <h4>Login</h4>
+                                        
+                                        <input type="text" placeholder="Enter Username" name="username" id="username" class="form-control ">
+                                        
+                                         <input type="text" placeholder="Enter Password" name="password" id="password" class="form-control">
+                                         
+                                         <label class="w-100" for="">Forget Password?</label>
+                                         
+                                         <button class="btn " type="submit" name="submit" style="background-color: orange;">Sign In</button>
+                                        
+                                        
+                                    </div>
                                 </div>
-
-                                <div class="col-lg-5 col-sm-6">
-                                    <input type="text" name="username" id="username" class="form-control ">
-                                </div>
-
-
-
-                            </div>
-
-                            <div class=" form-row mt-3">
-
-                                <div class="col-lg-5 col-sm-6 text-right">
-                                    <label for="password" class="mr-4">Password:</label><br>
-
-                                </div>
-
-                                <div class="col-lg-5 col-sm-6">
-                                    <input type="password" name="password" id="password" class="form-control ">
-                                </div>
-
-
-
-                            </div>
-
-                            <div class=" form-row mt-3">
-
-                                <div class="col-lg-5 col-sm-6 text-right mt-2">
-                                    <a href="">Forgot password</a>
-
-                                </div>
-
-                                <div class="col-lg-5 col-sm-6 text-left">
-                                    <button type="submit" name="submit" class="btn button-2 ml-3">Submit</button>
-                                </div>
-
-
-
-                            </div>
-
-                        </form>
-
-                        <?php
+                            </form>
+                            <?php
 
                         if (isset($_GET['error'])) {
 
                             echo '<p class="mt-5">Your Login Name or Password is invalid</p>';
                         }
                         ?>
+
+                        
+                                <div class="col-md-7">
+                                    <div class="login-img">
+                                        <img src="loginassets/images/login.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="copy"><p>Developed by: <br>
+                                                        AJAXCRYPT | ajaxcryptstartup@gmail.com &<br>
+                                                        NITIBDEV IT SOLUTIONS | nitibdevitsolutions@gmail.com</p></div>
                     </div>
-
-
                 </div>
-
-            </div>
         </div>
+    </body>
 
-    </div>
-
-    <nav class="navbar main-header ">
-        <h4 class="mx-auto">HUMAN RESOURCES MANAGEMENT SYSTEM</h4>
-        <div class="text-right">
-            <h6 class="">Ajax Version 1.01</h6>
-        </div>
-    </nav>
-
-    </footer> 
-
-</body>
-
+    <script src="loginassets/js/jquery-3.2.1.min.js"></script>
+    <script src="loginassets/js/popper.min.js"></script>
+    <script src="loginassets/js/bootstrap.min.js"></script>
+    <script src="loginassets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
+    <script src="loginassets/plugins/slider/js/owl.carousel.min.js"></script>
+    <script src="loginassets/js/script.js"></script>
 </html>
