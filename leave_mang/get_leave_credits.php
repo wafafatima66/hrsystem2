@@ -4,28 +4,25 @@ require '../includes/conn.php';
 
 //to fill up the table points in leave management first box
    
-if(isset($_POST['leave_to_date'])){
+if(isset($_POST['emp_id'])){
 
     $emp_id = $_POST['emp_id'];
-     $leave_from_date = $_POST['leave_from_date'];
-     $leave_to_date = $_POST['leave_to_date'];
      $type_of_leave = $_POST['type_of_leave'];
+     $date_diff = $_POST['date_diff'];
+     $mon = $_POST['mon'];
+     $year = $_POST['year'];
 
-   
+    //  $from_date = strtotime($leave_from_date); 
+    //  $to_date = strtotime($leave_to_date);
 
-     $from_date = strtotime($leave_from_date); // or your date as well
-     $to_date = strtotime($leave_to_date);
-
-    $mon = date("n", strtotime($leave_from_date));
-    $year = date("Y", strtotime($leave_from_date));
+    // $mon = date("n", strtotime($leave_from_date));
+    // $year = date("Y", strtotime($leave_from_date));
 
 
-     $date_diff = round(($to_date - $from_date )/ (60 * 60 * 24))+1;
+    //  $date_diff = round(($to_date - $from_date )/ (60 * 60 * 24))+1;
 
      $vl_now_pts = 0;
      $sl_now_pts = 0;
-
-     
 
      if($type_of_leave == "Vacation leave"){
         $vl_now_pts = $date_diff * 1.25 ; 
@@ -67,6 +64,4 @@ if(isset($_POST['leave_to_date'])){
 } else {
     echo json_encode( array('vl_pts'=>$year , 'sl_pts'=>$mon));
 }
-} 
-
-?>
+}

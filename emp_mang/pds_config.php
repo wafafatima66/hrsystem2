@@ -133,7 +133,10 @@ if (isset($_POST['submit'])) {
     $rowcount = mysqli_num_rows($runquery);
     if ($rowcount > 0) {
 
-
+        while ($mydata = $runquery->fetch_assoc()) {
+            $active = $mydata['active'];
+        }
+        
         // image for employee
 
         if (!empty($_FILES["emp_image"]["name"])) {
@@ -263,7 +266,7 @@ if (isset($_POST['submit'])) {
                     condition_11  , 
                     condition_11_des  ,
                     condition_12  ,
-                    condition_12_des 
+                    condition_12_des , active
                     ) VALUES ( 
                     '$emp_id'  ,
                     '$emp_image'  ,
@@ -355,7 +358,7 @@ if (isset($_POST['submit'])) {
                     '$condition_11'  , 
                     '$condition_11_des'  ,
                     '$condition_12'  , 
-                    '$condition_12_des'  
+                    '$condition_12_des' ,'$active' 
 )";
 
 
@@ -714,8 +717,8 @@ if (isset($_POST['submit'])) {
         $conn->query($sql);
     }
 
-    if (!empty($_POST['emp_gov_issued_id_type'])) {
-        for ($i = 0; $i < count($_POST['emp_gov_issued_id_type']); $i++) {
+    if (!empty($_POST['emp_gov_issued_id'])) {
+        for ($i = 0; $i < count($_POST['emp_gov_issued_id']); $i++) {
 
             $emp_gov_issued_id = $_POST['emp_gov_issued_id'][$i];
             $emp_gov_issued_id_type = $_POST['emp_gov_issued_id_type'][$i];

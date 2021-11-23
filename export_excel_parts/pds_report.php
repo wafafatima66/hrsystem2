@@ -7,15 +7,15 @@ $spreadsheet = $reader->load('../export_excel_parts/PDS.xlsx');
 
 
 
-// $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue('A5', "WOW");
-
 
 $query = "Select * from employee where emp_id = '$emp_id'";
 
 $result = mysqli_query($conn, $query);
-
+$emp_image = '';
 if (mysqli_num_rows($result) > 0) {
+    
     while ($mydata = mysqli_fetch_assoc($result)) {
+        $emp_image = $mydata['emp_image'];
 
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D10', $mydata['emp_last_name']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D11', $mydata['emp_first_name']);
@@ -268,6 +268,53 @@ if (mysqli_num_rows($result) > 0) {
         $count++;
     }
 } 
+
+$query14 = "SELECT date_accomplished FROM `item` WHERE emp_id = '$emp_id'";
+$result = mysqli_query($conn, $query14);
+if (mysqli_num_rows($result) > 0) {
+    while ($mydata = mysqli_fetch_assoc($result)) {
+        $date_accomplished = $mydata['date_accomplished'];
+    }
+}
+
+$spreadsheet->setActiveSheetIndexByName('C1')->setCellValue("L60" , $date_accomplished);
+$spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("J47" , $date_accomplished);
+$spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("I53" , $date_accomplished);
+$spreadsheet->setActiveSheetIndexByName('C4')->setCellValue("F64" , $date_accomplished);
+
+// image
+if(!empty($emp_image)){
+$drawing = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+$drawing->setPath('../emp_img/'.$emp_image); // put your path and image here
+$drawing->setCoordinates('J50');
+$drawing->setHeight(220);
+$drawing->setWidth(200);
+$drawing->setWorksheet($spreadsheet->setActiveSheetIndexByName('C4'));
+}
+
+$query15 = "SELECT emp_gov_issued_id FROM `emp_govt_id` WHERE emp_id = '$emp_id'  limit 1";
+$result = mysqli_query($conn, $query15);
+if (mysqli_num_rows($result) > 0) {
+    while ($mydata = mysqli_fetch_assoc($result)) {
+        $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue("D61", $mydata['emp_gov_issued_id']);
+    }
+}
+
+$query16 = "SELECT emp_gov_issued_id FROM `emp_govt_id` WHERE emp_id = '$emp_id'  limit 1,1";
+$result = mysqli_query($conn, $query16);
+if (mysqli_num_rows($result) > 0) {
+    while ($mydata = mysqli_fetch_assoc($result)) {
+        $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue("D62", $mydata['emp_gov_issued_id']);
+    }
+}
+
+$query17 = "SELECT emp_gov_issued_id FROM `emp_govt_id` WHERE emp_id = '$emp_id'  limit 2,1";
+$result = mysqli_query($conn, $query17);
+if (mysqli_num_rows($result) > 0) {
+    while ($mydata = mysqli_fetch_assoc($result)) {
+        $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue("D64", $mydata['emp_gov_issued_id']);
+    }
+}
 
 $fileName = "PDS-" . $emp_id . "" . ".xlsx"; //date('d/m/Y')
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

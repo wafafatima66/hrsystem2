@@ -24,9 +24,7 @@ if (isset($_GET['id'])) {
 
 
       $query = "SELECT * FROM employee WHERE id = '$id'";
-      // $query =  "SELECT e.* , a.position FROM employee e join item a on e.emp_id = a.emp_id WHERE e.id = '$id'";
-
-
+    
       $runquery = $conn->query($query);
       if ($runquery == true) {
             while ($mydata = $runquery->fetch_assoc()) {
@@ -94,25 +92,7 @@ if (isset($_GET['id'])) {
                                                 </div>
                                           </div>
 
-
-
-
                                     </div>
-
-                                    <!-- <div class="col-lg-1 col-sm-4"></div> -->
-
-                                    <!-- <div class="col-lg-5 col-sm-12 d-flex align-items-start flex-column ">
-                                         
-
-                                          <div class="mt-auto"> 
-                                          
-
-                                    </div> 
-
-
-
-                              </div> -->
-
 
                               </div>
 

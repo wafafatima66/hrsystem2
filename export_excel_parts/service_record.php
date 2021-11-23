@@ -16,7 +16,7 @@
     $spreadsheet->getActiveSheet()->setCellValue("A6", "Name : ");
 
     $spreadsheet->getActiveSheet()->mergeCells("B6:C6");
-    $spreadsheet->getActiveSheet()->setCellValue("B6", "DOMINGO,   TIM   DENIS"); //NAME
+   
 
     $spreadsheet->getActiveSheet()->setCellValue("F6", "Maiden name : ");
     $spreadsheet->getActiveSheet()->setCellValue("G6", "N/A"); //MAIDEN
@@ -24,12 +24,12 @@
     $spreadsheet->getActiveSheet()->setCellValue("A7", "Birthdate : ");
 
     $spreadsheet->getActiveSheet()->mergeCells("B7:C7");
-    $spreadsheet->getActiveSheet()->setCellValue("B7", "01/14/1996"); //DOB
+    
 
-    $spreadsheet->getActiveSheet()->setCellValue("F7", "Birth Place : ");
+    $spreadsheet->getActiveSheet()->setCellValue("F7", "Permanent Address : ");
 
     $spreadsheet->getActiveSheet()->mergeCells("G7:I7");
-    $spreadsheet->getActiveSheet()->setCellValue("G7", 'TADIAN, MOUNTAIN  PROVINCE');//BIRTH PLACE
+    
 
     $spreadsheet->getActiveSheet()->mergeCells("A9:J9");
     $spreadsheet->getActiveSheet()->setCellValue("A9", "This is to certify that  the  employee  named  herein  above  actually  rendered  service in this office  as  shown  by  the  service  record  below  each  line  of  which  is  supported by  appointments  and  other  papers  actually   issued  by  this  office  and  approved by the authorities  concerned.");
@@ -188,19 +188,23 @@ $font_style_1 = array(
     $spreadsheet->getActiveSheet()->getColumnDimension('J')->setAutoSize(false);
     $spreadsheet->getActiveSheet()->getColumnDimension('J')->setWidth('15');
 
-    $fileName = "Service-record- " . $emp_id . ".xlsx"; //date('d/m/Y')
+    $fileName = "Service-record-" . $emp_id . ".xlsx"; //date('d/m/Y')
 
-    $query = "Select * from emp_work_experience where emp_id = '$emp_id'";
+    $query = "Select w.* , e.emp_first_name , e.emp_middle_name , e.emp_last_name , e.emp_dob , e.emp_per_add_municipal , e.emp_per_add_province  from emp_work_experience w join employee e on w.emp_id = e.emp_id where e.emp_id = '$emp_id'";
 
     $result = mysqli_query($conn, $query);
 
-
-   
     $count = 13;
    
-
     while ($row = mysqli_fetch_object($result)) {
 
+        $emp_name = strtoupper($row->emp_first_name.''.$row->emp_middle_name) ; 
+        $birthplace = strtoupper($row->emp_per_add_municipal.' , '.$row->emp_per_add_province.' PROVINCE');
+        $dob = date('d/m/Y', strtotime($row->emp_dob));
+
+        $spreadsheet->getActiveSheet()->setCellValue("B6", $emp_name); //NAME
+        $spreadsheet->getActiveSheet()->setCellValue("B7", $dob ); //DOB
+        $spreadsheet->getActiveSheet()->setCellValue("G7", $birthplace);//BIRTH PLACE
 
         $monthly_salary = "P " . number_format($row->work_monthly_sal);
        

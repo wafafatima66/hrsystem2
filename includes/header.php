@@ -17,6 +17,8 @@ if(!isset($_SESSION['login_user'])){
    
    $row = mysqli_fetch_array($sql,MYSQLI_ASSOC);
    $admin_photo_to_show = '../img/'.$row['admin_photo'];
+   $_SESSION['user_role'] = $row['role'];
+   $_SESSION['user_name'] = $row['username'];
 
 }
 
@@ -141,12 +143,30 @@ function list_active($currect_page){
 </a>
 
 
-<?php } ?>
+<?php }
+else if($row['role'] == 'Supervisor') {
+  
+  $emp_id = $row['emp_id'] ; 
+  $sql = "SELECT department , office FROM users WHERE emp_id = '$emp_id'";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                $_SESSION['department'] = $row['department'];
+                $_SESSION['office'] = $row['office'];
+  ?>
+<a href="../home/" class="list-group-item d-inline-block collapsed  <?php active('home');?>" >
+<span class="d-none d-md-inline">Dashboard</span> <i class="fa fa-home"></i>
+</a>
 
-       
+<a href="../leave_mang/" class="list-group-item d-inline-block collapsed <?php active('leave_mang');?>"><span class="d-none d-md-inline">Leave
+    Management</span><i class="fa fa-calendar"></i>
+</a>
 
 
-
+<?php } else { ?>
+  <a href="../home/" class="list-group-item d-inline-block collapsed  <?php active('home');?>" >
+<span class="d-none d-md-inline">Dashboard</span> <i class="fa fa-home"></i>
+</a>
+  <?php } ?>
       </div>
     </div>
 

@@ -14,12 +14,12 @@ if (isset($_POST['edit_user'])) {
     //   $runquery = $conn->query($del_query);
 
 
-      $query = "SELECT username FROM users WHERE username = '$username'";
-      $runquery = $conn->query($query);
-      $rowcount = mysqli_num_rows($runquery);
-      if ($rowcount > 0) {
-            echo  '<script>toastr.error("Username exist . Try again with new username !")</script>';
-      } else {
+      // $query = "SELECT username FROM users WHERE username = '$username'";
+      // $runquery = $conn->query($query);
+      // $rowcount = mysqli_num_rows($runquery);
+      // if ($rowcount > 0) {
+      //       echo  '<script>toastr.error("Username exist . Try again with new username !")</script>';
+      // } else {
        
             // $sql1 = "INSERT INTO users (
             // emp_id  , role , username , password , name , department , office  ) VALUES (  '$emp_id'  , '$role' , '$username' ,'$password' , '$emp_name' ,'$department' , '$office' )
@@ -41,7 +41,7 @@ if (isset($_POST['edit_user'])) {
             } else {
                   echo  '<script>toastr.error("User not updated . Try again !")</script>';
             }
-      }
+      // }
 }
 
 if (isset($_POST['add_user'])) {

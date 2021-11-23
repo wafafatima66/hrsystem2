@@ -18,8 +18,8 @@
     <link rel="stylesheet" type="text/css" href="loginassets/css/style.css" />
 </head>
 
-    <body class="form-login-body"> 
-         <?php require dirname(__FILE__) . '/includes/conn.php';
+<body class="form-login-body">
+    <?php require dirname(__FILE__) . '/includes/conn.php';
 
     session_start();
 
@@ -40,75 +40,76 @@
         $_SESSION['login_user'] = $userid;
 
 
-        if ($count == 1){
-            if($row['role'] == 'Super Administrator'){
-                header("location:home/index.php");
-            }else if($row['role'] == 'Employee'){
-
+        if ($count == 1) {
+            if ($row['role'] == 'Employee') {
                 $emp_id = $row['emp_id'];
                 $sql = "SELECT id FROM employee WHERE emp_id = '$emp_id'";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-                header("location:emp_mang/emp_profile.php?id=".$row["id"]);
+                header("location:emp_mang/emp_profile.php?id=" . $row["id"]);
+            } else {
+                header("location:home/index.php");
             }
-        }else {
-                header("location:index.php?error");
-            }
-
+        } else {
+            header("location:index.php?error");
+        }
     }
 
     ?>
-        
-            <div class="login-body container-fluid">
-                    <div class="container">
-                        <form class="mt-4 login-form" action="" method="post">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="login-text">
-                                         <!--<img src="img/logo-2.png" alt=""> -->
-                                        <h4>Login</h4>
-                                        
-                                        <input type="text" placeholder="Enter Username" name="username" id="username" class="form-control ">
-                                        
-                                         <input type="text" placeholder="Enter Password" name="password" id="password" class="form-control">
-                                         
-                                         <label class="w-100" for="">Forget Password?</label>
-                                         
-                                         <button class="btn " type="submit" name="submit" style="background-color: orange;">Sign In</button>
-                                        
-                                        
-                                    </div>
-                                </div>
-                            </form>
+
+
+
+    <div class="login-body container-fluid">
+        <div class="container">
+
+            <form class="mt-4 login-form" action="" method="post">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="login-text">
+                            <!--<img src="img/logo-2.png" alt=""> -->
+                            <h4>Login</h4>
+
+                            <input type="text" placeholder="Enter Username" name="username" id="username" class="form-control ">
+
+                            <input type="text" placeholder="Enter Password" name="password" id="password" class="form-control">
+
+                            <label class="w-100" for="">Forget Password?</label>
+
+                            <button class="btn " type="submit" name="submit" style="background-color: orange;">Sign In</button>
+
                             <?php
+                            if (isset($_GET['error'])) {
+                                echo '<p class="mt-5">Your Login Name or Password is invalid</p>';
+                            }
+                            ?>
 
-                        if (isset($_GET['error'])) {
-
-                            echo '<p class="mt-5">Your Login Name or Password is invalid</p>';
-                        }
-                        ?>
-
-                        
-                                <div class="col-md-7">
-                                    <div class="login-img">
-                                        <img src="loginassets/images/login.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="copy"><p>Developed by: <br>
-                                                        AJAXCRYPT | ajaxcryptstartup@gmail.com &<br>
-                                                        NITIBDEV IT SOLUTIONS | nitibdevitsolutions@gmail.com</p></div>
+                        </div>
                     </div>
-                </div>
-        </div>
-    </body>
+            </form>
+          
 
-    <script src="loginassets/js/jquery-3.2.1.min.js"></script>
-    <script src="loginassets/js/popper.min.js"></script>
-    <script src="loginassets/js/bootstrap.min.js"></script>
-    <script src="loginassets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
-    <script src="loginassets/plugins/slider/js/owl.carousel.min.js"></script>
-    <script src="loginassets/js/script.js"></script>
+            <div class="col-md-7">
+                <div class="login-img">
+                    <img src="loginassets/images/login.png" alt="">
+                </div>
+            </div>
+        </div>
+        </form>
+        <div class="copy">
+            <p>Developed by: <br>
+                AJAXCRYPT | ajaxcryptstartup@gmail.com &<br>
+                NITIBDEV IT SOLUTIONS | nitibdevitsolutions@gmail.com</p>
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+<script src="loginassets/js/jquery-3.2.1.min.js"></script>
+<script src="loginassets/js/popper.min.js"></script>
+<script src="loginassets/js/bootstrap.min.js"></script>
+<script src="loginassets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
+<script src="loginassets/plugins/slider/js/owl.carousel.min.js"></script>
+<script src="loginassets/js/script.js"></script>
+
 </html>

@@ -1,8 +1,12 @@
 <?php
-
+session_start();
 // Connect database 
 
 require '../includes/conn.php';
+
+$department =  $_SESSION['department'] ;
+    $office =  $_SESSION['office'];
+
 
 if (isset($_POST['limit'])) {
 	$limit = $_POST['limit'];
@@ -23,9 +27,7 @@ if (isset($_POST['from_date']) && isset($_POST['to_date'] ) && !empty($_POST['fr
 	$from_date = $_POST['from_date'];
 	$to_date = $_POST['to_date'];
 
-	$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image  from emp_leaves a join employee b where a.emp_id = b.emp_id and a.leave_from_date BETWEEN  '$from_date' AND '$to_date'  LIMIT $offset, $limit";
-
-	// $showlimit = $limit ;
+	$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image , i.division , i.area_wrk_assign from emp_leaves a join employee b on a.emp_id = b.emp_id join item i on a.emp_id = i.emp_id where i.division = '$department' and i.area_wrk_assign = '$office' and a.leave_from_date BETWEEN '$from_date' AND '$to_date';  LIMIT $offset, $limit";
 
 } 
 
@@ -39,17 +41,14 @@ else if (isset($_POST['search_approve']) && !empty($_POST['search_approve'] )) {
 		$status = 0 ; 
 	}
 
-	$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image  from emp_leaves a join employee b where a.emp_id = b.emp_id and a.status = '$status' LIMIT $offset, $limit";
-
-	// $showlimit = $limit ;
+	$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image ,  i.division , i.area_wrk_assign from emp_leaves a join employee b on a.emp_id = b.emp_id join item i on a.emp_id = i.emp_id where i.division = '$department' and i.area_wrk_assign = '$office' and a.status = '$status' LIMIT $offset, $limit";
 
 }
 
 else {
 
-	$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image from emp_leaves a join employee b where a.emp_id = b.emp_id  LIMIT $offset, $limit";
+	$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image ,  i.division , i.area_wrk_assign from emp_leaves a join employee b on a.emp_id = b.emp_id join item i on a.emp_id = i.emp_id where i.division = '$department' and i.area_wrk_assign = '$office' LIMIT $offset, $limit";
 
-	// $showlimit = $limit ; 
 }
 
 

@@ -1,4 +1,6 @@
-<?php require '../includes/conn.php'; ?>
+<?php require '../includes/conn.php'; 
+
+?>
 
 <div id="printableArea_leave_summary" style="display: none;">
 
@@ -8,11 +10,10 @@
 
         <?php
 
+    $department =  $_SESSION['department'] ;
+    $office =  $_SESSION['office'];
 
-
-        $query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image from emp_leaves a join employee b where a.emp_id = b.emp_id ";
-
-
+        $query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image , i.division , i.area_wrk_assign from emp_leaves a join employee b on a.emp_id = b.emp_id join item  i on a.emp_id = i.emp_id where i.division = '$department' and i.area_wrk_assign = '$office' ";
 
         $result = mysqli_query($conn, $query);
 
@@ -34,8 +35,6 @@
 
         if (mysqli_num_rows($result) > 0) {
 
-
-
             while ($mydata = mysqli_fetch_assoc($result)) {
 
                 if(empty($mydata['emp_image'])){
@@ -44,7 +43,6 @@
                 $emp_image = $mydata['emp_image'];
             }
         
-
                 $output .= "
 	
 	<tr>

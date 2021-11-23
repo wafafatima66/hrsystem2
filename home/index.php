@@ -7,6 +7,8 @@ require '../includes/conn.php';
 ?>
 
 <?php 
+
+if($_SESSION['user_role']=='Super Administrator'){
       $sql = "SELECT COUNT(emp_gender) AS male_total from employee WHERE emp_gender = 'Male'   ";
       $result = $conn->query($sql);
       $data =  $result->fetch_assoc();
@@ -99,3 +101,12 @@ require '../includes/conn.php';
      
 </div>
 
+<?php } else { ?>
+
+      <div class="container">
+      <div class="jumbotron">
+  <h1 class="display-4">Hello, <?php echo $_SESSION['user_name'] ?></h1>
+  
+</div>
+      </div>
+<?php } ?>
