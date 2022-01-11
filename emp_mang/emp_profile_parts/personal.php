@@ -43,8 +43,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <small>Date of Birth</small>
-                    <input type="date" class="form-control text-input" placeholder="Salary" name="emp_dob" value="<?php echo $mydata['emp_dob'] ?>">
-                    
+                    <input type="date" class="form-control text-input" placeholder="Salary" name="emp_dob" value="<?php echo $mydata['emp_dob'] ?>" >
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <!-- <input type="text" class=" form-control text-input" placeholder="Sex" name="emp_gender" value="<?php echo $mydata['emp_gender'] ?>"> -->
@@ -119,20 +118,64 @@ if (isset($_GET['id'])) {
 
                 </div>
                 <div class="col-lg-2 col-sm-6">
-                    <small>Nationality</small>
-                    <input type="text" class=" form-control text-input" placeholder="Nationality" name="emp_nationality" value="<?php echo $mydata['emp_nationality'] ?>">
+                    <small>Country</small>
+                    <!-- <input type="text" class=" form-control text-input" placeholder="Nationality" name="emp_nationality" value="<?php echo $mydata['emp_nationality'] ?>"> -->
 
-                    <!--<select class="form-control text-input" name="emp_nationality">
-
+                    <select class="form-control text-input" name="emp_nationality">
                         <?php if (!empty($mydata['emp_nationality'])) {
                             echo "<option value= '" . $mydata['emp_nationality'] . "'>" . $mydata['emp_nationality'] . "</option>";
                         } else {
                             echo "<option value='' > Select Country </option>";
                         } ?>
-
                         <?php include '../includes/countries.php' ?>
-                    </select> -->
+                    </select>
                 </div>
+            </div>
+
+            <h5 class="mt-3">Birth Place</h5>
+            <div class="form-row ">
+
+                <div class="col-lg-2 col-sm-6">
+                    <small>Barangay</small>
+                    <input type="text" class=" form-control text-input" placeholder="Barangay" name="emp_birth_add_barangay" value="<?php echo $mydata['emp_birth_add_barangay'] ?>">
+                </div>
+
+                <div class="col-lg-2 col-sm-6">
+                    <small>Province</small>
+                     <select class="form-control text-input" name="emp_birth_add_province" id="emp_birth_add_street">
+                     <?php if (!empty($mydata['emp_birth_add_province'])) {
+                            echo "<option value= '" . $mydata['emp_birth_add_province'] . "'>" . $mydata['emp_birth_add_province'] . "</option>";
+                        } else {
+                            echo "<option value='' > State/Province </option>";
+                        } ?>
+                        <?php include '../includes/provinces.php' ?>
+                    </select>
+                </div>
+
+                <div class="col-lg-2 col-sm-6">
+                    <small>City/Municipality</small>
+                    <select class="form-control text-input" name="emp_birth_add_municipal" id="emp_birth_add_municipal" >
+                        <?php if (!empty($mydata['emp_birth_add_municipal'])) {
+                            echo "<option value= '" . $mydata['emp_birth_add_municipal'] . "'>" . $mydata['emp_birth_add_municipal'] . "</option>";
+                        } else {
+                            echo "<option value='' > City/Municipilaty </option>";
+                        } 
+                        ?>
+                    </select>
+                </div>
+
+                <div class="col-lg-2 col-sm-6">
+                    <small>ZIP Code</small>
+                    <select class="form-control text-input" name="emp_birth_add_zipcode" id="emp_birth_add_zipcode" >
+                        <?php if (!empty($mydata['emp_birth_add_zipcode'])) {
+                            echo "<option value= '" . $mydata['emp_birth_add_zipcode'] . "'>" . $mydata['emp_birth_add_zipcode'] . "</option>";
+                        } else {
+                            echo "<option value='' > Zip code </option>";
+                        } 
+                        ?>
+                </select>
+            </div>
+
             </div>
 
             <h5 class="mt-3">Residential Address</h5>
@@ -179,8 +222,6 @@ if (isset($_GET['id'])) {
                         ?>
                     </select>
                 </div>
-
-                
 
                 <div class="col-lg-1 col-sm-6">
                     <small>ZIP Code</small>

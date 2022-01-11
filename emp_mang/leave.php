@@ -34,7 +34,7 @@
 <div class="col-lg-12 text-right mt-4 ">
 
   <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
-
+  <input type="submit" class="btn m-3 button-1" id="update_credits">
 
 </div>
 
@@ -47,4 +47,54 @@
       $(targetBox).show();
     });
   });
+
+  $("#update_year").click(function() {
+                var vl_pts= $("#vl_pts").val();
+                var sl_pts= $("#sl_pts").val();
+                var leave_emp_id= $("#leave_emp_id").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "../emp_mang/leave/year_credits_config.php",
+                    data:{
+                      vl_pts: vl_pts,
+				        	    sl_pts: sl_pts,
+					            leave_emp_id: leave_emp_id
+                    } ,
+                    success: function(data) {
+                      
+                      //  alert("sucess");
+                      toastr.success("Credits Year updated ! ")
+                    }
+                });
+
+
+            });
+
+            // $("#update_credits").click(function() {
+            //     var vl_pts= $("#vl_pts").val();
+            //     var sl_pts= $("#sl_pts").val();
+            //     var leave_emp_id= $("#leave_emp_id").val();
+
+            //     $.ajax({
+            //         type: "POST",
+            //         url: "../emp_mang/leave/year_credits_config.php",
+            //         data:{
+            //           vl_pts: vl_pts,
+				    //     	    sl_pts: sl_pts,
+					  //           leave_emp_id: leave_emp_id
+            //         } ,
+            //         success: function(data) {
+                      
+            //           //  alert("sucess");
+            //           toastr.success("Credits Year updated ! ")
+            //         },
+            //         error: function (request, status, error) {
+            //           toastr.error("Credits Year not updated. Try again !")
+            //         }
+            //     });
+
+
+            // });
+
 </script>

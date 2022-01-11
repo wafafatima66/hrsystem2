@@ -32,211 +32,227 @@ if (isset($_POST['edit_leave_approve'])) {
 
 <div class="container ">
 
-<?php if($_SESSION['user_role']=='Super Administrator') { ?>
+      <?php if ($_SESSION['user_role'] == 'Super Administrator') { ?>
 
-      <div class="row ">
-            <h4 class="background-title-1">LEAVE FORM</h4>
+            <div class="row ">
+                  <h4 class="background-title-1">LEAVE FORM</h4>
 
-            <div class="leave-mang-box-1 container-box" style="width: 100%;">
+                  <div class="leave-mang-box-1 container-box" style="width: 100%;">
 
-                  <form method="post" action="save_leave_form.php">
-                        <input type="hidden" name="date_diff" id="date_diff">
-                        <input type="hidden" name="mon" id="mon">
-                        <input type="hidden" name="year" id="year">
-                        <div class="form-row mt-3">
-
-                              <div class="col-lg-2 col-sm-6">
-                                    <label for="" class="responsive-label">ID</label>
-                                    <input type="text" class=" form-control text-input" placeholder="Employee Id" name="emp_id" id="emp_id">
-                              </div>
-
-                              <div class="col-lg-6 col-sm-6">
-                                    <label for="" class="responsive-label">Name</label>
-                                    <input type="text" class=" form-control text-input" placeholder="First Name,Last Name,Middle Name , Ext" name="emp_name" id="emp_name">
-                              </div>
-
-                              <div class="col-lg-2 col-sm-6">
-                                    <label for="" class="responsive-label">Position</label>
-                                    <input type="text" class="form-control text-input" placeholder="Position" id="position" name="position">
-                              </div>
-
-                              <div class="col-lg-2 col-sm-6">
-                                    <label for="" class="responsive-label">Salary</label>
-                                    <input type="text" class="form-control text-input" placeholder="Salary" id="salary_grade" name="salary_grade">
-                              </div>
-                        </div>
-
-                        <div class="form-row mt-4">
-
-                              <div class="col-lg-3 col-sm-6">
-                                    <label for="" class="responsive-label">Office/Department</label>
-                                    <input type="text" class=" form-control text-input" placeholder="Office/Department" id="office" name="office">
-                              </div>
-
-                              <div class="col-lg-3 col-sm-6">
-                                    <label for="" class="responsive-label">Type of Leave</label>
-                                    <select class="form-control text-input" name="type_of_leave" id="type_of_leave">
-                                          <option value="">Select Type of leave</option>
-                                          <option value="Vacation leave">Vacation Leave</option>
-                                          <option value="Mandatory/Forced Leave">Mandatory/Forced Leave</option>
-                                          <option value="Sick leave">Sick Leave</option>
-                                          <option value="Maternity Leave">Maternity Leave</option>
-                                          <option value="Paternity Leave">Paternity Leave</option>
-                                          <option value="Special priviledge leave">Special priviledge Leave</option>
-                                          <option value="Solo Parent Leave">Solo Parent Leave</option>
-                                          <option value="Study Leave">Study Leave</option>
-                                          <option value="10-day VAWC Leave">10-day VAWC Leave</option>
-                                          <option value="Rehabilitation Privilege">Rehabilitation Privilege</option>
-                                          <option value="Special Leave Benefits for Women">Special Leave Benefits for Women</option>
-                                          <option value="Special Emergency Leave">Special Emergency Leave</option>
-                                          <option value="Adoption Leave">Adoption Leavee</option>
-
-                                          <option value="Others">Others</option>
-
-
-                                    </select>
-                              </div>
-
-                              <div class="col-lg-3 col-sm-6">
-                                    <label for="" class="responsive-label">No of Working days</label>
-                                    <input type="text" class="form-control text-input" placeholder="No of Working Days" name="no_of_working_days">
-                              </div>
-
-                              <div class="col-lg-3 col-sm-6 form-inline">
-                                    <label for="" class="responsive-label">Date of filing</label>
-                                    <input type="date" class="form-control text-input " placeholder="Date Picker" name="date_filled">
-                              </div>
-
-                        </div>
-
-                        <div class="leave-wrapper" style="border: solid 1px #fc7e43;padding: 12px; margin: 12px 0px">
+                        <form method="post" action="save_leave_form.php">
+                              <input type="hidden" name="date_diff" id="date_diff">
+                              <input type="hidden" name="mon" id="mon">
+                              <input type="hidden" name="year" id="year">
                               <div class="form-row mt-3">
-                                    <div class="col-lg-4 col-sm-6 form-inline">
-                                          <label for="" class="responsive-label">From date</label>
-                                          <input type="date" class="form-control text-input ml-3" placeholder="Date Picker" name="leave_from_date[]">
+
+                                    <div class="col-lg-2 col-sm-6">
+                                          <label for="" class="responsive-label">ID</label>
+                                          <input type="text" class=" form-control text-input" placeholder="Employee Id" name="emp_id" id="emp_id">
                                     </div>
 
-                                    <div class="col-lg-4 col-sm-6 form-inline">
-                                          <label for="" class="responsive-label">To date</label>
-                                          <input type="date" class="form-control text-input ml-3" placeholder="Date Picker" name="leave_to_date[]">
+                                    <div class="col-lg-6 col-sm-6">
+                                          <label for="" class="responsive-label">Name</label>
+                                          <input type="text" class=" form-control text-input" placeholder="First Name,Last Name,Middle Name , Ext" name="emp_name" id="emp_name">
                                     </div>
-                                    <div class="col-lg-2 col-sm-12 mt-2">
-                                          <a class="btn button-1 add_leave">Add</a>
+
+                                    <div class="col-lg-2 col-sm-6">
+                                          <label for="" class="responsive-label">Position</label>
+                                          <input type="text" class="form-control text-input" placeholder="Position" id="position" name="position">
+                                    </div>
+
+                                    <div class="col-lg-2 col-sm-6">
+                                          <label for="" class="responsive-label">Salary</label>
+                                          <input type="text" class="form-control text-input" placeholder="Salary" id="salary_grade" name="salary_grade">
                                     </div>
                               </div>
-                        </div>
 
-                        <div class="form-row ">
-                              <div class="col-lg-6 col-sm-6 mt-3">
-                                    <textarea class="form-control text-input" rows="5" placeholder="Details Of Leave(Required)" name="details_of_leave" id="details_of_leave" required></textarea>
+                              <div class="form-row mt-4">
+
+                                    <div class="col-lg-3 col-sm-6">
+                                          <label for="" class="responsive-label">Office/Department</label>
+                                          <input type="text" class=" form-control text-input" placeholder="Office/Department" id="office" name="office">
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6">
+                                          <label for="" class="responsive-label">Type of Leave</label>
+                                          <select class="form-control text-input" name="type_of_leave" id="type_of_leave">
+                                                <option value="">Select Type of leave</option>
+                                                <option value="Vacation leave">Vacation Leave</option>
+                                                <option value="Mandatory/Forced Leave">Mandatory/Forced Leave</option>
+                                                <option value="Sick leave">Sick Leave</option>
+                                                <option value="Maternity Leave">Maternity Leave</option>
+                                                <option value="Paternity Leave">Paternity Leave</option>
+                                                <option value="Special priviledge leave">Special priviledge Leave</option>
+                                                <option value="Solo Parent Leave">Solo Parent Leave</option>
+                                                <option value="Study Leave">Study Leave</option>
+                                                <option value="10-day VAWC Leave">10-day VAWC Leave</option>
+                                                <option value="Rehabilitation Privilege">Rehabilitation Privilege</option>
+                                                <option value="Special Leave Benefits for Women">Special Leave Benefits for Women</option>
+                                                <option value="Special Emergency Leave">Special Emergency Leave</option>
+                                                <option value="Adoption Leave">Adoption Leavee</option>
+
+                                                <option value="Others">Others</option>
+
+
+                                          </select>
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6">
+                                          <label for="" class="responsive-label">No of Working days</label>
+                                          <input type="text" class="form-control text-input" placeholder="No of Working Days" name="no_of_working_days" id="no_of_working_days">
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6 form-inline">
+                                          <label for="" class="responsive-label">Date of filing</label>
+                                          <input type="date" class="form-control text-input " placeholder="Date Picker" name="date_filled">
+                                    </div>
+
                               </div>
 
-                              <div class="col-lg-6 col-sm-6 mt-3">
-                                    <table class="table home-page-table table-sm ">
-                                          <thead>
-                                                <tr>
-                                                      <th scope="col"></th>
-                                                      <th scope="col">Vacation</th>
-                                                      <th scope="col">Sick</th>
-                                                      <th scope="col">Total</th>
-                                                </tr>
-                                          </thead>
+                              <div class="leave-wrapper" style="border: solid 1px #fc7e43;padding: 12px; margin: 12px 0px">
+                                    <div class="form-row mt-3">
+                                          <div class="col-lg-4 col-sm-6 form-inline">
+                                                <label for="" class="responsive-label">From date</label>
+                                                <input type="date" class="form-control text-input ml-3" placeholder="Date Picker" name="leave_from_date[]">
+                                          </div>
 
-                                          <tbody>
-                                                <tr>
-
-                                                      <th>Last Balance</th>
-                                                      <td id="vl_pts"></td>
-                                                      <td id="sl_pts"></td>
-                                                      <td id="pts_total"></td>
-
-                                                </tr>
-
-                                                <tr>
-                                                      <th>Less this Leave</th>
-                                                      <td id="vl_now_pts"></td>
-                                                      <td id="sl_now_pts"></td>
-                                                      <td id="total_pts_now"></td>
-
-                                                </tr>
-
-                                                <tr>
-                                                      <th>Balance</th>
-                                                      <td id="vl_bal"></td>
-                                                      <td id="sl_bal"></td>
-                                                      <td id="total_bal"></td>
-
-                                                </tr>
-
-                                          </tbody>
-                                    </table>
+                                          <div class="col-lg-4 col-sm-6 form-inline">
+                                                <label for="" class="responsive-label">To date</label>
+                                                <input type="date" class="form-control text-input ml-3" placeholder="Date Picker" name="leave_to_date[]">
+                                          </div>
+                                          <div class="col-lg-2 col-sm-12 mt-2">
+                                                <a class="btn button-1 add_leave">Add</a>
+                                          </div>
+                                    </div>
                               </div>
-                        </div>
 
-                        <div class="text-right"><button class="ml-3 btn button-1" name="submit" type="submit">Submit</button></div>
+                              <div class="form-row ">
+                                    <div class="col-lg-6 col-sm-6 mt-3 leave_details">
+                                          <textarea class="form-control text-input" rows="5" placeholder="Details Of Leave(Required)" name="details_of_leave" id="details_of_leave" required></textarea>
 
-                  </form>
+                                          <div class="details_1" style="padding: 20px;
+                                    border: solid 1px #fc7e43; display:none ; 
+                                          ">
+                                                <h6>Details of leave</h6>
+                                           
+                                              <label>In case of Vacation/Special Privilege Leave</label>
+                                                <select name="details_of_leave" class="form-control text-input " style="width: 60%;" id="details_of_leave">
+                                                      <option value="Within the Philippines">Within the Philippines</option>
+                                                      <option value="Abroad">Abroad</option>
+                                                </select>
+                                              </div>
+                                          
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6 mt-3">
+                                          <table class="table home-page-table table-sm ">
+                                                <thead>
+                                                      <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">Vacation</th>
+                                                            <th scope="col">Sick</th>
+                                                            <th scope="col">Total</th>
+                                                      </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                      <tr>
+
+                                                            <th>Last Balance</th>
+                                                            <td id="vl_pts"></td>
+                                                            <td id="sl_pts"></td>
+                                                            <td id="pts_total"></td>
+
+                                                      </tr>
+
+                                                      <tr>
+                                                            <th>Less this Leave</th>
+                                                            <td id="vl_now_pts"></td>
+                                                            <td id="sl_now_pts"></td>
+                                                            <td id="total_pts_now"></td>
+
+                                                      </tr>
+
+                                                      <tr>
+                                                            <th>Balance</th>
+                                                            <td id="vl_bal"></td>
+                                                            <td id="sl_bal"></td>
+                                                            <td id="total_bal"></td>
+
+                                                      </tr>
+
+                                                </tbody>
+                                          </table>
+                                    </div>
+                              </div>
+
+                              <div class="text-right"><button class="ml-3 btn button-1" name="submit" type="submit">Submit</button></div>
+
+                        </form>
+                  </div>
+
+
             </div>
-
-
-      </div>
       <?php } ?>
       <!-- end of first part -->
 
       <!-- leave summary -->
-      
-<?php if($_SESSION['user_role']=='Supervisor') {
-    
+
+      <?php if ($_SESSION['user_role'] == 'Supervisor' || $_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'HR Administrator') {
+
 
       ?>
-      
-      <div class="row  ">
-            <h4 class="background-title-1">LEAVE SUMMARY</h4>
 
-            <div class="form-row ml-2 mr-2 mt-3 " style="width: 100%;">
+            <div class="row  ">
+                  <h4 class="background-title-1">LEAVE SUMMARY</h4>
 
-                  <!-- <form action="" method="post" class="form-inline "> -->
+                  <div class="form-row ml-2 mr-2 mt-3 " style="width: 100%;">
 
-                  <div class="col-lg-2 col-sm-5">
-                        <input type="date" class="form-control text-input" placeholder="Date Picker" style="width:100%" id="from_date">
+                        <!-- <form action="" method="post" class="form-inline "> -->
+
+                        <div class="col-lg-2 col-sm-5">
+                              <input type="date" class="form-control text-input" placeholder="Date Picker" style="width:100%" id="from_date">
+                        </div>
+
+                        <span class="ml-2 mr-2 mt-2">to</span>
+
+                        <div class="col-lg-2 col-sm-5">
+                              <input type="date" class="form-control text-input" placeholder="Date Picker" style="width:100%" id="to_date">
+                        </div>
+
+                        <div class="col-lg-1 col-sm-2">
+                              <button type="submit" id="search_leave" class="btn button-1">Search </button>
+                        </div>
+
+                        <div class="col-lg-3"></div>
+
+                        <div class="col-lg-2 col-sm-6">
+                              <select name="search_approve" id="search_approve" class="form-control text-input">
+                                    <option value="0">Status</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="Refused">Refused</option>
+                              </select>
+                        </div>
+
+                        <div class="col-lg-1 col-sm-1 ml-5 ">
+                              <button class="btn button-1 " style="height:35px ; " id="print_leave" onclick="printDiv('printableArea_leave_summary')"><i class="fa fa-print"></i></button>
+                        </div>
+                        <!-- </form> -->
                   </div>
-
-                  <span class="ml-2 mr-2 mt-2">to</span>
-
-                  <div class="col-lg-2 col-sm-5">
-                        <input type="date" class="form-control text-input" placeholder="Date Picker" style="width:100%" id="to_date">
-                  </div>
-
-                  <div class="col-lg-1 col-sm-2">
-                        <button type="submit" id="search_leave" class="btn button-1">Search </button>
-                  </div>
-
-                  <div class="col-lg-3"></div>
-
-                  <div class="col-lg-2 col-sm-6">
-                        <select name="search_approve" id="search_approve" class="form-control text-input">
-                              <option value="0">Status</option>
-                              <option value="Approved">Approved</option>
-                              <option value="Refused">Refused</option>
-                        </select>
-                  </div>
-
-                  <div class="col-lg-1 col-sm-1 ml-5 ">
-                        <button class="btn button-1 " style="height:35px ; " id="print_leave" onclick="printDiv('printableArea_leave_summary')"><i class="fa fa-print"></i></button>
-                  </div>
-                  <!-- </form> -->
             </div>
-      </div>
-      
-      <?php echo '<div id="table-data"> </div>'; ?>
+
+            <?php echo '<div id="table-data"> </div>'; ?>
 
       <?php } ?>
 </div>
 
-<?php if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Administrator' ) { ?>
+<?php
+// if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Administrator' ) {
+?>
 
 <?php include "statusModal.php" ?>
-<?php include "leave_summary_print_section.php" ?>
+<?php include "leave_summary_print_section.php";
+// }
+?>
 
 
 <script>
@@ -272,8 +288,8 @@ if (isset($_POST['edit_leave_approve'])) {
             });
 
             //to get date from leave management first box to load credits points in the small table
-            $("#details_of_leave").keydown(function() {
-
+            $("#details_of_leave").change(function() {
+                 
                   var leave_from_date = $("input[name='leave_from_date[]']")
                         .map(function() {
                               return $(this).val();
@@ -283,6 +299,7 @@ if (isset($_POST['edit_leave_approve'])) {
                         .map(function() {
                               return $(this).val();
                         }).get();
+
                   var date_diff = 0;
                   var lenght = $("input[name='leave_to_date[]']").length;
 
@@ -302,6 +319,9 @@ if (isset($_POST['edit_leave_approve'])) {
                   $('#date_diff').val(date_diff);
                   $('#mon').val(mon);
                   $('#year').val(year);
+
+                  var date_diff = $('#no_of_working_days').val();
+                  // console.log(date_diff);
 
                   $.ajax({
                         url: 'get_leave_credits.php',
@@ -391,7 +411,20 @@ if (isset($_POST['edit_leave_approve'])) {
                   }
             });
 
+            // change details  according to type of leave 
+            $("#type_of_leave").change(function() {
+                  var type_of_leave =  $("#type_of_leave").val();
+                  console.log(type_of_leave);
+                  if(type_of_leave == 'Vacation leave'){
+                        // $(".details_1").show();
+                        $('.leave_details').replaceWith($(".details_1")); 
+                  }
+            });
+
+
       });
 </script>
 
-<?php } ?>
+<?php
+// }
+?>

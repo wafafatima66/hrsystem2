@@ -204,6 +204,15 @@ input[type="radio"] {
     border-radius: 50%;
   }
   
+  .employee-banner{
+    width: 800px;
+    height: 170px;
+  }
+  .employee-banner img{
+    width: 100%;
+    height: 160px;
+    padding-right: 20px;
+  }
 /* login page */
 
 .login-page{

@@ -144,7 +144,7 @@ function list_active($currect_page){
 
 
 <?php }
-else if($row['role'] == 'Supervisor') {
+else if($row['role'] == 'Supervisor' || $row['role'] == 'HR Administrator') {
   
   $emp_id = $row['emp_id'] ; 
   $sql = "SELECT department , office FROM users WHERE emp_id = '$emp_id'";

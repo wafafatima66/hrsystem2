@@ -183,7 +183,8 @@
 </div>
 
 <div class="col-lg-2 col-sm-6 mt-4">
-                <a class="ml-3 btn button-1 add_work_button">Add</a>
+                <!-- <a class="ml-3 btn button-1 add_work_button">Add</a> -->
+                <a class="btn button-1 add_work_button">+</a>
             </div>
 
 

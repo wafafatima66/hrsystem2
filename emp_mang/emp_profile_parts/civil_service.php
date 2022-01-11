@@ -181,7 +181,8 @@
    <?php } ?>
  
    <div class="col-lg-2 col-sm-6 mt-2">
-                <a class="btn button-1 add_civil_button">Add</a>
+                <!-- <a class="btn button-1 add_civil_button">Add</a> -->
+                <a class="btn button-1 add_civil_button">+</a>
 </div>
 
  <script type="text/javascript">

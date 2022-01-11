@@ -1,7 +1,7 @@
 
 <?php
 
-if(isset($_POST['upgrade']) ){
+if(isset($_POST['leave_emp_id']) ){
 
     $vl_pts = $_POST['vl_pts'];
     $sl_pts = $_POST['sl_pts'];
@@ -20,22 +20,17 @@ if(isset($_POST['upgrade']) ){
         if (mysqli_query($conn, $sql)){
 
             $sql1 = mysqli_query($conn,"select id from employee where emp_id = '$emp_id' ");
-   
             $row = mysqli_fetch_array($sql1,MYSQLI_ASSOC);
             $id = $row['id'];
     
-            header("Location:../../emp_mang/emp_profile.php?id=".$id."&credits_year");
+            // header("Location:../../emp_mang/emp_profile.php?id=".$id."&credits_year");
 
-            
-        
            } else {
                echo  '<script>toastr.error("Credits Year not updated. Try again !")</script>';
             
         }
     
-
-   
 }
-  else echo "hi";
+  
 
 ?>

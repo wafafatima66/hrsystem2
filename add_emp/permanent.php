@@ -59,9 +59,9 @@ if(isset($_POST['submit-per'])){
 
 <form method="post" action="" enctype="multipart/form-data">
 
-<input type="hidden" name="job_type" value="Permanent">
 
-    <div class="form-row">
+
+    <!-- <div class="form-row">
         <div class="col-lg-12 col-sm-12">
             <label for="">Item Information</label>
         </div>
@@ -83,9 +83,6 @@ if(isset($_POST['submit-per'])){
                     }
             ?>
             </select> 
-
-         
-
         </div>
 
         <div class="col-lg-2 col-sm-6">
@@ -109,7 +106,7 @@ if(isset($_POST['submit-per'])){
             </div>
         </div>
 
-    </div>
+    </div> -->
 
     <div class="form-row mt-3">
         <div class="col-lg-12 col-sm-12">
@@ -118,66 +115,51 @@ if(isset($_POST['submit-per'])){
     </div>
 
     <div class="form-row">
-        <!-- <div class="col-lg-3 col-sm-6">
-            <select class="form-control text-input" name="applicant">
-                <option value="">Select applicant</option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
-        </div> -->
-
-        <div class="col-lg-3 col-sm-6">
-            <input type="text" class=" form-control text-input" placeholder="Employee Id" name="emp_id" id="emp_id_1"  onBlur="checkAvailability1()">
-        </div>
-
-        <div class="col-lg-4 col-sm-6 mt-2">
-            <p id="user-availability-status_1"></p>
-        </div>
-
+       
     </div>
 
     <div class="form-row mt-3">
-        <div class="col-lg-3 col-sm-6">
-            <input type="text" class=" form-control text-input" placeholder="First name" name="emp_first_name">
-        </div>
-        <div class="col-lg-3 col-sm-6">
+
+    <div class="col-lg-3 col-sm-6">
             <input type="text" class=" form-control text-input" placeholder="Last name" name="emp_last_name">
         </div>
         <div class="col-lg-3 col-sm-6">
+            <input type="text" class=" form-control text-input" placeholder="First name" name="emp_first_name">
+        </div>
+       
+        <div class="col-lg-3 col-sm-6">
             <input type="text" class="form-control text-input" placeholder="Middle name" name="emp_middle_name">
         </div>
-        <div class="col-lg-1 col-sm-6">
-            <input type="text" class="form-control text-input" placeholder="ext" name="emp_ext">
+        <div class="col-lg-3 col-sm-6">
+            <input type="text" class=" form-control text-input" placeholder="Employee Id" name="emp_id"  >
         </div>
-        <div class="col-lg-2 col-sm-6">
-            <input type="text" class=" form-control text-input" placeholder="Sex" name="emp_gender">
-        </div>
+       
     </div>
 
     <div class="form-row mt-3">
-        <div class="col-lg-12 col-sm-12">
-            <label for="">Office Information</label>
-        </div>
-    </div>
-
-    <div class="form-row ">
+        
         <div class="col-lg-3 col-sm-6">
-            <input type="text" class=" form-control text-input" placeholder="Department" name="department">
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <input type="text" class=" form-control text-input" placeholder="Office/Unit" name="office">
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <input type="text" class="form-control text-input" placeholder="Designation" name="designation">
-        </div>
-        <div class="col-lg-3 col-sm-6">
-            <div class="d-flex flex-column">
-                <input type="date" class="form-control text-input" name="date_of_expiry">
-                <small class="text-muted"> (Date of Expiry)</small>
+        <label for="">Employee type</label>
+                <input type="text" class=" form-control text-input" placeholder="Employee Type" name="">
             </div>
+            <div class="col-lg-3 col-sm-6">
+            <label for="">Nature of Employement</label>
+                <input type="text" class=" form-control text-input" placeholder="Nature of Employment" name="">
+            </div>
+           
+            <div class="col-lg-3 col-sm-6">
+                <label for="">Designation</label>
+                <input type="text" class="form-control text-input" placeholder="Designation" name="">
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <label for="">Effective Date</label>
+                <input type="date" class=" form-control text-input"  name=""  >
+            </div>
+           
         </div>
 
-    </div>
+    
+   
 
     <div class="modal-footer">
         <button type="button" class="btn button-1 mr-2" data-dismiss="modal" aria-label="Close">Close

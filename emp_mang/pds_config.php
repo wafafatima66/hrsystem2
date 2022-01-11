@@ -27,6 +27,12 @@ if (isset($_POST['submit'])) {
     $emp_blood = $_POST['emp_blood'];
     $emp_citizen = $_POST['emp_citizen'];
     $emp_nationality = $_POST['emp_nationality'];
+
+    $emp_birth_add_barangay = $_POST['emp_birth_add_barangay'];
+    $emp_birth_add_province = $_POST['emp_birth_add_province'];
+    $emp_birth_add_municipal = $_POST['emp_birth_add_municipal'];
+    $emp_birth_add_zipcode = $_POST['emp_birth_add_zipcode'];
+
     $emp_resi_add = $_POST['emp_resi_add'];
     $emp_resi_add_street = $_POST['emp_resi_add_street'];
     $emp_per_add_subvillage = $_POST['emp_per_add_subvillage'];
@@ -135,34 +141,64 @@ if (isset($_POST['submit'])) {
 
         while ($mydata = $runquery->fetch_assoc()) {
             $active = $mydata['active'];
+            $emp_image = $mydata['emp_image'];
+            // echo $emp_image ; die ;
+            $emp_banner = $mydata['emp_banner'];
         }
         
         // image for employee
 
-        if (!empty($_FILES["emp_image"]["name"])) {
-            $emp_image = "employee" . $emp_id . "-" . $_FILES["emp_image"]["name"];
+        // if (!empty($_FILES["emp_image"]["name"])) {
+        //     $emp_image = "employee" . $emp_id . "-" . $_FILES["emp_image"]["name"];
 
-            $tempname = $_FILES["emp_image"]["tmp_name"];
-            $folder = "../img/" . $emp_image;
+        //     $tempname = $_FILES["emp_image"]["tmp_name"];
+        //     $folder = "../emp_img/" . $emp_image;
 
 
-            //checking file extension
+        //     //checking file extension
 
-            $text1 = explode('.', $_FILES['emp_image']['name']);
-            $text = strtolower(end($text1));
-            $file_ext = strtolower($text);
-            $extensions = array("jpeg", "jpg", "png");
+        //     $text1 = explode('.', $_FILES['emp_image']['name']);
+        //     $text = strtolower(end($text1));
+        //     $file_ext = strtolower($text);
+        //     $extensions = array("jpeg", "jpg", "png");
 
-            if (in_array($file_ext, $extensions) === false) {
-                echo  '<script>toastr.error("Image must be JPG , JPEG ,PNG format ! ")</script>';
-            } else {
-                (move_uploaded_file($tempname, $folder));
-            }
-        } else {
-            while ($mydata = $runquery->fetch_assoc()) {
-                $emp_image = $mydata['emp_image'];
-            }
-        }
+        //     if (in_array($file_ext, $extensions) === false) {
+        //         echo  '<script>toastr.error("Image must be JPG , JPEG ,PNG format ! ")</script>';
+        //     } else {
+        //         (move_uploaded_file($tempname, $folder));
+        //     }
+        // } else {
+        //     while ($mydata = $runquery->fetch_assoc()) {
+        //         $emp_image = $mydata['emp_image'];
+        //     }
+        // }
+
+         // banner for employee
+
+        //  if (!empty($_FILES["emp_banner"]["name"])) {
+        //     $emp_banner = "employee-banner" . $emp_id . "-" . $_FILES["emp_banner"]["name"];
+
+        //     $tempname = $_FILES["emp_banner"]["tmp_name"];
+        //     $folder = "../emp_img/" . $emp_banner;
+
+
+        //     //checking file extension
+
+        //     $text1 = explode('.', $_FILES['emp_banner']['name']);
+        //     $text = strtolower(end($text1));
+        //     $file_ext = strtolower($text);
+        //     $extensions = array("jpeg", "jpg", "png");
+
+        //     if (in_array($file_ext, $extensions) === false) {
+        //         echo  '<script>toastr.error("Banner Image must be JPG , JPEG ,PNG format ! ")</script>';
+        //     } else {
+        //         (move_uploaded_file($tempname, $folder));
+        //     }
+        // } else {
+        //     while ($mydata = $runquery->fetch_assoc()) {
+        //         $emp_banner = $mydata['emp_banner'];
+        //     }
+        // }
 
         $sql = "DELETE FROM employee WHERE emp_id='$emp_id'";
         $conn->query($sql);
@@ -177,7 +213,8 @@ if (isset($_POST['submit'])) {
 
     $sql1 = "INSERT INTO employee (
                     emp_id  ,  
-                    emp_image  ,
+                    emp_image,
+                    emp_banner,
                     emp_first_name , 
                     emp_middle_name , 
                     emp_last_name , 
@@ -190,6 +227,12 @@ if (isset($_POST['submit'])) {
                     emp_blood , 
                     emp_citizen , 
                     emp_nationality ,
+
+                    emp_birth_add_barangay ,
+                    emp_birth_add_province  ,
+                    emp_birth_add_municipal  ,
+                    emp_birth_add_zipcode  ,
+
                     emp_resi_add ,
                     emp_resi_add_street  ,
                     emp_resi_add_municipal  ,
@@ -270,9 +313,10 @@ if (isset($_POST['submit'])) {
                     ) VALUES ( 
                     '$emp_id'  ,
                     '$emp_image'  ,
+                    '$emp_banner'  ,
                     '$emp_first_name' , 
                     '$emp_middle_name' ,
-                    ' $emp_last_name' , 
+                    '$emp_last_name' , 
                     '$emp_ext' , 
                     '$emp_dob' , 
                     '$emp_gender' ,
@@ -282,6 +326,12 @@ if (isset($_POST['submit'])) {
                     '$emp_blood' , 
                     '$emp_citizen' , 
                     '$emp_nationality' ,
+
+                    '$emp_birth_add_barangay' ,
+                    '$emp_birth_add_province'  ,
+                    '$emp_birth_add_municipal'  ,
+                    '$emp_birth_add_zipcode'  ,
+
                     '$emp_resi_add' , 
                     '$emp_resi_add_street'  ,
                     '$emp_resi_add_municipal'  ,

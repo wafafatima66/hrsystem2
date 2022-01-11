@@ -3,10 +3,13 @@ session_start();
 // Connect database 
 
 require '../includes/conn.php';
-
+if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='HR Administrator' ){
 $department =  $_SESSION['department'] ;
     $office =  $_SESSION['office'];
-
+}else {
+	$department =  'ALL' ;
+    $office =  'ALL';
+}
 
 if (isset($_POST['limit'])) {
 	$limit = $_POST['limit'];

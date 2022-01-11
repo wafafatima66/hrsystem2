@@ -70,7 +70,7 @@ if (mysqli_num_rows($result) > 0) {
 
 	while ($mydata = mysqli_fetch_assoc($result)) {
 
-		if(empty($mydata['emp_image'])){
+		if(empty($mydata['emp_image']) ){
 				$emp_image = 'no_image.jpeg';
 		}else {
 			$emp_image = $mydata['emp_image'];

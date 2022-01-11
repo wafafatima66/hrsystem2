@@ -7961,3 +7961,29 @@ update employee set active = 1 ;
 
 ALTER TABLE `employee` ADD `emp_resi_add_province` VARCHAR(255) NULL AFTER `emp_resi_add_zipcode`;
 ALTER TABLE `employee` ADD `emp_per_add_province` VARCHAR(255) NULL AFTER `emp_per_add_zipcode`;
+
+ALTER TABLE employee ADD COLUMN emp_birth_add_barangay VARCHAR(200) DEFAULT NULL AFTER emp_nationality;
+ALTER TABLE employee ADD COLUMN emp_birth_add_province VARCHAR(200) DEFAULT NULL AFTER emp_birth_add_barangay;
+ALTER TABLE employee ADD COLUMN emp_birth_add_municipal VARCHAR(200) DEFAULT NULL AFTER emp_birth_add_province;
+ALTER TABLE employee ADD COLUMN emp_birth_add_zipcode VARCHAR(200) DEFAULT NULL AFTER emp_birth_add_municipal;
+
+ALTER TABLE `emp_work_experience` CHANGE `work_monthly_sal` `work_monthly_sal` VARCHAR(200) NULL DEFAULT NULL;
+
+ALTER TABLE `emp_work_experience` CHANGE `work_increment` `work_increment` VARCHAR(200) NULL DEFAULT NULL;
+
+ALTER TABLE `employee` CHANGE `ele_from_date` `ele_from_date` VARCHAR(100) NULL DEFAULT NULL;
+
+ALTER TABLE `employee` CHANGE `ele_to_date` `ele_to_date` VARCHAR(200) NULL DEFAULT NULL;
+
+ALTER TABLE `employee` CHANGE `sec_from_date` `sec_from_date` VARCHAR(200) NULL DEFAULT NULL, CHANGE `sec_to_date` `sec_to_date` VARCHAR(200) NULL DEFAULT NULL, CHANGE `voc_from_date` `voc_from_date` VARCHAR(200) NULL DEFAULT NULL, CHANGE `voc_to_date` `voc_to_date` VARCHAR(200) NULL DEFAULT NULL;
+
+ALTER TABLE `emp_education` CHANGE `from_date` `from_date` VARCHAR(200) NULL DEFAULT NULL, CHANGE `to_date` `to_date` VARCHAR(200) NULL DEFAULT NULL;
+
+ALTER TABLE `employee` ADD `emp_banner` VARCHAR(200) NULL AFTER `emp_image`;
+
+-- new 
+
+
+ALTER TABLE `hrsystem2`.`leave_credits_result` ADD UNIQUE (`year`, `emp_id`);
+ALTER TABLE `leave_credits_result` DROP INDEX `emp_id`;
+ALTER TABLE `hrsystem2`.`leave_credits_year` ADD UNIQUE (`year`, `emp_id`);

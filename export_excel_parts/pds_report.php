@@ -17,10 +17,13 @@ if (mysqli_num_rows($result) > 0) {
     while ($mydata = mysqli_fetch_assoc($result)) {
         $emp_image = $mydata['emp_image'];
 
+        $emp_birth_place = $mydata['emp_birth_add_barangay'] .' ,' . $mydata['emp_birth_add_province'] . ',' . $mydata['emp_birth_add_municipal'];
+
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D10', $mydata['emp_last_name']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D11', $mydata['emp_first_name']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D12', $mydata['emp_middle_name']);
-        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D13', $mydata['emp_dob']);
+        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D13', date("m/d/Y", strtotime($mydata['emp_dob'])));
+        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D15', $emp_birth_place);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('J13', $mydata['emp_citizen']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('K16', $mydata['emp_nationality']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D16', $mydata['emp_gender']);
@@ -46,7 +49,7 @@ if (mysqli_num_rows($result) > 0) {
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D31', $mydata['emp_contact_ph']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D32', $mydata['emp_contact_ss']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D33', $mydata['emp_contact_tin']);
-        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D34', $mydata['emp_contact_agency']);
+        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D34', $mydata['emp_id']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('I32', $mydata['emp_tel_no']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('I33', $mydata['emp_mb_no']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('I34', $mydata['emp_email']);
@@ -56,6 +59,7 @@ if (mysqli_num_rows($result) > 0) {
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D47', $mydata['emp_mother_lastname']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D48', $mydata['emp_mother_firstname']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D49', $mydata['emp_mother_middlename']);
+
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D54', $mydata['ele_school_name']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('G54', $mydata['ele_degree']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('J54', $mydata['ele_from_date']);
@@ -63,6 +67,7 @@ if (mysqli_num_rows($result) > 0) {
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('L54', $mydata['ele_units']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('M54', $mydata['ele_graduation']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('N54', $mydata['ele_award']);
+
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D55', $mydata['sec_school_name']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('G55', $mydata['sec_degree']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('J55', $mydata['sec_from_date']);
@@ -70,6 +75,7 @@ if (mysqli_num_rows($result) > 0) {
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('L55', $mydata['sec_units']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('M55', $mydata['sec_graduation']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('N55', $mydata['sec_award']);
+
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D56', $mydata['voc_school_name']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('G56', $mydata['voc_degree']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('J56', $mydata['voc_from_date']);
@@ -283,12 +289,14 @@ $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("I53" , $date_accomp
 $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue("F64" , $date_accomplished);
 
 // image
-if(!empty($emp_image)){
+if(!empty($emp_image) && file_exists($emp_image) ){
 $drawing = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing->setPath('../emp_img/'.$emp_image); // put your path and image here
 $drawing->setCoordinates('J50');
-$drawing->setHeight(220);
-$drawing->setWidth(200);
+// $drawing->setHeight(192);
+// $drawing->setWidth(192);
+$drawing->setWidthAndHeight(250,200);
+$drawing->setResizeProportional(true);
 $drawing->setWorksheet($spreadsheet->setActiveSheetIndexByName('C4'));
 }
 

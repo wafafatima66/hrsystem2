@@ -14,7 +14,8 @@ require '../includes/conn.php';
 
 	// $query = "SELECT u.id , u.role , u.name , i.emp_id , i.area_wrk_assign , i.division FROM users u join item i on i.emp_id = u.emp_id    LIMIT $offset, $limit";
 	
-	$query = "SELECT * FROM users LIMIT $offset, $limit ";
+	// $query = "SELECT * FROM users LIMIT $offset, $limit ";
+	$query = "SELECT u.* , i.division , i.area_wrk_assign , e.emp_first_name , e.emp_middle_name , e.emp_last_name FROM users u left join employee e on u.emp_id = e.emp_id left join item i on i.emp_id = u.emp_id LIMIT $offset, $limit ";
 
 	$result = mysqli_query($conn, $query);
 
@@ -35,16 +36,32 @@ require '../includes/conn.php';
 
 	if (mysqli_num_rows($result) > 0) {
 
-	
-    
     while ($mydata = mysqli_fetch_assoc($result)) {
+
+		if(empty($mydata['department'])){
+			$department = $mydata['division'];
+		}else {
+			$department = $mydata['department'];
+		} //trying to keep department assigned in users 
+
+		if(empty($mydata['office'])){
+			$office = $mydata['area_wrk_assign'];
+		}else {
+			$office = $mydata['office'];
+		} //trying to keep office assigned in users 
+
+		if(empty($mydata['name'])){
+			$name = $mydata['emp_first_name'] .' '.$mydata['emp_middle_name'].' '.$mydata['emp_last_name'];
+		}else {
+			$name = $mydata['name'];
+		} //trying to keep name assigned in users 
 
 	$output.="	<tr>
 				<td>{$mydata['emp_id']}</td>
-				<td>{$mydata['name']}</td>
+				<td>{$name}</td>
 				<td> {$mydata['role']} </td>
-				<td>{$mydata['department']}</td>
-				<td>{$mydata['office']}</td>
+				<td>{$department}</td>
+				<td>{$office}</td>
 				<td>
 				<a class='view_user_btn' data-toggle='modal' data-target='#view_user' data-id=' {$mydata['id']} '><i class='fa fa-edit mx-2'></i></a>
 				

@@ -175,7 +175,7 @@ if (isset($_GET['delete'])) {
                   <label for="">Assign Office/Unit Supervisor</label>
                   <div class="d-flex justify-content-start">
 
-                        <select name="department_name" class="form-control text-input ">
+                        <select name="department_name" class="form-control text-input department-select ">
 
                               <?php
                               $query = "select * from (SELECT DISTINCT department_name FROM department union select division from item ) as tablec where tablec.department_name != ''  ";
@@ -192,19 +192,19 @@ if (isset($_GET['delete'])) {
 
                         </select>
 
-                        <select name="office_name" class="form-control text-input ml-4 ">
-
+                        <select name="office_name" class="form-control text-input ml-4 office-select">
+                        <option value=''> Select Office/Unit </option> 
                               <?php
-                              $query = "SELECT * FROM ( SELECT DISTINCT area_wrk_assign from item UNION SELECT DISTINCT  office_name FROM office ) as tableC WHERE tableC.area_wrk_assign != ''  ";
-                              $result = mysqli_query($conn, $query);
-                              if (mysqli_num_rows($result) > 0) {
-                                    echo "<option value=''> Select Office/Unit </option> ";
-                                    while ($mydata = mysqli_fetch_assoc($result)) {
-                                          echo "<option value= '" . $mydata['area_wrk_assign'] . "'>" . $mydata['area_wrk_assign'] . "</option>";
-                                    }
-                              } else {
-                                    echo "<option value='' > Select Office/Unit </option>";
-                              }
+                              // $query = "SELECT * FROM ( SELECT DISTINCT area_wrk_assign from item UNION SELECT DISTINCT  office_name FROM office ) as tableC WHERE tableC.area_wrk_assign != ''  ";
+                              // $result = mysqli_query($conn, $query);
+                              // if (mysqli_num_rows($result) > 0) {
+                              //       echo "<option value=''> Select Office/Unit </option> ";
+                              //       while ($mydata = mysqli_fetch_assoc($result)) {
+                              //             echo "<option value= '" . $mydata['area_wrk_assign'] . "'>" . $mydata['area_wrk_assign'] . "</option>";
+                              //       }
+                              // } else {
+                              //       echo "<option value='' > Select Office/Unit </option>";
+                              // }
                               ?>
 
                         </select>
@@ -278,6 +278,22 @@ if (isset($_GET['delete'])) {
                   error: function() {}
             });
       }
+
+      $(".department-select").change(function(){
+            var department = $(".department-select").val();
+            console.log(department);
+            jQuery.ajax({
+                  url: "get_office.php",
+                  data: {
+                        department: department
+                  },
+                  type: "POST",
+                  success: function(data) {
+                        $(".office-select").html(data);
+                  },
+                  error: function() {}
+            });
+      });
 
       $(document).ready(function() {
             function loadData(page) {
