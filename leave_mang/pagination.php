@@ -3,13 +3,6 @@ session_start();
 // Connect database 
 
 require '../includes/conn.php';
-if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='HR Administrator' ){
-$department =  $_SESSION['department'] ;
-    $office =  $_SESSION['office'];
-}else {
-	$department =  'ALL' ;
-    $office =  'ALL';
-}
 
 if (isset($_POST['limit'])) {
 	$limit = $_POST['limit'];
@@ -25,34 +18,38 @@ if (isset($_POST['page_no'])) {
 
 $offset = ($page_no - 1) * $limit;
 
-if (isset($_POST['from_date']) && isset($_POST['to_date'] ) && !empty($_POST['from_date'] )&& !empty($_POST['to_date'] )) {
+$add1 = "";
+$add2 = "";
+$add3 = "";
+
+if ($_SESSION['user_role'] == 'Supervisor' || $_SESSION['user_role'] == 'HR Administrator') {
+	$department =  $_SESSION['department'];
+	$office =  $_SESSION['office'];
+	$add1 = "join item i on a.emp_id = i.emp_id where i.division = '$department' and i.area_wrk_assign = '$office'";
+}
+
+
+if (isset($_POST['from_date']) && isset($_POST['to_date']) && !empty($_POST['from_date']) && !empty($_POST['to_date'])) {
 
 	$from_date = $_POST['from_date'];
 	$to_date = $_POST['to_date'];
+	$add2 = "and a.leave_from_date BETWEEN '$from_date' AND '$to_date'";
+}
 
-	$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image , i.division , i.area_wrk_assign from emp_leaves a join employee b on a.emp_id = b.emp_id join item i on a.emp_id = i.emp_id where i.division = '$department' and i.area_wrk_assign = '$office' and a.leave_from_date BETWEEN '$from_date' AND '$to_date';  LIMIT $offset, $limit";
-
-} 
-
-else if (isset($_POST['search_approve']) && !empty($_POST['search_approve'] )) {
+if (isset($_POST['search_approve']) && !empty($_POST['search_approve'])) {
 
 	$search_approve = $_POST['search_approve'];
-
-	if($search_approve == 'Approved'){
-		$status = 1 ; 
-	}else {
-		$status = 0 ; 
+	if ($search_approve == 'Approved') {
+		$status = 1;
+	} else {
+		$status = 0;
 	}
-
-	$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image ,  i.division , i.area_wrk_assign from emp_leaves a join employee b on a.emp_id = b.emp_id join item i on a.emp_id = i.emp_id where i.division = '$department' and i.area_wrk_assign = '$office' and a.status = '$status' LIMIT $offset, $limit";
-
+	$add3 = "and a.status = '$status'";
 }
 
-else {
 
-	$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image ,  i.division , i.area_wrk_assign from emp_leaves a join employee b on a.emp_id = b.emp_id join item i on a.emp_id = i.emp_id where i.division = '$department' and i.area_wrk_assign = '$office' LIMIT $offset, $limit";
+$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image  from emp_leaves a join employee b on a.emp_id = b.emp_id " . $add1 . " " . $add2 . "" . $add3 . " LIMIT $offset, $limit";
 
-}
 
 
 
@@ -80,11 +77,14 @@ if (mysqli_num_rows($result) > 0) {
 
 	while ($mydata = mysqli_fetch_assoc($result)) {
 
-		if(empty($mydata['emp_image'])){
+		if (empty($mydata['emp_image'])) {
 			$emp_image = 'no_image.jpeg';
-	}else {
-		$emp_image = $mydata['emp_image'];
-	}
+		} else {
+			$emp_image = $mydata['emp_image'];
+		}
+
+		$obj = json_decode($mydata['details_of_leave']);
+		$details =  $obj->details_of_leave_option . ' , ' . $obj->details_text;
 
 		$output .= "
 	
@@ -96,14 +96,16 @@ if (mysqli_num_rows($result) > 0) {
                         </td>
                         <td> {$mydata['type_of_leave']} </td>
                         <td>{$mydata['no_of_working_days']}</td>
-                        <td>{$mydata['details_of_leave']}</td>
+                        <td>{$details}</td>
 						<td>
 						<label class='switch mr-5'>
 						<input type='checkbox' class='leave_status' value='{$mydata['id']}'";
-						if (($mydata['status'])  == '1') {
-							$output .= 'checked';
-						}else {$output .= '';};
-						$output .= " > <span class='slider round'></span>
+		if (($mydata['status'])  == '1') {
+			$output .= 'checked';
+		} else {
+			$output .= '';
+		};
+		$output .= " > <span class='slider round'></span>
 										</label>
 		  </td>
                   </tr>";
@@ -142,7 +144,6 @@ if (mysqli_num_rows($result) > 0) {
 
 	$output .= '</ul> </div>';
 	echo $output;
-
 } else {
 
 	$output .= "<tr><td colspan='6'>No data Available</td> </tr></tbody></table>";
@@ -155,28 +156,28 @@ if (mysqli_num_rows($result) > 0) {
 
 
 <script>
-$('.leave_status').click(function() {
-		
-		
+	$('.leave_status').click(function() {
+
+
 		if ($(this).prop('checked') == false) {
 			var status = 0;
 			var id = $(this).val();
-			console.log(id , status , 'we')
+			console.log(id, status, 'we')
 			// event.preventDefault();
 			jQuery.noConflict(true);
 			$('.statusModal').modal('show');
 			$("#modal_emp_id").val(id);
 			jQuery.noConflict(false);
 
-		} else 
+		} else
 		if ($('.leave_status').is(":checked")) {
 			var status = 1;
-		// }
-		// else {
-		// 	var status = 1;
-		// }
+			// }
+			// else {
+			// 	var status = 1;
+			// }
 			var id = $(this).val();
-			console.log(id , status)
+			console.log(id, status)
 			$.ajax({
 				url: "emp_leave_status.php",
 				method: "POST",
@@ -195,11 +196,4 @@ $('.leave_status').click(function() {
 
 		}
 	});
-
-
-
-
-
-
-
 </script>

@@ -91,7 +91,7 @@ if (mysqli_num_rows($result) > 0) {
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('I15', $mydata['condition_3_des']);
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('H18', $mydata['condition_4']);
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('K19', $mydata['condition_4_des']);
-        $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('K20', $mydata['condition_4_date']);
+        $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('K20', date("m/d/Y", strtotime($mydata['condition_4_date'])) );
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('K21', $mydata['condition_4_status']);
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('H27', $mydata['condition_5']);
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('H29', $mydata['condition_5_des']);
@@ -136,7 +136,7 @@ $count = 37;
 if (mysqli_num_rows($result) > 0) {
     while ($mydata = mysqli_fetch_assoc($result)) {
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue("I" . $count, $mydata['emp_child_name']);
-        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue("M" . $count, $mydata['emp_child_dob']);
+        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue("M" . $count, date("m/d/Y", strtotime($mydata['emp_child_dob'])));
         $count ++ ;
     }
 }    
@@ -178,10 +178,10 @@ if (mysqli_num_rows($result) > 0) {
     while ($mydata = mysqli_fetch_assoc($result)) {
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("A" . $count, $mydata['civil_exam_name']);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("F" . $count, $mydata['civil_exam_rating']);
-        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("G" . $count, $mydata['civil_exam_date']);
+        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("G" . $count, date("m/d/Y", strtotime($mydata['civil_exam_date'])));
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("I" . $count, $mydata['civil_exam_place']);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("L" . $count, $mydata['civil_exam_licence_no']);
-        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("M" . $count, $mydata['civil_exam_licence_val']);
+        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("M" . $count, date("m/d/Y", strtotime($mydata['civil_exam_licence_val'])));
         $count++;
     }
 } 
@@ -191,8 +191,8 @@ $count = 18;
 $result = mysqli_query($conn, $query7);
 if (mysqli_num_rows($result) > 0) {
     while ($mydata = mysqli_fetch_assoc($result)) {
-        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("A" . $count, $mydata['work_from_date']);
-        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("C" . $count, $mydata['work_to_date']);
+        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("A" . $count, date("m/d/Y", strtotime($mydata['work_from_date'])));
+        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("C" . $count, date("m/d/Y", strtotime($mydata['work_to_date'])));
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("D" . $count, $mydata['work_position']);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("G" . $count, $mydata['work_employer']);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("J" . $count, $mydata['work_monthly_sal']);
@@ -210,8 +210,8 @@ if (mysqli_num_rows($result) > 0) {
     while ($mydata = mysqli_fetch_assoc($result)) {
         $vol = $mydata['vol_name_org'] . "  -  " .$mydata['vol_org_add'];
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("A" . $count, $vol);
-        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("E" . $count, $mydata['vol_from_date']);
-        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("F" . $count, $mydata['vol_to_date']);
+        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("E" . $count, date("m/d/Y", strtotime($mydata['vol_from_date'])));
+        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("F" . $count, date("m/d/Y", strtotime($mydata['vol_to_date'] )));
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("G" . $count, $mydata['vol_no_of_hrs']);
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("H" . $count, $mydata['vol_position']);
         $count++;
@@ -224,8 +224,8 @@ $result = mysqli_query($conn, $query9);
 if (mysqli_num_rows($result) > 0) {
     while ($mydata = mysqli_fetch_assoc($result)) {
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("A" . $count, $mydata['title_of_training']);
-        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("E" . $count, $mydata['training_from_date']);
-        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("F" . $count, $mydata['training_to_date']);
+        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("E" . $count, date("m/d/Y", strtotime($mydata['training_from_date'] )));
+        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("F" . $count, date("m/d/Y", strtotime($mydata['training_to_date'] )));
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("G" . $count, $mydata['training_no_of_hrs']);
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("H" . $count, $mydata['training_type_of_position']);
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("K" . $count, $mydata['training_conducted_by']);
@@ -279,7 +279,7 @@ $query14 = "SELECT date_accomplished FROM `item` WHERE emp_id = '$emp_id'";
 $result = mysqli_query($conn, $query14);
 if (mysqli_num_rows($result) > 0) {
     while ($mydata = mysqli_fetch_assoc($result)) {
-        $date_accomplished = $mydata['date_accomplished'];
+        $date_accomplished = date("m/d/Y", strtotime($mydata['date_accomplished'] ));
     }
 }
 
@@ -289,7 +289,7 @@ $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("I53" , $date_accomp
 $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue("F64" , $date_accomplished);
 
 // image
-if(!empty($emp_image) && file_exists($emp_image) ){
+if(!empty($emp_image) ){
 $drawing = new PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing->setPath('../emp_img/'.$emp_image); // put your path and image here
 $drawing->setCoordinates('J50');

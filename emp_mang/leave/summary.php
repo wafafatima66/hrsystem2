@@ -4,10 +4,14 @@
     .date-input {
     font-size: 12px;
 }
+.responsive-label {
+        font-size: 12px;
+        color:#54A04B;
+    }
 
 @media (max-width:768px) {
     .responsive-label {
-        font-size: 7px;
+        font-size: 12px;
     }
 
     .date-input {
@@ -29,20 +33,24 @@
 
                 <div class="form-inline">
 
-                    <div class="col-lg-3 col-sm-3 ">
-                        <label for="" style="color:#54A04B; " class="responsive-label">VACATION LEAVE</label>
+                    <div class="col-lg-2 col-sm-2 ">
+                        <label for="" class="responsive-label">VACATION LEAVE</label>
                     </div>
 
-                    <div class="col-lg-3 col-sm-3 ">
-                        <label for="" style="color:#54A04B;" class="responsive-label">SICK LEAVE</label>
+                    <div class="col-lg-2 col-sm-2 ">
+                        <label for=""  class="responsive-label">SICK LEAVE</label>
                     </div>
 
-                    <div class="col-lg-3 col-sm-3 ">
-                        <label for="" style="color:#54A04B;" class="responsive-label">SPECIAL PRIVILEDGE LEAVE</label>
+                    <div class="col-lg-2 col-sm-2 ">
+                        <label for=""  class="responsive-label">SPECIAL PRIVILEDGE LEAVE</label>
                     </div>
 
-                    <div class="col-lg-3 col-sm-3 ">
-                        <label for="" style="color:#54A04B;" class="responsive-label">LEAVE WITHOUT PAY</label>
+                    <div class="col-lg-2 col-sm-2 ">
+                        <label for=""  class="responsive-label">MANTATORY/FORCED LEAVE</label>
+                    </div>
+
+                    <div class="col-lg-2 col-sm-2 ">
+                        <label for=""  class="responsive-label">LEAVE WITHOUT PAY</label>
                     </div>
 
                 </div>
@@ -70,24 +78,34 @@
 
                     <div class="form-inline">
 
-                        <div class="col-lg-3 col-sm-3 form-inline p-1 ">
-                            <input type="text" class="form-control text-input date-input" value="<?php echo $vac_leave_dates ?>" style="width: 70%;">
-                            <input type="text" class="form-control text-input date-input" value="<?php echo $vac_date_diff ?>days" style="width: 30%;">
+                        <div class="col-lg-2 col-sm-2 form-inline p-1 ">
+                            <!-- <input type="text" class="form-control text-input date-input" value="<?php echo $vac_leave_dates ?>" style="width: 60%;"> -->
+                            <input type="text" class="form-control text-input date-input" value="<?php echo $vac_date_diff ?>" style="width: 60%;">
+                            <input type="text" class="form-control text-input date-input" value="days" style="width: 40%;">
                         </div>
 
-                        <div class="col-lg-3 col-sm-3 form-inline p-1">
-                            <input type="text" class="form-control text-input date-input" value="<?php echo $sick_leave_dates ?>" style="width: 70%;">
-                            <input type="text" class="form-control text-input date-input" value="<?php echo $sick_date_diff ?>days" style="width: 30%;">
+                        <div class="col-lg-2 col-sm-2 form-inline p-1">
+                            <!-- <input type="text" class="form-control text-input date-input" value="<?php echo $sick_leave_dates ?>" style="width: 60%;"> -->
+                            <input type="text" class="form-control text-input date-input" value="<?php echo $sick_date_diff ?>" style="width: 60%;">
+                            <input type="text" class="form-control text-input date-input" value="days" style="width: 40%;">
                         </div>
 
-                        <div class="col-lg-3 col-sm-3 form-inline p-1">
-                            <input type="text" class="form-control text-input date-input" value="<?php echo $spl_leave_dates ?>" style="width: 70%;">
-                            <input type="text" class="form-control text-input date-input" value="<?php echo $spl_date_diff ?>days" style="width: 30%;">
+                        <div class="col-lg-2 col-sm-2 form-inline p-1">
+                            <!-- <input type="text" class="form-control text-input date-input" value="<?php echo $spl_leave_dates ?>" style="width: 60%;"> -->
+                            <input type="text" class="form-control text-input date-input" value="<?php echo $spl_date_diff ?>" style="width: 60%;">
+                            <input type="text" class="form-control text-input date-input" value="days" style="width: 40%;">
                         </div>
 
-                        <div class="col-lg-3 col-sm-3 form-inline p-1">
-                            <input type="text" class="form-control text-input date-input" value="<?php echo $lwp_leave_dates ?>" style="width: 70%;">
-                            <input type="text" class="form-control text-input date-input" value="<?php echo $lwp_date_diff ?>days" style="width: 30%;">
+                        <div class="col-lg-2 col-sm-2 form-inline p-1">
+                            <!-- <input type="text" class="form-control text-input date-input" value="<?php echo $man_leave_dates ?>" style="width: 60%;"> -->
+                            <input type="text" class="form-control text-input date-input" value="<?php echo $man_date_diff ?>" style="width: 60%;">
+                            <input type="text" class="form-control text-input date-input" value="days" style="width: 40%;">
+                        </div>
+
+                        <div class="col-lg-2 col-sm-2 form-inline p-1">
+                            <!-- <input type="text" class="form-control text-input date-input" value="<?php echo $lwp_leave_dates ?>" style="width: 60%;"> -->
+                            <input type="text" class="form-control text-input date-input" value="<?php echo $lwp_date_diff ?>" style="width: 60%;">
+                            <input type="text" class="form-control text-input date-input" value="days" style="width: 40%;">
                         </div>
 
                     </div>

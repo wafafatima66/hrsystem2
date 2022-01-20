@@ -3,7 +3,13 @@
 
         <?php
 
-        $last_year = date("Y") - 1; //finding last year
+        if (isset($_COOKIE["inputDate"])) {
+            $last_year = $_COOKIE['inputDate']-1;
+        }else {
+            $last_year = date("Y") - 1; //finding last year
+        }
+        
+        // echo $last_year;
 
         $query = "select vl_pts,sl_pts,year from leave_credits_year where emp_id = '$emp_id' and year = $last_year ";
 
@@ -11,7 +17,6 @@
             $rowcount = mysqli_num_rows($runquery);
             if ($rowcount != 0) {
                 while ($mydata = $runquery->fetch_assoc()) {
-
                     $vl_pts = $mydata["vl_pts"];
                     $sl_pts = $mydata["sl_pts"];
                     $year = $mydata["year"]; //getting last year to display
@@ -19,7 +24,12 @@
             } else {
                 $vl_pts = 15.0;
                 $sl_pts = 15.0;
-                $year = date("Y") - 1;
+                if (isset($_COOKIE["inputDate"])) {
+                    $year = $_COOKIE['inputDate']-1;
+                }else {
+                    $year = date("Y")-1;
+                }
+                // $year = date("Y") - 1;
             }
         }
         $total_pts = $vl_pts + $sl_pts;
@@ -113,8 +123,13 @@
 
 
             <?php $j = $i + 1;
-            $year = date("Y");
-            
+
+                if (isset($_COOKIE["inputDate"])) {
+                    $year = $_COOKIE['inputDate'];
+                }else {
+                    $year = date("Y");
+                }
+                            
             $query = "select sum(vacation_leave) as vl_days , sum(sick_leave) as sl_days, (spl) as spl_days , (force_leave) as fl_days , (lwp) as lwp_days from leave_credits where emp_id = '$emp_id' and mon = $j and year = $year";
 
 
@@ -124,27 +139,27 @@
 
                 while ($mydata = $runquery->fetch_assoc()) {
 
-                    $spl_days = $mydata["spl_days"];
-                    $fl_days = $mydata["fl_days"];
-                    $lwp_days = $mydata["lwp_days"];
+                    $spl_days = ($mydata["spl_days"] == '' ? '0' : $mydata["spl_days"]);
+                    $fl_days = ($mydata["fl_days"] == '' ? '0' : $mydata["fl_days"]);
+                    $lwp_days = ($mydata["lwp_days"] == '' ? '0' : $mydata["lwp_days"]);
 
                     if (!empty($mydata["vl_days"]) && !empty($mydata["sl_days"])) {
 
                         $vl_days = $mydata["vl_days"]; //getting vacation days
-                        $vl_pts =  $vl_pts - ($vl_days * 1.25);
+                        $vl_pts =  $vl_pts - ($vl_days * 1);
                         $sl_days = $mydata["sl_days"];
-                        $sl_pts =  $sl_pts - ($sl_days * 1.25);
+                        $sl_pts =  $sl_pts - ($sl_days * 1);
                     } else if (!empty($mydata["sl_days"])) {
 
                         $sl_days = $mydata["sl_days"];
-                        $sl_pts =  $sl_pts - ($sl_days * 1.25);
+                        $sl_pts =  $sl_pts - ($sl_days * 1);
                         $vl_days = 1.25;
                         $vl_pts =  $vl_pts + 1.25; //when no vc
 
                     } else if (!empty($mydata["vl_days"])) {
 
                         $vl_days = $mydata["vl_days"]; //getting vacation days
-                        $vl_pts =  $vl_pts - ($vl_days * 1.25);
+                        $vl_pts =  $vl_pts - ($vl_days * 1);
                         $sl_days = 1.25;
                         $sl_pts =  $sl_pts + 1.25; //when no sick leaves 
 
@@ -164,10 +179,7 @@
                     vl_pts_$mon='$vl_pts' , 
                     sl_pts_$mon='$sl_pts' ";
                     // $sql_3 = "UPDATE leave_credits_result SET vl_pts_$mon = '$vl_pts' ,sl_pts_$mon = '$sl_pts' WHERE emp_id = '$emp_id' and year = '$year' ; ";
-                   mysqli_query($conn, $sql_3);
-                   
-
-
+                    mysqli_query($conn, $sql_3);
 
             ?>
 
@@ -177,7 +189,7 @@
                         <div class="form-row mt-2">
 
                             <div class="col-lg-3 col-sm-3 col-3 form-inline">
-                                <input type="text" class="form-control date-input text-input " readonly value="<?php echo $vl_days ?>" style="width:50%">
+                                <input type="text" class="form-control date-input text-input " readonly value="<?php echo $vl_days ?>" style="width:50%" id="vl_days_">
                                 <input type="text" class="form-control date-input text-input " readonly value="<?php echo $vl_pts ?>" style="width:50%">
                             </div>
 

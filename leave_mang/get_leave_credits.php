@@ -25,9 +25,9 @@ if(isset($_POST['emp_id'])){
      $sl_now_pts = 0;
 
      if($type_of_leave == "Vacation leave"){
-        $vl_now_pts = $date_diff * 1.25 ; 
+        $vl_now_pts = $date_diff * 1 ; 
     } else if($type_of_leave == "Sick leave"){
-       $sl_now_pts = $date_diff * 1.25 ; 
+       $sl_now_pts = $date_diff * 1 ; 
    } else {
        $vl_now_pts = 0;
        $sl_now_pts = 0;
@@ -57,8 +57,6 @@ if(isset($_POST['emp_id'])){
  
          echo json_encode( array('vl_now_pts'=>$vl_now_pts,'sl_now_pts'=>$sl_now_pts,'vl_pts'=>$vl_pts,'sl_pts'=>$sl_pts,'pts_total'=>$pts_total, 'total_pts_now'=>$total_pts_now,'vl_bal'=>$vl_bal,'sl_bal'=>$sl_bal,'total_bal'=>$total_bal));
         
-     
- 
  
 }
 } else {

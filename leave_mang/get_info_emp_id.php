@@ -35,9 +35,6 @@ if(isset($_POST['emp_id'])){
     }
 
 
-
-    
-
     }     
 
     else

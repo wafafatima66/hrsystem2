@@ -154,7 +154,7 @@ $sql5 = "INSERT INTO applicant (item_no , applicant_id , applicant_first_name, a
               <label for="">Item No.</label>
               <select  class="form-control text-input " name="item_no" id="select_item"  required>
             <?php
-                    $query = "SELECT item_no FROM item ";
+                    $query = "SELECT item_no FROM item where filled = 0";
                     $result = mysqli_query($conn, $query);
                     if (mysqli_num_rows($result) > 0) {
                         echo "<option value=''> Select Item </option> ";

@@ -6,8 +6,13 @@ if(isset($_POST['leave_emp_id']) ){
     $vl_pts = $_POST['vl_pts'];
     $sl_pts = $_POST['sl_pts'];
     $emp_id = $_POST['leave_emp_id'];
-    $year = date("Y")-1;
+    // $year = date("Y")-1;
 
+    if (isset($_COOKIE["inputDate"])) {
+        $year = $_COOKIE['inputDate']-1;
+    }else {
+        $year = date("Y")-1;
+    }
     
     require '../../includes/conn.php';
 
@@ -19,16 +24,16 @@ if(isset($_POST['leave_emp_id']) ){
 
         if (mysqli_query($conn, $sql)){
 
-            $sql1 = mysqli_query($conn,"select id from employee where emp_id = '$emp_id' ");
-            $row = mysqli_fetch_array($sql1,MYSQLI_ASSOC);
-            $id = $row['id'];
+            // $sql1 = mysqli_query($conn,"select id from employee where emp_id = '$emp_id' ");
+            // $row = mysqli_fetch_array($sql1,MYSQLI_ASSOC);
+            // $id = $row['id'];
     
             // header("Location:../../emp_mang/emp_profile.php?id=".$id."&credits_year");
 
-           } else {
-               echo  '<script>toastr.error("Credits Year not updated. Try again !")</script>';
-            
-        }
+            echo 'success';
+        } else {
+         echo 'error';
+     }
     
 }
   

@@ -7981,9 +7981,20 @@ ALTER TABLE `emp_education` CHANGE `from_date` `from_date` VARCHAR(200) NULL DEF
 
 ALTER TABLE `employee` ADD `emp_banner` VARCHAR(200) NULL AFTER `emp_image`;
 
--- new 
+-- new 1 
 
 
 ALTER TABLE `hrsystem2`.`leave_credits_result` ADD UNIQUE (`year`, `emp_id`);
 ALTER TABLE `leave_credits_result` DROP INDEX `emp_id`;
 ALTER TABLE `hrsystem2`.`leave_credits_year` ADD UNIQUE (`year`, `emp_id`);
+
+DELETE FROM `emp_reference` WHERE `emp_reference`.`id` = 3;
+DELETE FROM `emp_reference` WHERE `emp_reference`.`id` = 5;
+
+DELETE FROM `emp_govt_id` WHERE `emp_govt_id`.`id` = 3;
+DELETE FROM `emp_govt_id` WHERE `emp_govt_id`.`id` = 5;
+
+-- NEW 2 
+
+INSERT INTO `employee`( `emp_id`) VALUES ('HR')
+UPDATE `users` SET `emp_id`='HR' WHERE username = 'hr'

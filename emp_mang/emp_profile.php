@@ -55,7 +55,7 @@ if (isset($_GET['id'])) {
                   <div class="container ">
                         <div class="emp-profile-box-1">
                               <div class="row ">
-                                    <div class="col-lg-3 col-sm-4">
+                                    <div class="col-lg-3 col-sm-4" <?php echo($_SESSION['user_role'] == 'Super Administrator' ? '' : 'style="display:none"')?>>
 
                                           <div class="emp-profile-img">
                                                 <img src="<?php echo  $photo_to_show; ?>" alt="" style="width:100%;height:100%">
@@ -65,17 +65,14 @@ if (isset($_GET['id'])) {
 
                                                 <label>
                                                       <i class="fa fa-camera"> </i>
-
                                                       <input type="file" style="display: none;" name="emp_image" id="emp_image">
                                                       <input type="hidden" name="emp_id" value="<?php echo $emp_id ?>">
 
                                                 </label>
-
                                           </div>
-
-
                                     </div>
-                                    <div class="col-lg-9 col-sm-12 d-flex  flex-column ">
+
+                                    <div class=" <?php echo($_SESSION['user_role'] == 'Super Administrator' ? 'col-lg-9 col-sm-12' : 'col-lg-12 col-sm-12')?> d-flex flex-column" >
 
                                           <div class="d-flex justify-content-end">
                                                 <h5 class="emp_profile_button emp_profile_button_active" id="agency">Agency Profile | </h5>
@@ -84,11 +81,10 @@ if (isset($_GET['id'])) {
                                                 <h5 class="emp_profile_button" id="file">File 201</h5>
                                           </div>
 
-                                          <div class="employee-banner">
-                                                <img src="<?php echo  $banner; ?>" alt="">
+                                          <div class="employee-banner" <?php echo($_SESSION['user_role'] == 'Super Administrator' ? '' : 'style="width:100%"')?>>
+                                                <img src="<?php echo  $banner; ?>" alt="" <?php echo($_SESSION['user_role'] == 'Super Administrator' ? '' : 'style="height:200px;padding-right:0px"')?>>
                                           </div>
-
-                                          <div class="text-lg-right pr-4 mt-2">
+                                          <div class="text-lg-right pr-4 mt-2 mb-2">
                                                 <label>
                                                       <i class="fa fa-camera"> </i>
                                                       <input type="file" style="display: none;" name="emp_banner" id="emp_banner">
