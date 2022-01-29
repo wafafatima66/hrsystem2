@@ -19,7 +19,7 @@ include "../includes/conn.php";
                     <form action="" method="post" enctype="multipart/form-data">
 
                         <input type="hidden" id="modal_emp_id" name="id">
-                        <input type="hidden"  name="status" value="0">
+                        <input type="hidden" name="status" value="0">
 
                         <div class="form-row mt-1">
                             <div class="col-lg-12 col-sm-12">
@@ -27,12 +27,12 @@ include "../includes/conn.php";
                             </div>
 
                             <div class="col-lg-12 col-sm-6">
-            <textarea cols=12 rows=5 style="width:100%" placeholder="Remarks" name="remarks"></textarea>
-          </div>
+                                <textarea cols=12 rows=5 style="width:100%" placeholder="Remarks" name="remarks"></textarea>
+                            </div>
                         </div>
 
-                       
-          
+
+
 
 
                 </div>

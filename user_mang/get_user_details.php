@@ -68,6 +68,8 @@ if (isset($_POST['id'])) {
 
                                                 <option value="Department Head" <?php echo ($mydata['role'] == "Department Head") ? "hidden" : "" ?>>Department Head</option>
 
+                                                <option value="Agency Head" <?php echo ($mydata['role'] == "Agency Head") ? "hidden" : "" ?>>Agency Head</option>
+
                                                 <option value="Employee" <?php echo ($mydata['role'] == "Employee") ? "hidden" : "" ?>>Employee</option>
 
                                           </select>

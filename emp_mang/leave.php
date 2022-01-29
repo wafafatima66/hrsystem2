@@ -49,7 +49,8 @@
 <div class="form-row justify-content-between mt-4 ">
 
   <div class="form-inline">
-    <input type="number" min="1900" max="2099" step="1" value="<?php echo $_COOKIE['inputDate']?>" class="form-control text-input" id="input-date"/>
+    <input type="number" min="1900" max="2099" step="1" value="<?php echo ((!empty($_COOKIE["inputDate"])) ? $_COOKIE['inputDate'] : date("Y") );
+    ?>" class="form-control text-input" id="input-date"/>
     <button id="date-submit" class="btn button-1">Search</button>
   </div>
 

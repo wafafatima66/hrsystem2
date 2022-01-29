@@ -22,7 +22,7 @@ $add1 = "";
 $add2 = "";
 $add3 = "";
 
-if ($_SESSION['user_role'] == 'Supervisor' || $_SESSION['user_role'] == 'HR Administrator') {
+if ($_SESSION['user_role'] == 'Supervisor' || $_SESSION['user_role'] == 'HR Administrator' || $_SESSION['user_role'] == 'Department Head') {
 	$department =  $_SESSION['department'];
 	$office =  $_SESSION['office'];
 	$add1 = "join item i on a.emp_id = i.emp_id where i.division = '$department' and i.area_wrk_assign = '$office'";
@@ -41,14 +41,16 @@ if (isset($_POST['search_approve']) && !empty($_POST['search_approve'])) {
 	$search_approve = $_POST['search_approve'];
 	if ($search_approve == 'Approved') {
 		$status = 1;
-	} else {
+	} else if ($search_approve == 'Disapprove') {
 		$status = 0;
+	} else if ($search_approve == 'Pending') {
+		$status = 2;
 	}
 	$add3 = "and a.status = '$status'";
 }
 
 
-$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image  from emp_leaves a join employee b on a.emp_id = b.emp_id " . $add1 . " " . $add2 . "" . $add3 . " LIMIT $offset, $limit";
+$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status,a.final_status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image  from emp_leaves a join employee b on a.emp_id = b.emp_id " . $add1 . " " . $add2 . "" . $add3 . " LIMIT $offset, $limit";
 
 
 
@@ -73,8 +75,6 @@ $output .= "<table class='table home-page-table mt-3 table-striped ' >
 
 if (mysqli_num_rows($result) > 0) {
 
-
-
 	while ($mydata = mysqli_fetch_assoc($result)) {
 
 		if (empty($mydata['emp_image'])) {
@@ -82,10 +82,14 @@ if (mysqli_num_rows($result) > 0) {
 		} else {
 			$emp_image = $mydata['emp_image'];
 		}
-
-		$obj = json_decode($mydata['details_of_leave']);
-		$details =  $obj->details_of_leave_option . ' , ' . $obj->details_text;
-
+			$obj = json_decode($mydata['details_of_leave']);
+			if(isset($obj->details_of_leave_option) ){
+			$details =  $obj->details_of_leave_option . ' , ' . $obj->details_text;
+		}else {
+			$details = $mydata['details_of_leave'];
+		}
+		
+ 
 		$output .= "
 	
 	<tr>
@@ -98,18 +102,102 @@ if (mysqli_num_rows($result) > 0) {
                         <td>{$mydata['no_of_working_days']}</td>
                         <td>{$details}</td>
 						<td>
-						<label class='switch mr-5'>
-						<input type='checkbox' class='leave_status' value='{$mydata['id']}'";
-		if (($mydata['status'])  == '1') {
-			$output .= 'checked';
-		} else {
-			$output .= '';
-		};
-		$output .= " > <span class='slider round'></span>
-										</label>
-		  </td>
+						
+							<div class=''>";
+
+							if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Department Head' || $_SESSION['user_role']=='Agency Head'){
+
+								$output .="<div class='mr-2 status-{$mydata['id']}' >
+									<label>Department Head</label>
+									<select class='form-control text-input leave_status_dropdown' id='{$mydata['id']}'>
+									<option>Select</option>
+									<option value='1'";
+										if (($mydata['status'])  == '1') {
+											$output .= 'selected';
+										} else {
+											$output .= '';
+										};
+										$output .= ">Approved</option>
+															<option value='0' ";
+										if (($mydata['status'])  == '0') {
+											$output .= 'selected';
+										} else {
+											$output .= '';
+										};
+										$output .= ">Disapprove</option>
+																<option value='2' ";
+										if (($mydata['status'])  == '2') {
+											$output .= 'selected';
+										} else {
+											$output .= '';
+										};
+										$output .= ">Pending </option>
+									</select>
+								</div>";
+									}
+									if($_SESSION['user_role']=='Agency Head'){
+									$output .="<div class='final_status-{$mydata['id']}'>
+									<label>Agency Head</label>
+									<select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'>
+									<option>Select</option>
+										<option value='1'";
+											if (($mydata['final_status']) == '1') {
+												$output .= 'selected';
+											} else {
+												$output .= '';
+											};
+											$output .=">Approved</option>
+																<option value='0' ";
+											if (($mydata['final_status'])  == '0') {
+												$output .= 'selected';
+											} else {
+												$output .= '';
+											};
+											$output .= ">Disapprove</option>
+																	<option value='2' ";
+											if (($mydata['final_status'])  == '2') {
+												$output .= 'selected';
+											} else {
+												$output .= '';
+											};
+											$output .= ">Pending</option>
+									</select>
+								</div>";
+										}
+										if($_SESSION['user_role']=='Super Administrator'){
+											$output .="<div class=''>";
+											if (($mydata['status'])  == '1') {
+														$output .= "Approved";
+													} else if (($mydata['status'])  == '0') {
+														$output .= "Disapprove";
+													}else {
+														$output .= "Pending";
+													}
+													$output .="</div>";
+												}
+
+										$output .="</div>
+						</td>
                   </tr>";
 	}
+
+	// 	if (($mydata['status'])  == '1') {
+	// 		$output .= "<option value='Approved'>Approved</option>";
+	// 	} else if (($mydata['status'])  == '0') {
+	// 		$output .= "<option value='Disapprove'>Disapprove</option>";
+	// 	}
+	// else { 
+	// 	$output .="<option value='Pending'>Pending</option>";
+	// }
+	// <label class='switch mr-5'>
+	// 	<input type='checkbox' class='leave_status' value='{$mydata['id']}'";
+	// 	if (($mydata['status'])  == '1') {
+	// 		$output .= 'checked';
+	// 	} else {
+	// 		$output .= '';
+	// 	};
+	// 	$output .= " > <span class='slider round'></span>
+	// </label>
 
 	$output .= "</tbody>
 	</table>";
@@ -156,34 +244,102 @@ if (mysqli_num_rows($result) > 0) {
 
 
 <script>
-	$('.leave_status').click(function() {
+	// $('.leave_status').click(function() {
 
 
-		if ($(this).prop('checked') == false) {
-			var status = 0;
-			var id = $(this).val();
-			console.log(id, status, 'we')
-			// event.preventDefault();
-			jQuery.noConflict(true);
-			$('.statusModal').modal('show');
-			$("#modal_emp_id").val(id);
-			jQuery.noConflict(false);
+	// 	if ($(this).prop('checked') == false) {
+	// 		var status = 0;
+	// 		var id = $(this).val();
+	// 		console.log(id, status, 'we')
+	// 		// event.preventDefault();
+	// 		jQuery.noConflict(true);
+	// 		$('.statusModal').modal('show');
+	// 		$("#modal_emp_id").val(id);
+	// 		jQuery.noConflict(false);
 
-		} else
-		if ($('.leave_status').is(":checked")) {
-			var status = 1;
-			// }
-			// else {
-			// 	var status = 1;
-			// }
-			var id = $(this).val();
-			console.log(id, status)
+	// 	} else
+	// 	if ($('.leave_status').is(":checked")) {
+	// 		var status = 1;
+	// 		// }
+	// 		// else {
+	// 		// 	var status = 1;
+	// 		// }
+	// 		var id = $(this).val();
+	// 		console.log(id, status)
+	// 		$.ajax({
+	// 			url: "emp_leave_status.php",
+	// 			method: "POST",
+	// 			data: {
+	// 				status: status,
+	// 				id: id,
+	// 			},
+	// 			success: function(data) {
+	// 				if (data == "success") {
+	// 					toastr.success("Employee active status updated !");
+	// 				} else if (data == "fail") {
+	// 					toastr.error("Employee active status not updated !");
+	// 				}
+	// 			},
+	// 		});
+
+	// 	}
+
+
+	// });
+
+	$(".leave_status_dropdown").change(function() {
+
+		var status = $(this).val();
+		var id = $(this).attr('id');
+		// console.log(id)
+
+		if (status == 0) {
+			var details = '<textarea cols=12 rows=5 style="width:100%" placeholder="Remarks" name="remarks" class="remarks mt-2 form-control text-input"></textarea>'
+			$('.status-' +id).append(details);
+
+			$(".remarks").focusout(function() {
+				var remarks = $(".remarks").val();
+				// console.log(remarks);
+				run_ajax(status,id,remarks,'');
+			});
+		} else {
+			var remarks = '';
+			run_ajax(status,id,remarks,'');
+		}
+	});
+
+	$(".leave_status_dropdown_final").change(function() {
+		// console.log('hi');
+	
+		var status = $(this).val();
+		var id = $(this).attr('id');		// console.log('.'+id)
+
+		if (status == 0) {
+			var details = '<textarea cols=12 rows=5 style="width:100%" placeholder="Remarks"  class="final_remarks mt-2 form-control text-input"></textarea>'
+			
+			$('.final_status-' +id).append(details);
+
+			$(".final_remarks").focusout(function() {
+				var remarks = $(".final_remarks").val();
+				// console.log(remarks);
+				run_ajax(status,id,remarks,'final');
+			});
+		} else {
+			var remarks = '';
+			run_ajax(status,id,remarks,'final');
+		}
+
+	});
+
+	function run_ajax(status,id,remarks,final) {
 			$.ajax({
 				url: "emp_leave_status.php",
 				method: "POST",
 				data: {
 					status: status,
 					id: id,
+					remarks: remarks,
+					final:final
 				},
 				success: function(data) {
 					if (data == "success") {
@@ -193,7 +349,7 @@ if (mysqli_num_rows($result) > 0) {
 					}
 				},
 			});
-
 		}
-	});
+
+	
 </script>

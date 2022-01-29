@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
 
     if ($_POST['allowed'] == 1) {
 
-        
+
         $year = date("Y");
         $emp_id = $_POST['emp_id'];
         $type_of_leave = $_POST['type_of_leave'];
@@ -34,10 +34,11 @@ if (isset($_POST['submit'])) {
         $leave_to_date = $_POST['leave_to_date'][$lenght];
         // $date_diff = round(($to_date - $from_date) / (60 * 60 * 24)) + 1;
 
-        $sql = "INSERT INTO emp_leaves (emp_id, type_of_leave,leave_from_date,leave_to_date,details_of_leave,date_diff,no_of_working_days , date_filled , status) VALUE ('$emp_id', '$type_of_leave','$leave_from_date','$leave_to_date','$details_of_leave','$date_diff','$no_of_working_days' , '$date_filled' , '0') ";
+        $sql = "INSERT INTO emp_leaves (emp_id, type_of_leave,leave_from_date,leave_to_date,details_of_leave,date_diff,no_of_working_days , date_filled , status) VALUE ('$emp_id', '$type_of_leave','$leave_from_date','$leave_to_date','$details_of_leave','$date_diff','$no_of_working_days' , '$date_filled' , '2') ";
+
+        $conn->query($sql);
 
         //getting month year and difference to store to leave credits 
-
         // $mon = date("m", strtotime($leave_from_date));
         // $year = date("Y", strtotime($leave_from_date));
 
@@ -46,6 +47,11 @@ if (isset($_POST['submit'])) {
         $spl = "";
         $force_leave = "";
         $lwp = "";
+
+        $result = $conn->query("SELECT id FROM emp_leaves ORDER BY id DESC LIMIT 1");
+        while ($row = $result->fetch_assoc()) {
+            $leave_id = $row['id'];
+        }
 
 
         if ($type_of_leave == "Vacation leave") {
@@ -62,32 +68,20 @@ if (isset($_POST['submit'])) {
             $lwp = $date_diff;
         }
 
-        $query = "SELECT * FROM leave_credits WHERE emp_id = '$emp_id' and year = '$year' and mon = '$mon'";
-        $runquery = $conn->query($query);
-        $rowcount = mysqli_num_rows($runquery);
-        // if ($rowcount == 0) {
 
-            $sql2 = "INSERT INTO leave_credits (emp_id,vacation_leave,sick_leave,spl,force_leave,lwp,mon,year) VALUE ('$emp_id','$vacation_leave','$sick_leave','$spl','$force_leave','$lwp','$mon','$year')";
+        $sql2 = "INSERT INTO leave_credits (emp_id,vacation_leave,sick_leave,spl,force_leave,lwp,mon,year,status,leave_id) VALUE ('$emp_id','$vacation_leave','$sick_leave','$spl','$force_leave','$lwp','$mon','$year',0,'$leave_id')";
 
-            $conn->query($sql2);
-        // } 
-        // else {
+        // $conn->query($sql2);
 
-        //     $sql3 = "UPDATE leave_credits SET vacation_leave = '$vacation_leave' ,sick_leave = '$sick_leave' , spl = '$spl' , force_leave = '$force_leave' , lwp = '$lwp'  WHERE emp_id = '$emp_id' and year = '$year' and mon = '$mon' ; ";
 
-        //     $conn->query($sql3);
-        // }
 
-        if (mysqli_query($conn, $sql)) {
-
+        if (mysqli_query($conn, $sql2)) {
             header("Location:../leave_mang?success");
         } else {
             header("Location:../leave_mang?error");
-           
         }
     } else {
         header("Location:../leave_mang?limit");
-        
     }
 } else {
     header("Location:emp_mang.php");

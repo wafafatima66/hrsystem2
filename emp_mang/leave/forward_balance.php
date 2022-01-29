@@ -18,7 +18,7 @@ if(isset($_POST['leave_emp_id']) ){
         
     // }else
     //  if($mon == 1) {
-        if (isset($_COOKIE["inputDate"])) {
+        if (!empty($_COOKIE["inputDate"])) {
             $year = $_COOKIE['inputDate'];
         }else {
             $year = date("Y")-1;

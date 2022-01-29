@@ -41,7 +41,7 @@
 
 
         if ($count == 1) {
-            if ($row['role'] == 'Employee') {
+            if ($row['role'] != 'Super Administrator') {
                 $emp_id = $row['emp_id'];
                 $sql = "SELECT id FROM employee WHERE emp_id = '$emp_id'";
                 $result = mysqli_query($conn, $sql);

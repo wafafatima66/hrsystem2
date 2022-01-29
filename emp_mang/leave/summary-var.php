@@ -12,15 +12,16 @@
     $lwp_leave_dates="";
     $man_leave_dates="";
 
-    if (isset($_COOKIE["inputDate"])) {
+    if (!empty($_COOKIE["inputDate"]) )  {
         $year = $_COOKIE['inputDate'];
     }else {
         $year = date("Y");
     }
     
     $j = $i+1;
+    
 
-    $query = "select sum(vacation_leave) as vl_days , sum(sick_leave) as sl_days, (spl) as spl_days , (force_leave) as fl_days , (lwp) as lwp_days from leave_credits where emp_id = '$emp_id' and mon = $j and year = $year";
+    $query = "select sum(vacation_leave) as vl_days , sum(sick_leave) as sl_days, (spl) as spl_days , (force_leave) as fl_days , (lwp) as lwp_days from leave_credits where emp_id = '$emp_id' and mon = $j and year = $year and status = 1";
 
 
             $runquery = $conn->query($query);

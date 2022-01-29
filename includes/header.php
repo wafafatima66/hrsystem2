@@ -28,6 +28,8 @@ if (!isset($_SESSION['login_user'])) {
   $_SESSION['user_role'] = $row['role'];
   $_SESSION['user_name'] = $row['username'];
   $_SESSION['emp_id'] = $row['emp_id'];
+  $_SESSION['department'] = $row['department'];
+  $_SESSION['office'] = $row['office'];
 }
 
 ?>
@@ -127,7 +129,7 @@ if (!isset($_SESSION['login_user'])) {
 
         <?php
 
-        } else if ($row['role'] == 'Employee') {
+        } else if ($row['role'] == 'Employee' || $row['role'] == 'Department Head') {
 
           $emp_id = $row['emp_id'];
           $sql = "SELECT id FROM employee WHERE emp_id = '$emp_id'";
@@ -158,14 +160,14 @@ if (!isset($_SESSION['login_user'])) {
           </a>
 
 
-        <?php } else if ($row['role'] == 'Supervisor' || $row['role'] == 'HR Administrator') {
+        <?php } else if ($row['role'] == 'Supervisor' || $row['role'] == 'HR Administrator' || $row['role'] == 'Agency Head') {
 
           $emp_id = $row['emp_id'];
-          $sql = "SELECT department , office FROM users WHERE emp_id = '$emp_id'";
-          $result = mysqli_query($conn, $sql);
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-          $_SESSION['department'] = $row['department'];
-          $_SESSION['office'] = $row['office'];
+          // $sql = "SELECT department , office FROM users WHERE emp_id = '$emp_id'";
+          // $result = mysqli_query($conn, $sql);
+          // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+          // $_SESSION['department'] = $row['department'];
+          // $_SESSION['office'] = $row['office'];
         ?>
           <a href="../home/" class="list-group-item d-inline-block collapsed  <?php active('home'); ?>">
             <span class="d-none d-md-inline">Dashboard</span> <i class="fa fa-home"></i>
@@ -182,15 +184,15 @@ if (!isset($_SESSION['login_user'])) {
           </a>
         <?php } ?>
 
-      </div>
-
-      <?php if($row['role'] != 'Super Administrator')  { ?>
-      <div >
-          <img src="../loginassets/images/login.png" alt="" style="position: fixed;
+        <?php  ?>
+        <div class="text-center mt-3 ">
+          <img src="../loginassets/images/login.png" alt="" style="
     bottom: 0;
     width: 200px; margin: 20px 10px 40px 50px ; height:200px">
         </div>
-        <?php } ?>
+        <?php  ?>
+
+      </div>
 
     </div>
 

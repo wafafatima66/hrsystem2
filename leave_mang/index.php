@@ -189,6 +189,7 @@ if (isset($_POST['edit_leave_approve'])) {
 
             </div>
       <?php } ?>
+
       <!-- end of first part -->
       <?php if ($_SESSION['user_role'] == 'Employee') {
             $emp_id = $_SESSION["emp_id"] ; 
@@ -210,7 +211,7 @@ if (isset($_POST['edit_leave_approve'])) {
                         <tbody>
                               <?php 
                               
-	$query = "SELECT date_filled , type_of_leave , leave_from_date , leave_to_date , no_of_working_days , status , remarks from emp_leaves where emp_id = '$emp_id'";
+	$query = "SELECT date_filled , type_of_leave , leave_from_date , leave_to_date , no_of_working_days , final_status , final_remarks from emp_leaves where emp_id = '$emp_id'";
 
 	$result = mysqli_query($conn, $query);
 
@@ -223,8 +224,8 @@ if (isset($_POST['edit_leave_approve'])) {
                                     <td><?php echo $mydata['type_of_leave'] ;  ?></td>
                                     <td><?php echo $mydata['leave_from_date'] ; ?> - <?php echo $mydata['leave_to_date'] ; ?></td>
                                     <td><?php echo $mydata['no_of_working_days'] ;  ?></td>
-                                    <td><?php if($mydata['status'] == 1){echo "Leave Approved" ;} else {echo "Leave not approved";} ;  ?></td>
-                                    <td><?php if($mydata['remarks'] == ''){echo "No remarks" ;} else {echo $mydata['remarks'] ;}  ?></td>
+                                    <td><?php if($mydata['final_status'] == 1){echo "Leave Approved" ;} else if($mydata['final_status'] == 0) {echo "Leave not approved";} else {echo "Pending" ;}  ?></td>
+                                    <td><?php if($mydata['final_remarks'] == ''){echo "No remarks" ;} else {echo $mydata['final_remarks'] ;}  ?></td>
                               </tr>
 
                         <?php }} ?>
@@ -240,7 +241,7 @@ if (isset($_POST['edit_leave_approve'])) {
 
       <!-- leave summary -->
 
-      <?php if ($_SESSION['user_role'] == 'Supervisor' || $_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'HR Administrator') {
+      <?php if ($_SESSION['user_role'] == 'Supervisor' || $_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'HR Administrator' || $_SESSION['user_role'] == 'Department Head' || $_SESSION['user_role'] == 'Agency Head') {
 
       ?>
 
@@ -271,7 +272,8 @@ if (isset($_POST['edit_leave_approve'])) {
                               <select name="search_approve" id="search_approve" class="form-control text-input">
                                     <option value="0">Status</option>
                                     <option value="Approved">Approved</option>
-                                    <option value="Refused">Refused</option>
+                                    <option value="Disapprove">Disapprove</option>
+                                    <option value="Pending">Pending</option>
                               </select>
                         </div>
 
@@ -288,10 +290,12 @@ if (isset($_POST['edit_leave_approve'])) {
 </div>
 
 <?php
-if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Administrator' ) {
+if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Administrator' || $_SESSION['user_role'] == 'Department Head' ) {
 ?>
 
-<?php include "statusModal.php" ?>
+<?php 
+// include "statusModal.php" 
+?>
 <?php include "leave_summary_print_section.php";
 }
 ?>

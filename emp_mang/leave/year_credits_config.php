@@ -8,7 +8,7 @@ if(isset($_POST['leave_emp_id']) ){
     $emp_id = $_POST['leave_emp_id'];
     // $year = date("Y")-1;
 
-    if (isset($_COOKIE["inputDate"])) {
+    if (!empty($_COOKIE["inputDate"])) {
         $year = $_COOKIE['inputDate']-1;
     }else {
         $year = date("Y")-1;

@@ -39,6 +39,7 @@ if (isset($_GET['delete'])) {
                               <option value="Super Administrator">Super Administrator</option>
                               <option value="HR Administrator">HR Administrator</option>
                               <option value="Department Head">Department Head</option>
+                              <option value="Agency Head">Agency Head</option>
                               <option value="Employee">Employee</option>
                         </select>
                   </div>
