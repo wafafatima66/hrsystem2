@@ -10,9 +10,7 @@
       <button type="button" class="home-page-search-btn" id="search_item_btn">
         <i class="fa fa-search"></i>
       </button>
-
       <button type="button" class="ml-3 btn button-1" data-toggle="modal" data-target="#add_item">Add Item</button>
-
     </div>
   </div>
 

@@ -36,7 +36,9 @@ if (isset($_POST['edit_leave_approve'])) {
 
 <div class="container ">
 
-      <?php if ($_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'Employee') {  ?>
+      <?php 
+      // if ($_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'Employee') {  
+            ?>
 
             
             <div class="row ">
@@ -188,7 +190,9 @@ if (isset($_POST['edit_leave_approve'])) {
 
 
             </div>
-      <?php } ?>
+      <?php
+//  } 
+ ?>
 
       <!-- end of first part -->
       <?php if ($_SESSION['user_role'] == 'Employee') {
@@ -465,7 +469,7 @@ if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Admini
                         var details = '<div  style="padding: 20px; border: solid 1px #fc7e43; ; "> <h6>Details of leave</h6> <label>In case of Vacation/Special Privilege Leave</label> <div class="form-row"> <div class="col-sm-6 col-lg-6"> <select name="details_of_leave_option" class="form-control text-input " > <option value="Within the Philippines">Within the Philippines</option> <option value="Abroad">Abroad</option> </select> </div> <div class="col-sm-6 col-lg-6"> <input type="text" class="form-control text-input" placeholder="Write Details" name="details_text"> </div> </div> </div>'
                         
                   } else if (type_of_leave == 'Sick leave') {
-                        var details = '<div  style="padding: 20px; border: solid 1px #fc7e43; ; "> <h6>Details of leave</h6> <label>In case of Sick Leave</label> <div class="form-row"> <div class="col-sm-6 col-lg-6"> <select name="details_of_leave_option" class="form-control text-input " > <option value="In Hospital">In Hospital</option> <option value="Our Patient">Our Patient</option> </select> </div> <div class="col-sm-6 col-lg-6"> <input type="text" class="form-control text-input" placeholder="Specify Illness" name="details_text"> </div> </div> </div>'
+                        var details = '<div  style="padding: 20px; border: solid 1px #fc7e43; ; "> <h6>Details of leave</h6> <label>In case of Sick Leave</label> <div class="form-row"> <div class="col-sm-6 col-lg-6"> <select name="details_of_leave_option" class="form-control text-input " > <option value="In Hospital">In Hospital</option> <option value="Out Patient">Our Patient</option> </select> </div> <div class="col-sm-6 col-lg-6"> <input type="text" class="form-control text-input" placeholder="Specify Illness" name="details_text"> </div> </div> </div>'
                         
                   } else if (type_of_leave == 'Special Leave Benefits for Women') {
                         var details= '<div  style="padding: 20px; border: solid 1px #fc7e43; ; "> <h6>Details of leave</h6> <label>In case of Special Leave Benefits for Women</label> <div class="form-row">  <div class="col-sm-6 col-lg-6"> <input type="text" class="form-control text-input" placeholder="Specify Illness" name="details_text"> <input type="hidden"  name="details_of_leave_option"> </div> </div> </div>'

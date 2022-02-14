@@ -4,18 +4,18 @@ include SITE_ROOT . '/includes/header.php'; ?>
 
 <style>
 .employee-banner-setting , .emp-profile-img-setting {
-      height: 180px;
-    width: 100%;
-    background-color: #505A43;
+      height: 300px;
+      width: 100%;
+      background-color: #505A43;
 }
 </style>
 
-<?php
-
-
+<?php 
 $userid = $_SESSION['login_user'];
 
-$sql = mysqli_query($conn, "select * from users where id = '$user' ");
+$sql = mysqli_query($conn, "select * from users where id = '$userid' ");
+// echo $userid ; 
+
 $row = mysqli_fetch_array($sql, MYSQLI_ASSOC);
 
 
@@ -25,77 +25,53 @@ $emp_id = $row['emp_id'];
 $sql2 = mysqli_query($conn, "select emp_image , emp_banner from employee where emp_id = '$emp_id' ");
 $row2 = mysqli_fetch_array($sql2, MYSQLI_ASSOC);
 
-// $emp_image = '../emp_img/' .$row2["emp_image"]';
+
 $emp_image = '../emp_img/' .$row2['emp_image'];
 $emp_banner = '../emp_img/' .$row2['emp_banner'];
-// $emp_banner = $row2['emp_banner'];
+
 
 if (isset($_POST['submit'])) {
 
-
-      if (isset($_POST['password'])) {
-            if (isset($_POST['current_password'])) {
-
+      $add1 = "";
+      $add2 = "";
+      if (isset($_POST['username'])&& !empty(isset($_POST['username']))) {
+            $username = $_POST['username'];
+            $add1 = "username ='$username'";
+      }
+      if (isset($_POST['password']) && !empty(isset($_POST['password']))) {
+            if (isset($_POST['current_password'])&& !empty(isset($_POST['password']))) {
                   $current_password = trim($_POST['current_password']);
                   $db_password = trim($row['password']);
-
-
+                  
                   if ($db_password == $current_password) {
-
                         $password = $_POST['password'];
-                        $username = $_POST['username'];
-
-                        $sql = "UPDATE users SET username ='$username' , password ='$password '  WHERE id = '$userid'";
-
-                        if (mysqli_query($conn, $sql)) {
-                              echo  '<script>toastr.success("Admin data updated succesfully")</script>';
-                        } else {
-                              echo  '<script>toastr.success("Admin data did not update ! try again")</script>';
+                        if(empty($add1)){
+                              $add2="password = '$password'";
+                        }else {
+                              $add2=", password = '$password'";
                         }
                   } else {
                         echo  '<script>toastr.error("Current Password is Wrong ! Try again ")</script>';
+                        // die ;
                   }
             } else {
                   echo  '<script>toastr.error("Type Your Current Password ! ")</script>';
+                  // die ;
             }
       }
-
-
-
-      // if (!empty($_FILES["admin_photo"]["name"])) {
-      //       $admin_photo = "admin" . $userid . "-" . $_FILES["admin_photo"]["name"];
-
-      //       $tempname = $_FILES["admin_photo"]["tmp_name"];
-      //       $folder = "../img/" . $admin_photo;
-
-      //       //checking file extension
-
-      //       $text1 = explode('.', $_FILES['admin_photo']['name']);
-      //       $text = strtolower(end($text1));
-      //       $file_ext = strtolower($text);
-      //       $extensions = array("jpeg", "jpg", "png");
-
-      //       if (in_array($file_ext, $extensions) === false) {
-      //             echo  '<script>toastr.error("Image must be JPG , JPEG ,PNG format ! ")</script>';
-      //       } else {
-      //             (move_uploaded_file($tempname, $folder));
-      //       }
-      // } else {
-      //       $admin_photo = $row['admin_photo'];
-      // }
-
+            $sql = "UPDATE users SET ".$add1." ".$add2."  WHERE id = '$userid'";
+            if (mysqli_query($conn, $sql)) {
+                  echo  '<script>toastr.success("Admin data updated succesfully")</script>';
+            } else {
+                  echo  '<script>toastr.error("Admin data did not update ! try again")</script>';
+            }
 
 }
-
-
 
 ?>
 <form action="" method="post" enctype="multipart/form-data">
       <div class="container mt-5">
-
-
             <h4 class="h4-heading">Account Management</h4>
-
 
             <!-- end of first part -->
 
@@ -162,11 +138,11 @@ if (isset($_POST['submit'])) {
                   </div>
 
                   <div class="col-lg-3 col-sm-12">
-                        <input type="text" class="form-control text-input" placeholder="Current Password" name="current_password" required>
+                        <input type="text" class="form-control text-input" placeholder="Current Password" name="current_password" >
                   </div>
 
                   <div class="col-lg-3 col-sm-12">
-                        <input type="text" class="form-control text-input" placeholder="New Password" name="password" required>
+                        <input type="text" class="form-control text-input" placeholder="New Password" name="password" >
                   </div>
 
                   <div class="col-lg-3 col-sm-12"><button class="ml-3 btn button-2" type="submit" name="submit">Update</button>

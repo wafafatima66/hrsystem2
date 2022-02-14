@@ -43,7 +43,6 @@ if (isset($_GET['id'])) {
                         $banner = '../emp_img/' .$mydata['emp_banner'];
                   // }
                   
-                  
 
                   // getting position 
                   $get = mysqli_fetch_assoc(mysqli_query($conn, "SELECT position FROM item WHERE emp_id = '$emp_id'"));
@@ -53,8 +52,8 @@ if (isset($_GET['id'])) {
 
 
                   <div class="container ">
-                        <div class="emp-profile-box-1">
-                              <div class="row ">
+                        <div class="emp-profile-box-1 "  <?php if($_SESSION['user_role'] != 'Super Administrator' ){ ?> style="background: linear-gradient(rgba(91, 103, 76, 0.8), rgba(91, 103, 76, 0.8)) , url('<?php echo $banner?>') repeat 0 0;" <?php } ?> > 
+                              <div class="row">
                                     <div class="col-lg-3 col-sm-4" <?php echo($_SESSION['user_role'] == 'Super Administrator' ? '' : 'style="display:none"')?>>
 
                                           <div class="emp-profile-img">
@@ -62,17 +61,15 @@ if (isset($_GET['id'])) {
                                           </div>
 
                                           <div class="text-lg-right  mt-2">
-
                                                 <label>
                                                       <i class="fa fa-camera"> </i>
                                                       <input type="file" style="display: none;" name="emp_image" id="emp_image">
                                                       <input type="hidden" name="emp_id" value="<?php echo $emp_id ?>">
-
                                                 </label>
                                           </div>
                                     </div>
-
-                                    <div class=" <?php echo($_SESSION['user_role'] == 'Super Administrator' ? 'col-lg-9 col-sm-12' : 'col-lg-12 col-sm-12')?> d-flex flex-column" >
+                                 
+                                    <div class="d-flex flex-column <?php echo($_SESSION['user_role'] == 'Super Administrator' ? 'col-lg-9 col-sm-12' : 'col-lg-12 col-sm-12')?>" <?php echo($_SESSION['user_role'] == 'Super Administrator' ? '' : 'style="height:250px')?> ">
 
                                           <div class="d-flex justify-content-end">
                                                 <h5 class="emp_profile_button emp_profile_button_active" id="agency">Agency Profile | </h5>
@@ -81,19 +78,19 @@ if (isset($_GET['id'])) {
                                                 <h5 class="emp_profile_button" id="file">File 201</h5>
                                           </div>
 
-                                          <div class="employee-banner" <?php echo($_SESSION['user_role'] == 'Super Administrator' ? '' : 'style="width:100%"')?>>
+
+                                          <!-- <div class="employee-banner" style="display:none">
                                                 <img src="<?php echo  $banner; ?>" alt="" <?php echo($_SESSION['user_role'] == 'Super Administrator' ? '' : 'style="height:200px;padding-right:0px"')?>>
                                           </div>
-                                          <div class="text-lg-right pr-4 mt-2 mb-2">
+
+                                          <div class="text-lg-right pr-4 mt-2 mb-2" <?php echo($_SESSION['user_role'] == 'Super Administrator' ? 'style="display:none"' : '')?>
                                                 <label>
                                                       <i class="fa fa-camera"> </i>
-                                                      <input type="file" style="display: none;" name="emp_banner" id="emp_banner">
+                                                      <input type="file" style="display:none;" name="emp_banner" id="emp_banner">
                                                       <input type="hidden" name="emp_id" value="<?php echo $emp_id ?>">
                                                 </label>
-                                          </div>
+                                          </div> -->
                                           
-
-
                                           <div class="mt-auto">
                                                 <h4 style="color: #FFDF88; white-space: nowrap"><?php echo $mydata["emp_first_name"] . " " . $mydata["emp_middle_name"] . " " . $mydata["emp_last_name"] . " " . $mydata["emp_ext"] ?></h4>
 
@@ -238,6 +235,7 @@ if (isset($_GET['id'])) {
                               //     employee banner uploading 
 
                               $(document).on('change', '#emp_banner', function() {
+                                    console.log('hi');
                                     var emp_id = $('input[name="emp_id"]').val();
                                     var name = document.getElementById("emp_banner").files[0].name;
                                     var form_data = new FormData();

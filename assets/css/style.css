@@ -205,13 +205,13 @@ input[type="radio"] {
   }
   
   .employee-banner{
-    width: 800px;
-    height: 170px;
+    /* width: 800px;
+    height: 170px; */
   }
   .employee-banner img{
-    width: 100%;
+    /* width: 100%;
     height: 160px;
-    padding-right: 20px;
+    padding-right: 20px; */
   }
 /* login page */
 
@@ -499,7 +499,7 @@ input[type="radio"] {
 
 /* emp profile page */
 .emp-profile-img{
-    height: 280px;
+    height: 300px;
     width: 100%;
     background-color: #FFDF88;
 }

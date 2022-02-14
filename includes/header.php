@@ -129,7 +129,7 @@ if (!isset($_SESSION['login_user'])) {
 
         <?php
 
-        } else if ($row['role'] == 'Employee' || $row['role'] == 'Department Head') {
+        } else if ($row['role'] == 'Employee' || $row['role'] == 'Department Head' || $row['role'] == 'Supervisor' || $row['role'] == 'HR Administrator' || $row['role'] == 'Agency Head') {
 
           $emp_id = $row['emp_id'];
           $sql = "SELECT id FROM employee WHERE emp_id = '$emp_id'";
@@ -141,8 +141,8 @@ if (!isset($_SESSION['login_user'])) {
           <a href="../emp_mang/emp_profile.php?id=<?php echo $id ?>" class="list-group-item d-inline-block collapsed <?php active('emp_mang'); ?>"><span class="d-none d-md-inline">Profile Management</span><i class="fas fa-users"></i> </a>
 
           <!-- <a href="../emp_leave_mang/index.php?emp_id=<?php echo $emp_id ?>" class="list-group-item d-inline-block collapsed <?php active('emp_leave_mang'); ?>"><span class="d-none d-md-inline">Leave
-    Application</span><i class="fa fa-calendar"></i>
-</a> -->
+              Application</span><i class="fa fa-calendar"></i>
+          </a> -->
 
           <a href="../leave_mang/" class="list-group-item d-inline-block collapsed <?php active('leave_mang'); ?>"><span class="d-none d-md-inline">Leave
               Management</span><i class="fa fa-calendar"></i>
@@ -160,35 +160,39 @@ if (!isset($_SESSION['login_user'])) {
           </a>
 
 
-        <?php } else if ($row['role'] == 'Supervisor' || $row['role'] == 'HR Administrator' || $row['role'] == 'Agency Head') {
+        <?php 
+        // } 
 
-          $emp_id = $row['emp_id'];
+        // else if ($row['role'] == 'Supervisor' || $row['role'] == 'HR Administrator' || $row['role'] == 'Agency Head') {
+
+          // $emp_id = $row['emp_id'];
           // $sql = "SELECT department , office FROM users WHERE emp_id = '$emp_id'";
           // $result = mysqli_query($conn, $sql);
           // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           // $_SESSION['department'] = $row['department'];
           // $_SESSION['office'] = $row['office'];
         ?>
-          <a href="../home/" class="list-group-item d-inline-block collapsed  <?php active('home'); ?>">
+          <!-- <a href="../home/" class="list-group-item d-inline-block collapsed  <?php active('home'); ?>">
             <span class="d-none d-md-inline">Dashboard</span> <i class="fa fa-home"></i>
           </a>
 
           <a href="../leave_mang/" class="list-group-item d-inline-block collapsed <?php active('leave_mang'); ?>"><span class="d-none d-md-inline">Leave
               Management</span><i class="fa fa-calendar"></i>
-          </a>
+          </a> -->
 
 
-        <?php } else { ?>
+        <?php 
+
+        // } 
+        
+        } else { ?>
           <a href="../home/" class="list-group-item d-inline-block collapsed  <?php active('home'); ?>">
             <span class="d-none d-md-inline">Dashboard</span> <i class="fa fa-home"></i>
           </a>
         <?php } ?>
 
-        <?php  ?>
         <div class="text-center mt-3 ">
-          <img src="../loginassets/images/login.png" alt="" style="
-    bottom: 0;
-    width: 200px; margin: 20px 10px 40px 50px ; height:200px">
+          <img src="../loginassets/images/login.png" alt="" style=" bottom: 0; width: 200px; margin: 20px 10px 40px 50px ; height:200px">
         </div>
         <?php  ?>
 

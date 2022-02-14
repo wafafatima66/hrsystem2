@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2022 at 08:28 AM
+-- Generation Time: Feb 14, 2022 at 04:17 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -669,7 +669,7 @@ INSERT INTO `employee` (`id`, `emp_id`, `emp_image`, `emp_banner`, `emp_first_na
 (472, 'LHMRH-2020-00311', NULL, NULL, 'GRANT', 'OSBOKEN', 'AYEO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
 (473, 'LHMRH-2014-00081', NULL, NULL, 'CRISTIN ', 'PELAYO', 'SIW-ANGAN', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
 (474, 'LHMRH-2020-00366', NULL, NULL, 'CLEMENTINA', 'ONDONG', 'CONENG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(509, 'LHMRH-2014-00073', '', NULL, 'EDUARDO', 'BANUTAN', '             CALPITO', '', '0000-00-00', 'Male', 'Married', 0, 5.2, '', '', '', NULL, NULL, NULL, NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 311, 12323432, 0, 231, 0, '', '', '', '', '', '                       ', '', '', '             ', '', '0000-00-00', '0000-00-00', 0, '', '', '', '', '0000-00-00', '0000-00-00', 0, '             ', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', '             ', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '             ', '', '', '', '             ', '', '', '', '', 1),
+(509, 'LHMRH-2014-00073', '', 'employee-banner - LHMRH-2014-00073-viktor-talashuk-BTTO404UHzA-unsplash (1).jpg', 'EDUARDO', 'BANUTAN', '             CALPITO', '', '0000-00-00', 'Male', 'Married', 0, 5.2, '', '', '', NULL, NULL, NULL, NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, 311, 12323432, 0, 231, 0, '', '', '', '', '', '                       ', '', '', '             ', '', '0000-00-00', '0000-00-00', 0, '', '', '', '', '0000-00-00', '0000-00-00', 0, '             ', 0, '', '', '0000-00-00', '0000-00-00', 0, '', 0, '', '', '             ', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '             ', '', '', '', '             ', '', '', '', '', 1),
 (513, 'LHMRH-2004-00048', '', '', 'PAMELA ', 'CALUBANDI', 'PAKIPAC', '', '1980-03-30', 'Female', 'Married', 1.47, 51, 'A', 'FILIPINO', 'Philippines', 'Bad-Ayan', 'Benguet', 'Buguias', '2607', '', '', '', 'Bauko', 'Monamon Sur', '2621', 'Mountain Province', '', '', '', 'Bauko', 'Monamon Sur', '2621', 'Mountain Province', '', '09985766470', 'pharchlhmrh@hotmail.com', 2001675989, 2147483647, 2147483647, 115517763, 920008912, 0, 'CALUBANDI', 'DISO', 'VICENTE', 'N/A', 'CAYAPA', '   DEBORAH ', 'LIWAYAN', 'N/A', '  BOT-OAN ELEMENTARY SCHOOL', 'ELEMENTARY ', '1987', '1994', 0, 'VALEDICTORIAN', '1994', 'BUGUIAS-LOO POLYTECHNIC COLLEGE', 'HIGH SCHOOL ', '1994', '1997', 0, 'WITH HONORS  ', 1997, 'HELPING FOUNDATION INC.', 'BASIC COMPUTER', '2002', '2002', 0, 'N/A', 2002, '', '', '  ', '', '', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '  ', '', '', '', '  ', '', '', '', '', 1),
 (517, 'LHMRH-2018-00259', '', '', 'BUTCH ', 'ATIPEN', 'ANNAWAY', 'N/A', '1985-04-13', 'Male', 'Single', 1.63, 83, 'O', 'FILIPINO', 'Philippines', 'POBLACION', 'Mountain Province', 'Bauko', '2621', 'N/A', 'N/A', 'JUNCTION', 'Bauko', 'ABATAN', '2621', 'Mountain Province', 'N/A', 'N/A', 'JUNCTION', 'Bauko', 'ABATAN', '2621', 'Mountain Province', 'N/A', '09285339988', 'butchannaway55@gmail.com', 2005365339, 2147483647, 4, 1, 423, 0, 'ANNAWAY', 'ALFREDO', 'PEREZ', 'N/A', 'ATIPEN', '    DOLORES  ', 'BAYLON', 'N/A', '   BAUKO CENTRAL SCHOOL', 'ELEMENTARY GRADUATE', '1991', '1998', 0, 'N/A', '1998', 'OTUCAN-BILA NATIONAL HIGH SCHOOL', 'HIGH SCHOOL GRADUATE', '2002', '2006', 0, 'N/A   ', 2006, 'SAKURA JAPANESE LANGUAGE SCHOOL INC. ', 'NIHONGO LANGUAGE', '2013', '2014', 368, 'N/A', 2014, 'No', 'No', '   ', 'No', '', 'No', '', '0000-00-00', '', 'No', '', 'No', '', 'No', '', 'No', '   ', 'No', '', 'Yes', ' KANKANAEY  ', 'No', '', 'No', '', 1);
 INSERT INTO `employee` (`id`, `emp_id`, `emp_image`, `emp_banner`, `emp_first_name`, `emp_middle_name`, `emp_last_name`, `emp_ext`, `emp_dob`, `emp_gender`, `emp_civil_status`, `emp_height`, `emp_weight`, `emp_blood`, `emp_citizen`, `emp_nationality`, `emp_birth_add_barangay`, `emp_birth_add_province`, `emp_birth_add_municipal`, `emp_birth_add_zipcode`, `emp_resi_add`, `emp_resi_add_street`, `emp_resi_add_subvillage`, `emp_resi_add_municipal`, `emp_resi_add_barangay`, `emp_resi_add_zipcode`, `emp_resi_add_province`, `emp_per_add`, `emp_per_add_street`, `emp_per_add_subvillage`, `emp_per_add_municipal`, `emp_per_add_barangay`, `emp_per_add_zipcode`, `emp_per_add_province`, `emp_tel_no`, `emp_mb_no`, `emp_email`, `emp_contact_gs`, `emp_contact_pag`, `emp_contact_ph`, `emp_contact_ss`, `emp_contact_tin`, `emp_contact_agency`, `emp_father_lastname`, `emp_father_firstname`, `emp_father_middlename`, `emp_father_extname`, `emp_mother_lastname`, `emp_mother_firstname`, `emp_mother_middlename`, `emp_mother_extname`, `ele_school_name`, `ele_degree`, `ele_from_date`, `ele_to_date`, `ele_units`, `ele_award`, `ele_graduation`, `sec_school_name`, `sec_degree`, `sec_from_date`, `sec_to_date`, `sec_units`, `sec_award`, `sec_graduation`, `voc_school_name`, `voc_degree`, `voc_from_date`, `voc_to_date`, `voc_units`, `voc_award`, `voc_graduation`, `condition_1`, `condition_2`, `condition_2_des`, `condition_3`, `condition_3_des`, `condition_4`, `condition_4_des`, `condition_4_date`, `condition_4_status`, `condition_5`, `condition_5_des`, `condition_6`, `condition_6_des`, `condition_7`, `condition_7_des`, `condition_8`, `condition_8_des`, `condition_9`, `condition_9_des`, `condition_10`, `condition_10_des`, `condition_11`, `condition_11_des`, `condition_12`, `condition_12_des`, `active`) VALUES
@@ -777,9 +777,9 @@ CREATE TABLE `emp_education` (
 --
 
 INSERT INTO `emp_education` (`id`, `emp_id`, `school_name`, `degree`, `from_date`, `to_date`, `units`, `award`, `graduation`, `type`) VALUES
-(15, 'LHMRH-2014-00083', '<br /><b>Notice</b>:  Undefined index: coll_school_name in <b>C:xampphtdocshrsystem2-masteremp_mangemp_profile_partseducation_background.php</b> on line <b>240</b><br />', '<br /><b>Notice</b>:  Undefined index: coll_degree in <b>C:xampphtdocshrsystem2-masteremp_mangemp_profile_partseducation_background.php</b> on line <b>247</b><br />', '0000-00-00', '0000-00-00', 0, '<br /><b>Notice</b>:  Undefined index: coll_award in <b>C:xampphtdocshrsystem2-masteremp_mangemp_profile_partseducation_background.php</b> on line <b>267</b><br />', 0, 'college'),
+(15, 'LHMRH-2014-00083', '', '', '0000-00-00', '0000-00-00', 0, '', 0, 'college'),
 (16, 'LHMRH-2014-00083', '', '', '0000-00-00', '0000-00-00', 0, '', 0, 'graduation'),
-(73, 'LHMRH-2014-00073', '<br /><b>Notice</b>:  Undefined index: coll_school_name in <b>C:xampphtdocshrsystem2-masteremp_mangemp_profile_partseducation_background.php</b> on line <b>240</b><br />', '<br /><b>Notice</b>:  Undefined index: coll_degree in <b>C:xampphtdocshrsystem2-masteremp_mangemp_profile_partseducation_background.php</b> on line <b>247</b><br />', '0000-00-00', '0000-00-00', 0, '<br /><b>Notice</b>:  Undefined index: coll_award in <b>C:xampphtdocshrsystem2-masteremp_mangemp_profile_partseducation_background.php</b> on line <b>267</b><br />', 0, 'college'),
+(73, 'LHMRH-2014-00073', '', '', '0000-00-00', '0000-00-00', 0, '', 0, 'college'),
 (74, 'LHMRH-2014-00073', '', '', '0000-00-00', '0000-00-00', 0, '', 0, 'graduation'),
 (81, 'LHMRH-2004-00048', 'BENGUET STATE UNIVERSITY', 'BACHELOR OF SCIENCE IN NUTRITION & DIETETICS', '1997', '2001', 0, 'CUMLAUDE/ SEGEAP SCHOLAR', 2001, 'college'),
 (82, 'LHMRH-2004-00048', 'BAGUIO CENTRAL UNIVERSITY', 'MASTERS IN PUBLIC ADMINISTRATION', '2009', '2011', 0, 'N/A', 2011, 'graduation'),
@@ -4358,17 +4358,19 @@ CREATE TABLE `leave_credits` (
   `force_leave` int(100) DEFAULT NULL,
   `lwp` int(100) DEFAULT NULL,
   `mon` int(11) DEFAULT NULL,
-  `year` int(11) NOT NULL
+  `year` int(11) NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  `leave_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `leave_credits`
 --
 
-INSERT INTO `leave_credits` (`id`, `emp_id`, `vacation_leave`, `sick_leave`, `spl`, `force_leave`, `lwp`, `mon`, `year`) VALUES
-(1, 'LHMRH-2014-00115', 0, 0, 0, 0, 0, 0, 0),
-(2, 'LHMRH-2014-00115', 31, 0, 0, 0, 0, 12, 2021),
-(3, 'LHMRH-2017-00254', 0, 0, 0, 1, 0, 1, 2022);
+INSERT INTO `leave_credits` (`id`, `emp_id`, `vacation_leave`, `sick_leave`, `spl`, `force_leave`, `lwp`, `mon`, `year`, `status`, `leave_id`) VALUES
+(1, 'LHMRH-2014-00115', 0, 0, 0, 0, 0, 0, 0, NULL, NULL),
+(2, 'LHMRH-2014-00115', 31, 0, 0, 0, 0, 12, 2021, NULL, NULL),
+(3, 'LHMRH-2017-00254', 0, 0, 0, 1, 0, 1, 2022, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8305,6 +8307,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-ALTER TABLE `leave_credits` ADD `status` INT NULL AFTER `year`;
-ALTER TABLE `leave_credits` ADD `leave_id` INT NULL AFTER `status`;

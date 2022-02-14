@@ -61,35 +61,74 @@ if (isset($_GET['delete'])) {
 
       </form>
 
+      <div class="row mt-5">
 
-
-      <!-- user table -->
-
-      <!-- <div class="table-container">
-      <table class='table home-page-table mt-3 table-striped table-responsive-sm '>
-		<thead>
-			  <tr>
-				<th scope='col'>Employee Id</th>
-				<th scope='col'>Name</th>
-				<th scope='col'>User Role</th>
-				<th scope='col'>Department</th>
-				<th scope='col'>Office</th>
-				<th scope='col'>Action</th>
-			  </tr>
-		</thead>
-
-            <?php
-
-            // include "pagination.php";
-            ?>
-            </table>
+            <div class=" col-lg-12 col-sm-12 ">
+                  <h4 class="h4-heading">USERS</h4>
             </div>
 
-            <div class=" d-flex justify-content-between mt-4 ">
+            <div class="col-lg-5 col-sm-6">
+                  <div class="input-group">
+                        <input type="search" class="form-control search">
+                        <button type="button" class="home-page-search-btn" id="search">
+                              <i class="fa fa-search"></i>
+                        </button>
+                  </div>
+            </div>
 
-	<button class="btn button-1 " style="height:35px"><i class="fa fa-print"></i></button>
-      </div> -->
+            <div class="col-lg-2 col-sm-6">
+                  <select id="role_dropdown" class="form-control text-input">
+                        <option value="">User Role</option>
+                        <option value="Super Administrator">Super Administrator</option>
+                        <option value="HR Administrator">HR Administrator</option>
+                        <option value="Department Head">Department Head</option>
+                        <option value="Agency Head">Agency Head</option>
+                        <option value="Employee">Employee</option>
+                  </select>
+            </div>
 
+            <div class="col-lg-2 col-sm-6">
+                  <select id="dept_dropdown" class="form-control text-input">
+                        <?php
+                        $query = "SELECT DISTINCT division FROM item where division != '' ";
+                        $result = mysqli_query($conn, $query);
+                        if (mysqli_num_rows($result) > 0) {
+                              echo "<option value=''> Department </option> ";
+                              while ($mydata = mysqli_fetch_assoc($result)) {
+                                    echo "<option value= '" . $mydata['division'] . "'>" . $mydata['division'] . "</option>";
+                              }
+                        } else {
+                              echo "<option value=''> Department </option>";
+                        }
+                        ?>
+                  </select>
+            </div>
+
+            <div class="col-lg-2 col-sm-6">
+                  <select id="office_dropdown" class="form-control text-input">
+                        <?php
+                        $query = "SELECT DISTINCT area_wrk_assign FROM item where area_wrk_assign != ''";
+                        $result = mysqli_query($conn, $query);
+                        if (mysqli_num_rows($result) > 0) {
+                              echo "<option value=''> Office </option> ";
+                              while ($mydata = mysqli_fetch_assoc($result)) {
+                                    echo "<option value= '" . $mydata['area_wrk_assign'] . "'>" . $mydata['area_wrk_assign'] . "</option>";
+                              }
+                        } else {
+                              echo "<option value=''>  Office</option>";
+                        }
+                        ?>
+                  </select>
+            </div>
+
+            <div class="col-lg-1 col-sm-6">
+                  <select id="limit_dropdown" class="form-control text-input">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                  </select>
+            </div>
+      </div>
       <?php
 
       echo '<div id="table-data"> </div>';
@@ -194,7 +233,7 @@ if (isset($_GET['delete'])) {
                         </select>
 
                         <select name="office_name" class="form-control text-input ml-4 office-select">
-                        <option value=''> Select Office/Unit </option> 
+                              <option value=''> Select Office/Unit </option>
                               <?php
                               // $query = "SELECT * FROM ( SELECT DISTINCT area_wrk_assign from item UNION SELECT DISTINCT  office_name FROM office ) as tableC WHERE tableC.area_wrk_assign != ''  ";
                               // $result = mysqli_query($conn, $query);
@@ -280,7 +319,7 @@ if (isset($_GET['delete'])) {
             });
       }
 
-      $(".department-select").change(function(){
+      $(".department-select").change(function() {
             var department = $(".department-select").val();
             console.log(department);
             jQuery.ajax({
@@ -296,34 +335,81 @@ if (isset($_GET['delete'])) {
             });
       });
 
+// Pagination code
       $(document).ready(function() {
-            function loadData(page) {
+            function loadData(page, limit, dept, office, role ,search) {
                   $.ajax({
                         url: "pagination.php",
                         type: "POST",
                         cache: false,
                         data: {
-                              page_no: page
+                              page_no: page,
+                              limit: limit,
+                              dept: dept,
+                              office: office,
+                              role: role,
+                              search : search
                         },
                         success: function(response) {
                               $("#table-data").html(response);
                         }
                   });
             }
+
+            function loadDataVariables() {
+                  var limit = $('#limit_dropdown').val();
+                  var dept = $('#dept_dropdown').val();
+                  var office = $('#office_dropdown').val();
+                  var role = $('#role_dropdown').val();
+                  var search = $('.search').val();
+                  return [limit, dept, office, role,search];
+            }
+
             loadData();
 
-            // Pagination code
             $(document).on("click", ".page-item", function(e) {
-                  var pageId = $(this).attr("id");
-                  loadData(pageId);
+                  var page = $(this).attr("id");
+                  var [limit, dept, office, role,search] = loadDataVariables();
+                  loadData(page, limit, dept, office, role,search);
             });
 
-             // delete 
+            $('#limit_dropdown').on('change', function() {
+                  var page = 1;
+                  var [limit, dept, office, role,search] = loadDataVariables();
+                  loadData(page, limit, dept, office, role,search);
+            });
+
+
+            $('#dept_dropdown').on('change', function() {
+                  var page = 1;
+                  var [limit, dept, office, role,search] = loadDataVariables();
+                  loadData(page, limit, dept, office, role,search);
+            });
+
+            $('#office_dropdown').on('change', function() {
+                  var page = 1;
+                  var [limit, dept, office, role,search] = loadDataVariables();
+                  loadData(page, limit, dept, office, role,search);
+            });
+
+            $('#role_dropdown').on('change', function() {
+                  var page = 1;
+                  var [limit, dept, office, role,search] = loadDataVariables();
+                  loadData(page, limit, dept, office, role,search);
+            });
+
+            $('#search').on('click', function() {
+                  var page = 1;
+                  var [limit, dept, office, role,search] = loadDataVariables();
+                  loadData(page, limit, dept, office, role,search);
+            });
+
+            // delete 
             $(document).on('click', '.delete_modal', function() {
-            var id = $(this).data('id');
-            var url = '../includes/delete.php?' ; 
-            var newHref = url.concat(id);
-            $('#delete_confirm_btn').attr('href', newHref);
+                  var id = $(this).data('id');
+                  var url = '../includes/delete.php?';
+                  var newHref = url.concat(id);
+                  $('#delete_confirm_btn').attr('href', newHref);
             });
 
       });
