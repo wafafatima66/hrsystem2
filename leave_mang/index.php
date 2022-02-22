@@ -195,12 +195,12 @@ if (isset($_POST['edit_leave_approve'])) {
  ?>
 
       <!-- end of first part -->
+
       <?php if ($_SESSION['user_role'] == 'Employee') {
             $emp_id = $_SESSION["emp_id"] ; 
 ?>
       <div class="row mt-5 ">
                   <h4 class="background-title-1">LEAVE APPLICATION HISTORY</h4>
-
                   <table class="table home-page-table mt-4 table-striped table-responsive-sm">
                         <thead>
                               <tr>
@@ -294,7 +294,7 @@ if (isset($_POST['edit_leave_approve'])) {
 </div>
 
 <?php
-if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Administrator' || $_SESSION['user_role'] == 'Department Head' ) {
+if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Administrator' || $_SESSION['user_role'] == 'Department Head' ||  $_SESSION['user_role']=='Agency Head') {
 ?>
 
 <?php 

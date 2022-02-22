@@ -27,7 +27,7 @@ if ($_SESSION['user_role'] == 'Supervisor' || $_SESSION['user_role'] == 'HR Admi
 	$office =  $_SESSION['office'];
 	$add1 = "join item i on a.emp_id = i.emp_id where i.division = '$department' and i.area_wrk_assign = '$office'";
 }
-
+ 
 
 if (isset($_POST['from_date']) && isset($_POST['to_date']) && !empty($_POST['from_date']) && !empty($_POST['to_date'])) {
 
@@ -50,7 +50,7 @@ if (isset($_POST['search_approve']) && !empty($_POST['search_approve'])) {
 }
 
 
-$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status,a.final_status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image  from emp_leaves a join employee b on a.emp_id = b.emp_id " . $add1 . " " . $add2 . "" . $add3 . " LIMIT $offset, $limit";
+$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status,a.final_status , a.leave_from_date , a.leave_to_date, b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image  from emp_leaves a join employee b on a.emp_id = b.emp_id " . $add1 . " " . $add2 . "" . $add3 . " LIMIT $offset, $limit";
 
 
 
@@ -66,6 +66,7 @@ $output .= "<table class='table home-page-table mt-3 table-striped ' >
 				<th scope='col'>Name</th>
 				<th scope='col'>Type Of Leave</th>
 				<th scope='col'>Duration</th>
+				<th scope='col'>Date of Leave</th>
 				<th scope='col'>Details of leave</th>
 				<th scope='col'>Status</th>
 				
@@ -88,11 +89,26 @@ if (mysqli_num_rows($result) > 0) {
 		}else {
 			$details = $mydata['details_of_leave'];
 		}
-		
- 
-		$output .= "
-	
-	<tr>
+
+		$emp_id = $mydata['emp_id'];
+		$sql1 = mysqli_query($conn, "select role from users where emp_id = '$emp_id' ");
+		$row1 = mysqli_fetch_array($sql1, MYSQLI_ASSOC);
+		$role = $row1['role'];
+		if($role == 'Department Head'){
+			$style = 'style="display:none"';
+		}else {
+			$style = '';
+		}
+		if(($role == 'Department Head' && $_SESSION['user_role']=='Department Head') || ($_SESSION['user_role']=='Department Head') || ($_SESSION['user_role']=='HR Administrator')){
+			$disabled = 'disabled';
+		}else{
+			$disabled = '';
+		}
+
+		$leave_from = date("m/d/Y", strtotime($mydata['leave_from_date']));
+		$leave_to = date("m/d/Y", strtotime($mydata['leave_to_date']));
+
+		$output .= "<tr>
                         <td>{$mydata['emp_id']}</td>
                         <td>
 							  <img src='../emp_img/{$emp_image}' alt='' style='width: 50px; height:50px; border-radius: 100%; margin-right: 12px;'>
@@ -100,16 +116,18 @@ if (mysqli_num_rows($result) > 0) {
                         </td>
                         <td> {$mydata['type_of_leave']} </td>
                         <td>{$mydata['no_of_working_days']}</td>
+                        <td>{$leave_from}-{$leave_to}</td>
                         <td>{$details}</td>
 						<td>
 						
 							<div class=''>";
 
-							if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Department Head' || $_SESSION['user_role']=='Agency Head'){
+							if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Department Head' || $_SESSION['user_role']=='Agency Head' ){
 
-								$output .="<div class='mr-2 status-{$mydata['id']}' >
+								$output .="<div class='mr-2 status-{$mydata['id']}'" .$style;
+								$output .= ">
 									<label>Department Head</label>
-									<select class='form-control text-input leave_status_dropdown' id='{$mydata['id']}'>
+									<select  class='form-control text-input leave_status_dropdown' id='{$mydata['id']}' >
 									<option>Select</option>
 									<option value='1'";
 										if (($mydata['status'])  == '1') {
@@ -134,12 +152,13 @@ if (mysqli_num_rows($result) > 0) {
 										$output .= ">Pending </option>
 									</select>
 								</div>";
-									}
-									if($_SESSION['user_role']=='Agency Head'){
+									// }
+									// if($_SESSION['user_role']=='Agency Head'){
 									$output .="<div class='final_status-{$mydata['id']}'>
 									<label>Agency Head</label>
-									<select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'>
-									<option>Select</option>
+									<select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'".$disabled ;
+									$output .=">
+									<option >Select</option>
 										<option value='1'";
 											if (($mydata['final_status']) == '1') {
 												$output .= 'selected';

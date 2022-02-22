@@ -3,15 +3,14 @@
 include SITE_ROOT . '/includes/header.php'; ?>
 
 <style>
-      .ans-box {
-            display: none;
-      }
+.ans-box {
+      display: none;
+}
 </style>
+
 <div class="container ">
       <div class="row ">
             <h4 class="background-title-1">LIST OF UNFILLED / VACANT POSITION</h4>
-
-           
             <table class="table home-page-table mt-4 table-striped  table-sm table-responsive-sm" >
                   <thead>
                         <tr>
@@ -32,19 +31,15 @@ include SITE_ROOT . '/includes/header.php'; ?>
                               <td>Otto</td>
                               <td>Otto</td>
                         </tr>
-
-
                   </tbody>
             </table>
             <div class=" mt-2 ">
             <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
       </div>
             </div>
-
-           
       </div>
       <!-- end of first part -->
-
+<div class="container">
       <div class="row mt-5 mr-2 ml-2">
             <h4 class="background-title-1">RESIGNATION AND RETIREMENT</h4>
 
@@ -140,16 +135,12 @@ include SITE_ROOT . '/includes/header.php'; ?>
                         <textarea id="ans-15" class="ans-box form-control" rows="5"></textarea>
 
                   </div>
-
-
                   <div class="text-right"><button class="ml-3 btn button-1 mt-3">Submit</button></div>
-
             </form>
-
+      </div>
       </div>
 
       <script>
-      
             function openpara(ans) {
                   $(document).ready(function() {
                         // console.log(ques);
