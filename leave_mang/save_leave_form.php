@@ -25,6 +25,7 @@ if (isset($_POST['submit'])) {
 
 
         $no_of_working_days = $_POST['no_of_working_days'];
+        $no_of_leave_without_pay = $_POST['no_of_leave_without_pay'];
         $date_filled = $_POST['date_filled'];
         $date_diff = $_POST['date_diff'];
         $mon = $_POST['mon'];
@@ -69,7 +70,7 @@ if (isset($_POST['submit'])) {
         }
 
 
-        $sql2 = "INSERT INTO leave_credits (emp_id,vacation_leave,sick_leave,spl,force_leave,lwp,mon,year,status,leave_id) VALUE ('$emp_id','$vacation_leave','$sick_leave','$spl','$force_leave','$lwp','$mon','$year',0,'$leave_id')";
+        $sql2 = "INSERT INTO leave_credits (emp_id,vacation_leave,sick_leave,spl,force_leave,mon,year,status,leave_id,lwp) VALUE ('$emp_id','$vacation_leave','$sick_leave','$spl','$force_leave','$mon','$year',0,'$leave_id','$no_of_leave_without_pay')";
 
         // $conn->query($sql2);
 

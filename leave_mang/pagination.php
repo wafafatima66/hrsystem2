@@ -50,7 +50,7 @@ if (isset($_POST['search_approve']) && !empty($_POST['search_approve'])) {
 }
 
 
-$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status,a.final_status , a.leave_from_date , a.leave_to_date, b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image  from emp_leaves a join employee b on a.emp_id = b.emp_id " . $add1 . " " . $add2 . "" . $add3 . " LIMIT $offset, $limit";
+$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status,a.final_status , a.leave_from_date , a.leave_to_date, b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image  from emp_leaves a join employee b on a.emp_id = b.emp_id " . $add1 . " " . $add2 . "" . $add3 . "  ORDER BY id DESC LIMIT $offset, $limit";
 
 
 
