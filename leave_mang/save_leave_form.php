@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
         $leave_to_date = $_POST['leave_to_date'][$lenght];
         // $date_diff = round(($to_date - $from_date) / (60 * 60 * 24)) + 1;
 
-        $sql = "INSERT INTO emp_leaves (emp_id, type_of_leave,leave_from_date,leave_to_date,details_of_leave,date_diff,no_of_working_days , date_filled , status) VALUE ('$emp_id', '$type_of_leave','$leave_from_date','$leave_to_date','$details_of_leave','$date_diff','$no_of_working_days' , '$date_filled' , '2') ";
+        $sql = "INSERT INTO emp_leaves (emp_id, type_of_leave,leave_from_date,leave_to_date,details_of_leave,date_diff,no_of_working_days , date_filled , status, final_status) VALUE ('$emp_id', '$type_of_leave','$leave_from_date','$leave_to_date','$details_of_leave','$date_diff','$no_of_working_days' , '$date_filled' , '2', '2') ";
 
         $conn->query($sql);
 
@@ -61,16 +61,16 @@ if (isset($_POST['submit'])) {
         } else  if ($type_of_leave == "Sick leave") {
             $sick_leave = $date_diff;
             //$vacation_leave = 1.25 ; 
-        } else  if ($type_of_leave == "Special priviledge leave") {
+        } else  if ($type_of_leave == "Special privilege leave") {
             $spl = $date_diff;
-        } else  if ($type_of_leave == "Force leave") {
+        } else  if ($type_of_leave == "Mandatory/Forced Leave") {
             $force_leave = $date_diff;
         } else  if ($type_of_leave == "Leave without pay") {
             $lwp = $date_diff;
         }
 
 
-        $sql2 = "INSERT INTO leave_credits (emp_id,vacation_leave,sick_leave,spl,force_leave,mon,year,status,leave_id,lwp) VALUE ('$emp_id','$vacation_leave','$sick_leave','$spl','$force_leave','$mon','$year',0,'$leave_id','$no_of_leave_without_pay')";
+        $sql2 = "INSERT INTO leave_credits (emp_id,vacation_leave,sick_leave,spl,force_leave,mon,year,status,leave_id,lwp,final_status) VALUE ('$emp_id','$vacation_leave','$sick_leave','$spl','$force_leave','$mon','$year',2,'$leave_id','$no_of_leave_without_pay',2)";
 
         // $conn->query($sql2);
 

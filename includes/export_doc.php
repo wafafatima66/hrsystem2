@@ -62,3 +62,7 @@ if (isset($_GET["cer_emp"])) {
     include '../excel_doc_parts/cer_emp.php';
 }
 
+if (isset($_GET["leave_summary"])) {
+
+    include '../excel_doc_parts/leave_summary.php';
+}

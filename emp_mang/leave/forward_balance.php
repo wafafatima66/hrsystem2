@@ -4,29 +4,17 @@ if(isset($_POST['leave_emp_id']) ){
 
     $emp_id = $_POST['leave_emp_id'];
 
-    // $mon = date("n");
-
-    // if($mon == 12)
-    // {
-    //     if (isset($_COOKIE["inputDate"])) {
+    //     if (!empty($_COOKIE["inputDate"])) {
     //         $year = $_COOKIE['inputDate'];
     //     }else {
-    //         $year = date("Y");
-    //     }
-        
-        // $year = date("Y")+1;
-        
-    // }else
-    //  if($mon == 1) {
-        if (!empty($_COOKIE["inputDate"])) {
-            $year = $_COOKIE['inputDate'];
-        }else {
-            $year = date("Y")-1;
-        // }
-        
-        // $year = date("Y");
-    }
+    //         $year = date("Y")-1;
+    // }
     
+    if (isset($_POST["year"])) {
+        $year = $_POST['year'];
+    }else {
+        $year = date("Y")-1;
+    }
 
     require '../../includes/conn.php';
 
@@ -55,7 +43,6 @@ if(isset($_POST['leave_emp_id']) ){
            } else {
             echo 'error';
         }
-    
 }
   
 

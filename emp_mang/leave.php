@@ -37,8 +37,6 @@
 
 <div class="container container-box">
 
-
-
   <?php include "../emp_mang/leave/summary.php"; ?>
 
   <?php include "../emp_mang/leave/credits.php"; ?>
@@ -46,50 +44,79 @@
 </div>
 
 
-<div class="form-row justify-content-between mt-4 ">
 
-  <div class="form-inline">
-    <input type="number" min="1900" max="2099" step="1" value="<?php echo ((!empty($_COOKIE["inputDate"])) ? $_COOKIE['inputDate'] : date("Y") );
-    ?>" class="form-control text-input" id="input-date"/>
-    <button id="date-submit" class="btn button-1">Search</button>
-  </div>
-
-  <div>
-    <?php
-  
-    // $mon = date("n");
-    // if ($mon == 1 || $mon == 12) {
-    //   $display = 'inline-block';
-    // } else {
-    //   $display = 'none';
-    // }
-    ?>
-
-    <button class="btn button-1" id="forward_balance" >Forward Balance</button>
-    <button class="btn button-1" id="refresh">Refresh</button>
-  </div>
-  <!-- <button class="btn button-1 " ><i class="fa fa-print"></i></button> -->
-
-
-
-</div>
 
 <?php  ?>
 
 <script>
+  // ajax call for leave credits 
+  function loadCredits(date, emp_id) {
+    var date = $("#input-date").val();
+    var emp_id = $("#emp_id_for_credits").val();
+    $.ajax({
+      url: "../emp_mang/leave/credits_ajax.php",
+      type: "POST",
+      cache: false,
+      data: {
+        date: date,
+        emp_id: emp_id,
+      },
+      success: function(response) {
+        $("#credits_section").html(response);
+      }
+    });
+  }
 
-  var date = $("#input-date").val();
-  document.cookie = `inputDate=${date}`;
+  loadCredits();
 
-$("#date-submit").click(function() {
-  window.location.reload();
-  var date = $("#input-date").val();
-  document.cookie = `inputDate=${date}`;
-  // console.log()
-});
+  $(document).on("click", "#date-submit", function() {
+    var date = $("#input-date").val();
+    var emp_id = $("#emp_id_for_credits").val();
+    loadCredits(date,emp_id)
+  });
 
-  $('#refresh').click(function() {
-    location.reload();
+  $(document).on("click", "#update_year", function() {
+    var vl_pts = $("#vl_pts").val();
+    var sl_pts = $("#sl_pts").val();
+    var leave_emp_id = $("#leave_emp_id").val();
+    var year = $("#input-date").val();
+    $.ajax({
+      type: "POST",
+      url: "../emp_mang/leave/year_credits_config.php",
+      data: {
+        vl_pts: vl_pts,
+        sl_pts: sl_pts,
+        leave_emp_id: leave_emp_id,
+        year : year
+      },
+      success: function(data) {
+        var date = $("#input-date").val();
+        var emp_id = $("#emp_id_for_credits").val();
+        loadCredits(date,emp_id);
+      }
+    });
+  });
+
+  $("#forward_balance").click(function() {
+    var leave_emp_id = $("#leave_emp_id").val();
+    var year = $("#input-date").val();
+    let today = new Date().toLocaleDateString()
+// console.log(today)
+    $.ajax({
+      type: "POST",
+      url: "../emp_mang/leave/forward_balance.php",
+      data: {
+        leave_emp_id: leave_emp_id,
+        year : year 
+      },
+      success: function(data) {
+        var date = $("#input-date").val();
+        $("#input-date").val(parseInt(date) + 1);
+        var emp_id = $("#emp_id_for_credits").val();
+        loadCredits(date,emp_id);
+      }
+    });
+
   });
 
   $(document).ready(function() {
@@ -101,55 +128,6 @@ $("#date-submit").click(function() {
     });
   });
 
-  $("#update_year").click(function() {
-    var vl_pts = $("#vl_pts").val();
-    var sl_pts = $("#sl_pts").val();
-    var leave_emp_id = $("#leave_emp_id").val();
 
-    $.ajax({
-      type: "POST",
-      url: "../emp_mang/leave/year_credits_config.php",
-      data: {
-        vl_pts: vl_pts,
-        sl_pts: sl_pts,
-        leave_emp_id: leave_emp_id
-      },
-      success: function(data) {
-        //  alert("sucess");
-        // toastr.success("Credits Year updated ! ")
-        if (data == 'success') {
-          toastr.success("Credits Year updated !")
-        } else if (data == 'error') {
-          toastr.error("Credits Year Not updated !. Try again !")
-        }
-      }
-    });
-
-    location.reload();
-
-  });
-
-  $("#forward_balance").click(function() {
-    var leave_emp_id = $("#leave_emp_id").val();
-    $.ajax({
-      type: "POST",
-      url: "../emp_mang/leave/forward_balance.php",
-      data: {
-        leave_emp_id: leave_emp_id
-      },
-      success: function(data) {
-        if (data == 'success') {
-          toastr.success("Balance Forwarded ")
-        } else if (data == 'error') {
-          toastr.error("Balance Not Forwarded. Try again !")
-        }
-      },
-      error: function(request, status, error) {
-        toastr.error("Balance Not Forwarded. Try again !")
-      }
-    });
-
-  // location.reload();
-
-  });
+  
 </script>

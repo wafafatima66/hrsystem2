@@ -122,7 +122,7 @@ if (isset($_POST['edit_leave_approve'])) {
                                           <option value="Sick leave">Sick Leave</option>
                                           <option value="Maternity Leave">Maternity Leave</option>
                                           <option value="Paternity Leave">Paternity Leave</option>
-                                          <option value="Special priviledge leave">Special priviledge Leave</option>
+                                          <option value="Special privilege leave">Special privilege Leave</option>
                                           <option value="Solo Parent Leave">Solo Parent Leave</option>
                                           <option value="Study Leave">Study Leave</option>
                                           <option value="10-day VAWC Leave">10-day VAWC Leave</option>
@@ -228,16 +228,16 @@ if (isset($_POST['edit_leave_approve'])) {
 ?>
       <div class="row mt-5 ">
             <h4 class="background-title-1">LEAVE APPLICATION HISTORY</h4>
-            
 
-                  <?php 
+
+            <?php 
                               
 	$query = "SELECT date_filled , type_of_leave , leave_from_date , leave_to_date , no_of_working_days , final_status , final_remarks from emp_leaves where emp_id = '$emp_id' ORDER BY id DESC";
 
 	$result = mysqli_query($conn, $query);
 
 	if (mysqli_num_rows($result) > 0) {?>
-      <table class="table home-page-table mt-4 table-striped table-responsive-sm">
+            <table class="table home-page-table mt-4 table-striped table-responsive-sm">
                   <thead>
                         <tr>
                               <th scope="col">Date Filled</th>
@@ -250,9 +250,9 @@ if (isset($_POST['edit_leave_approve'])) {
                   </thead>
                   <tbody>
 
-           <?php while ($mydata = mysqli_fetch_assoc($result)) {   ?>
+                        <?php while ($mydata = mysqli_fetch_assoc($result)) {   ?>
 
-           
+
                         <tr>
                               <td><?php echo $mydata['date_filled'] ;  ?></td>
                               <td><?php echo $mydata['type_of_leave'] ;  ?></td>
@@ -264,16 +264,16 @@ if (isset($_POST['edit_leave_approve'])) {
                               <td><?php if($mydata['final_remarks'] == ''){echo "No remarks" ;} else {echo $mydata['final_remarks'] ;}  ?>
                               </td>
                         </tr>
-                  
-                  <?php }?>
+
+                        <?php }?>
                   </tbody>
-                  </table>
-                <?php  }  else {
+            </table>
+            <?php  }  else {
                               echo '<p>No data Available</p>';
                         }
                   ?>
 
-            
+
 
             <!-- <div class=" mt-2 ">
                   <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
@@ -310,7 +310,7 @@ if (isset($_POST['edit_leave_approve'])) {
                         <button type="submit" id="search_leave" class="btn button-1">Search </button>
                   </div>
 
-                  <div class="col-lg-3"></div>
+                  <!-- <div class="col-lg-3"></div> -->
 
                   <div class="col-lg-2 col-sm-6">
                         <select name="search_approve" id="search_approve" class="form-control text-input">
@@ -321,9 +321,18 @@ if (isset($_POST['edit_leave_approve'])) {
                         </select>
                   </div>
 
-                  <div class="col-lg-1 col-sm-1 ml-5 ">
-                        <button class="btn button-1 " style="height:35px ; " id="print_leave"
-                              onclick="printDiv('printableArea_leave_summary')"><i class="fa fa-print"></i></button>
+                  
+                  <div class="col-lg-2 col-sm-6 ml-5">
+                        
+                        <input type="month" id="month_input" class="form-control text-input" onchange="change_month()">
+                        <small for="" class="text-muted">Select Date for report</small>
+                  </div>
+
+                  <div class="col-lg-1 col-sm-1 ">
+                        <!-- <button class="btn button-1 " style="height:35px ; " id="print_leave"
+                              onclick="printDiv('printableArea_leave_summary')"><i class="fa fa-print"></i></button> -->
+                        <a class="btn button-1" href=''
+                              style="height:35px" id="print_leave_summary"><i class="fa fa-print"></i></a>
                   </div>
                   <!-- </form> -->
             </div>
@@ -347,6 +356,13 @@ if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Admini
 
 
 <script>
+      // print leave summary docs
+      function change_month(){
+            var a = document.getElementById('print_leave_summary');
+            var month_input = document.getElementById('month_input').value;
+            a.href = "../includes/export_doc.php?leave_summary="+month_input;
+      }
+      
       // print
       function printDiv(divName) {
             var printContents = document.getElementById(divName).innerHTML;
@@ -431,23 +447,29 @@ if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Admini
                         success: function (result) {
 
                               $('#vl_pts').html(result
-                              .vl_pts); // getting vacation  leaves points from database
+                                    .vl_pts
+                                    ); // getting vacation  leaves points from database
                               $('#sl_pts').html(result
-                              .sl_pts); // getting sick  leaves points from database
+                                    .sl_pts
+                                    ); // getting sick  leaves points from database
                               $('#pts_total').html(result
-                              .pts_total); // getting total points from calculing vl_pts and sl_pts
+                                    .pts_total
+                                    ); // getting total points from calculing vl_pts and sl_pts
                               $('#total_pts_now').html(result
-                              .total_pts_now); // getting pints calculating from vi_now-pts and sl_now_pts
+                                    .total_pts_now
+                                    ); // getting pints calculating from vi_now-pts and sl_now_pts
                               $('#vl_bal').html(result
-                              .vl_bal); // vl_pts - vl_now_pts
+                                    .vl_bal); // vl_pts - vl_now_pts
                               $('#sl_bal').html(result
-                              .sl_bal); // sl_pts - sl_now_pts
+                                    .sl_bal); // sl_pts - sl_now_pts
                               $('#total_bal').html(result
-                              .total_bal); //vl_bal - sl_bal
+                                    .total_bal); //vl_bal - sl_bal
                               $('#vl_now_pts').html(result
-                              .vl_now_pts); // getting vacation  leaves points date given 
+                                    .vl_now_pts
+                                    ); // getting vacation  leaves points date given 
                               $('#sl_now_pts').html(result
-                              .sl_now_pts); // getting sick leaves points from date given
+                                    .sl_now_pts
+                                    ); // getting sick leaves points from date given
                         }
                   });
             });
@@ -518,9 +540,9 @@ if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Admini
                   var type_of_leave = $("#type_of_leave").val();
                   // console.log(type_of_leave);
                   if (type_of_leave == 'Vacation leave' || type_of_leave ==
-                        'Special priviledge leave') {
+                        'Special privilege leave') {
                         var details =
-                              '<div  style="padding: 20px; border: solid 1px #fc7e43; ; "> <h6>Details of leave</h6> <label>In case of Vacation/Special Privilege Leave</label> <div class="form-row"> <div class="col-sm-6 col-lg-6"> <select name="details_of_leave_option" class="form-control text-input " > <option value="Within the Philippines">Within the Philippines</option> <option value="Abroad">Abroad</option> </select> </div> <div class="col-sm-6 col-lg-6"> <input type="text" class="form-control text-input" placeholder="Write Details" name="details_text"> </div> </div> </div>'
+                              '<div  style="padding: 20px; border: solid 1px #fc7e43; ; "> <h6>Details of leave</h6> <label>In case of Vacation/Special privilege leave</label> <div class="form-row"> <div class="col-sm-6 col-lg-6"> <select name="details_of_leave_option" class="form-control text-input " > <option value="Within the Philippines">Within the Philippines</option> <option value="Abroad">Abroad</option> </select> </div> <div class="col-sm-6 col-lg-6"> <input type="text" class="form-control text-input" placeholder="Write Details" name="details_text"> </div> </div> </div>'
 
                   } else if (type_of_leave == 'Sick leave') {
                         var details =

@@ -3,7 +3,7 @@
 require '../includes/conn.php';
 
 if (isset($_POST['emp_id'])) {
-    if ($_POST['type_of_leave'] == 'Special priviledge leave' || $_POST['type_of_leave'] == 'Mandatory/Forced Leave'  ) {
+    if ($_POST['type_of_leave'] == 'Special privilege leave' || $_POST['type_of_leave'] == 'Mandatory/Forced Leave'  ) {
 
     $emp_id = $_POST['emp_id'];
     $type_of_leave = $_POST['type_of_leave'];
@@ -26,7 +26,7 @@ if (isset($_POST['emp_id'])) {
 
     $total_spl = '' ; 
     $total_fl = '' ; 
-    if($type_of_leave == 'Special priviledge leave'){
+    if($type_of_leave == 'Special privilege leave'){
         $total_spl = $no_of_working_days + $spl_days ;
     }else if($type_of_leave == 'Mandatory/Forced Leave'){
         $total_fl = $no_of_working_days + $fl_days ;

@@ -149,7 +149,6 @@
       <a href='../includes/export_doc.php?cer_emp=<?php echo $emp_id?>'>Certificate of Employment</a>
       </div>
 
-    
       </div>
 
       <div class="form-row mt-2">

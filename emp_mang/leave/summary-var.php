@@ -21,7 +21,7 @@
     $j = $i+1;
     
 
-    $query = "select sum(vacation_leave) as vl_days , sum(sick_leave) as sl_days, (spl) as spl_days , (force_leave) as fl_days , (lwp) as lwp_days from leave_credits where emp_id = '$emp_id' and mon = $j and year = $year and status = 1";
+    $query = "select sum(vacation_leave) as vl_days , sum(sick_leave) as sl_days, sum(spl) as spl_days , sum(force_leave) as fl_days , sum(lwp) as lwp_days from leave_credits where emp_id = '$emp_id' and mon = $j and year = $year and status = 1 and final_status = 1";
 
 
             $runquery = $conn->query($query);

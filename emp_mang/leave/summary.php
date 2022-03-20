@@ -24,7 +24,7 @@
 
     <div class="container">
 
-        <div class="row">
+        <div class="row"> 
 
 
             <div class="col-lg-1 col-sm-1"> </div>
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="col-lg-2 col-sm-2 ">
-                        <label for=""  class="responsive-label">SPECIAL PRIVILEDGE LEAVE</label>
+                        <label for=""  class="responsive-label">SPECIAL PRIVILEGE LEAVE</label>
                     </div>
 
                     <div class="col-lg-2 col-sm-2 ">
