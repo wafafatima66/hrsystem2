@@ -110,4 +110,20 @@ if (!empty($_GET["user_id"])) {
   }
 }
 
+if (!empty($_GET["leave_id"])) {
+
+  $leave_id = $_GET["leave_id"];
+  
+  $del_sql = "DELETE FROM emp_leaves WHERE id='$leave_id'";
+  $del_sql1 = "DELETE FROM leave_credits WHERE leave_id='$leave_id'";
+  // $conn->query($del_sql_1);
+
+
+  if (mysqli_query($conn, $del_sql) && mysqli_query($conn, $del_sql1)) {
+    header("Location:../leave_mang/index.php?&delete=success");
+  } else {
+    header("Location:../leave_mang/index.php?delete=fail");
+  }
+}
+
 ?>

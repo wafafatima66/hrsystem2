@@ -1,5 +1,3 @@
-
-
 <div class=" container-box">
 
   <h4 class="h4-heading">Agency Profile</h4>
@@ -17,13 +15,13 @@
 
   <form method="post" action="" enctype="multipart/form-data">
 
-  <div class="form-row mt-5">
+    <div class="form-row mt-5">
 
       <div class="col-lg-3 col-sm-6">
         <small>Employee Type</small>
         <!--<label for="">Employee Type</label>-->
         <!-- <input type="text" name="emp_id" class="form-control text-input"  value="<?php echo $mydata['emp_id']?>"/> -->
-        <select name="" id="" class="form-control text-input" >
+        <select name="" id="" class="form-control text-input">
           <option value="">Permanent</option>
           <option value="">Job-Order</option>
           <option value="">MOA</option>
@@ -38,12 +36,14 @@
 
       <div class="col-lg-3 col-sm-6">
         <small>Original Appointment</small>
-        <input type="text" name="position" class="form-control text-input" value="<?php echo $mydata['date_orgappnt_lhmrh']?>" />
+        <input type="text" name="position" class="form-control text-input"
+          value="<?php echo $mydata['date_orgappnt_lhmrh']?>" />
       </div>
 
       <div class="col-lg-3 col-sm-6">
         <small>Last Promotion</small>
-        <input type="text" name="salary_grade" class="form-control text-input" value="<?php echo $mydata['date_last_promotion']?>" />
+        <input type="text" name="salary_grade" class="form-control text-input"
+          value="<?php echo $mydata['date_last_promotion']?>" />
       </div>
 
     </div>
@@ -68,17 +68,20 @@
 
       <div class="col-lg-1 col-sm-6">
         <small>SG</small>
-        <input type="text" name="salary_grade" class="form-control text-input" value="<?php echo $mydata['salary_grade']?>" />
+        <input type="text" name="salary_grade" class="form-control text-input"
+          value="<?php echo $mydata['salary_grade']?>" />
       </div>
 
       <div class="col-lg-1 col-sm-6">
         <small>SG Step</small>
-        <input type="text" name="salary_grade" class="form-control text-input" value="<?php echo $mydata['sg_step']?>" />
+        <input type="text" name="salary_grade" class="form-control text-input"
+          value="<?php echo $mydata['sg_step']?>" />
       </div>
 
       <div class="col-lg-2 col-sm-6">
         <small>Monthly Salary</small>
-        <input type="text" name="salary_grade" class="form-control text-input" value="<?php echo "P ". number_format($mydata['monthly_salary'])?>" />
+        <input type="text" name="salary_grade" class="form-control text-input"
+          value="<?php echo "P ". number_format($mydata['monthly_salary'])?>" />
       </div>
 
     </div>
@@ -96,21 +99,22 @@
 
       <div class="col-lg-3 col-sm-6">
         <small>Office/Unit</small>
-        <input type="text" name="office" class="form-control text-input" value="<?php echo $mydata['area_wrk_assign']?>"/>
+        <input type="text" name="office" class="form-control text-input"
+          value="<?php echo $mydata['area_wrk_assign']?>" />
       </div>
 
       <div class="col-lg-3 col-sm-6">
         <small>Designation</small>
-        <input type="text" name="" class="form-control text-input" value=""/>
+        <input type="text" name="" class="form-control text-input" value="" />
       </div>
 
       <div class="col-lg-3 col-sm-6">
         <small>Reassignment</small>
-        <input type="text" name="" class="form-control text-input" value=""/>
+        <input type="text" name="" class="form-control text-input" value="" />
       </div>
 
     </div>
-  
+
 
 
 </div>
@@ -123,7 +127,7 @@
 
 </form>
 
-<input type="hidden" name="emp_id" class="form-control text-input"  value="<?php echo $mydata['emp_id']?>"/>
+<input type="hidden" name="emp_id" class="form-control text-input" value="<?php echo $mydata['emp_id']?>" />
 
 <?php  }}else {
       echo 'No Item found for the employee';
@@ -138,65 +142,64 @@
 
   <h4 class="h4-heading">Employee Report Generation</h4>
 
-  
+
   <div class="form-row mt-4">
 
-      <div class="col-lg-3 col-sm-6">
-        <a href=""  id="pds_report" >Personal Data Sheet</a>
-      </div>
+    <div class="col-lg-3 col-sm-6">
+      <a href="" id="pds_report">Personal Data Sheet</a>
+    </div>
 
-      <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-sm-6">
       <a href='../includes/export_doc.php?cer_emp=<?php echo $emp_id?>'>Certificate of Employment</a>
-      </div>
-
-      </div>
-
-      <div class="form-row mt-2">
-
-      <div class="col-lg-3 col-sm-6">
-      <a href="" id="service_record" >Service Record</a>
-      </div>
-
-      <div class="col-lg-3 col-sm-6">
-    <a href='../includes/export_doc.php?cer_leave_credits=<?php echo $emp_id?>'>Certificate of Leave Credits</a>
-      </div>
-
     </div>
 
-    <div class="form-row mt-2">
+  </div>
 
-      <div class="col-lg-3 col-sm-6">
-      <a href="" id="leave_ledger_report" >Leave Ledger</a>
-      </div>
+  <div class="form-row mt-2">
 
-
+    <div class="col-lg-3 col-sm-6">
+      <a href="" id="service_record">Service Record</a>
     </div>
 
+    <div class="col-lg-3 col-sm-6">
+      <a href='../includes/export_doc.php?cer_leave_credits=<?php echo $emp_id?>'>Certificate of Leave Credits</a>
     </div>
-  
-    <script>
-       $('#service_record').on('click', function() {
-      var emp_id = $('.emp_id').val();
-      var url = '../includes/export_excel.php?service_record=' ;
-     var newHref = url.concat(emp_id);
-     console.log(emp_id);
+
+  </div>
+
+  <div class="form-row mt-2">
+
+    <div class="col-lg-3 col-sm-6">
+      <a href="" id="leave_ledger_report">Leave Ledger</a>
+    </div>
+
+
+  </div>
+
+</div>
+
+<script>
+  $('#service_record').on('click', function () {
+    var emp_id = $('.emp_id').val();
+    var url = '../includes/export_excel.php?service_record=';
+    var newHref = url.concat(emp_id);
+    console.log(emp_id);
     $('#service_record').attr('href', newHref);
-    });
+  });
 
-    $('#leave_ledger_report').on('click', function() {
-      var emp_id = $('.emp_id').val();
-      var url = '../includes/export_excel.php?leave_ledger_report=' ;
-     var newHref = url.concat(emp_id);
-     console.log(emp_id);
+  $('#leave_ledger_report').on('click', function () {
+    var emp_id = $('.emp_id').val();
+    var url = '../includes/export_excel.php?leave_ledger_report=';
+    var newHref = url.concat(emp_id);
+    console.log(emp_id);
     $('#leave_ledger_report').attr('href', newHref);
-    });
+  });
 
-    $('#pds_report').on('click', function() {
-      var emp_id = $('.emp_id').val();
-      var url = '../includes/export_excel.php?pds_report=' ;
-     var newHref = url.concat(emp_id);
-     console.log(emp_id);
+  $('#pds_report').on('click', function () {
+    var emp_id = $('.emp_id').val();
+    var url = '../includes/export_excel.php?pds_report=';
+    var newHref = url.concat(emp_id);
+    console.log(emp_id);
     $('#pds_report').attr('href', newHref);
-    });
-
-    </script>
+  });
+</script>

@@ -97,7 +97,7 @@
 
         <div class="col-lg-5 col-sm-12">
             <?php
-            $query = "SELECT * FROM emp_govt_id WHERE emp_id = '$emp_id'";
+            $query = "SELECT * FROM `emp_govt_id` WHERE emp_id = 'LHMRH-2018-00259' and emp_gov_issued_id is NOT null and emp_gov_issued_id != '';";
             $runquery = $conn->query($query);
             $rowcount = mysqli_num_rows($runquery);
             if ($rowcount > 0) {

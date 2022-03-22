@@ -8308,6 +8308,24 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
--- new added
-
 ALTER TABLE `leave_credits` ADD `final_status` INT NULL AFTER `status`;
+
+-- new 
+ALTER TABLE `training_table` ADD `speakers` VARCHAR(500) NULL AFTER `agency`;
+ALTER TABLE `training_table` ADD `sponsors` VARCHAR(500) NULL AFTER `speakers`;
+ALTER TABLE `training_table` CHANGE `training_id` `training_id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `hrsystem2`.`training_table` DROP INDEX `training_id`, ADD PRIMARY KEY (`training_id`) USING BTREE;
+ALTER TABLE `training_table` DROP `training_id`;
+ALTER TABLE `training_table` ADD `id` INT NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+ALTER TABLE `training_table` ADD `employees` VARCHAR(500) NULL AFTER `sponsors`;
+CREATE TABLE files (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    date VARCHAR(100),
+    name VARCHAR(100), 
+    type VARCHAR(100),
+    size VARCHAR(100)
+);
+ALTER TABLE `emp_leaves` CHANGE `leave_from_date` `leave_from_date` VARCHAR(255) NULL DEFAULT NULL;
+ALTER TABLE `emp_leaves` CHANGE `leave_to_date` `leave_to_date` VARCHAR(255) NULL DEFAULT NULL;
+ALTER TABLE `emp_leaves` ADD `lwp` INT NULL AFTER `date_filled`;
+ALTER TABLE `emp_leaves` ADD `from_date` DATE NULL AFTER `lwp`;

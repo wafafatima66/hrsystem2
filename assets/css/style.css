@@ -83,6 +83,9 @@ body {
     border: solid 1px #fc7e43;
     cursor: pointer;
 }
+.page-link{
+    cursor: pointer;
+}
 .fa-edit,.fa-upload,.fa-user-edit,.fa-trash,.fa-file-alt,.fa-eye{
     color : #505A43 ; 
     cursor: pointer;

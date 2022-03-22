@@ -8,8 +8,8 @@ include SITE_ROOT . '/includes/header.php'; ?>
       <div class="row">
             <div class="col-lg-5 col-sm-12 mt-3">
                   <div class="input-group">
-                        <input type="search" class="form-control">
-                        <button type="button" class="home-page-search-btn">
+                        <input type="search" class="form-control" id="search_input">
+                        <button type="button" class="home-page-search-btn" id="search_button">
                               <i class="fa fa-search"></i>
                         </button>
 
@@ -19,74 +19,72 @@ include SITE_ROOT . '/includes/header.php'; ?>
             </div>
 
 
-
-            <div class="col-lg-3 col-sm-5  mt-3">
-                  <input type="date" class="form-control text-input" placeholder="Date Picker">
+            <div class="col-lg-2 col-sm-5  mt-3">
+                  <input type="date" class="form-control text-input" placeholder="Date Picker" id="from_date">
             </div>
             <span class="mr-2 ml-2 mt-4">to</span>
-            <div class="col-lg-3 col-sm-5 mt-3">
-                  <input type="date" class="form-control text-input" placeholder="Date Picker">
+            <div class="col-lg-2 col-sm-5 mt-3">
+                  <input type="date" class="form-control text-input" placeholder="Date Picker" id="to_date">
             </div>
 
-
+            <div class="col-lg-2 col-sm-6 mt-3">
+            <button type="button" class="ml-3 btn button-1" id="search_date" >Search</button>
+            </div>
+            
 
       </div>
 
-      <table class="table home-page-table mt-4 table-striped table-sm table-responsive-sm">
-            <thead>
-                  <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Title Of Training</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">Venue</th>
-                        <th scope="col">No of Hours</th>
-                        <th scope="col">No of Pax</th>
-                        <th scope="col">Sponser/s</th>
-                        <th scope="col">Facilitor/s</th>
-                  </tr>
-            </thead>
-            <tbody>
-                  <tr>
-                        <th scope="row">1</th>
-                        <td>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                  </tr>
-                  <tr>
-                        <th scope="row">1</th>
-                        <td>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                  </tr>
-                  <tr>
-                        <th scope="row">1</th>
-                        <td>
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                  </tr>
+      <?php echo '<div id="table-data"> </div>'; ?>
 
-            </tbody>
-      </table>
-
-      <div class=" mt-4 ">
+      <!-- <div class=" mt-4 ">
             <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
-      </div>
+      </div> -->
 </div>
 
 
 <?php include "learning_modal.php" ?>
+
+<script>
+      function loadData(page, from_date, to_date, search) {
+                  $.ajax({
+                        url: "../learning/pagination.php",
+                        type: "POST",
+                        cache: false,
+                        data: {
+                              page_no: page,
+                              from_date: from_date,
+                              to_date: to_date,
+                              search: search
+                        },
+                        success: function (response) {
+                              $("#table-data").html(response);
+                        }
+                  });
+            }
+            loadData();
+
+            // Pagination code
+            $(document).on("click", ".page-item", function () {
+                  var from_date = $('#from_date').val();
+                  var to_date = $('#to_date').val();
+                  var pageId = $(this).attr("id");
+                  var search = $('#search_input').val();
+                  loadData(pageId, from_date, to_date, search);
+            });
+
+            $(document).on("click", "#search_button", function () {
+                  var from_date = $('#from_date').val();
+                  var to_date = $('#to_date').val();
+                  var pageId = 1;
+                  var search = $('#search_input').val();
+                  loadData(pageId, from_date, to_date, search);
+            });
+
+            $(document).on("click", "#search_date", function () {
+                  var from_date = $('#from_date').val();
+                  var to_date = $('#to_date').val();
+                  var pageId = 1;
+                  var search = $('#search_input').val();
+                  loadData(pageId, from_date, to_date, search);
+            });
+</script>

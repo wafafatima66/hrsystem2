@@ -3,7 +3,7 @@
    <div class="form-row justify-content-between mt-4 ">
 
   <div class="form-inline">
-    <input type="number" min="1900" max="2099" step="1" value="<?php echo ((!empty($_COOKIE["inputDate"])) ? $_COOKIE['inputDate'] : date("Y"));
+    <input type="number" min="1900" max="2099" step="1" value="<?php echo date("Y");
                                                                 ?>" class="form-control text-input" id="input-date" />
     <input type="hidden" value="<?php echo $emp_id ?>" id="emp_id_for_credits">
     <button id="date-submit" class="btn button-1">Search</button>

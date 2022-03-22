@@ -119,6 +119,32 @@
 
   });
 
+  // ajax call for summary leave 
+  function loadSummary(date, emp_id) {
+    var date = $("#summary-date").val();
+    var emp_id = $("#emp_id_for_summary").val();
+    $.ajax({
+      url: "../emp_mang/leave/summary_ajax.php",
+      type: "POST",
+      cache: false,
+      data: {
+        date: date,
+        emp_id: emp_id,
+      },
+      success: function(response) {
+        $("#summary_section").html(response);
+      }
+    });
+  }
+
+  loadSummary();
+
+  $(document).on("click", "#date-summary", function() {
+    var date = $("#summary-date").val();
+    var emp_id = $("#emp_id_for_summary").val();
+    loadSummary(date,emp_id)
+  });
+
   $(document).ready(function() {
     $('input[type="radio"]').click(function() {
       var inputValue = $(this).attr("value");

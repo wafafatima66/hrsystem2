@@ -1,5 +1,6 @@
 <?php 
 
+$counter = '';
 $adjacents = 1;
 $lpm1 = $totalPage - 1;
 $prev = $page_no - 1;                          //previous page is page - 1

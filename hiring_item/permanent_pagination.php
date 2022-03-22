@@ -111,10 +111,8 @@ if (mysqli_num_rows($result) > 0) {
         <td> " . (($mydata['filled'] == 1) ? 'Filled' : 'Unfilled') . "</td>
         
         <td> <a href='edit_item.php?item_no={$mydata['item_no']} '><i class='fa fa-edit mx-2'></i></a>
-            
-
+           
         <a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='item_id={$mydata['id']}'><i class='fa fa-trash mx-2'></i></a>
-
 
          </td>
         </tr>";
@@ -137,8 +135,6 @@ if (mysqli_num_rows($result) > 0) {
               <a href="index.php" class="btn button-1 mr-3" style="height:35px"><i class="fas fa-sync-alt"></i></a>
               <p class="text-lowercase " style="display: contents;">' . $limit . ' ' . "of" . '  ' . $totalRecords . '</p>
               </div> ';
-
-
   $output .= "<ul class='pagination '>";
 
   include "../includes/pagination_ul.php"; //getting pagination to work

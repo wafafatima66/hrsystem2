@@ -85,8 +85,8 @@
 
 </div>
 
-<div class="col-lg-3 col-sm-12 mt-2">
-    <a class=" btn button-1 add_skills_button">Add</a>
+<div class="mt-2">
+    <a class=" btn button-1 add_skills_button">+</a>
 </div>
 
 <?php  $query = "SELECT * FROM employee WHERE id = '$id'";

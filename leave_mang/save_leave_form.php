@@ -6,8 +6,9 @@ if (isset($_POST['submit'])) {
     // echo $_POST['allowed'] ;
     //     die ; 
 
-    if ($_POST['allowed'] == 1) {
-
+    if ($_POST['allowed'] == 'allowed') {
+        header("Location:../leave_mang?limit");
+    } else {
 
         $year = date("Y");
         $emp_id = $_POST['emp_id'];
@@ -30,12 +31,30 @@ if (isset($_POST['submit'])) {
         $date_diff = $_POST['date_diff'];
         $mon = $_POST['mon'];
         $year = $_POST['year'];
-        $lenght = count($_POST['leave_to_date']) - 1;
-        $leave_from_date = $_POST['leave_from_date'][0];
-        $leave_to_date = $_POST['leave_to_date'][$lenght];
+        // $lenght = count($_POST['leave_to_date']) - 1;
+        // $leave_from_date = $_POST['leave_from_date'][0];
+        // $leave_to_date = $_POST['leave_to_date'][$lenght];
         // $date_diff = round(($to_date - $from_date) / (60 * 60 * 24)) + 1;
 
-        $sql = "INSERT INTO emp_leaves (emp_id, type_of_leave,leave_from_date,leave_to_date,details_of_leave,date_diff,no_of_working_days , date_filled , status, final_status) VALUE ('$emp_id', '$type_of_leave','$leave_from_date','$leave_to_date','$details_of_leave','$date_diff','$no_of_working_days' , '$date_filled' , '2', '2') ";
+        $leave_from_date_array = array();
+        if (isset($_POST['leave_from_date'])) {
+            for ($i = 0; $i < count($_POST['leave_from_date']); $i++) {
+                $leave_from_date_array[$i] = $_POST['leave_from_date'][$i];
+            }
+            $leave_from_date = json_encode($leave_from_date_array);
+        }
+
+        $leave_to_date_array = array();
+        if (isset($_POST['leave_to_date'])) {
+            for ($i = 0; $i < count($_POST['leave_to_date']); $i++) {
+                $leave_to_date_array[$i] = $_POST['leave_to_date'][$i];
+            }
+            $leave_to_date = json_encode($leave_to_date_array);
+        }
+
+       $from_date = $_POST['leave_from_date'][0];
+
+        $sql = "INSERT INTO emp_leaves (emp_id, type_of_leave,leave_from_date,leave_to_date,details_of_leave,date_diff,no_of_working_days , date_filled , status, final_status,lwp,from_date) VALUE ('$emp_id', '$type_of_leave','$leave_from_date','$leave_to_date','$details_of_leave','$no_of_working_days','$no_of_working_days' , '$date_filled' , '2', '2','$no_of_leave_without_pay','$from_date') ";
 
         $conn->query($sql);
 
@@ -74,15 +93,11 @@ if (isset($_POST['submit'])) {
 
         // $conn->query($sql2);
 
-
-
         if (mysqli_query($conn, $sql2)) {
             header("Location:../leave_mang?success");
         } else {
             header("Location:../leave_mang?error");
         }
-    } else {
-        header("Location:../leave_mang?limit");
     }
 } else {
     header("Location:emp_mang.php");

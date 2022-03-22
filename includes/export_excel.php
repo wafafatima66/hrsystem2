@@ -36,5 +36,10 @@ if (isset($_GET["pds_report"])) {
     include "../export_excel_parts/pds_report.php";
 }
 
+if (isset($_GET["leave_summary"])) {
+
+    include "../export_excel_parts/leave_summary.php";
+}
+
 
 

@@ -34,15 +34,15 @@ if (isset($_POST['emp_id'])) {
      
 
     if($total_spl > 3 || $total_fl > 5 ){
-        echo json_encode(array('msg' => 'Exceeding days limit', 'allowed' => 0));
+        echo json_encode(array('msg' => 'Exceeding days limit', 'allowed' => 'allowed'));
     }else {
-        echo json_encode(array('msg' => '', 'allowed' => 1));
+        echo json_encode(array('msg' => '', 'allowed' => ''));
     }
     
 
 }else {
-    echo json_encode(array('msg' => '', 'allowed' => 1));
+    echo json_encode(array('msg' => '', 'allowed' => ''));
 }
 } else {
-    echo json_encode(array('msg' => '', 'allowed' => 1));
+    echo json_encode(array('msg' => '', 'allowed' => ''));
 }

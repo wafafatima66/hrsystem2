@@ -1,9 +1,10 @@
 <?php
-
-	// Connect database 
+// Connect database 
 
 	require '../includes/conn.php';
 
+	$add = 'where 1';
+	$add1 ='';
 	if (isset($_POST['limit'])) {
 		$limit = $_POST['limit'];
 	} else {
@@ -17,9 +18,15 @@
 	    $page_no = 1;
 	}
 
+	if (isset($_POST['search']) && !empty($_POST['search'])) {
+
+		$search = $_POST['search'];
+		$add1 = "and e.emp_first_name LIKE '%{$search}%' OR e.emp_last_name LIKE '%{$search}%' OR e.emp_id LIKE '%{$search}%'";
+	}
+
 	$offset = ($page_no-1) * $limit;
 
-	$query = "SELECT id, emp_id , emp_first_name , emp_last_name , emp_middle_name , emp_ext , emp_gender  FROM employee LIMIT $offset, $limit";
+	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.appt_stat , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id ".$add." ".$add1."LIMIT $offset, $limit";
 
 	
 
@@ -51,9 +58,9 @@
 						<span> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
 				</td>
 				<td> {$mydata['emp_gender']} </td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>{$mydata['appt_stat']}</td>
+				<td>{$mydata['position']}</td>
+				<td>{$mydata['area_wrk_assign']}</td>
 			</tr>";
 	} 
 

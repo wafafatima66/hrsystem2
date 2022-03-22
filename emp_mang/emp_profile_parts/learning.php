@@ -6,7 +6,7 @@
        <?php
 
 
-        $query = "SELECT * FROM emp_training WHERE emp_id = '$emp_id'";
+        $query = "SELECT * FROM emp_training WHERE emp_id = '$emp_id' and title_of_training !=''";
 
         $runquery = $conn->query($query);
         $rowcount = mysqli_num_rows($runquery);
@@ -15,7 +15,7 @@
             while ($mydata = $runquery->fetch_assoc()) {  ?>
 
 
-               <div class="form-row mt-3">
+               <div class="form-row mt-5">
 
                    <div class="col-lg-5 col-sm-12">
                        <div class="d-flex flex-column">
@@ -66,9 +66,9 @@
                         <small>Inclusive Dates</small>
                            <div class="d-md-flex justify-content-center">
 
-                               <input type="date" class="form-control text-input mx-sm-1 " name="training_from_date[]" value="<?php echo $mydata['training_from_date'] ?>">
+                               <input type="date" class="form-control text-input  " name="training_from_date[]" value="<?php echo $mydata['training_from_date'] ?>">
 
-                               <input type="date" class="form-control text-input mx-sm-1 " name="training_to_date[]" value="<?php echo $mydata['training_to_date'] ?>">
+                               <input type="date" class="form-control text-input  " name="training_to_date[]" value="<?php echo $mydata['training_to_date'] ?>">
 
                            </div>
                        </div>
@@ -106,7 +106,7 @@
            <?php }
         } else { ?>
 
-           <div class="form-row mt-3">
+           <div class="form-row mt-5">
 
                <div class="col-lg-5 col-sm-12">
                    <div class="d-flex flex-column">
@@ -144,9 +144,9 @@
                        <label for="">INCLUSIVE DATES</label>
                        <div class="d-md-flex justify-content-center">
 
-                           <input type="date" class="form-control text-input mx-sm-1 " name="training_from_date[]">
+                           <input type="date" class="form-control text-input  " name="training_from_date[]">
 
-                           <input type="date" class="form-control text-input mx-sm-1 " name="training_to_date[]">
+                           <input type="date" class="form-control text-input  " name="training_to_date[]">
 
                        </div>
                    </div>
@@ -186,8 +186,8 @@
 
 
 
-   <div class="col-lg-2 col-sm-6 mt-2">
-       <a class="btn button-1 add_button add_learn_button">Add</a>
+   <div class="mt-2">
+       <a class="btn button-1 add_button add_learn_button">+</a>
    </div>
 
 
@@ -201,7 +201,7 @@
            var addButton = $('.add_learn_button'); //Add button selector
            var wrapper = $('.learning_wrapper'); //Input field wrapper
            var fieldHTML =
-               '  <div class="form-row mt-5"> <div class="col-lg-5 col-sm-12"> <div class="d-flex flex-column"> <label for="">TITLE OF TRAINING/PROGRAM ATTENDED</label> <input type="text" class="form-control text-input"  name="title_of_training[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">TYPE OF PROGRAM</label> <select class="form-control text-input" name="training_type_of_position[]"> <option value="">SELECT</option> <option value="Technical">Technical</option> <option value="Managerial">Managerial</option> <option value="Supervisory">Supervisory</option> <option value="Clerical">Clerical</option> </select> </div> </div> <div class="col-lg-2 col-sm-6"> <div class="d-flex flex-column"> <label for="">NO. OF HOURS</label> <input type="text" class="form-control text-input"  name="training_no_of_hrs[]"> </div> </div> </div> <div class="form-row mt-3"> <div class="col-lg-6 col-sm-12"> <div class="d-flex flex-column"> <label for="">INCLUSIVE DATES</label> <div class="d-md-flex justify-content-center"> <input type="date" class="form-control text-input mx-sm-1 "  name="training_from_date[]"> <input type="date" class="form-control text-input mx-sm-1 "  name="training_to_date[]"> </div> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex"> <div class="form-group "> <label for="">SPONSORS</label> <input type="text" class="form-control text-input"  name="training_conducted_by[]"> </div> </div> </div> <div class="col-lg-3 col-sm-6 mt-3"> <div class="form-group "> <label style="width: 100%;"> <div class="inner-upload-field p-2"> <h6 class="text-center">UPLOAD FILE</h6> </div> <input type="file" name="training_files[]" id="training_files" style="display: none;" > </label> </div> </div> </div>';
+               '  <div class="form-row mt-5"> <div class="col-lg-5 col-sm-12"> <div class="d-flex flex-column"> <label for="">TITLE OF TRAINING/PROGRAM ATTENDED</label> <input type="text" class="form-control text-input"  name="title_of_training[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">TYPE OF PROGRAM</label> <select class="form-control text-input" name="training_type_of_position[]"> <option value="">SELECT</option> <option value="Technical">Technical</option> <option value="Managerial">Managerial</option> <option value="Supervisory">Supervisory</option> <option value="Clerical">Clerical</option> </select> </div> </div> <div class="col-lg-2 col-sm-6"> <div class="d-flex flex-column"> <label for="">NO. OF HOURS</label> <input type="text" class="form-control text-input"  name="training_no_of_hrs[]"> </div> </div> </div> <div class="form-row mt-3"> <div class="col-lg-6 col-sm-12"> <div class="d-flex flex-column"> <label for="">INCLUSIVE DATES</label> <div class="d-md-flex justify-content-center"> <input type="date" class="form-control text-input  "  name="training_from_date[]"> <input type="date" class="form-control text-input  "  name="training_to_date[]"> </div> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex"> <div class="form-group "> <label for="">SPONSORS</label> <input type="text" class="form-control text-input"  name="training_conducted_by[]"> </div> </div> </div> <div class="col-lg-3 col-sm-6 mt-3"> <div class="form-group "> <label style="width: 100%;"> <div class="inner-upload-field p-2"> <h6 class="text-center">UPLOAD FILE</h6> </div> <input type="file" name="training_files[]" id="training_files" style="display: none;" > </label> </div> </div> </div>';
 
            //New input field html 
            var x = 1; //Initial field counter is 1

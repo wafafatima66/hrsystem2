@@ -1,13 +1,17 @@
-<?php session_start();
-$date =  $_GET["leave_summary"];
+<?php 
 
-if (empty($date)) {
-    header("Location:../leave_mang");
+// session_start();
+
+
+if (($_GET["leave_summary"]) == '') {
+    // header("Location:../leave_mang");
+    header("Location:../leave_mang?no_date");
 }else 
    {
+    $date =  $_GET["leave_summary"];
        //March,2022
-        $department =  $_SESSION['department'] ;
-        $office =  $_SESSION['office'];
+        // $department =  $_SESSION['department'] ;
+        // $office =  $_SESSION['office'];
 
         $new_Date = date("F, Y", strtotime($date));
         $mon = date("n", strtotime($date));
@@ -39,7 +43,7 @@ $table->addCell(500, $fancyTableFirstRowStyle)->addText('STATUS', $fancyTableFon
 
 // $query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image , i.division , i.area_wrk_assign from emp_leaves a join employee b on a.emp_id = b.emp_id join item  i on a.emp_id = i.emp_id where i.division = '$department' and i.area_wrk_assign = '$office' ";
 
-$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , a.leave_from_date ,a.leave_to_date, b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image from emp_leaves a join employee b on a.emp_id = b.emp_id where YEAR(a.leave_from_date) = ".$year." AND MONTH(a.leave_from_date) = ".$mon." ORDER BY id DESC " ;
+$query = "SELECT a.id, a.emp_id , a.type_of_leave , a.details_of_leave , a.no_of_working_days, a.status , a.leave_from_date ,a.leave_to_date, b.emp_first_name , b.emp_middle_name , b.emp_last_name , b.emp_ext , b.emp_image from emp_leaves a join employee b on a.emp_id = b.emp_id where YEAR(a.from_date) = ".$year." AND MONTH(a.from_date) = ".$mon." ORDER BY id DESC " ;
 
 $result = mysqli_query($conn, $query);
 $len = mysqli_num_rows($result) ; 
@@ -48,9 +52,9 @@ $len = mysqli_num_rows($result) ;
 // data in table 
 
         while ($mydata = mysqli_fetch_assoc($result)) {
-            $mydata = mysqli_fetch_assoc($result);
+            // $mydata = mysqli_fetch_assoc($result);
 
-            for ($r = 1; $r <= $len; $r++) {
+            // for ($r = 1; $r <= $len; $r++) {
                 $emp_name = strtoupper($mydata['emp_first_name'] . '' . $mydata['emp_middle_name'] . '' . $mydata['emp_last_name']);
 
                 $obj = json_decode($mydata['details_of_leave']);
@@ -70,18 +74,24 @@ $len = mysqli_num_rows($result) ;
                     $status = '';
                 }
 
-                $leave_from = date("m/d/Y", strtotime($mydata['leave_from_date']));
-		        $leave_to = date("m/d/Y", strtotime($mydata['leave_to_date']));
+                // $leave_from = date("m/d/Y", strtotime($mydata['leave_from_date']));
+		        // $leave_to = date("m/d/Y", strtotime($mydata['leave_to_date']));
+
+                $leave_from_date_array = json_decode($mydata['leave_from_date']);
+                $leave_to_date_array = json_decode($mydata['leave_to_date']);
+                $lenght = count($leave_to_date_array)-1 ;
+                $leave_from = (date('m/d/Y', strtotime($leave_from_date_array[0])));
+                $leave_to = (date('m/d/Y', strtotime($leave_to_date_array[$lenght])));
 
             $table->addRow(300);
             $table->addCell(2500, $fancyTableStyle)->addText($mydata['emp_id']);
             $table->addCell(3000, $fancyTableStyle)->addText($emp_name);
             $table->addCell(2000, $fancyTableStyle)->addText($mydata['type_of_leave']);
             $table->addCell(500, $fancyTableStyle)->addText($mydata['no_of_working_days']);
-            $table->addCell(2000, $fancyTableStyle)->addText($leave_from.' - '.$leave_from);
+            $table->addCell(2000, $fancyTableStyle)->addText($leave_from.' - '.$leave_to);
             $table->addCell(3000, $fancyTableStyle)->addText($details);
             $table->addCell(500, $fancyTableStyle)->addText($status);
-        }
+        // }
     }
     }else {
         for ($r = 1; $r <= 1; $r++) {

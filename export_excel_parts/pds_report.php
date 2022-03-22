@@ -6,8 +6,6 @@ $reader = new PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 $spreadsheet = $reader->load('../export_excel_parts/PDS.xlsx');
 
 
-
-
 $query = "Select * from employee where emp_id = '$emp_id'";
 
 $result = mysqli_query($conn, $query);
