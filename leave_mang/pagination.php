@@ -250,7 +250,7 @@ if (mysqli_num_rows($result) > 0) {
 	echo $output;
 } else {
 
-	$output .= "<tr><td colspan='6'>No data Available</td> </tr></tbody></table>";
+	$output .= "<tr><td colspan='8'>No data Available</td> </tr></tbody></table>";
 	echo $output;
 }
 
