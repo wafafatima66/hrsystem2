@@ -8310,7 +8310,6 @@ COMMIT;
 
 ALTER TABLE `leave_credits` ADD `final_status` INT NULL AFTER `status`;
 
--- new 
 ALTER TABLE `training_table` ADD `speakers` VARCHAR(500) NULL AFTER `agency`;
 ALTER TABLE `training_table` ADD `sponsors` VARCHAR(500) NULL AFTER `speakers`;
 ALTER TABLE `training_table` CHANGE `training_id` `training_id` INT(11) NOT NULL AUTO_INCREMENT;
@@ -8329,3 +8328,8 @@ ALTER TABLE `emp_leaves` CHANGE `leave_from_date` `leave_from_date` VARCHAR(255)
 ALTER TABLE `emp_leaves` CHANGE `leave_to_date` `leave_to_date` VARCHAR(255) NULL DEFAULT NULL;
 ALTER TABLE `emp_leaves` ADD `lwp` INT NULL AFTER `date_filled`;
 ALTER TABLE `emp_leaves` ADD `from_date` DATE NULL AFTER `lwp`;
+
+-- new
+ALTER TABLE `emp_file` ADD `performance_file_id` INT NULL AFTER `file_date`;
+ALTER TABLE `emp_performance` CHANGE `rating` `rating` FLOAT NULL DEFAULT NULL;
+ALTER TABLE `emp_training` ADD `learning_id` INT NULL AFTER `file`;

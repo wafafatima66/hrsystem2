@@ -1,82 +1,87 @@
 <?php
 require '../includes/conn.php';
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
   // $training_id=$_POST['training_id'];
-    $title_of_training=$_POST['title_of_training'];
-    $from_date=$_POST['from_date'];
-    $to_date=$_POST['to_date'];
-    $type_of_training=$_POST['type_of_training'];
-    $no_of_hrs=$_POST['no_of_hrs'];
-    $venue=$_POST['venue'];
-    $province=$_POST['province'];
-    $agency=$_POST['agency'];
+  $title_of_training = $_POST['title_of_training'];
+  $from_date = $_POST['from_date'];
+  $to_date = $_POST['to_date'];
+  $type_of_training = $_POST['type_of_training'];
+  $no_of_hrs = $_POST['no_of_hrs'];
+  $venue = $_POST['venue'];
+  $province = $_POST['province'];
+  $agency = $_POST['agency'];
 
-    // arrays
-    $emp_id=$_POST['emp_id'];
+  // arrays
+  $emp_id = $_POST['emp_id'];
+  $speaker_full_name = $_POST['speaker_full_name'];
+  $title = $_POST['title'];
 
-    $speaker_last_name=$_POST['speaker_last_name'];
-    $speaker_first_name=$_POST['speaker_first_name'];
-    $speaker_middle_name=$_POST['speaker_middle_name'];
-    $speaker_ext=$_POST['speaker_ext'];
-    $title=$_POST['title'];
-
-    $sponsor=$_POST['sponsor'];
+  $sponsor = $_POST['sponsor'];
 
 
-  $speakers_name=array();
+  $speakers_name = array();
   $speakers_title = array();
-  if (isset($_POST['speaker_first_name'])) {
-        for ($i = 0; $i < count($_POST['speaker_first_name']); $i++) {
-          $speakers_name[$i] = $_POST['speaker_first_name'][$i] .' '. $_POST['speaker_middle_name'][$i] .' '. $_POST['speaker_last_name'][$i];
-          $speakers_title[$i]=$_POST['title'][$i];
+  if (isset($_POST['speaker_full_name'])) {
+    for ($i = 0; $i < count($_POST['speaker_full_name']); $i++) {
+      // $speakers_name[$i] = $_POST['speaker_first_name'][$i] . ' ' . $_POST['speaker_middle_name'][$i] . ' ' . $_POST['speaker_last_name'][$i];
+      $speakers_name[$i] = $_POST['speaker_full_name'][$i] ;
+      $speakers_title[$i] = $_POST['title'][$i];
     }
     $myjson = array(
-              "speakers_name"=> $speakers_name,
-              "speakers_title"=> $speakers_title
-          );
-          $speakers = json_encode($myjson);
+      "speakers_name" => $speakers_name,
+      "speakers_title" => $speakers_title
+    );
+    $speakers = json_encode($myjson);
   }
 
-    
-$sponsors = '';
-if (!empty($_POST['sponsor'])) {
-  for ($i = 0; $i < count($_POST['sponsor']); $i++) {
-    $sponsors .= $_POST['sponsor'][$i] .',';
+
+  $sponsors = '';
+  if (!empty($_POST['sponsor'])) {
+    for ($i = 0; $i < count($_POST['sponsor']); $i++) {
+      $sponsors .= $_POST['sponsor'][$i] . ',';
+    }
   }
-}
 
-$employees = '';
-if (!empty($_POST['emp_id'])) {
-  for ($i = 0; $i < count($_POST['emp_id']); $i++) {
-    $employees .= $_POST['emp_id'][$i] .',';
+  $employees = '';
+  if (!empty($_POST['emp_id'])) {
+    for ($i = 0; $i < count($_POST['emp_id']); $i++) {
+      $employees .= $_POST['emp_id'][$i] . ',';
+    }
   }
-}
 
-if (!empty($_POST['emp_id'])) {
-  for ($i = 0; $i < count($_POST['emp_id']); $i++) {
-
-  $emp_id = $_POST['emp_id'][$i];
-      
-$sql = "INSERT INTO emp_training (emp_id, title_of_training, training_type_of_position, training_no_of_hrs, training_from_date, training_to_date, training_conducted_by)
-VALUES ('$emp_id', '$title_of_training', '$type_of_training', '$no_of_hrs', '$from_date', '$to_date', '$sponsors')";
-
-mysqli_query($conn, $sql);
-
-  }
-}
-
-$sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,agency,speakers,sponsors,employees)
+  $sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,agency,speakers,sponsors,employees)
 
     VALUES ('$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province','$agency' ,'$speakers','$sponsors','$employees')";
 
-    if (mysqli_query($conn, $sql1)) {
-     echo  '<script>toastr.success("Training added successfully")</script>';
-    } else {
-        echo  '<script>toastr.error("Training not added. Try again !")</script>';
-    } 
+  
 
+  if (mysqli_query($conn, $sql1)) {
+    // take id from training_table table 
+   $query = "SELECT max(id) as id FROM training_table ";
+
+   $runquery = $conn->query($query);
+       while ($mydata = $runquery->fetch_assoc()) {
+           $learning_id = ($mydata['id']);
+   }
+
+  if (!empty($_POST['emp_id'])) {
+
+    for ($i = 0; $i < count($_POST['emp_id']); $i++) {
+
+      $emp_id = $_POST['emp_id'][$i];
+
+      $sql = "INSERT INTO emp_training (emp_id, title_of_training, training_type_of_position, training_no_of_hrs, training_from_date, training_to_date, training_conducted_by,learning_id)
+      VALUES ('$emp_id', '$title_of_training', '$type_of_training', '$no_of_hrs', '$from_date', '$to_date', '$sponsors','$learning_id')";
+
+      mysqli_query($conn, $sql);
+    }
+  }
+    echo  '<script>toastr.success("Training added successfully")</script>';
+  } else {
+    echo  '<script>toastr.error("Training not added. Try again !")</script>';
+  }
 }
 
 ?>
@@ -169,23 +174,23 @@ $sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_
                 <label>Address</label>
                 <input class="form-control text-input" name="province">
               </div>
+              </div>
 
 
+              <div class="add_speaker_wrapper mt-3 ">
 
-              <div class="add_speaker_wrapper mt-3">
-
-                <div class="form-row ">
+                <div class="form-row">
 
                   <div class="col-lg-12 col-sm-6">
                     <label>Speaker<span style="text-transform: lowercase;">/s</span></label>
                   </div>
 
-                  <div class="col-lg-2 col-sm-6">
-                    <input type="text" class="form-control text-input" placeholder="LastName"
-                      name="speaker_last_name[]">
+                  <div class="col-lg-8 col-sm-6">
+                    <input type="text" class="form-control text-input" placeholder="Full Name"
+                      name="speaker_full_name[]" required>
                   </div>
 
-                  <div class="col-lg-2 col-sm-6">
+                  <!-- <div class="col-lg-2 col-sm-6">
                     <input type="text" class="form-control text-input" placeholder="FirstName"
                       name="speaker_first_name[]" required>
                   </div>
@@ -197,13 +202,14 @@ $sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_
 
                   <div class="col-lg-2 col-sm-6">
                     <input type="text" class="form-control text-input" placeholder="Ext" name="speaker_ext[]">
-                  </div>
+                  </div> -->
 
 
                   <div class="col-lg-4 col-sm-6">
                     <input type="text" class="form-control text-input" name="title[]" placeholder="Title">
                   </div>
 
+                  
 
                 </div>
 
@@ -217,7 +223,7 @@ $sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_
                 </div>
               </div>
 
-            </div>
+           
 
             <div class="form-row mt-2">
 
@@ -270,42 +276,4 @@ $sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_
 </div>
 
 
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    var maxField = 10;
-    var x = 1;
-
-    var fieldHTML1 =
-      '<div class="form-row mt-2"> <div class="col-lg-6 col-sm-6"><input type="text" class="form-control text-input emp_id" placeholder="Employee Id"  name="emp_id[]"> </div> </div> </div>';
-
-    var fieldHTML2 =
-      '<div class="form-row mt-2 "> <div class="col-lg-12 col-sm-6"></div> <div class="col-lg-2 col-sm-6"> <input type="text" class="form-control text-input" placeholder="LastName" name="speaker_last_name[]"> </div> <div class="col-lg-2 col-sm-6"> <input type="text" class="form-control text-input" placeholder="FirstName" name="speaker_first_name[]"> </div> <div class="col-lg-2 col-sm-6"> <input type="text" class="form-control text-input" placeholder="MiddleName" name="speaker_middle_name[]"> </div> <div class="col-lg-2 col-sm-6"> <input type="text" class="form-control text-input" placeholder="Ext" name="speaker_ext[]"> </div> <div class="col-lg-4 col-sm-6"> <input type="text" class="form-control text-input" name="title[]" placeholder="Title"> </div> </div>';
-
-    var fieldHTML3 =
-      '  <div class="form-row mt-2"> <div class="col-lg-3 col-sm-6"> </div> <div class="col-lg-4 col-sm-6"> <input type="text" class="form-control text-input" name="sponsor[]" placeholder="Sponsor"> </div> </div>';
-
-
-    $('.add_emp_id').click(function () {
-      if (x < maxField) {
-        x++;
-        $('.add_emp_id_wrapper').append(fieldHTML1); //Add field html
-      }
-    });
-
-    $('.add_speaker').click(function () {
-      if (x < maxField) {
-        x++;
-        $('.add_speaker_wrapper').append(fieldHTML2); //Add field html
-      }
-    });
-
-    $('.add_sponsor').click(function () {
-      if (x < maxField) {
-        x++;
-        $('.add_sponsor_wrapper').append(fieldHTML3); //Add field html
-      }
-    });
-
-  });
-</script>
+<script src="../learning/learning.js"></script>

@@ -7,21 +7,20 @@ if (isset($_POST['submit'])) {
   $file_date = date("Y-m-d"); //date("l jS \of F Y ");
   $file_folder = $_POST["folder"];
 
-  $file_name =  $emp_id . "-" . $_FILES['upload_file']['name'];
+  $file_name =  $emp_id ."-" .time(). "-". $_FILES['upload_file']['name'];
   $file_loc = $_FILES['upload_file']['tmp_name'];
   $file_size = $_FILES['upload_file']['size'];
   $file_type = $_FILES['upload_file']['type'];
   $path = "../files/";
 
 
-  $query = "SELECT * FROM emp_file WHERE file_name = '$file_name' and file_folder = '$file_folder' ";
+  // $query = "SELECT * FROM emp_file WHERE file_name = '$file_name' and file_folder = '$file_folder' ";
 
-  $runquery = $conn->query($query);
-  $rowcount = mysqli_num_rows($runquery);
-  if ($rowcount == 0) {
+  // $runquery = $conn->query($query);
+  // $rowcount = mysqli_num_rows($runquery);
+  // if ($rowcount == 0) {
 
     if (move_uploaded_file($file_loc, $path . $file_name)) {
-
 
       $sql = "INSERT INTO emp_file (emp_id ,file_folder, file_name, file_type, file_size,file_date) VALUE ('$emp_id' ,'$file_folder', '$file_name', '$file_type', '$file_size', '$file_date')";
 
@@ -34,9 +33,10 @@ if (isset($_POST['submit'])) {
     } else {
       echo  '<script>toastr.error("Could not move to location!")</script>';
     }
-  } else {
-    echo  '<script>toastr.error("File exist !")</script>';
-  }
+  // } 
+  // else {
+  //   echo  '<script>toastr.error("File exist !")</script>';
+  // }
 }
 
 //create folder
@@ -115,9 +115,9 @@ $sql = "SELECT * FROM emp_folder WHERE emp_id = '$emp_id'  ";
       <div class="col-lg-3 col-sm-6">
         <select class="form-control text-input" name="folder" required>
           <option value=""> Select Folder</option>
-          <option value="pds"> PDS</option>
-          <option value="ipcr">IPCR</option>
-          <option value="saln">SALN</option>
+          <option value="PDS"> PDS</option>
+          <option value="IPCR">IPCR</option>
+          <option value="SALN">SALN</option>
           <!-- <option value="others">OTHERS</option> -->
           <?php 
 

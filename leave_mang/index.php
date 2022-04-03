@@ -30,10 +30,7 @@ if (isset($_POST['edit_leave_approve'])) {
     $status = $_POST['status'];
     $remarks = $_POST['remarks'];
 
-
-
     $sql = "UPDATE emp_leaves SET status = '$status', remarks='$remarks' WHERE id='$id'";
-
 
     if (mysqli_query($conn, $sql)) {
         echo  '<script>toastr.success("Leave form updated")</script>';

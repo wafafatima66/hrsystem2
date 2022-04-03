@@ -126,4 +126,28 @@ if (!empty($_GET["leave_id"])) {
   }
 }
 
+if (!empty($_GET["performance_file_id"])) {
+
+  $id = $_GET["id"];
+  $performance_file_id = $_GET["performance_file_id"];
+  $sql = "DELETE FROM emp_performance WHERE id = '$performance_file_id'";
+  $sql1 = "DELETE FROM emp_file WHERE performance_file_id = '$performance_file_id'";
+  if (mysqli_query($conn, $sql) && mysqli_query($conn, $sql1) ) {
+    header("Location:../performance_mang/emp_profile.php?id=".$id."&delete");
+  } else {
+    header("Location:../performance_mang/emp_profile.php?id=".$id."&notdelete");
+  }
+}
+
+if (!empty($_GET["learning_id"])) {
+
+  $learning_id = $_GET["learning_id"];
+  $sql = "DELETE FROM training_table WHERE id = '$learning_id'";
+  $sql1 = "DELETE FROM emp_training WHERE learning_id = '$learning_id'";
+  if (mysqli_query($conn, $sql) && mysqli_query($conn, $sql1) ) {
+    header("Location:../learning/index.php?delete");
+  } else {
+    header("Location:../learning/index.php?notdelete");
+  }
+}
 ?>
