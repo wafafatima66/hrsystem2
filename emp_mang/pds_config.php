@@ -646,10 +646,15 @@ if (isset($_POST['submit'])) {
             if (!empty($_FILES["training_files"]["name"][$i])) {
                 // $emp_id =  $_POST['emp_id'];
                 $filename = "employee - " . $emp_id . "-" . $_FILES["training_files"]["name"][$i];
-
                 $tempname = $_FILES["training_files"]["tmp_name"][$i];
                 $folder = "../files/" . $filename;
+                $file_size = $_FILES['training_files']['size'];
+                $file_type = $_FILES['training_files']['type'];
+                $file_date = date("Y-m-d");
                 move_uploaded_file($tempname, $folder);
+                // upload it into emp file 201
+                $file = "INSERT INTO emp_file (emp_id ,file_folder, file_name, file_type, file_size,file_date) VALUE ('$emp_id' ,'certificates', '$filename', '$file_type', '$file_size', '$file_date')";
+                $conn->query($file);
             } else {
                 $filename = "";
             }

@@ -81,6 +81,11 @@ if (isset($_POST['create_folder'])) {
       <a data-id="<?php echo $emp_id ?>" data-folder="saln" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
     </div>
 
+    <div class="col-lg-3 col-sm-6 text-center mt-5">
+      <h5>CERTIFICATES</h5>
+      <a data-id="<?php echo $emp_id ?>" data-folder="certificates" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
+    </div>
+
 <?php 
 
 $sql = "SELECT * FROM emp_folder WHERE emp_id = '$emp_id'  ";

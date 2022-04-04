@@ -75,7 +75,10 @@ if (isset($_GET['performance_file_id'])) {
 
                 $excel_file_name = '../files/' . $mydata['excel_file_name']; ?>
 
-                <form class="container mt-3" action="" method="post" enctype="multipart/form-data">
+<div class=" col-lg-12 col-sm-12 mt-2">
+    <h4 class="h4-heading">EDIT PERFORMANCE</h4>
+  </div>
+                <form class="container mt-3 container-box" action="" method="post" enctype="multipart/form-data">
 
                     <input type="hidden" value="<?php echo $mydata['id'] ?>" name="performance_file_id">
                     <input type="hidden" value="<?php echo $mydata['emp_id'] ?>" name="emp_id">

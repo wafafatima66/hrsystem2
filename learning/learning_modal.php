@@ -156,6 +156,7 @@ if (isset($_POST['submit'])) {
                   <option value="Technical">Technical</option>
                   <option value="Managerial">Managerial</option>
                   <option value="Supervisory">Supervisory</option>
+                  <option value="Clerical">Clerical</option>
                 </select>
               </div>
 
@@ -185,7 +186,7 @@ if (isset($_POST['submit'])) {
                     <label>Speaker<span style="text-transform: lowercase;">/s</span></label>
                   </div>
 
-                  <div class="col-lg-8 col-sm-6">
+                  <div class="col-lg-6 col-sm-6">
                     <input type="text" class="form-control text-input" placeholder="Full Name"
                       name="speaker_full_name[]" required>
                   </div>
@@ -205,7 +206,7 @@ if (isset($_POST['submit'])) {
                   </div> -->
 
 
-                  <div class="col-lg-4 col-sm-6">
+                  <div class="col-lg-6 col-sm-6">
                     <input type="text" class="form-control text-input" name="title[]" placeholder="Title">
                   </div>
 

@@ -182,6 +182,8 @@ if (isset($_GET['learning_id'])) {
                                     </option>
                                     <option value="Supervisory" <?php echo ($mydata['type_of_training'] == 'Supervisory') ? "selected" : "" ?>>Supervisory
                                     </option>
+                                    <option value="Clerical" <?php echo ($mydata['type_of_training'] == 'Clerical') ? "selected" : "" ?>>Clerical
+                                    </option>
                                 </select>
                             </div>
 

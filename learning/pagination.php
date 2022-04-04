@@ -5,7 +5,7 @@ require '../includes/conn.php';
 if (isset($_POST['limit'])) {
 	$limit = $_POST['limit'];
 } else {
-	$limit = 5;
+	$limit = 10;
 }
 
 if (isset($_POST['page_no'])) {

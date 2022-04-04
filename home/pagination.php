@@ -43,7 +43,6 @@ else if (isset($_POST['date_modified_search']) && !empty($_POST['date_modified_s
 
 }
 else {
-
 	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.appt_stat , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id  LIMIT $offset, $limit";
 }
 

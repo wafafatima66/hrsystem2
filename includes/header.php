@@ -79,6 +79,14 @@ if (!isset($_SESSION['login_user'])) {
           }
         }
 
+        function learning_active()
+        {
+          $url_array =  explode('/', $_SERVER['REQUEST_URI']);
+          $url =  $url_array[2];
+          if ($url == 'learning' || $url == 'learning_summary') {
+            echo 'menu-active'; //class name in css 
+          }
+        }
         ?>
 
         <?php if ($row['role'] == 'Super Administrator') { ?>
@@ -98,8 +106,18 @@ if (!isset($_SESSION['login_user'])) {
               Management</span> <i class="fas fa-chart-line"></i>
           </a>
 
-          <a href="../learning/" class="list-group-item d-inline-block collapsed <?php active('learning'); ?>"><span class="d-none d-md-inline">Learning &
-              Development</span><i class="fas fa-chalkboard-teacher"></i> </a>
+          <!-- <a href="../learning/" class="list-group-item d-inline-block collapsed <?php active('learning'); ?>"><span class="d-none d-md-inline">Learning &
+              Development</span><i class="fas fa-chalkboard-teacher"></i> </a> -->
+              <a data-toggle="collapse" href="#learning_menus" role="button" class="list-group-item d-inline-block collapsed <?php learning_active(); ?>"><span class="d-none d-md-inline">Learning & Development</span><i class="fas fa-calendar-check"></i>
+          </a>
+
+                <ul class="list-unstyled collapse" id="learning_menus">
+
+                  <li class="float-right <?php list_active('learning'); ?>"><a href="../learning"><span class="d-md-inline ">Trainings & Seminars</span></a></li>
+
+                  <li class="float-right <?php list_active('learning_summary'); ?> "><a href="../learning_summary"><span class="d-md-inline ">Summary of Trainings</span></a></li>
+
+                  </ul>
 
           <a data-toggle="collapse" href="#hiring_menus" role="button" class="list-group-item d-inline-block collapsed <?php hiring_active(); ?>"><span class="d-none d-md-inline">Hiring &
               Appointment</span><i class="fas fa-calendar-check"></i>
