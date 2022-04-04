@@ -11,10 +11,10 @@ if (isset($_GET['delete'])) {
 
 ?>
 <div class="container">
-
+<div class="row">
       <!-- end of first part -->
       <?php if ($_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'HR Administrator') { ?>
-      <div class="row">
+      
             <div class=" col-lg-12 col-sm-12 mt-2">
                   <h4 class="h4-heading">TRAININGS AND SEMINARS</h4>
             </div>
@@ -31,6 +31,7 @@ if (isset($_GET['delete'])) {
 
             </div>
 
+            <?php } ?>
 
             <div class="col-lg-2 col-sm-5  mt-3">
                   <input type="date" class="form-control text-input" placeholder="Date Picker" id="from_date">
@@ -54,7 +55,7 @@ if (isset($_GET['delete'])) {
       </div> -->
 </div>
 
-<?php } ?>
+
 
 
 <?php include "learning_modal.php" ?>
