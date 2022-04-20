@@ -66,9 +66,11 @@ if (isset($_POST['id'])) {
 
                                                 <option value="HR Administrator" <?php echo ($mydata['role'] == "HR Administrator") ? "hidden" : "" ?>>HR Administrator</option>
 
-                                                <option value="Department Head" <?php echo ($mydata['role'] == "Department Head") ? "hidden" : "" ?>>Department Head</option>
+                                                <option value="Division Head" <?php echo ($mydata['role'] == "Division Head") ? "hidden" : "" ?>>Division Head</option>
 
                                                 <option value="Agency Head" <?php echo ($mydata['role'] == "Agency Head") ? "hidden" : "" ?>>Agency Head</option>
+
+                                                <option value="Supervisor" <?php echo ($mydata['role'] == "Supervisor") ? "hidden" : "" ?>>Supervisor</option>
 
                                                 <option value="Employee" <?php echo ($mydata['role'] == "Employee") ? "hidden" : "" ?>>Employee</option>
 

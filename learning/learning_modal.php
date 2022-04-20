@@ -12,6 +12,7 @@ if (isset($_POST['submit'])) {
   $venue = $_POST['venue'];
   $province = $_POST['province'];
   $agency = $_POST['agency'];
+  $training_details = $_POST['training_details'];
 
   // arrays
   $emp_id = $_POST['emp_id'];
@@ -51,9 +52,9 @@ if (isset($_POST['submit'])) {
     }
   }
 
-  $sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,agency,speakers,sponsors,employees)
+  $sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,agency,speakers,sponsors,employees,training_details)
 
-    VALUES ('$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province','$agency' ,'$speakers','$sponsors','$employees')";
+    VALUES ('$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province','$agency' ,'$speakers','$sponsors','$employees','$training_details')";
 
   
 
@@ -104,17 +105,29 @@ if (isset($_POST['submit'])) {
 
             <h6>TRAINEES/ATTENDESS</h6>
 
-            <div class=" add_emp_id_wrapper">
+            <div class=" add_emp_id_wrapper_modal">
 
               <div class="form-row">
 
-                <div class="col-lg-6 col-sm-6">
+              <div class="col-lg-6 col-sm-6">
 
                   <label for="">Employee</label>
 
-                  <input type="text" class="form-control text-input emp_id" placeholder="Employee Id" name="emp_id[]">
+                </div>
 
-                  <div id="space"></div>
+                </div>
+
+                <div class="form-row">
+
+                <div class="col-lg-6 col-sm-6">
+
+                  <input type="text" class="form-control text-input " placeholder="Employee Id" name="emp_id[]" id="1" onkeyup = get_info(this.id);>
+
+                </div>
+
+                <div class="col-lg-6 col-sm-6">
+
+                  <input type="text" class=" form-control text-input" placeholder="First Name,Last Name,Middle Name , Ext" name="emp_name[]" id="emp_name_1">
 
                 </div>
 
@@ -126,7 +139,7 @@ if (isset($_POST['submit'])) {
 
             <div class="form-row mt-1">
               <div class="col-lg-3 col-sm-6 ">
-                <a class=" btn button-1 add_emp_id">Add</a>
+                <a class=" btn button-1 add_emp_id_modal">Add</a>
               </div>
             </div>
 
@@ -177,6 +190,12 @@ if (isset($_POST['submit'])) {
               </div>
               </div>
 
+              <div class="form-row mt-3">
+                <div class="col-lg-12 col-sm-6">
+                  <label for="">Training Description and Details</label>
+                  <textarea name="training_details"  class="form-control text-input"></textarea>
+                </div>
+              </div>
 
               <div class="add_speaker_wrapper mt-3 ">
 
@@ -276,5 +295,30 @@ if (isset($_POST['submit'])) {
 </div>
 </div>
 
-
 <script src="../learning/learning.js"></script>
+<script>
+function get_info(id){
+    var emp_id = document.getElementById(id).value;
+    // var emp_id = id ; 
+    console.log(emp_id)
+    jQuery(function($) {
+       $.ajax({
+          url: 'get_info_emp_id.php',
+          type: 'post',
+          data: {
+              emp_id: emp_id
+          },
+          dataType: 'json',
+          success: function(result) {
+              var emp_name = result.emp_first_name + " " +
+                  result.emp_middle_name + " " + result
+                  .emp_last_name + " " + result.emp_ext;
+                  $('#emp_name_'+id).val(emp_name);
+                  console.log(emp_name)
+          }
+      });
+    }); 
+  }
+  </script>
+
+  

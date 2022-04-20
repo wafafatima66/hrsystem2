@@ -209,10 +209,10 @@
            //Once add button is clicked
            $(addButton).click(function() {
                //Check maximum number of input fields
-               if (x < maxField) {
+            //    if (x < maxField) {
                    x++; //Increment field counter
                    $(wrapper).append(fieldHTML); //Add field html
-               }
+            //    }
            });
 
            //Once remove button is clicked

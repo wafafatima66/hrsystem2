@@ -38,8 +38,9 @@ if (isset($_GET['delete'])) {
                               <option value="">Role selection</option>
                               <option value="Super Administrator">Super Administrator</option>
                               <option value="HR Administrator">HR Administrator</option>
-                              <option value="Department Head">Department Head</option>
+                              <option value="Division Head">Division Head</option>
                               <option value="Agency Head">Agency Head</option>
+                              <option value="Supervisor">Supervisor</option>
                               <option value="Employee">Employee</option>
                         </select>
                   </div>
@@ -81,8 +82,9 @@ if (isset($_GET['delete'])) {
                         <option value="">User Role</option>
                         <option value="Super Administrator">Super Administrator</option>
                         <option value="HR Administrator">HR Administrator</option>
-                        <option value="Department Head">Department Head</option>
+                        <option value="Division Head">Division Head</option>
                         <option value="Agency Head">Agency Head</option>
+                        <option value="Supervisor">Supervisor</option>
                         <option value="Employee">Employee</option>
                   </select>
             </div>
@@ -180,7 +182,7 @@ if (isset($_GET['delete'])) {
 
       <div class="form-row mt-4">
             <form method="post" action="">
-                  <label for="">Assign department head</label>
+                  <label for="">Assign Division Head</label>
                   <div class="d-flex justify-content-start">
 
                         <select name="department_name" class="form-control text-input ">

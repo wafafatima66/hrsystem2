@@ -13,7 +13,8 @@ if (!isset($_SESSION['login_user'])) {
 } else {
 
   $user = $_SESSION['login_user'];
-  $sql = mysqli_query($conn, "select * from users where id = '$user' ");
+  // $sql = mysqli_query($conn, "select * from users where id = '$user' ");
+  $sql = mysqli_query($conn, "select u.* , i.division , i.area_wrk_assign from users u join item i on u.emp_id = i.emp_id where u.id =  '$user' ");
   $row = mysqli_fetch_array($sql, MYSQLI_ASSOC);
   $emp_id = $row['emp_id'];
 
@@ -28,8 +29,21 @@ if (!isset($_SESSION['login_user'])) {
   $_SESSION['user_role'] = $row['role'];
   $_SESSION['user_name'] = $row['username'];
   $_SESSION['emp_id'] = $row['emp_id'];
-  $_SESSION['department'] = $row['department'];
-  $_SESSION['office'] = $row['office'];
+  // $_SESSION['department'] = $row['department'];
+  // $_SESSION['office'] = $row['office'];
+
+  if (empty($row['department'])) {
+    $_SESSION['department']= $row['division'];
+  } else {
+    $_SESSION['department'] = $row['department'];
+  } //trying to keep department assigned in users 
+
+  if (empty($row['office'])) {
+    $_SESSION['office'] = $row['area_wrk_assign'];
+  } else {
+    $_SESSION['office'] = $row['office'];
+  } //trying to keep office assigned in users
+  
 }
 
 ?>
@@ -147,7 +161,7 @@ if (!isset($_SESSION['login_user'])) {
 
         <?php
 
-        } else if ($row['role'] == 'Employee' || $row['role'] == 'Department Head' || $row['role'] == 'Supervisor' || $row['role'] == 'HR Administrator' || $row['role'] == 'Agency Head') {
+        } else if ($row['role'] == 'Employee' || $row['role'] == 'Division Head' || $row['role'] == 'Supervisor' || $row['role'] == 'HR Administrator' || $row['role'] == 'Agency Head') {
 
           $emp_id = $row['emp_id'];
           $sql = "SELECT id FROM employee WHERE emp_id = '$emp_id'";

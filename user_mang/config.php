@@ -134,7 +134,7 @@ if (isset($_POST['assign_dept_head'])) {
       $emp_id = $_POST['emp_id'];
       $emp_name = $_POST['emp_name'];
       $department_name = $_POST['department_name'];
-      $role = "Department Head";
+      $role = "Division Head";
 
       $sql4 = "INSERT INTO users (
            emp_id , name ,  role  , department , username ) VALUES (  '$emp_id' , '$emp_name' ,'$role' , '$department_name' , '$emp_id' )
@@ -145,9 +145,9 @@ if (isset($_POST['assign_dept_head'])) {
 
 
       if (mysqli_query($conn, $sql4)) {
-            echo  '<script>toastr.success("Department Head assigned successfully")</script>';
+            echo  '<script>toastr.success("Division Head assigned successfully")</script>';
       } else {
-            echo  '<script>toastr.error("Department Head  not assigned. Try again !")</script>';
+            echo  '<script>toastr.error("Division Head  not assigned. Try again !")</script>';
       }
 }
 

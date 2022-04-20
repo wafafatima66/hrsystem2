@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2022 at 04:17 PM
+-- Generation Time: Apr 04, 2022 at 10:39 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -815,16 +815,17 @@ CREATE TABLE `emp_file` (
   `file_name` varchar(100) DEFAULT NULL,
   `file_type` varchar(100) DEFAULT NULL,
   `file_size` varchar(100) DEFAULT NULL,
-  `file_date` varchar(100) DEFAULT NULL
+  `file_date` varchar(100) DEFAULT NULL,
+  `performance_file_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `emp_file`
 --
 
-INSERT INTO `emp_file` (`id`, `emp_id`, `file_folder`, `file_name`, `file_type`, `file_size`, `file_date`) VALUES
-(1, 'LHMRH-2014-00073', 'pds', 'LHMRH-2014-00073-Book1.pdf', 'application/pdf', '40755', '2021-12-07'),
-(2, 'LHMRH-2014-00073', 'pds', 'LHMRH-2014-00073-Heal the World.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '15396', '2021-12-07');
+INSERT INTO `emp_file` (`id`, `emp_id`, `file_folder`, `file_name`, `file_type`, `file_size`, `file_date`, `performance_file_id`) VALUES
+(1, 'LHMRH-2014-00073', 'pds', 'LHMRH-2014-00073-Book1.pdf', 'application/pdf', '40755', '2021-12-07', NULL),
+(2, 'LHMRH-2014-00073', 'pds', 'LHMRH-2014-00073-Heal the World.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', '15396', '2021-12-07', NULL);
 
 -- --------------------------------------------------------
 
@@ -920,8 +921,8 @@ CREATE TABLE `emp_leaves` (
   `id` int(11) NOT NULL,
   `emp_id` varchar(225) DEFAULT NULL,
   `type_of_leave` varchar(50) DEFAULT NULL,
-  `leave_from_date` date DEFAULT NULL,
-  `leave_to_date` date DEFAULT NULL,
+  `leave_from_date` varchar(255) DEFAULT NULL,
+  `leave_to_date` varchar(255) DEFAULT NULL,
   `date_diff` int(100) NOT NULL,
   `details_of_leave` varchar(255) NOT NULL,
   `no_of_working_days` int(11) NOT NULL,
@@ -929,18 +930,10 @@ CREATE TABLE `emp_leaves` (
   `final_status` int(11) DEFAULT NULL,
   `remarks` varchar(255) DEFAULT NULL,
   `final_remarks` varchar(255) DEFAULT NULL,
-  `date_filled` date NOT NULL
+  `date_filled` date NOT NULL,
+  `lwp` int(11) DEFAULT NULL,
+  `from_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `emp_leaves`
---
-
-INSERT INTO `emp_leaves` (`id`, `emp_id`, `type_of_leave`, `leave_from_date`, `leave_to_date`, `date_diff`, `details_of_leave`, `no_of_working_days`, `status`, `final_status`, `remarks`, `final_remarks`, `date_filled`) VALUES
-(2, 'LHMRH-2014-00115', '', '0000-00-00', '0000-00-00', 0, '\r\n\r\n\r\n\r\n\r\n', 0, 0, NULL, NULL, NULL, '0000-00-00'),
-(3, 'LHMRH-2014-00115', 'Vacation leave', '2021-12-17', '2021-12-17', 1, 'Abatan, Bauko, Mountain Province', 1, 0, NULL, NULL, NULL, '2021-12-09'),
-(4, 'LHMRH-2014-00115', 'Vacation leave', '2021-12-01', '2021-12-31', 31, 'abatan', 31, 0, NULL, NULL, NULL, '2021-11-29'),
-(5, 'LHMRH-2017-00254', 'Force leave', '2022-01-31', '2022-01-31', 1, '', 1, NULL, NULL, NULL, NULL, '2022-01-14');
 
 -- --------------------------------------------------------
 
@@ -1026,9 +1019,16 @@ CREATE TABLE `emp_performance` (
   `excel_file_type` varchar(100) DEFAULT NULL,
   `year` varchar(100) DEFAULT NULL,
   `rating_period` varchar(100) DEFAULT NULL,
-  `rating` varchar(100) NOT NULL,
+  `rating` float DEFAULT NULL,
   `excel_file_name` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `emp_performance`
+--
+
+INSERT INTO `emp_performance` (`id`, `emp_id`, `excel_file_type`, `year`, `rating_period`, `rating`, `excel_file_name`) VALUES
+(1, 'LHMRH-2014-00073', 'IPCR', '2021', ' 1', 4, 'excel-LHMRH-2014-00073-pricelist.xlsx');
 
 -- --------------------------------------------------------
 
@@ -1162,49 +1162,53 @@ CREATE TABLE `emp_training` (
   `training_from_date` date DEFAULT NULL,
   `training_to_date` date NOT NULL,
   `training_conducted_by` varchar(50) DEFAULT NULL,
-  `file` varchar(255) DEFAULT NULL
+  `file` varchar(255) DEFAULT NULL,
+  `learning_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `emp_training`
 --
 
-INSERT INTO `emp_training` (`id`, `emp_id`, `title_of_training`, `training_type_of_position`, `training_no_of_hrs`, `training_from_date`, `training_to_date`, `training_conducted_by`, `file`) VALUES
-(34, 'LHMRH-2014-00073', 'asd', 'Technical', 3, '0000-00-00', '0000-00-00', '', ''),
-(38, 'LHMRH-2004-00048', '', '', 0, '0000-00-00', '0000-00-00', '', ''),
-(51, 'LHMRH-2018-00259', 'ROOT CAUSE  ANALYSIS ', 'Technical', 8, '2021-12-23', '0021-12-23', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(52, 'LHMRH-2018-00259', 'VAWC ', 'Technical', 8, '2021-11-16', '2021-11-16', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(53, 'LHMRH-2018-00259', 'RECORDS DISPOSAL MANAGEMENT WORKSHOP ', 'Technical', 8, '2019-08-01', '2019-08-01', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(54, 'LHMRH-2018-00259', 'BASIC INFECTION PREVENTION CONTROL ORIENTATION ', 'Technical', 17, '2019-06-06', '2019-06-06', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(55, 'LHMRH-2018-00259', 'TRAINING ON TEAM BUILDING IN THE WORK PLACE', 'Technical', 11, '2018-10-24', '2018-10-24', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(56, 'LHMRH-2018-00259', 'ENDOSCOPY CONFERENCE', 'Technical', 16, '2018-09-10', '2018-09-10', 'WORLD ENDOSCOPY ORGANIZATION PHILIPPINE SOCIETY OF', ''),
-(57, 'LHMRH-2018-00259', 'TRAINING IN DENTAL ASSISTING PROGRAM', 'Technical', 56, '2018-01-08', '2018-01-14', 'PROVERBS DENTAL CLINIC', ''),
-(58, 'LHMRH-2018-00259', 'ORIENTATION ON BASIC DENTAL ASSISTANT TRAINING ', 'Technical', 8, '2018-01-07', '2018-01-07', 'PROVERBS DENTAL CLINIC', ''),
-(59, 'LHMRH-2018-00259', 'INFECTION PREVENTION AND CONTROL ORIENTATION AND C', 'Technical', 8, '2017-11-16', '2017-11-16', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(60, 'LHMRH-2018-00259', 'RABIES AWARENESS AND UPDATES  ', 'Technical', 8, '2017-09-29', '2017-06-29', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(61, 'LHMRH-2017-00254', '', '', 0, '0000-00-00', '0000-00-00', '', ''),
-(71, 'LHMRH-2020-00314', 'PATIENT SAFETY & BASIC OCCUPATIONAL SAFETY & HEALT', 'Technical', 8, '2020-09-21', '2020-09-21', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(72, 'LHMRH-2020-00314', 'NEW EMPLOYEES ORIENTATION', 'Technical', 8, '2020-08-14', '2020-08-14', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(73, 'LHMRH-2020-00314', 'TRAINING ON TEAM BUILDING IN THE WORKPLACE', 'Technical', 8, '2018-10-23', '2018-10-23', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(74, 'LHMRH-2020-00314', 'CERVICAL CANCER AND HIV/STI AWARENESS', '', 4, '2018-07-26', '2018-07-26', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(75, 'LHMRH-2020-00314', 'ISO 9001:2015 ORIENTATION', '', 4, '2018-01-10', '2018-01-10', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(76, 'LHMRH-2020-00314', 'RABIES AWARENESS AND UPDATES', '', 8, '2017-09-29', '2017-09-29', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(77, 'LHMRH-2020-00314', 'IHOMIS ORIENTATION AND HANDS ON TRAINING ON E CLAI', '', 16, '2017-08-10', '2017-08-11', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(78, 'LHMRH-2020-00314', 'LACTATION MANAGEMENT REORIENTATION', 'Technical', 8, '2016-06-10', '2016-06-10', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(79, 'LHMRH-2020-00314', 'CUSTOMER SERVICE', 'Technical', 4, '2016-03-29', '2016-03-29', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(81, 'LHMRH-2014-00115', 'Data Storytelling and Visualization', 'Technical', 16, '2021-12-01', '2021-12-02', 'GO TRAIN Center', ''),
-(82, 'LHMRH-2020-00360', '', '', 0, '0000-00-00', '0000-00-00', '', ''),
-(83, 'LHMRH-2015-00153', 'ISO ORIENTATION', '', 8, '2015-03-30', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(84, 'LHMRH-2015-00153', 'STRESS MANAGEMENT AND DEBRIEFING', '', 8, '2015-04-16', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(85, 'LHMRH-2015-00153', 'GENDER SENSITIVITY ORIENTATION', '', 4, '2015-09-17', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(86, 'LHMRH-2015-00153', 'WOMEN AND CHILD PROTECTION UNIT ORIENTATION', '', 8, '2015-10-16', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(87, 'LHMRH-2015-00153', '24TH RADIOLOGIC TECHNOLOGY NATIONAL CONGRESS', '', 72, '2015-11-12', '2015-11-14', 'PHILIPPINE FEDERATION OF PROFESSIONAL RADIOLOGIC T', ''),
-(88, 'LHMRH-2015-00153', 'CUSTOMER SERVICE ORIENTATION', '', 4, '2021-03-29', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(89, 'LHMRH-2015-00153', 'NATIONWIDE MASS TRAINING ON CARDIOPULMONARY RESUSC', 'Technical', 8, '2016-04-25', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(90, 'LHMRH-2015-00153', 'VALUES ORIENTATION WORKSHOP', 'Technical', 16, '2016-06-16', '2016-06-17', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', ''),
-(91, 'LHMRH-2015-00153', '24TH RADIOLOGIC TECHNOLOGY NATIONAL CONGRESS', '', 72, '2016-11-10', '2016-11-12', 'PHILIPPINE FEDERATION OF PROFESSIONAL RADIOLOGIC T', ''),
-(98, 'LHMRH-2020-00280', '', '', 0, '0000-00-00', '0000-00-00', '', ''),
-(99, 'LHMRH-2020-00294', '', '', 0, '0000-00-00', '0000-00-00', '', '');
+INSERT INTO `emp_training` (`id`, `emp_id`, `title_of_training`, `training_type_of_position`, `training_no_of_hrs`, `training_from_date`, `training_to_date`, `training_conducted_by`, `file`, `learning_id`) VALUES
+(34, 'LHMRH-2014-00073', 'asd', 'Technical', 3, '0000-00-00', '0000-00-00', '', '', NULL),
+(38, 'LHMRH-2004-00048', '', '', 0, '0000-00-00', '0000-00-00', '', '', NULL),
+(51, 'LHMRH-2018-00259', 'ROOT CAUSE  ANALYSIS ', 'Technical', 8, '2021-12-23', '0021-12-23', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(52, 'LHMRH-2018-00259', 'VAWC ', 'Technical', 8, '2021-11-16', '2021-11-16', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(53, 'LHMRH-2018-00259', 'RECORDS DISPOSAL MANAGEMENT WORKSHOP ', 'Technical', 8, '2019-08-01', '2019-08-01', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(54, 'LHMRH-2018-00259', 'BASIC INFECTION PREVENTION CONTROL ORIENTATION ', 'Technical', 17, '2019-06-06', '2019-06-06', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(55, 'LHMRH-2018-00259', 'TRAINING ON TEAM BUILDING IN THE WORK PLACE', 'Technical', 11, '2018-10-24', '2018-10-24', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(56, 'LHMRH-2018-00259', 'ENDOSCOPY CONFERENCE', 'Technical', 16, '2018-09-10', '2018-09-10', 'WORLD ENDOSCOPY ORGANIZATION PHILIPPINE SOCIETY OF', '', NULL),
+(57, 'LHMRH-2018-00259', 'TRAINING IN DENTAL ASSISTING PROGRAM', 'Technical', 56, '2018-01-08', '2018-01-14', 'PROVERBS DENTAL CLINIC', '', NULL),
+(58, 'LHMRH-2018-00259', 'ORIENTATION ON BASIC DENTAL ASSISTANT TRAINING ', 'Technical', 8, '2018-01-07', '2018-01-07', 'PROVERBS DENTAL CLINIC', '', NULL),
+(59, 'LHMRH-2018-00259', 'INFECTION PREVENTION AND CONTROL ORIENTATION AND C', 'Technical', 8, '2017-11-16', '2017-11-16', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(60, 'LHMRH-2018-00259', 'RABIES AWARENESS AND UPDATES  ', 'Technical', 8, '2017-09-29', '2017-06-29', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(61, 'LHMRH-2017-00254', '', '', 0, '0000-00-00', '0000-00-00', '', '', NULL),
+(71, 'LHMRH-2020-00314', 'PATIENT SAFETY & BASIC OCCUPATIONAL SAFETY & HEALT', 'Technical', 8, '2020-09-21', '2020-09-21', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(72, 'LHMRH-2020-00314', 'NEW EMPLOYEES ORIENTATION', 'Technical', 8, '2020-08-14', '2020-08-14', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(73, 'LHMRH-2020-00314', 'TRAINING ON TEAM BUILDING IN THE WORKPLACE', 'Technical', 8, '2018-10-23', '2018-10-23', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(74, 'LHMRH-2020-00314', 'CERVICAL CANCER AND HIV/STI AWARENESS', '', 4, '2018-07-26', '2018-07-26', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(75, 'LHMRH-2020-00314', 'ISO 9001:2015 ORIENTATION', '', 4, '2018-01-10', '2018-01-10', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(76, 'LHMRH-2020-00314', 'RABIES AWARENESS AND UPDATES', '', 8, '2017-09-29', '2017-09-29', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(77, 'LHMRH-2020-00314', 'IHOMIS ORIENTATION AND HANDS ON TRAINING ON E CLAI', '', 16, '2017-08-10', '2017-08-11', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(78, 'LHMRH-2020-00314', 'LACTATION MANAGEMENT REORIENTATION', 'Technical', 8, '2016-06-10', '2016-06-10', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(79, 'LHMRH-2020-00314', 'CUSTOMER SERVICE', 'Technical', 4, '2016-03-29', '2016-03-29', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(81, 'LHMRH-2014-00115', 'Data Storytelling and Visualization', 'Technical', 16, '2021-12-01', '2021-12-02', 'GO TRAIN Center', '', NULL),
+(82, 'LHMRH-2020-00360', '', '', 0, '0000-00-00', '0000-00-00', '', '', NULL),
+(83, 'LHMRH-2015-00153', 'ISO ORIENTATION', '', 8, '2015-03-30', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(84, 'LHMRH-2015-00153', 'STRESS MANAGEMENT AND DEBRIEFING', '', 8, '2015-04-16', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(85, 'LHMRH-2015-00153', 'GENDER SENSITIVITY ORIENTATION', '', 4, '2015-09-17', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(86, 'LHMRH-2015-00153', 'WOMEN AND CHILD PROTECTION UNIT ORIENTATION', '', 8, '2015-10-16', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(87, 'LHMRH-2015-00153', '24TH RADIOLOGIC TECHNOLOGY NATIONAL CONGRESS', '', 72, '2015-11-12', '2015-11-14', 'PHILIPPINE FEDERATION OF PROFESSIONAL RADIOLOGIC T', '', NULL),
+(88, 'LHMRH-2015-00153', 'CUSTOMER SERVICE ORIENTATION', '', 4, '2021-03-29', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(89, 'LHMRH-2015-00153', 'NATIONWIDE MASS TRAINING ON CARDIOPULMONARY RESUSC', 'Technical', 8, '2016-04-25', '0000-00-00', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(90, 'LHMRH-2015-00153', 'VALUES ORIENTATION WORKSHOP', 'Technical', 16, '2016-06-16', '2016-06-17', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '', NULL),
+(91, 'LHMRH-2015-00153', '24TH RADIOLOGIC TECHNOLOGY NATIONAL CONGRESS', '', 72, '2016-11-10', '2016-11-12', 'PHILIPPINE FEDERATION OF PROFESSIONAL RADIOLOGIC T', '', NULL),
+(98, 'LHMRH-2020-00280', '', '', 0, '0000-00-00', '0000-00-00', '', '', NULL),
+(99, 'LHMRH-2020-00294', '', '', 0, '0000-00-00', '0000-00-00', '', '', NULL),
+(100, 'Array', 'Sample Training ', 'technical', 8, '2022-03-28', '2022-03-31', 'MPSPC', NULL, NULL),
+(101, 'Array', 'SDFADA', 'supervisory', 8, '2022-03-18', '2022-03-18', 'SDADASD', NULL, NULL),
+(102, 'LHMRH-2004-00048', 'digital mareting', 'Supervisory', 0, '1987-10-03', '2006-10-28', 'Elit sit officia i,Aut iure rerum volup,', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1302,6 +1306,20 @@ INSERT INTO `emp_work_experience` (`id`, `emp_id`, `work_to_date`, `work_from_da
 (121, 'LHMRH-2020-00280', '2020-02-17', '2017-07-01', 'DATA CONTROLLER I', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '0', '10,000', '', 'Job order'),
 (122, 'LHMRH-2020-00280', '2022-12-06', '2020-02-18', 'COMPUTER MAINTENANCE TECHNOLOGIST I', 'LUIS HORA MEMORIAL REGIONAL HOSPITAL', '0', '23,877', '1', '0'),
 (123, 'LHMRH-2020-00294', '0000-00-00', '0000-00-00', '', '', '0', '', '', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `files`
+--
+
+CREATE TABLE `files` (
+  `id` int(11) NOT NULL,
+  `date` varchar(100) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `type` varchar(100) DEFAULT NULL,
+  `size` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -4360,17 +4378,9 @@ CREATE TABLE `leave_credits` (
   `mon` int(11) DEFAULT NULL,
   `year` int(11) NOT NULL,
   `status` int(11) DEFAULT NULL,
+  `final_status` int(11) DEFAULT NULL,
   `leave_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `leave_credits`
---
-
-INSERT INTO `leave_credits` (`id`, `emp_id`, `vacation_leave`, `sick_leave`, `spl`, `force_leave`, `lwp`, `mon`, `year`, `status`, `leave_id`) VALUES
-(1, 'LHMRH-2014-00115', 0, 0, 0, 0, 0, 0, 0, NULL, NULL),
-(2, 'LHMRH-2014-00115', 31, 0, 0, 0, 0, 12, 2021, NULL, NULL),
-(3, 'LHMRH-2017-00254', 0, 0, 0, 1, 0, 1, 2022, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -4888,7 +4898,9 @@ INSERT INTO `leave_credits_result` (`id`, `emp_id`, `year`, `vl_pts_1`, `vl_pts_
 (472, 'LHMRH-2020-00311', 2021, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
 (473, 'LHMRH-2014-00081', 2021, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
 (474, 'LHMRH-2020-00366', 2021, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
-(475, 'LHMRH-2020-00280', 2022, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30);
+(475, 'LHMRH-2020-00280', 2022, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
+(499, 'LHMRH-2014-00083', 2022, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
+(667, 'LHMRH-2014-00073', 2022, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30);
 
 -- --------------------------------------------------------
 
@@ -4990,6 +5002,17 @@ CREATE TABLE `training_emp_list` (
   `emp_id` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `training_emp_list`
+--
+
+INSERT INTO `training_emp_list` (`id`, `training_id`, `emp_id`) VALUES
+(1, '1', 'LHMRH-2014-00073'),
+(2, '1', 'LHMRH-2014-00083'),
+(3, '1', 'LHMRH-2020-00280'),
+(4, '2', 'LHMRH-2014-00073'),
+(5, '2', '');
+
 -- --------------------------------------------------------
 
 --
@@ -5006,6 +5029,14 @@ CREATE TABLE `training_speaker_list` (
   `title` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `training_speaker_list`
+--
+
+INSERT INTO `training_speaker_list` (`id`, `training_id`, `speaker_last_name`, `speaker_first_name`, `speaker_middle_name`, `speaker_ext`, `title`) VALUES
+(1, '1', 'Ticangan', 'Alvin', 'Lupao', '', 'Mr.'),
+(2, '2', 'TSDA', 'SDSA', 'SDAD', '', 'DR');
+
 -- --------------------------------------------------------
 
 --
@@ -5018,6 +5049,16 @@ CREATE TABLE `training_sponsor_list` (
   `sponsor` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `training_sponsor_list`
+--
+
+INSERT INTO `training_sponsor_list` (`id`, `training_id`, `sponsor`) VALUES
+(1, '1', 'MPSPC, DTI, DOST'),
+(2, '2', 'ASDSADAS'),
+(3, '2', 'DASDASD'),
+(4, '2', 'ASDASD');
+
 -- --------------------------------------------------------
 
 --
@@ -5025,7 +5066,7 @@ CREATE TABLE `training_sponsor_list` (
 --
 
 CREATE TABLE `training_table` (
-  `training_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `title_of_training` varchar(100) DEFAULT NULL,
   `from_date` varchar(100) DEFAULT NULL,
   `to_date` varchar(100) DEFAULT NULL,
@@ -5033,8 +5074,20 @@ CREATE TABLE `training_table` (
   `no_of_hrs` varchar(100) DEFAULT NULL,
   `venue` varchar(100) DEFAULT NULL,
   `province` varchar(100) DEFAULT NULL,
-  `agency` varchar(100) DEFAULT NULL
+  `agency` varchar(100) DEFAULT NULL,
+  `speakers` varchar(500) DEFAULT NULL,
+  `sponsors` varchar(500) DEFAULT NULL,
+  `employees` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `training_table`
+--
+
+INSERT INTO `training_table` (`id`, `title_of_training`, `from_date`, `to_date`, `type_of_training`, `no_of_hrs`, `venue`, `province`, `agency`, `speakers`, `sponsors`, `employees`) VALUES
+(1, 'Sample Training ', '2022-03-28', '2022-03-31', 'technical', '8', 'Cafe', 'Bauko', 'MPSPC', NULL, NULL, NULL),
+(2, 'SDFADA', '2022-03-18', '2022-03-18', 'supervisory', '8', 'SDSAD', 'SDASDASD', 'SDADASD', NULL, NULL, NULL),
+(3, 'digital mareting', '1987-10-03', '2006-10-28', 'Supervisory', 'Nemo cumque vero in ', 'Nisi temporibus nost', 'Ut ipsum veniam con', 'Quaerat sint nesciun', '{\"speakers_name\":[\"Harriet Berk Willis Lyons\",\"Chantale Burke Delacruz Blanchard\"],\"speakers_title\":[\"Officiis et recusand\",\"Ea provident aut id\"]}', 'Elit sit officia i,Aut iure rerum volup,', 'LHMRH-2004-00048,');
 
 -- --------------------------------------------------------
 
@@ -5059,8 +5112,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `name`, `password`, `admin_photo`, `role`, `emp_id`, `department`, `office`) VALUES
-(1, 'EDUARDO', NULL, 'BANUTANCALPITO  ', 'admin1-LHMRH logo.png', 'Employee', 'LHMRH-2014-00073', NULL, NULL),
-(2, 'ERNISON', NULL, 'bay-oswapan  ', 'admin2-P_20170428_131435_1_p.jpg', 'Department Head', 'LHMRH-2014-00083', 'OHC', 'IHOMP'),
+(1, 'EDUARDO', NULL, 'BANUTANCALPITO  ', 'admin1-LHMRH logo.png', 'Agency Head', 'LHMRH-2014-00073', 'OHC', 'OMCC'),
+(2, 'ERNISON', NULL, 'bay-oswapan  ', 'admin2-P_20170428_131435_1_p.jpg', 'Division Head', 'LHMRH-2014-00083', 'OHC', 'IHOMP'),
 (3, 'KLAUDINE JUNE', NULL, 'GUERREROOBEDOZA', NULL, 'Employee', 'LHMRH-2020-00280', NULL, NULL),
 (4, 'VLADIMIR', NULL, 'DALOGDIANO', NULL, 'Employee', 'LHMRH-2016-00224', NULL, NULL),
 (5, 'JONA', NULL, 'SAPDOYBAGLAO', NULL, 'Employee', 'LHMRH-2015-00162', NULL, NULL),
@@ -7961,6 +8014,12 @@ ALTER TABLE `emp_work_experience`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `hiring_competency`
 --
 ALTER TABLE `hiring_competency`
@@ -8062,7 +8121,7 @@ ALTER TABLE `training_sponsor_list`
 -- Indexes for table `training_table`
 --
 ALTER TABLE `training_table`
-  ADD UNIQUE KEY `training_id` (`training_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -8145,7 +8204,7 @@ ALTER TABLE `emp_govt_id`
 -- AUTO_INCREMENT for table `emp_leaves`
 --
 ALTER TABLE `emp_leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `emp_membership`
@@ -8163,7 +8222,7 @@ ALTER TABLE `emp_non_academic`
 -- AUTO_INCREMENT for table `emp_performance`
 --
 ALTER TABLE `emp_performance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `emp_reference`
@@ -8187,7 +8246,7 @@ ALTER TABLE `emp_spouse`
 -- AUTO_INCREMENT for table `emp_training`
 --
 ALTER TABLE `emp_training`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `emp_voluntary_work`
@@ -8200,6 +8259,12 @@ ALTER TABLE `emp_voluntary_work`
 --
 ALTER TABLE `emp_work_experience`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+
+--
+-- AUTO_INCREMENT for table `files`
+--
+ALTER TABLE `files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hiring_competency`
@@ -8241,13 +8306,13 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `leave_credits`
 --
 ALTER TABLE `leave_credits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `leave_credits_result`
 --
 ALTER TABLE `leave_credits_result`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=487;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=787;
 
 --
 -- AUTO_INCREMENT for table `leave_credits_year`
@@ -8283,19 +8348,25 @@ ALTER TABLE `termination_file`
 -- AUTO_INCREMENT for table `training_emp_list`
 --
 ALTER TABLE `training_emp_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `training_speaker_list`
 --
 ALTER TABLE `training_speaker_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `training_sponsor_list`
 --
 ALTER TABLE `training_sponsor_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `training_table`
+--
+ALTER TABLE `training_table`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -8308,28 +8379,28 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-ALTER TABLE `leave_credits` ADD `final_status` INT NULL AFTER `status`;
 
-ALTER TABLE `training_table` ADD `speakers` VARCHAR(500) NULL AFTER `agency`;
-ALTER TABLE `training_table` ADD `sponsors` VARCHAR(500) NULL AFTER `speakers`;
-ALTER TABLE `training_table` CHANGE `training_id` `training_id` INT(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `hrsystem2`.`training_table` DROP INDEX `training_id`, ADD PRIMARY KEY (`training_id`) USING BTREE;
-ALTER TABLE `training_table` DROP `training_id`;
-ALTER TABLE `training_table` ADD `id` INT NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
-ALTER TABLE `training_table` ADD `employees` VARCHAR(500) NULL AFTER `sponsors`;
-CREATE TABLE files (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    date VARCHAR(100),
-    name VARCHAR(100), 
-    type VARCHAR(100),
-    size VARCHAR(100)
-);
-ALTER TABLE `emp_leaves` CHANGE `leave_from_date` `leave_from_date` VARCHAR(255) NULL DEFAULT NULL;
-ALTER TABLE `emp_leaves` CHANGE `leave_to_date` `leave_to_date` VARCHAR(255) NULL DEFAULT NULL;
-ALTER TABLE `emp_leaves` ADD `lwp` INT NULL AFTER `date_filled`;
-ALTER TABLE `emp_leaves` ADD `from_date` DATE NULL AFTER `lwp`;
+INSERT INTO `item` (`id`, `item_no`, `emp_id`, `position`, `salary_grade`, `annual_salary`, `monthly_salary`, `sg_step`, `area_code`, `area_type`, `level`, `ppa`, `filled`, `position_level`, `date_orgappnt_other`, `date_orgappnt_lhmrh`, `date_last_promotion`, `appt_stat`, `area_wrk_assign`, `remarks`, `date_created`, `status`, `place_of_assignment`, `date_posted`, `nature`, `division`, `job_type`, `description`, `date_accomplished`) VALUES (NULL, NULL, 'HR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
 
--- new
-ALTER TABLE `emp_file` ADD `performance_file_id` INT NULL AFTER `file_date`;
-ALTER TABLE `emp_performance` CHANGE `rating` `rating` FLOAT NULL DEFAULT NULL;
-ALTER TABLE `emp_training` ADD `learning_id` INT NULL AFTER `file`;
+
+ALTER TABLE `training_table` ADD `training_details` VARCHAR(255) NULL AFTER `employees`;
+
+CREATE TABLE `training_post_table` (
+  `id` int(11) NOT NULL,
+  `title_of_training` varchar(100) DEFAULT NULL,
+  `from_date` varchar(100) DEFAULT NULL,
+  `to_date` varchar(100) DEFAULT NULL,
+  `type_of_training` varchar(100) DEFAULT NULL,
+  `no_of_hrs` varchar(100) DEFAULT NULL,
+  `venue` varchar(100) DEFAULT NULL,
+  `sponsors` varchar(500) DEFAULT NULL,
+  `file` varchar(500) DEFAULT NULL
+) ;
+
+ALTER TABLE `training_post_table` ADD `training_details` VARCHAR(255) NULL AFTER `file`;
+
+ALTER TABLE `hrsystem2`.`training_post_table` ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `training_post_table` CHANGE `file` `file_name` VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+
+ALTER TABLE `training_post_table` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;

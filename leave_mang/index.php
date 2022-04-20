@@ -240,15 +240,20 @@ if (isset($_POST['edit_leave_approve'])) {
 
                         <?php while ($mydata = mysqli_fetch_assoc($result)) {
 
-                            $leave_from = date("m/d/Y", strtotime($mydata['leave_from_date']));
-                            $leave_to = date("m/d/Y", strtotime($mydata['leave_to_date']));
+                            // $leave_from = date("m/d/Y", strtotime($mydata['leave_from_date']));
+                            // $leave_to = date("m/d/Y", strtotime($mydata['leave_to_date']));
+                            $leave_from_date_array = json_decode($mydata['leave_from_date']);
+                            $leave_to_date_array = json_decode($mydata['leave_to_date']);
+                            $lenght = count($leave_to_date_array)-1 ;
+                            $leave_from_date = (date('m/d/Y', strtotime($leave_from_date_array[0])));
+                            $leave_to_date = (date('m/d/Y', strtotime($leave_to_date_array[$lenght])));
                             $date_filled = date("m/d/Y", strtotime($mydata['date_filled']));
 
                         ?>
                             <tr>
                                 <td><?php echo $date_filled;  ?></td>
                                 <td><?php echo $mydata['type_of_leave'];  ?></td>
-                                <td><?php echo $leave_from; ?> - <?php echo $leave_to; ?>
+                                <td><?php echo $leave_from_date; ?> - <?php echo $leave_to_date; ?>
                                 </td>
                                 <td><?php echo $mydata['no_of_working_days'];  ?></td>
                                 <td><?php if ($mydata['final_status'] == 1) {
@@ -283,7 +288,7 @@ if (isset($_POST['edit_leave_approve'])) {
 
     <!-- leave summary -->
 
-    <?php if ($_SESSION['user_role'] == 'Supervisor' || $_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'HR Administrator' || $_SESSION['user_role'] == 'Department Head' || $_SESSION['user_role'] == 'Agency Head') {
+    <?php if ($_SESSION['user_role'] == 'Supervisor' || $_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'HR Administrator' || $_SESSION['user_role'] == 'Division Head' || $_SESSION['user_role'] == 'Agency Head') {
 
     ?>
 
@@ -341,7 +346,7 @@ if (isset($_POST['edit_leave_approve'])) {
 </div>
 
 <?php
-// if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Administrator' || $_SESSION['user_role'] == 'Department Head' ||  $_SESSION['user_role']=='Agency Head') {
+// if($_SESSION['user_role']=='Supervisor' || $_SESSION['user_role']=='Super Administrator' || $_SESSION['user_role'] == 'Division Head' ||  $_SESSION['user_role']=='Agency Head') {
 //  include "leave_summary_print_section.php";
 // }
 

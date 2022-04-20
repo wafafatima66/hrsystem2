@@ -86,7 +86,7 @@ $output .= " <table class='table home-page-table mt-3 table-striped table-respon
 			<th scope='col'>Employee Id</th>
 			<th scope='col'>Name</th>
 			<th scope='col'>User Role</th>
-			<th scope='col'>Department</th>
+			<th scope='col'>Division</th>
 			<th scope='col'>Office</th>
 			<th scope='col'>Action</th>
 		  </tr>
