@@ -8404,3 +8404,16 @@ ALTER TABLE `hrsystem2`.`training_post_table` ADD PRIMARY KEY (`id`);
 ALTER TABLE `training_post_table` CHANGE `file` `file_name` VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
 
 ALTER TABLE `training_post_table` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+-- new 
+CREATE TABLE emp_leave_time (
+    Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    emp_id VARCHAR(100),
+    type varchar(100),
+    mon varchar(100),
+    year varchar(100)
+);
+
+ALTER TABLE `hrsystem2`.`emp_leave_time` ADD UNIQUE (`emp_id`, `type`, `mon`, `year`);
+
+ALTER TABLE `emp_leave_time` ADD `value` INT NULL AFTER `year`;

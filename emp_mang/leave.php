@@ -32,6 +32,9 @@
   <input type="radio" name="leave" value="Credits" class=" m-2 ">
   <label for="">Leave Credits</label>
 
+  <?php 
+
+?>
 
 </div>
 
@@ -49,6 +52,12 @@
 <?php  ?>
 
 <script>
+
+// function reply_click(clicked_id)
+//   {
+//       alert(clicked_id);
+//   }
+
   // ajax call for leave credits 
   function loadCredits(date, emp_id) {
     var date = $("#input-date").val();
@@ -118,6 +127,63 @@
     });
 
   });
+
+  // hour and minutes settings 
+  function get_hour(x){
+    var leave_emp_id = $("#leave_emp_id").val();
+    var id_name = x.id
+    var value = document.getElementById(id_name).value;
+    var split_arr = id_name.split("_");
+    var type = split_arr[0];
+    var mon = split_arr[1];
+    var year = split_arr[2];
+    // console.log(year)
+    
+    $.ajax({
+      type: "POST",
+      url: "../emp_mang/leave/insert_hour.php",
+      data: {
+        leave_emp_id: leave_emp_id,
+        type : type ,
+        mon : mon ,
+        year : year ,
+        value : value
+      },
+      success: function(data) {
+        var date = $("#input-date").val();
+        var emp_id = $("#emp_id_for_credits").val();
+        loadCredits(date,emp_id);
+      }
+    });
+  }
+
+  function get_minute(x){
+    var leave_emp_id = $("#leave_emp_id").val();
+    var id_name = x.id
+    var value = document.getElementById(id_name).value;
+    var split_arr = id_name.split("_");
+    var type = split_arr[0];
+    var mon = split_arr[1];
+    var year = split_arr[2];
+    // console.log(year)
+    
+    $.ajax({
+      type: "POST",
+      url: "../emp_mang/leave/insert_minute.php",
+      data: {
+        leave_emp_id: leave_emp_id,
+        type : type ,
+        mon : mon ,
+        year : year ,
+        value : value
+      },
+      success: function(data) {
+        var date = $("#input-date").val();
+        var emp_id = $("#emp_id_for_credits").val();
+        loadCredits(date,emp_id);
+      }
+    });
+  }
 
   // ajax call for summary leave 
   function loadSummary(date, emp_id) {
