@@ -97,7 +97,7 @@ if (!isset($_SESSION['login_user'])) {
         {
           $url_array =  explode('/', $_SERVER['REQUEST_URI']);
           $url =  $url_array[2];
-          if ($url == 'learning' || $url == 'learning_summary') {
+          if ($url == 'learning' || $url == 'learning_summary' || $url == 'learning_post') {
             echo 'menu-active'; //class name in css 
           }
         }
@@ -130,6 +130,8 @@ if (!isset($_SESSION['login_user'])) {
                   <li class="float-right <?php list_active('learning'); ?>"><a href="../learning"><span class="d-md-inline ">Trainings & Seminars</span></a></li>
 
                   <li class="float-right <?php list_active('learning_summary'); ?> "><a href="../learning_summary"><span class="d-md-inline ">Summary of Trainings</span></a></li>
+
+                  <li class="float-right <?php list_active('learning_post'); ?> "><a href="../learning_post"><span class="d-md-inline ">Posted Trainings</span></a></li>
 
                   </ul>
 

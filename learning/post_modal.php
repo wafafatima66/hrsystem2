@@ -10,6 +10,7 @@ if (isset($_POST['post_submit'])) {
   $type_of_training = $_POST['type_of_training'];
   $no_of_hrs = $_POST['no_of_hrs'];
   $venue = $_POST['venue'];
+  $address = $_POST['address'];
   $training_details = $_POST['training_details'];
 
   // arrays
@@ -46,9 +47,9 @@ if (isset($_POST['post_submit'])) {
     $filename = "";
   }
 
-  $sql1 = "INSERT INTO training_post_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs,venue,sponsors,training_details,file_name)
+  $sql1 = "INSERT INTO training_post_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs,venue,sponsors,training_details,file_name, address)
 
-  VALUES ('$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$sponsors','$training_details','$filename')";
+  VALUES ('$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$sponsors','$training_details','$filename' , '$address')";
 
   if (mysqli_query($conn, $sql1)) {
     echo  '<script>toastr.success("Post Training added successfully")</script>';
@@ -101,6 +102,7 @@ if (isset($_POST['post_submit'])) {
                   <option value="Managerial">Managerial</option>
                   <option value="Supervisory">Supervisory</option>
                   <option value="Clerical">Clerical</option>
+                  <option value="Foundational ">Foundational </option>
                 </select>
               </div>
 
@@ -117,7 +119,7 @@ if (isset($_POST['post_submit'])) {
 
               <div class="col-lg-3 col-sm-6">
                 <label>Address</label>
-                <input class="form-control text-input" name="province">
+                <input class="form-control text-input" name="address">
               </div>
 
             </div>
@@ -174,4 +176,4 @@ if (isset($_POST['post_submit'])) {
 </div>
 </div>
 
-<script src="../learning/learning.js"></script>
+<!-- <script src="../learning/learning.js"></script> -->

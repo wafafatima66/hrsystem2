@@ -14,27 +14,32 @@ if (isset($_POST['submit'])) {
   $no_of_hrs = $_POST['no_of_hrs'];
   $venue = $_POST['venue'];
   $province = $_POST['province'];
-  $agency = $_POST['agency'];
+  
 
   // arrays
   $emp_id = $_POST['emp_id'];
   $speaker_full_name = $_POST['speaker_full_name'];
   $title = $_POST['title'];
   $sponsor = $_POST['sponsor'];
-
+  $agency = $_POST['agency'];
 
   $speakers_name = array();
   $speakers_title = array();
+  $speaker_agency = array();
+
   if (isset($_POST['speaker_full_name'])) {
     for ($i = 0; $i < count($_POST['speaker_full_name']); $i++) {
       // $speakers_name[$i] = $_POST['speaker_first_name'][$i] . ' ' . $_POST['speaker_middle_name'][$i] . ' ' . $_POST['speaker_last_name'][$i];
       $speakers_name[$i] = $_POST['speaker_full_name'][$i] ;
       $speakers_title[$i] = $_POST['title'][$i];
+      $speaker_agency[$i] = $_POST['agency'][$i];
     }
     $myjson = array(
       "speakers_name" => $speakers_name,
-      "speakers_title" => $speakers_title
+      "speakers_title" => $speakers_title,
+      "speaker_agency" => $speaker_agency
     );
+    
     $speakers = json_encode($myjson);
   }
 
@@ -57,9 +62,9 @@ if (isset($_POST['submit'])) {
   $del1 = "DELETE FROM emp_training WHERE learning_id = '$learning_id'";
   mysqli_query($conn, $del) ; mysqli_query($conn, $del1);
 
-  $sql1 = "INSERT INTO training_table (id , title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,agency,speakers,sponsors,employees)
+  $sql1 = "INSERT INTO training_table (id , title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,speakers,sponsors,employees)
 
-    VALUES ('$learning_id','$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province','$agency' ,'$speakers','$sponsors','$employees')";
+    VALUES ('$learning_id','$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province' ,'$speakers','$sponsors','$employees')";
 
   
 
@@ -184,6 +189,8 @@ if (isset($_GET['learning_id'])) {
                                     </option>
                                     <option value="Clerical" <?php echo ($mydata['type_of_training'] == 'Clerical') ? "selected" : "" ?>>Clerical
                                     </option>
+                                    <option value="Foundational " <?php echo ($mydata['type_of_training'] == 'Foundational ') ? "selected" : "" ?>>Foundational 
+                                    </option>
                                 </select>
                             </div>
 
@@ -219,14 +226,19 @@ if (isset($_GET['learning_id'])) {
 
                                 for ($i = 0; $i < count(array_filter($speakers->speakers_name)); $i++) { ?>
 
-                                    <div class="col-lg-6 col-sm-6">
+                                    <div class="col-lg-4 col-sm-4">
                                         <label for="">Full Name</label>
                                         <input type="text" class="form-control text-input" placeholder="Full Name" name="speaker_full_name[]" value="<?php echo $speakers->speakers_name[$i] ?>">
                                     </div>
 
-                                    <div class="col-lg-6 col-sm-6">
+                                    <div class="col-lg-4 col-sm-4">
                                         <label for="">Title</label>
                                         <input type="text" class="form-control text-input" name="title[]" placeholder="Title" value="<?php echo $speakers->speakers_title[$i] ?>">
+                                    </div>
+
+                                    <div class="col-lg-4 col-sm-4">
+                                        <label for="">Agency</label>
+                                        <input type="text" class="form-control text-input" name="agency[]" placeholder="Agency" value="<?php  echo ( isset(($speakers->speaker_agency[$i]) ) ? ($speakers->speaker_agency[$i]) :  '')  ?>">
                                     </div>
 
                                 <?php }
@@ -244,14 +256,14 @@ if (isset($_GET['learning_id'])) {
 
 
 
-                        <div class="form-row mt-2">
+                        <!-- <div class="form-row mt-2">
                             <div class="col-lg-3 col-sm-6">
                                 <label>Agency</label>
                             </div>
                             <div class="col-lg-4 col-sm-6">
                                 <input type="text" class="form-control text-input" name="agency" value="<?php echo $mydata['agency'] ?>">
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="add_sponsor_wrapper ">
                             <?php

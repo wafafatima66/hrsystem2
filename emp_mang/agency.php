@@ -93,12 +93,12 @@
       </div> -->
 
       <div class="col-lg-3 col-sm-6">
-        <small>Department</small>
+        <small>Division</small>
         <input type="text" name="department" class="form-control text-input" value="<?php echo $mydata['division']?>" />
       </div>
 
       <div class="col-lg-3 col-sm-6">
-        <small>Office/Unit</small>
+        <small>Department/Office</small>
         <input type="text" name="office" class="form-control text-input"
           value="<?php echo $mydata['area_wrk_assign']?>" />
       </div>

@@ -17,8 +17,16 @@ if (isset($_GET['credits_year'])) {
       echo  '<script>toastr.success("Credits year updated successfully")</script>';
 }
 
+if (isset($_GET['file_delete'])) {
+      echo  '<script>toastr.success("Employee File deleted Succesfully")</script>';
+      unset($_GET['file_delete']);
+}
+if (isset($_GET['file_not_delete'])) {
+      echo  '<script>toastr.success("Employee file not deleted Successfully ")</script>';
+}
 
 if (isset($_GET['id'])) {
+
 
       $id =  $_GET['id'];
 

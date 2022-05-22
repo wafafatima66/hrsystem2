@@ -68,8 +68,8 @@ $output .= "<table class='table home-page-table mt-3 table-striped ' >
 				<th scope='col'>Duration</th>
 				<th scope='col'>Date of Leave</th>
 				<th scope='col'>Details of leave</th>
-				<th scope='col'>Status</th>
-				<th scope='col'>Action</th>
+				<th scope='col' style='width:170px'>Status</th>
+				<th scope='col' style='width:100px'>Action</th>
 				
 		  </tr>
 	</thead>
@@ -95,21 +95,6 @@ if (mysqli_num_rows($result) > 0) {
 				$details = $mydata['details_of_leave'];
 			}
 
-		// $emp_id = $mydata['emp_id'];
-		// $sql1 = mysqli_query($conn, "select role from users where emp_id = '$emp_id' ");
-		// $row1 = mysqli_fetch_array($sql1, MYSQLI_ASSOC);
-		// $role = $row1['role'];
-		// if($role == 'Division Head'){
-		// 	$style = 'style="display:none"';
-		// }else {
-		// 	$style = '';
-		// }
-
-		// if(($role == 'Division Head' && $_SESSION['user_role']=='Division Head') || ($_SESSION['user_role']=='Division Head') || ($_SESSION['user_role']=='HR Administrator')){
-		// 	$disabled = 'disabled';
-		// }else{
-		// 	$disabled = '';
-		// }
 
 		$leave_from_date_array = json_decode($mydata['leave_from_date']);
 		$leave_to_date_array = json_decode($mydata['leave_to_date']);
@@ -119,9 +104,9 @@ if (mysqli_num_rows($result) > 0) {
 
 		$output .= "<tr>
                         <td>{$mydata['emp_id']}</td>
-                        <td >
+                        <td class = 'text-center' >
 							  <img src='../emp_img/{$emp_image}' alt='' style='width: 50px; height:50px; border-radius: 100%; margin-right: 12px;'>
-                              <span> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
+                              <span style='display:block; margin-top:20px; '> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
                         </td>
 						<td> {$mydata['role']} </td>
                         <td> {$mydata['type_of_leave']} </td>
@@ -131,180 +116,438 @@ if (mysqli_num_rows($result) > 0) {
 						<td>
 						
 							<div class=''>";
-							if($_SESSION['user_role']=='Super Administrator'){
-								$output .="<div class=''>";
-								if (($mydata['final_status'])  == '1') {
-											$output .= "Approved";
-										} else if (($mydata['final_status'])  == '0') {
-											$output .= "Disapprove";
-										}else if (($mydata['final_status'])  == '2'){
-											$output .= "Pending";
-										}else {
-											$output .= "Pending";
-										}
-										$output .="</div>";
+
+							if($_SESSION['user_role']=='Super Administrator')
+                                    {
+
+                                        $output .="<div class=''>";
+                                        if (($mydata['final_status'])  == '1') {
+                                                    $output .= "Approved";
+                                                } else if (($mydata['final_status'])  == '0') {
+                                                    $output .= "Disapprove";
+                                                }else if (($mydata['final_status'])  == '2'){
+                                                    $output .= "Pending";
+                                                }else {
+                                                    $output .= "Pending";
+                                                }
+                                                $output .="</div>";
 									}
-									else if($_SESSION['user_role']=='Agency Head' ){
-										if($mydata['role'] == 'Division Head' || $mydata['role'] == 'Supervisor'){
+
+									else if($_SESSION['user_role']=='Agency Head' )
+                                    {
+
+										if($mydata['role'] == 'Division Head')
+                                        {
 											$output .="<div class='final_status-{$mydata['id']}'>
+
 											<label>Agency Head</label>
-											<select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'
-											<option >Select</option>
+
+											    <select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'
+											    <option >Select</option>
+
 												<option value='1'";
 													if (($mydata['final_status']) == '1') {
 														$output .= 'selected';
 													} else {
 														$output .= '';
 													};
-													$output .=">Approved</option>
-																		<option value='0' ";
+													$output .=">Approved
+                                                </option>
+
+                                                <option value='0' ";
 													if (($mydata['final_status'])  == '0') {
 														$output .= 'selected';
 													} else {
 														$output .= '';
 													};
-													$output .= ">Disapprove</option>
-																			<option value='2' ";
+													$output .= ">Disapprove
+                                                </option>
+												
+                                                <option value='2' ";
 													if (($mydata['final_status'])  == '2') {
 														$output .= 'selected';
 													} else {
 														$output .= '';
 													};
-													$output .= ">Pending</option>
+													$output .= ">Pending
+                                                </option>
+
 											</select>
 										</div>";
-										}else {
-											$output .="<div class=''>";
-											if (($mydata['final_status'])  == '1') {
-														$output .= "Approved";
-													} else if (($mydata['final_status'])  == '0') {
-														$output .= "Disapprove";
-													}else if (($mydata['final_status'])  == '2'){
-														$output .= "Pending";
-													}else {
-														$output .= "Pending";
-													}
-													$output .="</div>";	
-									}
-									} 
-									else if($_SESSION['user_role']=='Division Head' ){
-										if($mydata['role'] == 'Employee'){
+
+										}
+
+                                        else if($mydata['role'] == 'Supervisor')
+                                        {
 											$output .="<div class='final_status-{$mydata['id']}'>
-											<label>Division Head</label>
-											<select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'
-											<option >Select</option>
+
+											<label>Agency Head</label>
+
+											    <select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'
+											    <option >Select</option>
+
 												<option value='1'";
 													if (($mydata['final_status']) == '1') {
 														$output .= 'selected';
 													} else {
 														$output .= '';
 													};
-													$output .=">Approved</option>
-																		<option value='0' ";
+													$output .=">Approved
+                                                </option>
+
+                                                <option value='0' ";
 													if (($mydata['final_status'])  == '0') {
 														$output .= 'selected';
 													} else {
 														$output .= '';
 													};
-													$output .= ">Disapprove</option>
-																			<option value='2' ";
+													$output .= ">Disapprove
+                                                </option>
+												
+                                                <option value='2' ";
 													if (($mydata['final_status'])  == '2') {
 														$output .= 'selected';
 													} else {
 														$output .= '';
 													};
-													$output .= ">Pending</option>
+													$output .= ">Pending
+                                                </option>
+
 											</select>
 										</div>";
-										}if($mydata['role'] == 'Supervisor'){
-											$output .="<div class='mr-2 status-{$mydata['id']}'>
+
+                                        $output .="<div class='status-{$mydata['id']}'>
+
 											<label>Division Head</label>
-											<select  class='form-control text-input leave_status_dropdown' id='{$mydata['id']}' >
+
+											    <select class='form-control text-input leave_status_dropdown' id='{$mydata['id']}' disabled >
+											    <option>Select</option>
+
+												<option value='1'";
+													if (($mydata['status']) == '1') {
+														$output .= 'selected';
+													} else {
+														$output .= '';
+													};
+													$output .=">Approved
+                                                </option>
+
+                                                <option value='0' ";
+													if (($mydata['status'])  == '0') {
+														$output .= 'selected';
+													} else {
+														$output .= '';
+													};
+													$output .= ">Disapprove
+                                                </option>
+												
+                                                <option value='2' ";
+													if (($mydata['status'])  == '2') {
+														$output .= 'selected';
+													} else {
+														$output .= '';
+													};
+													$output .= ">Pending
+                                                </option>
+
+											</select>
+										</div>";
+
+										}
+                                        
+                                        
+                                        else {
+											$output .="<div class=''>";
+
+											if (($mydata['final_status'])  == '1') {
+                                                $output .= "Approved";
+                                            } else if (($mydata['final_status'])  == '0') {
+                                                $output .= "Disapprove";
+                                            }else if (($mydata['final_status'])  == '2'){
+                                                $output .= "Pending";
+                                            }else {
+                                                $output .= "Pending";
+                                            }
+
+                                            $output .="</div>";	
+									    }
+									} 
+
+									else if($_SESSION['user_role']=='Division Head' ){
+
+										if($mydata['role'] == 'Employee')
+                                        {
+											$output .="<div class='final_status-{$mydata['id']}'>
+
+											<label>Division Head</label>
+
+											<select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'
+
 											<option>Select</option>
+
+												<option value='1'";
+													if (($mydata['final_status']) == '1') {
+														$output .= 'selected';
+													} else {
+														$output .= '';
+													};
+													$output .=">Approved
+                                                </option>
+
+													<option value='0' ";
+                                                        if (($mydata['final_status'])  == '0') {
+                                                            $output .= 'selected';
+                                                        } else {
+                                                            $output .= '';
+                                                        };
+													    $output .= ">Disapprove
+                                                    </option>
+
+                                                    <option value='2' ";
+                                                        if (($mydata['final_status'])  == '2') {
+                                                            $output .= 'selected';
+                                                        } else {
+                                                            $output .= '';
+                                                        };
+													    $output .= ">Pending
+                                                    </option>
+
+											</select>
+										</div>";
+
+                                        $output .="<div class='status-{$mydata['id']}'>
+
+											<label>Supervisor</label>
+
+											<select  class='form-control text-input leave_status_dropdown' id='{$mydata['id']}' disabled >
+
+											<option>Select</option>
+
+												<option value='1' ";
+													if (($mydata['status']) == '1') {
+														$output .= 'selected ';
+													} else {
+														$output .= '';
+													};
+													$output .=">Approved
+                                                </option>
+
+													<option value='0'  ";
+                                                        if (($mydata['status'])  == '0') {
+                                                            $output .= 'selected';
+                                                        } else {
+                                                            $output .= '';
+                                                        };
+													    $output .= ">Disapprove
+                                                    </option>
+
+                                                    <option value='2'  ";
+                                                        if (($mydata['status'])  == '2') {
+                                                            $output .= 'selected';
+                                                        } else {
+                                                            $output .= '';
+                                                        };
+													    $output .= ">Pending
+                                                    </option>
+
+											</select>
+										</div>";
+
+										}
+                                        else if ($mydata['role'] == 'Supervisor')
+                                        {
+											$output .="<div class='mr-2 status-{$mydata['id']}'>
+
+											<label>Division Head</label>
+
+											<select  class='form-control text-input leave_status_dropdown' id='{$mydata['id']}' >
+
+											<option>Select</option>
+
 											<option value='1'";
-										if (($mydata['status'])  == '1') {
-											$output .= 'selected';
-										} else {
-											$output .= '';
-										};
-										$output .= ">Approved</option>
-															<option value='0' ";
-										if (($mydata['status'])  == '0') {
-											$output .= 'selected';
-										} else {
-											$output .= '';
-										};
-										$output .= ">Disapprove</option>
-																<option value='2' ";
-										if (($mydata['status'])  == '2') {
-											$output .= 'selected';
-										} else {
-											$output .= '';
-										};
-										$output .= ">Pending</option>
-									</select>
-								</div>";
-										}else {
+                                                if (($mydata['status'])  == '1') {
+                                                    $output .= 'selected';
+                                                } else {
+                                                    $output .= '';
+                                                };
+                                                $output .= ">Approved
+                                            </option>
+
+                                            <option value='0' ";
+                                                if (($mydata['status'])  == '0') {
+                                                    $output .= 'selected';
+                                                } else {
+                                                    $output .= '';
+                                                };
+                                                $output .= ">Disapprove
+                                            </option>
+
+                                            <option value='2' ";
+                                                if (($mydata['status'])  == '2') {
+                                                    $output .= 'selected';
+                                                } else {
+                                                    $output .= '';
+                                                };
+                                                $output .= ">Pending
+                                            </option>
+
+                                        </select>
+                                    </div>";
+
+                                    $output .="<div class='mr-2 final_status-{$mydata['id']}'  >
+
+											<label>Agency Head</label>
+
+											<select  class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}' disabled >
+
+											<option>Select</option>
+
+											<option value='1'";
+                                                if (($mydata['final_status'])  == '1') {
+                                                    $output .= 'selected';
+                                                } else {
+                                                    $output .= '';
+                                                };
+                                                $output .= ">Approved
+                                            </option>
+
+                                            <option value='0' ";
+                                                if (($mydata['final_status'])  == '0') {
+                                                    $output .= 'selected';
+                                                } else {
+                                                    $output .= '';
+                                                };
+                                                $output .= ">Disapprove
+                                            </option>
+
+                                            <option value='2' ";
+                                                if (($mydata['final_status'])  == '2') {
+                                                    $output .= 'selected';
+                                                } else {
+                                                    $output .= '';
+                                                };
+                                                $output .= ">Pending
+                                            </option>
+
+                                        </select>
+                                    </div>";
+										
+                            
+                                    }
+                                        else {
 											
 											$output .="<div class=''>";
+
 											if (($mydata['final_status'])  == '1') {
-														$output .= "Approved";
-													} else if (($mydata['final_status'])  == '0') {
-														$output .= "Disapprove";
-													}else if (($mydata['final_status'])  == '2'){
-														$output .= "Pending";
-													}else {
-														$output .= "Pending";
-													}
-													$output .="</div>";
+                                                $output .= "Approved";
+                                            } else if (($mydata['final_status'])  == '0') {
+                                                $output .= "Disapprove";
+                                            }else if (($mydata['final_status'])  == '2'){
+                                                $output .= "Pending";
+                                            }else {
+                                                $output .= "Pending";
+                                            }
+                                            $output .="</div>";
 												
-									}
+									    }
+
 									}
 										
 									else if($_SESSION['user_role'] == 'Supervisor' ){
+
 										if($mydata['role'] == 'Employee'){
+
 											$output .="<div class='mr-2 status-{$mydata['id']}'>
+
 											<label>Supervisor</label>
+
 											<select  class='form-control text-input leave_status_dropdown' id='{$mydata['id']}' >
 											<option>Select</option>
-											<option value='1'";
-												if (($mydata['status'])  == '1') {
-													$output .= 'selected';
-												} else {
-													$output .= '';
-												};
-												$output .= ">Approved</option>
-																	<option value='0' ";
-												if (($mydata['status'])  == '0') {
-													$output .= 'selected';
-												} else {
-													$output .= '';
-												};
-												$output .= ">Disapprove</option>
-																		<option value='2' ";
-												if (($mydata['status'])  == '2') {
-													$output .= 'selected';
-												} else {
-													$output .= '';
-												};
-												$output .= ">Pending</option>
+
+											    <option value='1'";
+                                                    if (($mydata['status'])  == '1') {
+                                                        $output .= 'selected';
+                                                    } else {
+                                                        $output .= '';
+                                                    };
+                                                    $output .= ">Approved
+                                                </option>
+
+												<option value='0' ";
+                                                    if (($mydata['status'])  == '0') {
+                                                        $output .= 'selected';
+                                                    } else {
+                                                        $output .= '';
+                                                    };
+                                                    $output .= ">Disapprove
+                                                </option>
+
+												<option value='2' ";
+                                                    if (($mydata['status'])  == '2') {
+                                                        $output .= 'selected';
+                                                    } else {
+                                                        $output .= '';
+                                                    };
+                                                    $output .= ">Pending
+                                                </option>
+
 											</select>
 										</div>";
-										}else {
+
+                                        $output .="<div class='mr-2 final_status-{$mydata['id']}'>
+
+											<label>Division Head</label>
+
+											<select  class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}' disabled >
+											<option>Select</option>
+
+											    <option value='1'";
+                                                    if (($mydata['final_status'])  == '1') {
+                                                        $output .= 'selected';
+                                                    } else {
+                                                        $output .= '';
+                                                    };
+                                                    $output .= ">Approved
+                                                </option>
+
+												<option value='0' ";
+                                                    if (($mydata['final_status'])  == '0') {
+                                                        $output .= 'selected';
+                                                    } else {
+                                                        $output .= '';
+                                                    };
+                                                    $output .= ">Disapprove
+                                                </option>
+
+												<option value='2' ";
+                                                    if (($mydata['final_status'])  == '2') {
+                                                        $output .= 'selected';
+                                                    } else {
+                                                        $output .= '';
+                                                    };
+                                                    $output .= ">Pending
+                                                </option>
+
+											</select>
+										</div>";
+
+										}
+                                        else {
 											
 											$output .="<div class=''>";
-											if (($mydata['final_status'])  == '1') {
-														$output .= "Approved";
-													} else if (($mydata['final_status'])  == '0') {
-														$output .= "Disapprove";
-													}else if (($mydata['final_status'])  == '2'){
-														$output .= "Pending";
-													}else {
-														$output .= "Pending";
-													}
-													$output .="</div>";
+											if (($mydata['final_status'])  == '1') 
+                                                {
+                                                    $output .= "Approved";
+                                                    } else if (($mydata['final_status'])  == '0') {
+                                                        $output .= "Disapprove";
+                                                    }else if (($mydata['final_status'])  == '2'){
+                                                        $output .= "Pending";
+                                                    }else {
+                                                        $output .= "Pending";
+                                                }
+                                            $output .="</div>";
 												
-									}
+									        }
 									}
 							$output .="</div>
 						</td>

@@ -8405,7 +8405,7 @@ ALTER TABLE `training_post_table` CHANGE `file` `file_name` VARCHAR(500) CHARACT
 
 ALTER TABLE `training_post_table` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 
--- new 
+
 CREATE TABLE emp_leave_time (
     Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     emp_id VARCHAR(100),
@@ -8417,3 +8417,10 @@ CREATE TABLE emp_leave_time (
 ALTER TABLE `hrsystem2`.`emp_leave_time` ADD UNIQUE (`emp_id`, `type`, `mon`, `year`);
 
 ALTER TABLE `emp_leave_time` ADD `value` INT NULL AFTER `year`;
+
+-- new 
+ALTER TABLE `item` ADD `date_modified` DATE NULL AFTER `date_accomplished`;
+ALTER TABLE `employee` CHANGE `emp_contact_gs` `emp_contact_gs` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_pag` `emp_contact_pag` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_ph` `emp_contact_ph` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_ss` `emp_contact_ss` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_tin` `emp_contact_tin` VARCHAR(100) NULL DEFAULT NULL;
+
+--21 may
+ALTER TABLE `training_post_table` ADD `address` VARCHAR(255) NULL AFTER `file_name`;

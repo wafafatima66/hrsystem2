@@ -47,6 +47,7 @@ if(isset($_POST['folder']) && isset($_POST['emp_id']) ){
                         <td>{$mydata['file_type']}</td>
                         <td>{$mydata['file_size']}</td>
                         <td><a href='../files/{$mydata['file_name']}' target='_blank'>view file</a></td>
+						<td><a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='file_del={$mydata['id']}'><i class='fa fa-trash mx-2'></i></a> <td>
                   </tr>";
 	} 
 	$output.="</tbody>

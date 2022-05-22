@@ -65,7 +65,7 @@ if (isset($_POST['create_folder'])) {
 
     <div class="col-lg-3 col-sm-6 text-center mt-5">
       <h5>PDS</h5>
-
+     
       <a data-id="<?php echo $emp_id ?>" data-folder="pds" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open" name="pds"></i></a>
     </div>
 
@@ -95,7 +95,10 @@ $sql = "SELECT * FROM emp_folder WHERE emp_id = '$emp_id'  ";
     while ($mydata = mysqli_fetch_assoc($result)) {?>
 
   <div class="col-lg-3 col-sm-6 text-center mt-5">
-      <h5><?= $mydata['folder_name'] ?></h5>
+      <h5 style="text-transform: uppercase;"><?= $mydata['folder_name'] ?> 
+        <a href='' class='delete_modal ml-2' data-toggle='modal' data-target='#delete_modal'    data-id='del_folder=<?php echo $mydata["id"] ?>&id=<?php echo $id ?>' style="font-size:30px ;    text-decoration:none ; color : #fc7e43">&times;
+        </a>
+     </h5>
       <a data-id="<?= $mydata['emp_id'] ?>" data-folder="<?= $mydata['folder_name'] ?>" data-toggle="modal" data-target="#modal-popup" class="view_file"><i class="fas fa-folder-open"></i></a>
   </div>
 
@@ -123,6 +126,7 @@ $sql = "SELECT * FROM emp_folder WHERE emp_id = '$emp_id'  ";
           <option value="PDS"> PDS</option>
           <option value="IPCR">IPCR</option>
           <option value="SALN">SALN</option>
+          <option value="SALN">CERTIFICATES</option>
           <!-- <option value="others">OTHERS</option> -->
           <?php 
 
@@ -153,6 +157,7 @@ $sql = "SELECT * FROM emp_folder WHERE emp_id = '$emp_id'  ";
     </div>
   </form>
 </div>
+
 
 
 <div class="col-lg-12 text-right mt-4 ">
@@ -190,6 +195,7 @@ $sql = "SELECT * FROM emp_folder WHERE emp_id = '$emp_id'  ";
   </div>
 </div>
 
+<?php include "../includes/delete_modal.php";  ?>
 
 <script>
   $(document).ready(function() {
@@ -227,4 +233,12 @@ $sql = "SELECT * FROM emp_folder WHERE emp_id = '$emp_id'  ";
     });
 
   });
+
+  $(document).on('click', '.delete_modal', function() {
+        var id = $(this).data('id');
+        var url = '../includes/delete.php?';
+        var newHref = url.concat(id);
+        $('#delete_confirm_btn').attr('href', newHref);
+    });
+
 </script>

@@ -105,10 +105,14 @@ if (isset($_GET['id'])) {
                             } 
                         ?>
 
-                        <option value='A' <?php echo ($mydata['emp_blood'] == 'A' ? 'style="display: none;"' : '') ?>>A</option>
-                        <option value='B' <?php echo ($mydata['emp_blood'] == 'B' ? 'style="display: none;"' : '') ?>>B</option>
-                        <option value='O' <?php echo ($mydata['emp_blood'] == 'O' ? 'style="display: none;"' : '') ?>>O</option>
-                        <option value='AB' <?php echo ($mydata['emp_blood'] == 'AB' ? 'style="display: none;"' : '') ?>>AB</option>
+                        <option value='A(+)' <?php echo ($mydata['emp_blood'] == 'A(+)' ? 'style="display: none;"' : '') ?>>A(+)</option>
+                        <option value='B(+)' <?php echo ($mydata['emp_blood'] == 'B(+)' ? 'style="display: none;"' : '') ?>>B(+)</option>
+                        <option value='AB(+)' <?php echo ($mydata['emp_blood'] == 'AB(+)' ? 'style="display: none;"' : '') ?>>AB(+)</option>
+                        <option value='O(+)' <?php echo ($mydata['emp_blood'] == 'O(+)' ? 'style="display: none;"' : '') ?>>O(+)</option>
+                        <option value='A(-)' <?php echo ($mydata['emp_blood'] == 'A(-)' ? 'style="display: none;"' : '') ?>>A(-)</option>
+                        <option value='B(-)' <?php echo ($mydata['emp_blood'] == 'B(-)' ? 'style="display: none;"' : '') ?>>B(-)</option>
+                        <option value='AB(-)' <?php echo ($mydata['emp_blood'] == 'AB(-)' ? 'style="display: none;"' : '') ?>>AB(-)</option>
+                        <option value=O(-)' <?php echo ($mydata['emp_blood'] == 'O(-)' ? 'style="display: none;"' : '') ?>>O(-)</option>
                     </select>
                 </div>
 

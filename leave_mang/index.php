@@ -152,7 +152,7 @@ if (isset($_POST['edit_leave_approve'])) {
 
                 <div class="form-row  ">
                     <div class="col-lg-6 col-sm-6 mt-3 leave_details">
-                        <textarea class="form-control text-input" rows="5" placeholder="Details Of Leave(Required)" name="details_of_leave" required></textarea>
+                        <textarea class="form-control text-input" rows="5" placeholder="Details Of Leave(Required)" name="details_of_leave" ></textarea>
                     </div>
                     <div class="col-lg-6 col-sm-6 mt-3">
                         <table class="table home-page-table table-sm ">
@@ -410,7 +410,7 @@ if (isset($_POST['edit_leave_approve'])) {
         });
 
         //to get date from leave management first box to load credits points in the small table
-        $("#date_filled").change(function() {
+        $("#no_of_working_days").change(function() {
 
             var leave_from_date = $("input[name='leave_from_date[]']")
                 .map(function() {

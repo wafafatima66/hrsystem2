@@ -37,7 +37,6 @@ if (!empty($_FILES["file"]["name"])) {
         if (mysqli_query($conn, $sql)) {
             echo '<img src="'.$folder.'" alt="emp-image" style="width:100%;height:100%">';
             }
-        
     }
 }
 

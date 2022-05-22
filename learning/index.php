@@ -150,7 +150,7 @@ if (isset($_GET['delete'])) {
       </div>
 </div>
 
-
+<script src="../learning/learning.js"></script> -
 <script>
       $(".view_post_btn").click(function() {
             console.log('hi');

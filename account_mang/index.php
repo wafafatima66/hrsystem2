@@ -34,12 +34,14 @@ if (isset($_POST['submit'])) {
 
       $add1 = "";
       $add2 = "";
-      if (isset($_POST['username'])&& !empty(isset($_POST['username']))) {
+      if (isset($_POST['username']) && !empty(isset($_POST['username']))) {
             $username = $_POST['username'];
             $add1 = "username ='$username'";
       }
-      if (isset($_POST['password']) && !empty(isset($_POST['password']))) {
-            if (isset($_POST['current_password'])&& !empty(isset($_POST['password']))) {
+
+      if (isset($_POST['password']) && !empty($_POST['password'])) {
+
+            if (isset($_POST['current_password'])&& !empty($_POST['password'])) {
                   $current_password = trim($_POST['current_password']);
                   $db_password = trim($row['password']);
                   

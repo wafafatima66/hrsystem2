@@ -11,28 +11,33 @@ if (isset($_POST['submit'])) {
   $no_of_hrs = $_POST['no_of_hrs'];
   $venue = $_POST['venue'];
   $province = $_POST['province'];
-  $agency = $_POST['agency'];
+  
   $training_details = $_POST['training_details'];
 
   // arrays
   $emp_id = $_POST['emp_id'];
   $speaker_full_name = $_POST['speaker_full_name'];
   $title = $_POST['title'];
+  $agency = $_POST['agency'];
 
   $sponsor = $_POST['sponsor'];
 
 
   $speakers_name = array();
   $speakers_title = array();
+  $speakers_agency = array();
+
   if (isset($_POST['speaker_full_name'])) {
     for ($i = 0; $i < count($_POST['speaker_full_name']); $i++) {
       // $speakers_name[$i] = $_POST['speaker_first_name'][$i] . ' ' . $_POST['speaker_middle_name'][$i] . ' ' . $_POST['speaker_last_name'][$i];
       $speakers_name[$i] = $_POST['speaker_full_name'][$i] ;
       $speakers_title[$i] = $_POST['title'][$i];
+      $speakers_agency[$i] = $_POST['agency'][$i];
     }
     $myjson = array(
       "speakers_name" => $speakers_name,
-      "speakers_title" => $speakers_title
+      "speakers_title" => $speakers_title,
+      "speakers_agency" => $speakers_agency,
     );
     $speakers = json_encode($myjson);
   }
@@ -170,6 +175,7 @@ if (isset($_POST['submit'])) {
                   <option value="Managerial">Managerial</option>
                   <option value="Supervisory">Supervisory</option>
                   <option value="Clerical">Clerical</option>
+                  <option value="Foundational ">Foundational </option>
                 </select>
               </div>
 
@@ -205,31 +211,19 @@ if (isset($_POST['submit'])) {
                     <label>Speaker<span style="text-transform: lowercase;">/s</span></label>
                   </div>
 
-                  <div class="col-lg-6 col-sm-6">
+                  <div class="col-lg-4 col-sm-4">
                     <input type="text" class="form-control text-input" placeholder="Full Name"
                       name="speaker_full_name[]" required>
                   </div>
 
-                  <!-- <div class="col-lg-2 col-sm-6">
-                    <input type="text" class="form-control text-input" placeholder="FirstName"
-                      name="speaker_first_name[]" required>
-                  </div>
 
-                  <div class="col-lg-2 col-sm-6">
-                    <input type="text" class="form-control text-input" placeholder="MiddleName"
-                      name="speaker_middle_name[]">
-                  </div>
-
-                  <div class="col-lg-2 col-sm-6">
-                    <input type="text" class="form-control text-input" placeholder="Ext" name="speaker_ext[]">
-                  </div> -->
-
-
-                  <div class="col-lg-6 col-sm-6">
+                  <div class="col-lg-4 col-sm-4">
                     <input type="text" class="form-control text-input" name="title[]" placeholder="Title">
                   </div>
 
-                  
+                  <div class="col-lg-4 col-sm-4">
+                    <input type="text" class="form-control text-input" name="agency[]" placeholder="Agent">
+                  </div>
 
                 </div>
 
@@ -245,7 +239,7 @@ if (isset($_POST['submit'])) {
 
            
 
-            <div class="form-row mt-2">
+            <!-- <div class="form-row mt-2">
 
               <div class="col-lg-3 col-sm-6">
                 <label>Agency</label>
@@ -255,7 +249,7 @@ if (isset($_POST['submit'])) {
                 <input type="text" class="form-control text-input" name="agency">
               </div>
 
-            </div>
+            </div> -->
 
             <div class="add_sponsor_wrapper ">
 
@@ -295,7 +289,7 @@ if (isset($_POST['submit'])) {
 </div>
 </div>
 
-<script src="../learning/learning.js"></script>
+<!-- <script src="../learning/learning.js"></script> -->
 <script>
 function get_info(id){
     var emp_id = document.getElementById(id).value;
