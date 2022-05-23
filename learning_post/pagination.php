@@ -45,7 +45,7 @@ $output .= "<table class='table home-page-table mt-3 table-striped ' >
 				<th >Venue</th>
 				<th >No Of Hrs</th>
 				<th >Sponsors</th>
-				<th >Action</th>
+				<th style='width:100px'>Action</th>
 		  </tr>
 	</thead>
 	<tbody>";
@@ -112,5 +112,5 @@ if (mysqli_num_rows($result) > 0) {
 	echo $output;
 }
 
-?>
 
+?>

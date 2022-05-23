@@ -2,6 +2,14 @@
 
 include SITE_ROOT . '/includes/header.php'; ?>
 
+<?php
+if (isset($_GET['delete'])) {
+      echo  '<script>toastr.success("Post Training Deleted Successfully !")</script>';
+} else if (isset($_GET['notdelete'])) {
+      echo  '<script>toastr.error("Post Training not Deleted. Try again !")</script>';
+}
+?>
+
 <!-- post of training -->
 <div class="container">
 <div class="row">
@@ -22,6 +30,8 @@ include SITE_ROOT . '/includes/header.php'; ?>
 <?php echo '<div id="posted_trainings"> </div>'; ?>
 </div>
 <!-- end of post training -->
+
+<?php include "../includes/delete_modal.php";  ?>
 
 <script>
 
@@ -54,5 +64,13 @@ include SITE_ROOT . '/includes/header.php'; ?>
             var search_post = $('#search_input_post').val();
             loadData(page_no_post,search_post);
       });
+
+      $(document).on('click', '.delete_modal', function() {
+	var id = $(this).data('id');
+	var url = '../includes/delete.php?';
+	var newHref = url.concat(id);
+	$('#delete_confirm_btn').attr('href', newHref);
+});
+      
 
 </script>

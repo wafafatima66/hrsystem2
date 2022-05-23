@@ -51,12 +51,21 @@
     
     while ($mydata = mysqli_fetch_assoc($result)) {
 
+		if (empty($mydata['emp_image'])) {
+			$emp_image = 'no_image.jpeg';
+		} 	
+		else {
+			$emp_image = $mydata['emp_image'];
+		}
+		
 	$output.="<tr class='clickable-row' data-href='../performance_mang/emp_profile.php?id={$mydata["id"]}' >
 				<td>{$mydata['emp_id']}</td>
-				<td>
-						<img src='../img/logo-2.png' alt='' style='width: 20px; height:20px'>
-						<span> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
+
+				<td class = 'text-center' >
+					<img src='../emp_img/{$emp_image}' alt='' style='width: 50px; height:50px; border-radius: 100%; margin-right: 12px;'>
+					<span style='display:block; margin-top:20px; '> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
 				</td>
+
 				<td> {$mydata['emp_gender']} </td>
 				<td>{$mydata['appt_stat']}</td>
 				<td>{$mydata['position']}</td>

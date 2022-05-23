@@ -153,6 +153,11 @@ if (isset($_POST['edit_applicant'])) {
     $applicant_municipal = $_POST['applicant_municipal'];
     $applicant_zip = $_POST['applicant_zip'];
 
+    $sql = mysqli_query($conn, "SELECT appointmented FROM applicant WHERE applicant_id = '$applicant_id' ");
+    $row = mysqli_fetch_array($sql, MYSQLI_ASSOC);
+    $appointmented = $row['appointmented'];
+
+
     $del_sql_1 = "DELETE FROM applicant WHERE applicant_id='$applicant_id'";
     $conn->query($del_sql_1);
 
@@ -196,7 +201,7 @@ if (isset($_POST['edit_applicant'])) {
     }
 
     $sql = "INSERT INTO applicant (
-    item_no  , position_no,  applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_barangay, applicant_state, applicant_municipal, applicant_zip ) VALUES (  '$item_no'  , '$position_no',  '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_barangay', '$applicant_state', '$applicant_municipal','$applicant_zip' )";
+    item_no  , position_no,  applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_barangay, applicant_state, applicant_municipal, applicant_zip , appointmented ) VALUES (  '$item_no'  , '$position_no',  '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_barangay', '$applicant_state', '$applicant_municipal','$applicant_zip' , '$appointmented' )";
 
 
     if (!empty($_POST['hiring_education'])) {

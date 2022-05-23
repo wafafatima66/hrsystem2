@@ -187,4 +187,15 @@ if (!empty($_GET["del_folder"])) {
   
 }
 
+if (!empty($_GET["learning_post_id"])) {
+
+  $learning_post_id = $_GET["learning_post_id"];
+  $sql = "DELETE FROM training_post_table WHERE id = '$learning_post_id'";
+  if (mysqli_query($conn, $sql)) {
+    header("Location:../learning_post/index.php?delete");
+  } else {
+    header("Location:../learning_post/index.php?notdelete");
+  }
+}
+
 ?>

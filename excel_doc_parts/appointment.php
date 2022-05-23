@@ -75,6 +75,8 @@ if (empty($item_no)) {
 
             ));
 
+            $filename = $item_no . " - appointed_applicant.docx";
+
             header("Content-Disposition: attachment; filename=".$filename);
             $templateProcessor->saveAs('php://output');
 

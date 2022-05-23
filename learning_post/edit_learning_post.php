@@ -53,9 +53,9 @@ if (isset($_POST['post_submit'])) {
         }
     } else {
         // $filename = "";
-        $filename_sql = mysqli_query($conn, "SELECT filename FROM training_post_table WHERE id = '$learning_id' ");
+        $filename_sql = mysqli_query($conn, "SELECT file_name FROM training_post_table WHERE id = '$learning_id' ");
         $filename_row = mysqli_fetch_array($filename_sql, MYSQLI_ASSOC);
-        $filename = $filename_row['filename'];
+        $filename = $filename_row['file_name'];
     }
 
     $del = "DELETE FROM training_post_table WHERE id = '$learning_id'";

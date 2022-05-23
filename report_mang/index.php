@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
 <script>
       $(".upload-file-class").change(function () {
             var numFiles = $("input:file", this)[0].files.length;
-            $('.message').html(numFiles+' files uploaded');
+            $('.message').html(numFiles+' files selected');
 });
 
 function loadData(search) {

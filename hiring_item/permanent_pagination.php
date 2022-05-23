@@ -94,7 +94,7 @@ $output .= '<table class="table home-page-table mt-4 table-striped table-respons
     <th scope="col">Department</th>
     <th scope="col">Office</th>
     <th scope="col">Status</th>
-    <th scope="col">Action</th>
+    <th scope="col" style="width:100px" >Action</th>
   </tr>
 </thead>
 <tbody >';
