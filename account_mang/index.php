@@ -71,8 +71,9 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
-<form action="" method="post" enctype="multipart/form-data">
+
       <div class="container mt-5">
+      <form action="" method="post" enctype="multipart/form-data">
             <h4 class="h4-heading">Account Management</h4>
 
             <!-- end of first part -->

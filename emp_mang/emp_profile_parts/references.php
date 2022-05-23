@@ -96,59 +96,77 @@
         </div>
 
         <div class="col-lg-5 col-sm-12">
+
             <?php
-            $query = "SELECT * FROM `emp_govt_id` WHERE emp_id = 'LHMRH-2018-00259' and emp_gov_issued_id is NOT null and emp_gov_issued_id != '';";
+            $query = "SELECT * FROM `emp_govt_id` WHERE emp_id = '$emp_id' and emp_gov_issued_id is NOT null and emp_gov_issued_id != '' and emp_gov_issued_id_type = 'govt' ;";
+
             $runquery = $conn->query($query);
             $rowcount = mysqli_num_rows($runquery);
+
             if ($rowcount > 0) {
-                while ($mydata = $runquery->fetch_assoc()) {  ?>
+
+                while ($mydata = $runquery->fetch_assoc()) {
+            ?>
+                    <div class="mt-2">
+                        <input type="text" class="form-control text-input" name="emp_gov_issued_id_govt" value="<?php echo $mydata['emp_gov_issued_id'] ?>">
+                    </div>
+                <?php
+                }
+            } else { ?>
                 <div class="mt-2">
-                <input type="text" class="form-control text-input" name="emp_gov_issued_id[]" value="<?php echo $mydata['emp_gov_issued_id'] ?>">
+                    <input type="text" class="form-control text-input" name="emp_gov_issued_id_govt" value="">
                 </div>
-                <?php }
-            } else { for ($i=0 ; $i<3 ; $i++){?>
-            <div class="mt-2">
-                <input type="text" class="form-control text-input" name="emp_gov_issued_id[]" value="">
-            </div>
-            <?php }} ?>
+            <?php } ?>
+
+
+            <?php
+            $query = "SELECT * FROM `emp_govt_id` WHERE emp_id = '$emp_id' and emp_gov_issued_id is NOT null and emp_gov_issued_id != '' and emp_gov_issued_id_type = 'licence' ;";
+
+            $runquery = $conn->query($query);
+            $rowcount = mysqli_num_rows($runquery);
+
+            if ($rowcount > 0) {
+
+                while ($mydata = $runquery->fetch_assoc()) {
+            ?>
+                    <div class="mt-2">
+                        <input type="text" class="form-control text-input" name="emp_gov_issued_id_licence" value="<?php echo $mydata['emp_gov_issued_id'] ?>">
+                    </div>
+                <?php
+                }
+            } else { ?>
+                <div class="mt-2">
+                    <input type="text" class="form-control text-input" name="emp_gov_issued_id_licence" value="">
+                </div>
+            <?php } ?>
+
+            <?php
+            $query = "SELECT * FROM `emp_govt_id` WHERE emp_id = '$emp_id' and emp_gov_issued_id is NOT null and emp_gov_issued_id != '' and emp_gov_issued_id_type = 'insurance' ;";
+
+            $runquery = $conn->query($query);
+            $rowcount = mysqli_num_rows($runquery);
+
+            if ($rowcount > 0) {
+
+                while ($mydata = $runquery->fetch_assoc()) {
+            ?>
+                    <div class="mt-2">
+                        <input type="text" class="form-control text-input" name="emp_gov_issued_id_insurance" value="<?php echo $mydata['emp_gov_issued_id'] ?>">
+                    </div>
+                <?php
+                }
+            } else { ?>
+                <div class="mt-2">
+                    <input type="text" class="form-control text-input" name="emp_gov_issued_id_insurance" value="">
+                </div>
+            <?php } ?>
+
+
+
         </div>
     </div>
 </div>
 
-<!-- <div class="wrapper-2">
-    <?php
-    $query = "SELECT * FROM emp_govt_id WHERE emp_id = '$emp_id'";
-
-    $runquery = $conn->query($query);
-    $rowcount = mysqli_num_rows($runquery);
-    if ($rowcount > 0) {
-
-        while ($mydata = $runquery->fetch_assoc()) {  ?>
-
-            <div class=" form-row  mt-3">
-                <div class="col-lg-5 col-sm-12">
-                    <input type="text" class="form-control text-input " placeholder="Write the type of govt id . Example(Passport) " name="emp_gov_issued_id_type[]" value="<?php echo $mydata['emp_gov_issued_id_type'] ?>">
-                </div>
-
-                <div class="col-lg-5 col-sm-12">
-                    <input type="text" class="form-control text-input" name="emp_gov_issued_id[]" value="<?php echo $mydata['emp_gov_issued_id'] ?>">
-                </div>
-            </div>
-        <?php }
-    } else { ?>
-
-        <div class=" form-row mt-3 ">
-            <div class="col-lg-5 col-sm-12">
-                <input type="text" class="form-control text-input " placeholder="Write the type of govt id . Example(Passport) " name="emp_gov_issued_id_type[]" value="">
-            </div>
-
-            <div class="col-lg-5 col-sm-12">
-                <input type="text" class="form-control text-input" name="emp_gov_issued_id[]" value="">
-            </div>
-        </div>
-
-    <?php } ?>
-</div> -->
 
 <!-- <div class="col-lg-2 col-sm-12 mt-2">
     <a class="btn button-1 add_button">Add</a>
@@ -169,19 +187,19 @@
         var fieldHTML2 =
             ' <div class=" form-row mt-3"><div class="col-lg-5 col-sm-12"> <input type="text" class="form-control text-input" name="emp_gov_issued_id_type[]" value="" placeholder="Write the type of govt id . Example(Passport) "> </div> <div class="col-lg-5 col-sm-12"> <input type="text" class="form-control text-input " name="emp_gov_issued_id[]" value=""> </div></div>';
 
-        var x = 1; 
+        var x = 1;
         $(addButton).click(function() {
             if (x < maxField) {
-                x++; 
-                $(wrapper).append(fieldHTML); 
+                x++;
+                $(wrapper).append(fieldHTML);
             }
         });
 
         //Once  button  2 is clicked
         $(addButton2).click(function() {
             if (x < maxField) {
-                x++; 
-                $(wrapper2).append(fieldHTML2); 
+                x++;
+                $(wrapper2).append(fieldHTML2);
             }
         });
     });

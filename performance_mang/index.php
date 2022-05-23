@@ -1,7 +1,7 @@
 <?php include '../config.php';
 
 include SITE_ROOT . '/includes/header.php'; ?>
-
+<div class="container">
 <div class="row mt-5 ">
 
   <div class=" col-lg-12 col-sm-12 mt-2">
@@ -38,7 +38,7 @@ include SITE_ROOT . '/includes/header.php'; ?>
     // include 'pagination.php';
     ?>
 
-
+</div>
 <script type="text/javascript">
   $(document).ready(function () {
     function loadData(page, limit,search) {

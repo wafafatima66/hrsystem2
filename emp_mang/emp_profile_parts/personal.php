@@ -343,7 +343,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <small>EMPLOYEE ID</small>
-                    <input type="text" class="form-control text-input" placeholder="Agency Emp No" name="emp_contact_agency" value="<?php echo $mydata['emp_id'] ?>">
+                    <input type="text" class="form-control text-input" placeholder="Agency Emp No" name="emp_contact_agency" value="<?php echo $mydata['emp_id'] ?>" disabled>
                 </div>
             </div>
 

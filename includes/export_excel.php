@@ -41,5 +41,10 @@ if (isset($_GET["leave_summary"])) {
     include "../export_excel_parts/leave_summary.php";
 }
 
+if (isset($_GET["leave_application_report"])) {
+
+    include "../export_excel_parts/leave_application_report.php";
+}
+
 
 

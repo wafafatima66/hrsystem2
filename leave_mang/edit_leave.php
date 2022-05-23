@@ -222,7 +222,12 @@ if (isset($_GET['leave_id'])) { ?>
 
                             </div>
 
-                            <div class="text-right"><button class="ml-3 btn button-1" name="submit" type="submit">Update</button></div>
+                            <div class="text-right">
+                                <button class="ml-3 btn button-1" name="submit" type="submit">Update</button>
+                                <a href="../leave_mang/"  class="ml-3 btn button-1" >Back</a>
+                            </div>
+
+                            
 
                         </form>
                     </div>

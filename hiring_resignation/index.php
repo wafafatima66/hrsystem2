@@ -14,7 +14,7 @@ if(isset($_GET['delete'])){
 ?>
 
 
-
+<div class="container">
 <div class="row mt-5 ">
 
   <div class=" col-lg-12 col-sm-12 mb-3">
@@ -60,6 +60,8 @@ include "edit_termination_config.php";
   </div>
 </div>
 
+
+</div>
 <script>
       $(document).ready(function() {
 function loadData(page, limit ) {

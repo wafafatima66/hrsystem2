@@ -292,7 +292,7 @@ if (isset($_POST['edit_leave_approve'])) {
 
     ?>
 
-        <div class="row  ">
+        <div class="row mt-3 ">
             <h4 class="background-title-1">LEAVE SUMMARY</h4>
 
             <div class="form-row ml-2 mr-2 mt-3 " style="width: 100%;">

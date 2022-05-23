@@ -21,14 +21,16 @@
 
 <body>
 
-    <!-- closing divs of the main content body -->
-    </div>
+    	</div>
+					</div>
+					<!--END PAGE HEADER -->
+				</div>
+			</div>
+		</div>
+	</div>
 
-    </main>
 
-    </div>
-    </div>
-
+	
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 

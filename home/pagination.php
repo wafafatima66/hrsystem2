@@ -77,10 +77,10 @@ if (mysqli_num_rows($result) > 0) {
 
 		$output .= "<tr class='clickable-row' data-href='../emp_mang/emp_profile.php?id={$mydata["id"]}' >
                         <td>{$mydata['emp_id']}</td>
-                        <td>
-                              <img src='../emp_img/{$emp_image}' alt='' style='width: 50px; height:50px; border-radius: 100%; margin-right: 12px;'>
-                              <span> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
-                        </td>
+                        <td class = 'text-center' >
+							<img src='../emp_img/{$emp_image}' alt='' style='width: 50px; height:50px; border-radius: 100%; margin-right: 12px;'>
+							<span style='display:block; margin-top:20px; '> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
+						</td>
                         <td> {$mydata['emp_gender']} </td>
 						<td>{$mydata['appt_stat']}</td>
 						<td>{$mydata['position']}</td>

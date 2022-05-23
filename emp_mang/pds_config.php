@@ -761,6 +761,7 @@ if (isset($_POST['submit'])) {
             $conn->query($sql10);
         }
     }
+
     // govt id 
 
     $query = "SELECT * FROM emp_govt_id WHERE emp_id = '$emp_id'";
@@ -772,18 +773,38 @@ if (isset($_POST['submit'])) {
         $conn->query($sql);
     }
 
-    if (!empty($_POST['emp_gov_issued_id'])) {
-        for ($i = 0; $i < count($_POST['emp_gov_issued_id']); $i++) {
-
-            $emp_gov_issued_id = $_POST['emp_gov_issued_id'][$i];
-            $emp_gov_issued_id_type = $_POST['emp_gov_issued_id_type'][$i];
+    if (!empty($_POST['emp_gov_issued_id_govt'])) {
+            $emp_gov_issued_id = $_POST['emp_gov_issued_id_govt'];
+            $emp_gov_issued_id_type = 'govt';
 
             $sql11 = "INSERT INTO emp_govt_id (emp_id,emp_gov_issued_id, emp_gov_issued_id_type)
         VALUES ('$emp_id', '$emp_gov_issued_id', '$emp_gov_issued_id_type')";
 
             $conn->query($sql11);
-        }
+        
     }
+
+    if (!empty($_POST['emp_gov_issued_id_licence'])) {
+        $emp_gov_issued_id = $_POST['emp_gov_issued_id_licence'];
+        $emp_gov_issued_id_type = 'licence';
+
+        $sql12 = "INSERT INTO emp_govt_id (emp_id,emp_gov_issued_id, emp_gov_issued_id_type)
+    VALUES ('$emp_id', '$emp_gov_issued_id', '$emp_gov_issued_id_type')";
+
+        $conn->query($sql12);
+    
+        }
+
+        if (!empty($_POST['emp_gov_issued_id_insurance'])) {
+            $emp_gov_issued_id = $_POST['emp_gov_issued_id_insurance'];
+            $emp_gov_issued_id_type = 'insurance';
+
+            $sql13 = "INSERT INTO emp_govt_id (emp_id,emp_gov_issued_id, emp_gov_issued_id_type)
+        VALUES ('$emp_id', '$emp_gov_issued_id', '$emp_gov_issued_id_type')";
+
+            $conn->query($sql13);
+
+        }
 
     if (mysqli_query($conn, $sql1)) {
 

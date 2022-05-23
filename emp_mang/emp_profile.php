@@ -143,14 +143,13 @@ if (isset($_GET['id'])) {
             <?php include "pds.php"; ?>
       </div>
 
-
-
                   </div>
 
                   <?php include "inactiveModal.php" ?>
 
-
-
+                  
+    <script src="../assets/js/ajax-1-14.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>          -->
 
                   <script>
                         $(document).ready(function() {

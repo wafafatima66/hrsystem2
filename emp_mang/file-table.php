@@ -27,14 +27,14 @@ if(isset($_POST['folder']) && isset($_POST['emp_id']) ){
 
 	if (mysqli_num_rows($result) > 0) {
 
-	$output.="<table width='60%' class='table table-sm table-striped mt-2 '>
+	$output.="<table width='60%' class='table table-sm table-bordered mt-2 '>
     <thead>
           <tr>
                 <th scope='col'>File Name</th>
                 <th scope='col'>File Date</th>
                 <th scope='col'>File Type</th>
                 <th scope='col'>File Size(KB)</th>
-                <th scope='col'>View</th>
+                <th scope='col' style='width: 100px' >Action</th>
           </tr>
     </thead>
     <tbody>";
@@ -46,8 +46,8 @@ if(isset($_POST['folder']) && isset($_POST['emp_id']) ){
                         <td> {$mydata['file_date']} </td>
                         <td>{$mydata['file_type']}</td>
                         <td>{$mydata['file_size']}</td>
-                        <td><a href='../files/{$mydata['file_name']}' target='_blank'>view file</a></td>
-						<td><a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='file_del={$mydata['id']}'><i class='fa fa-trash mx-2'></i></a> <td>
+                        <td><a href='../files/{$mydata['file_name']}' target='_blank'><i class='fa fa-eye' ></i></a>
+						<a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='file_del={$mydata['id']}'><i class='fa fa-trash mx-2'></i></a> </td>
                   </tr>";
 	} 
 	$output.="</tbody>

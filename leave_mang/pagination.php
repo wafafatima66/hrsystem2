@@ -69,7 +69,7 @@ $output .= "<table class='table home-page-table mt-3 table-striped ' >
 				<th scope='col'>Date of Leave</th>
 				<th scope='col'>Details of leave</th>
 				<th scope='col' style='width:170px'>Status</th>
-				<th scope='col' style='width:100px'>Action</th>
+				<th scope='col' style='width:130px'>Action</th>
 				
 		  </tr>
 	</thead>
@@ -103,7 +103,7 @@ if (mysqli_num_rows($result) > 0) {
         $leave_to_date = (date('m/d/Y', strtotime($leave_to_date_array[$lenght])));
 
 		$output .= "<tr>
-                        <td>{$mydata['emp_id']}</td>
+                        <td id = 'emp_id_for_leave_application' >{$mydata['emp_id']}</td>
                         <td class = 'text-center' >
 							  <img src='../emp_img/{$emp_image}' alt='' style='width: 50px; height:50px; border-radius: 100%; margin-right: 12px;'>
                               <span style='display:block; margin-top:20px; '> {$mydata['emp_first_name']}  {$mydata['emp_middle_name']} {$mydata['emp_last_name']} {$mydata['emp_ext']} </span>
@@ -553,9 +553,15 @@ if (mysqli_num_rows($result) > 0) {
 						</td>
 						<td> 
 							<a href='edit_leave.php?leave_id={$mydata['id']} '><i class='fa fa-edit mx-2'></i></a>
-							<a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='leave_id={$mydata['id']}'><i class='fa fa-trash mx-2'></i></a>
-						</td>
-                  </tr>";
+							<a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='leave_id={$mydata['id']}'><i class='fa fa-trash mx-2'></i></a>";
+
+							if ($_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'HR Administrator' || $_SESSION['user_role'] == 'Employee' ) {
+								
+
+						$output .="<a href='../includes/export_excel.php?leave_application_report={$mydata['id']}'><i class='fa fa-print mx-2' style='color:#505a43;' ; ></i></a></td>";
+							}
+
+							$output .="</tr>";
 	}
 
 
@@ -666,4 +672,13 @@ if (mysqli_num_rows($result) > 0) {
 			},
 		});
 	}
+
+// 	$('#leave_application_report').on('click', function () {
+//     var emp_id = $('.emp_id_for_leave_application').html();
+//     var url = '../includes/export_excel.php?leave_application_report=';
+//     var newHref = url.concat(emp_id);
+//     console.log(newHref);
+//     $('#leave_application_report').attr('href', newHref);
+//   });
+
 </script>
