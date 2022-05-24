@@ -12,6 +12,9 @@ if (isset($_POST['post_submit'])) {
   $venue = $_POST['venue'];
   $address = $_POST['address'];
   $training_details = $_POST['training_details'];
+  $role_posted = $_POST['role_posted'];
+  $role_posted_dept = $_POST['role_posted_dept'];
+  $role_posted_office = $_POST['role_posted_office'];
 
   // arrays
 
@@ -47,9 +50,9 @@ if (isset($_POST['post_submit'])) {
     $filename = "";
   }
 
-  $sql1 = "INSERT INTO training_post_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs,venue,sponsors,training_details,file_name, address)
+  $sql1 = "INSERT INTO training_post_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs,venue,sponsors,training_details,file_name, address , role_posted , role_posted_dept , role_posted_office)
 
-  VALUES ('$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$sponsors','$training_details','$filename' , '$address')";
+  VALUES ('$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$sponsors','$training_details','$filename' , '$address' , '$role_posted' , '$role_posted_dept' , '$role_posted_office')";
 
   if (mysqli_query($conn, $sql1)) {
     echo  '<script>toastr.success("Post Training added successfully")</script>';
@@ -79,6 +82,10 @@ if (isset($_POST['post_submit'])) {
 
 
             <div class="form-row">
+
+            <input type="hidden" value="<?php echo $_SESSION['user_role']?>" name="role_posted">
+            <input type="hidden" value="<?php echo $_SESSION['department']?>" name="role_posted_dept">
+            <input type="hidden" value="<?php echo $_SESSION['office']?>" name="role_posted_office">
 
               <div class="col-lg-6 col-sm-6">
                 <label>Title of training</label>

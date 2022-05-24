@@ -8418,9 +8418,12 @@ ALTER TABLE `hrsystem2`.`emp_leave_time` ADD UNIQUE (`emp_id`, `type`, `mon`, `y
 
 ALTER TABLE `emp_leave_time` ADD `value` INT NULL AFTER `year`;
 
--- new 
+
 ALTER TABLE `item` ADD `date_modified` DATE NULL AFTER `date_accomplished`;
 ALTER TABLE `employee` CHANGE `emp_contact_gs` `emp_contact_gs` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_pag` `emp_contact_pag` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_ph` `emp_contact_ph` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_ss` `emp_contact_ss` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_tin` `emp_contact_tin` VARCHAR(100) NULL DEFAULT NULL;
 
---21 may
+
 ALTER TABLE `training_post_table` ADD `address` VARCHAR(255) NULL AFTER `file_name`;
+ALTER TABLE `training_post_table` ADD `role_posted` VARCHAR(255) NULL AFTER `training_details`;
+ALTER TABLE `training_post_table` ADD `role_posted_dept` VARCHAR(255) NULL AFTER `role_posted`;
+ALTER TABLE `training_post_table` ADD `role_posted_office` VARCHAR(255) NULL AFTER `role_posted_dept`;

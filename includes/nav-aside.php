@@ -164,12 +164,26 @@
             </a>
         </li>
 
-        <li class="slide">
+        <!-- <li class="slide">
             <a class="side-menu__item <?php active('learning'); ?>" href="../learning/">
                 <span class="side-menu__icon "><i class="fa fa-chalkboard-teacher"></i></span>
                 <span class="side-menu__label">Learning &
               Development</span>
             </a>
+        </li> -->
+
+        <li class="slide ">
+            <a class="side-menu__item <?php learning_active(); ?>" data-toggle="slide" href="#learning_menus">
+                <span class="side-menu__icon "><i class="fas fa-calendar-check"></i></span>
+                <span class="side-menu__label">Learning & Development</span><i class="angle fa fa-angle-right"></i>
+            </a>
+            <ul class="slide-menu">
+                <li><a href="../learning" class="slide-item <?php list_active('learning'); ?>">Trainings & Seminars</a></li>
+
+                <!-- <li><a href="../learning_summary" class="slide-item <?php list_active('learning_summary'); ?>">Summary of Trainings</a></li> -->
+
+                <li><a href="../learning_post" class="slide-item <?php list_active('learning_post'); ?>">Posted Trainings</a></li>
+            </ul>
         </li>
 
         <li class="slide">

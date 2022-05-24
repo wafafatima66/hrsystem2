@@ -1,6 +1,11 @@
 <?php include '../config.php';
 
-include SITE_ROOT . '/includes/header.php'; ?>
+include SITE_ROOT . '/includes/header.php'; 
+
+
+
+?>
+
 
 <?php
 if (isset($_GET['delete'])) {

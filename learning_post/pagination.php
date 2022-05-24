@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require '../includes/conn.php';
 
 if (isset($_POST['limit'])) {
@@ -55,6 +55,33 @@ if (mysqli_num_rows($result) > 0) {
 	$i= 1 ;
 	while ($mydata = mysqli_fetch_assoc($result)) {
 
+		if( 
+			
+			($mydata['role_posted'] == 'Super Administrator' && ($_SESSION['user_role'] == 'Division Head' || $_SESSION['user_role'] == 'Employee' || $_SESSION['user_role'] == 'Supervisor'))
+		
+			|| 
+			
+			($mydata['role_posted'] == 'HR Administrator' && ($_SESSION['user_role'] == 'Division Head' 
+			|| $_SESSION['user_role'] == 'Employee' || $_SESSION['user_role'] == 'Supervisor'))
+
+			||
+
+			($mydata['role_posted'] == 'Division Head' &&  $_SESSION['user_role'] == 'Employee' && $mydata['role_posted_dept'] == $_SESSION['department'])
+			
+			||
+
+			($mydata['role_posted'] == 'Supervisor' &&  $_SESSION['user_role'] == 'Employee' && $mydata['role_posted_office'] == $_SESSION['office'])
+
+			||
+
+			$_SESSION['user_role'] == 'Super Administrator'
+
+
+			
+		)
+		
+		{
+
 	
 		$leave_from = date("m/d/Y", strtotime($mydata['from_date']));
 		$leave_to = date("m/d/Y", strtotime($mydata['to_date']));
@@ -73,6 +100,9 @@ if (mysqli_num_rows($result) > 0) {
 		</td>
   </tr>";
   $i++;
+
+		}
+	
 }
 
 
