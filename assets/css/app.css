@@ -21978,6 +21978,7 @@ body.fixed-header .header {
   /* height: 8rem !important; */
   height: 140px !important;
   border-radius: 100%;
+  width: 140px;
 }
 
 .csp-brand-img {

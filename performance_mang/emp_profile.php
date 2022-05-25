@@ -117,12 +117,15 @@ if (isset($_GET['id'])) {
                                 <div class="col-lg-4 col-sm-6 col-12 mt-2 ">
                                     <div class="performance-col">
                                 <?php 
-                                if($_SESSION['user_role']=='Super Administrator' || $_SESSION['user_role']=='HR Administrator'  ){ ?>
+                                // if($_SESSION['user_role']=='Super Administrator' || $_SESSION['user_role']=='HR Administrator'  ){ 
+                                    ?>
                                         <div class="d-flex justify-content-end">
                                             <a href='edit_performance_file.php?performance_file_id=<?php echo $mydata["id"] ?>&id=<?php echo $id ?>'><i class='fa fa-edit '></i></a>
                                             <a href='' class='delete_modal ml-2' data-toggle='modal' data-target='#delete_modal' data-id='performance_file_id=<?php echo $mydata["id"] ?>&id=<?php echo $id ?>'><i class='fa fa-trash '></i></a>
                                         </div>
-                                        <?php } ?>
+                                        <?php 
+                                    // } 
+                                    ?>
                                         <div class="row">
                                             <div class="col-lg-6 col-sm-6 col-6" style="border-right: solid #6DC7CD 1px;"><a href="<?php echo $excel_file_name; ?>">
                                                     <img src="../img/excel.png" alt="" style="width:100%; height:50%"></a>

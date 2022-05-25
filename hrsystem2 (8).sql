@@ -8427,3 +8427,7 @@ ALTER TABLE `training_post_table` ADD `address` VARCHAR(255) NULL AFTER `file_na
 ALTER TABLE `training_post_table` ADD `role_posted` VARCHAR(255) NULL AFTER `training_details`;
 ALTER TABLE `training_post_table` ADD `role_posted_dept` VARCHAR(255) NULL AFTER `role_posted`;
 ALTER TABLE `training_post_table` ADD `role_posted_office` VARCHAR(255) NULL AFTER `role_posted_dept`;
+
+-- new
+ALTER TABLE `training_post_table` ADD `role_posted_name` VARCHAR(255) NULL AFTER `role_posted_office`;
+ALTER TABLE `training_table` ADD `role_posted` VARCHAR(255) NULL AFTER `training_details`, ADD `role_posted_name` VARCHAR(255) NULL AFTER `role_posted`;

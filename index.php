@@ -71,7 +71,7 @@
 
                             <input type="text" placeholder="Enter Username" name="username" id="username" class="form-control ">
 
-                            <input type="text" placeholder="Enter Password" name="password" id="password" class="form-control">
+                            <input type="password" placeholder="Enter Password" name="password" id="password" class="form-control">
 
                             <label class="w-100" for="">Forget Password?</label>
 

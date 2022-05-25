@@ -39,15 +39,18 @@ if (!isset($_SESSION['login_user'])) {
 
   if ($row['role'] == 'Super Administrator') {
     $admin_photo_to_show = '../img/' . $row['admin_photo'];
+    $emp_name = 'Super Administrator';
   } else {
-    $sql1 = mysqli_query($conn, "select emp_image from employee where emp_id = '$emp_id' ");
+    $sql1 = mysqli_query($conn, "select emp_image , emp_first_name , emp_last_name , emp_middle_name from employee where emp_id = '$emp_id' ");
     $row1 = mysqli_fetch_array($sql1, MYSQLI_ASSOC);
     $admin_photo_to_show = '../emp_img/' . $row1['emp_image'];
+    $emp_name = $row1['emp_first_name'] . $row1['emp_middle_name'] . $row1['emp_last_name'];
   }
 
   $_SESSION['user_role'] = $row['role'];
   $_SESSION['user_name'] = $row['username'];
   $_SESSION['emp_id'] = $row['emp_id'];
+  $_SESSION['emp_name'] = $emp_name;
   // $_SESSION['department'] = $row['department'];
   // $_SESSION['office'] = $row['office'];
 

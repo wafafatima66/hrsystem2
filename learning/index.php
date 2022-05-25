@@ -186,7 +186,7 @@ if (isset($_GET['delete'])) {
 
       // Pagination code
       $(document).on("click", ".page-item", function() {
-            console.log('kooo')
+            // console.log('kooo')
             var from_date = $('#from_date').val();
             var to_date = $('#to_date').val();
             var pageId = $(this).attr("id");

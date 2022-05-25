@@ -41,6 +41,7 @@ $output .= "<table class='table home-page-table mt-3 table-striped ' >
 		  <tr>
 		  		<th >ID</th>
 				<th >Title Of Trainings</th>
+				<th >Posted By</th>
 				<th >Duration</th>
 				<th >Venue</th>
 				<th >No Of Hrs</th>
@@ -76,7 +77,9 @@ if (mysqli_num_rows($result) > 0) {
 
 			$_SESSION['user_role'] == 'Super Administrator'
 
+			||
 
+			$_SESSION['user_role'] == $mydata['role_posted']
 			
 		)
 		
@@ -89,16 +92,21 @@ if (mysqli_num_rows($result) > 0) {
 		$output .= "<tr>
 		<td>{$i}</td>
 		<td> {$mydata['title_of_training']} </td>
+		<td> {$mydata['role_posted_name']} </td>
 		<td>{$leave_from}-{$leave_to}</td>
 		<td>{$mydata['venue']}</td>
 		<td>{$mydata['no_of_hrs']}</td>
-		<td>{$mydata['sponsors']}</td>
-		
-		<td> 
+		<td>{$mydata['sponsors']}</td>";
+
+		if($mydata['role_posted'] ==  $_SESSION['user_role']  ){
+		$output .= "<td> 
 			<a href='edit_learning_post.php?learning_id={$mydata['id']} '><i class='fa fa-edit mx-2'></i></a>
 			<a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='learning_post_id={$mydata['id']}'><i class='fa fa-trash mx-2'></i></a>
-		</td>
-  </tr>";
+		</td>";
+
+	}
+	$output .= "</tr>";
+	
   $i++;
 
 		}

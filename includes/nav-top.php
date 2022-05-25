@@ -3,6 +3,7 @@
     <div class="container-fluid"> 
         <div class="d-flex">
             <a class="header-brand" href="">
+               
                 <img src="../assets/img/brand/logo.png" class="header-brand-img desktop-lgo" alt="Polly logo">
                 <img src="../assets/img/brand/favicon.png" class="header-brand-img mobile-logo" alt="Polly logo">
             </a>

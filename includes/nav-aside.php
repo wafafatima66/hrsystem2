@@ -2,7 +2,7 @@
 <aside class="app-sidebar"> 
     <div class="app-sidebar__logo">
         <a class="header-brand" href="../home/">
-            <img src="../assets/img/brand/logo.png" class="header-brand-img desktop-lgo " alt="Admintro logo">
+            <img src="<?php echo $admin_photo_to_show ?>" class="header-brand-img desktop-lgo " alt="Admintro logo">
                 <h6 class="main-layout-logo-h6"><?php echo $row['username'] ?></h6>
             <p class="main-layout-logo-p"><?php echo $row['role'] ?></p>
             <img src="../assets/img/brand/favicon.png" class="header-brand-img mobile-logo" alt="Admintro logo">
@@ -180,7 +180,7 @@
             <ul class="slide-menu">
                 <li><a href="../learning" class="slide-item <?php list_active('learning'); ?>">Trainings & Seminars</a></li>
 
-                <!-- <li><a href="../learning_summary" class="slide-item <?php list_active('learning_summary'); ?>">Summary of Trainings</a></li> -->
+                <li><a href="../learning_summary" class="slide-item <?php list_active('learning_summary'); ?>">Summary of Trainings</a></li>
 
                 <li><a href="../learning_post" class="slide-item <?php list_active('learning_post'); ?>">Posted Trainings</a></li>
             </ul>

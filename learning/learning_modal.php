@@ -14,6 +14,9 @@ if (isset($_POST['submit'])) {
   
   $training_details = $_POST['training_details'];
 
+  $role_posted = $_POST['role_posted'];
+  $role_posted_name = $_POST['role_posted_name'];
+
   // arrays
   $emp_id = $_POST['emp_id'];
   $speaker_full_name = $_POST['speaker_full_name'];
@@ -57,9 +60,9 @@ if (isset($_POST['submit'])) {
     }
   }
 
-  $sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,agency,speakers,sponsors,employees,training_details)
+  $sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,speakers,sponsors,employees,training_details,role_posted , role_posted_name)
 
-    VALUES ('$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province','$agency' ,'$speakers','$sponsors','$employees','$training_details')";
+    VALUES ('$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province' ,'$speakers','$sponsors','$employees','$training_details','$role_posted' , '$role_posted_name')";
 
   
 
@@ -102,6 +105,8 @@ if (isset($_POST['submit'])) {
 
 
       <form method="post" action="">
+      <input type="hidden" value="<?php echo $_SESSION['user_role']?>" name="role_posted">
+            <input type="hidden" value="<?php echo $_SESSION['emp_name']?>" name="role_posted_name">
 
         <h3 class=" background-title-1 p-3 mb-3">ADD TRAINING</h3>
 

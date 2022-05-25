@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require '../includes/conn.php';
 
 if (isset($_POST['limit'])) {
@@ -49,13 +49,16 @@ $output .= "<table class='table home-page-table mt-3 table-striped ' >
 		  <tr>
 				<th >ID</th>
 				<th >Title Of Training</th>
+				<th >Posted By</th>
 				<th >Duration</th>
 				<th >Venue</th>
 				<th >No of Hours</th>
-				<th >Sponser/s</th>
-				
-				<th >Action</th>
-		  </tr>
+				<th >Sponser/s</th>";
+
+				$output.="<th style='width:100px'>Action</th>";
+
+
+				$output.="</tr>
 	</thead>
 	<tbody>";
 
@@ -80,19 +83,25 @@ if (mysqli_num_rows($result) > 0) {
 		$output .= "<tr>
 						<td>{$i}</td>
                         <td> {$mydata['title_of_training']} </td>
+                        <td> {$mydata['role_posted_name']} </td>
 						<td>{$leave_from}-{$leave_to}</td>
 						<td>{$mydata['venue']}</td>
                         <td>{$mydata['no_of_hrs']}</td>
-                        <td>{$mydata['sponsors']}</td>
+                        <td>{$mydata['sponsors']}</td>";
                         
-						<td> 
+						if($mydata['role_posted'] ==  $_SESSION['user_role']  ){
+
+						$output .= "<td> 
 							<a href='edit_learning.php?learning_id={$mydata['id']} '><i class='fa fa-edit mx-2'></i></a>
 							<a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='learning_id={$mydata['id']}'><i class='fa fa-trash mx-2'></i></a>
-						</td>
-                  </tr>";
-				  $i++;
-	}
+						</td>";
 
+						}
+						$output .= "</tr>";
+				  
+	
+	$i++;
+}
 
 	$output .= "</tbody>
 	</table>";
