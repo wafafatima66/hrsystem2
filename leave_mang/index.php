@@ -199,10 +199,11 @@ if (isset($_POST['edit_leave_approve'])) {
                 <div class="text-right"><button class="ml-3 btn button-1" name="submit" type="submit">Submit</button>
                 </div>
 
+                
             </form>
         </div>
 
-
+        <a href="index.php" class="btn button-1 mr-3 mt-2 " style="height:35px"><i class="fas fa-sync-alt"></i></a>
     </div>
     <?php
     //  } 

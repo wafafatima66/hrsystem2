@@ -87,17 +87,17 @@ if (mysqli_num_rows($result) > 0) {
 						<td>{$leave_from}-{$leave_to}</td>
 						<td>{$mydata['venue']}</td>
                         <td>{$mydata['no_of_hrs']}</td>
-                        <td>{$mydata['sponsors']}</td>";
+                        <td>{$mydata['sponsors']}</td><td>";
                         
 						if($mydata['role_posted'] ==  $_SESSION['user_role']  ){
 
-						$output .= "<td> 
+						$output .= " 
 							<a href='edit_learning.php?learning_id={$mydata['id']} '><i class='fa fa-edit mx-2'></i></a>
 							<a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='learning_id={$mydata['id']}'><i class='fa fa-trash mx-2'></i></a>
-						</td>";
+						";
 
 						}
-						$output .= "</tr>";
+						$output .= "</td></tr>";
 				  
 	
 	$i++;

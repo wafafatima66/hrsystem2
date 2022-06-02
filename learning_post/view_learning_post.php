@@ -7,71 +7,6 @@ include SITE_ROOT . '/includes/header.php';
 <?php
 require '../includes/conn.php';
 
-if (isset($_POST['post_submit'])) {
-
-    $learning_id = $_POST['learning_id'];
-
-    // $training_id=$_POST['training_id'];
-    $title_of_training = $_POST['title_of_training'];
-    $from_date = $_POST['from_date'];
-    $to_date = $_POST['to_date'];
-    $type_of_training = $_POST['type_of_training'];
-    $no_of_hrs = $_POST['no_of_hrs'];
-    $venue = $_POST['venue'];
-    $address = $_POST['address'];
-    $training_details = $_POST['training_details'];
-
-    // arrays
-
-
-    $sponsor = $_POST['sponsor'];
-
-
-    $sponsors = '';
-    if (!empty($_POST['sponsor'])) {
-        for ($i = 0; $i < count($_POST['sponsor']); $i++) {
-            $sponsors .= $_POST['sponsor'][$i] . ',';
-        }
-    }
-
-    // file 
-
-    if (!empty($_FILES["file"]["name"])) {
-        $allowed = array('pdf');
-        $filename = $_FILES['file']['name'];
-        $ext = pathinfo($filename, PATHINFO_EXTENSION);
-        if (!in_array($ext, $allowed)) {
-            echo  '<script>toastr.error("File must be PDF ! ")</script>';
-        } else {
-            $filename = time() . "-" . $_FILES["file"]["name"];
-            $tempname = $_FILES["file"]["tmp_name"];
-            $folder = "../files/" . $filename;
-            $file_size = $_FILES['file']['size'];
-            $file_type = $_FILES['file']['type'];
-            $file_date = date("Y-m-d");
-            move_uploaded_file($tempname, $folder);
-        }
-    } else {
-        // $filename = "";
-        $filename_sql = mysqli_query($conn, "SELECT file_name FROM training_post_table WHERE id = '$learning_id' ");
-        $filename_row = mysqli_fetch_array($filename_sql, MYSQLI_ASSOC);
-        $filename = $filename_row['file_name'];
-    }
-
-    $del = "DELETE FROM training_post_table WHERE id = '$learning_id'";
-    mysqli_query($conn, $del);
-
-    $sql1 = "INSERT INTO training_post_table (id , title_of_training,from_date ,to_date, type_of_training, no_of_hrs,venue,sponsors,training_details,file_name, address)
-
-  VALUES ('$learning_id' , '$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$sponsors','$training_details','$filename' , '$address')";
-
-    if (mysqli_query($conn, $sql1)) {
-        echo  '<script>toastr.success("Post Training updated successfully")</script>';
-    } else {
-        echo  '<script>toastr.error("Post Training not updated. Try again !")</script>';
-    }
-}
-
 ?>
 
 
@@ -93,7 +28,7 @@ if (isset($_GET['learning_id'])) {
             }
 
 ?>
-            <form method="post" action="" enctype="multipart/form-data">
+            <!-- <form method="post" action="" enctype="multipart/form-data"> -->
 
                 <input type="hidden" value="<?php echo $mydata['id'] ?>" name="learning_id">
 
@@ -109,7 +44,7 @@ if (isset($_GET['learning_id'])) {
 
                             <div class="col-lg-6 col-sm-6">
                                 <label>Title of training</label>
-                                <input type="text" class="form-control text-input" name="title_of_training" value="<?php echo $mydata['title_of_training'] ?> ">
+                                <input type="text" class="form-control text-input" name="title_of_training" value="<?php echo $mydata['title_of_training'] ?> " >
                             </div>
 
 
@@ -192,7 +127,7 @@ if (isset($_GET['learning_id'])) {
 
                         <div class="form-row mt-1">
                             <div class="col-lg-3 col-sm-6 ">
-                                <a class=" btn button-1 add_sponsor">Add</a>
+                                <!-- <a class=" btn button-1 add_sponsor">Add</a> -->
                             </div>
                         </div>
 
@@ -207,9 +142,9 @@ if (isset($_GET['learning_id'])) {
                             <div class="col-lg-6 col-sm-6">
                                 <label>
                                     <div class="inner-upload-field p-2">
-                                        <h6 class="text-center">UPLOAD / <a href="<?php echo $file ?>" target='_blank' style="color:black">VIEW FILE</a></h6>
+                                         <a href="<?php echo $file ?>" target='_blank' style="color:black">VIEW FILE</a>
                                     </div>
-                                    <input type="file" name="file" accept=".pdf" style="display: none;">
+                                    <!-- <input type="file" name="file" accept=".pdf" style="display: none;"> -->
                                 </label>
                             </div>
                         </div>
@@ -218,11 +153,11 @@ if (isset($_GET['learning_id'])) {
 
 
                     <div class="modal-footer">
-                        <button type="submit" name="post_submit" class="btn button-1 ">Update</button>
-                        <a href="../learning_post" class="btn button-1 mr-2">Back</a>
+                        <!-- <button type="submit" name="post_submit" class="btn button-1 ">Update</button> -->
+                        <a href="../learning_post/" class="btn button-1 mr-2">Back</a>
                     </div>
 
-            </form>
+            <!-- </form> -->
 
 <?php }
     }
