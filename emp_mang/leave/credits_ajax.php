@@ -318,10 +318,15 @@ for ($i = 0; $i < 12; $i++) {
             //for fetching the information into leave form 
 
             $mon = $i + 1; 
-            $sql_3 = "INSERT INTO leave_credits_result (vl_pts_$mon, sl_pts_$mon, year , emp_id) VALUES('$vl_pts', '$sl_pts' , '$year','$emp_id') 
+
+
+
+            $sql_3 = "INSERT INTO leave_credits_result (vl_pts_$mon, sl_pts_$mon, year , emp_id) VALUES('$vl_balance', '$sl_balance' , '$year','$emp_id') 
+
             ON DUPLICATE KEY UPDATE    
-            vl_pts_$mon='$vl_pts' , 
-            sl_pts_$mon='$sl_pts' ";
+            vl_pts_$mon='$vl_balance' , 
+            sl_pts_$mon='$sl_balance' ";
+
             mysqli_query($conn, $sql_3);
 
             

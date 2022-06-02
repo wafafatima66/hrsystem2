@@ -813,7 +813,7 @@ if (isset($_POST['submit'])) {
         $row = mysqli_fetch_array($sql, MYSQLI_ASSOC);
         $id = $row['id'];
 
-        header("Location:../emp_mang/emp_profile.php?id=" . $id . "&success");
+        header("Location:../emp_mang/emp_profile.php?id=" . $id . "&success#emp_pds");
     } else {
         echo  '<script>toastr.error("Employee not updated. Try again !")</script>';
     }

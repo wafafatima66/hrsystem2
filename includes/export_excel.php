@@ -46,5 +46,9 @@ if (isset($_GET["leave_application_report"])) {
     include "../export_excel_parts/leave_application_report.php";
 }
 
+if (isset($_GET["leave_credits"])) {
+
+    include "../export_excel_parts/leave_credits.php";
+}
 
 

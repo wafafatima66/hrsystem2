@@ -46,7 +46,7 @@
                 $sql = "SELECT id FROM employee WHERE emp_id = '$emp_id'";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                header("location:emp_mang/emp_profile.php?id=" . $row["id"]);
+                header("location:emp_mang/emp_profile.php?id=" . $row["id"]."#emp_agency");
             } else {
                 header("location:home/index.php");
             }

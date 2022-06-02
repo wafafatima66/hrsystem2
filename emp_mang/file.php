@@ -126,7 +126,7 @@ $sql = "SELECT * FROM emp_folder WHERE emp_id = '$emp_id'  ";
           <option value="PDS"> PDS</option>
           <option value="IPCR">IPCR</option>
           <option value="SALN">SALN</option>
-          <option value="SALN">CERTIFICATES</option>
+          <option value="CERTIFICATES">CERTIFICATES</option>
           <!-- <option value="others">OTHERS</option> -->
           <?php 
 
@@ -160,11 +160,11 @@ $sql = "SELECT * FROM emp_folder WHERE emp_id = '$emp_id'  ";
 
 
 
-<div class="col-lg-12 text-right mt-4 ">
+<!-- <div class="col-lg-12 text-right mt-4 ">
 
   <button class="btn button-1 " type="submit" name="submit"><i class="fa fa-print"></i></button>
 
-</div>
+</div> -->
 
 <!-- create folder modal -->
 <?php 

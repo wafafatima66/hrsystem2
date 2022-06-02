@@ -529,6 +529,12 @@ input[type="radio"] {
     color: #FFDF88;
     font-size: 1rem;
 }
+.emp-profile-box-1 a{
+    padding: 5px;
+    color: #FFDF88;
+    font-size: 1rem;
+    text-decoration: none;
+}
 .emp-profile-box-2{
     border: solid 2px #505A43;
     padding: 20px;

@@ -75,7 +75,7 @@ if (mysqli_num_rows($result) > 0) {
 			$emp_image = $mydata['emp_image'];
 		}
 
-		$output .= "<tr class='clickable-row' data-href='../emp_mang/emp_profile.php?id={$mydata["id"]}' >
+		$output .= "<tr class='clickable-row' data-href='../emp_mang/emp_profile.php?id={$mydata["id"]}#emp_agency' >
                         <td>{$mydata['emp_id']}</td>
                         <td class = 'text-center' >
 							<img src='../emp_img/{$emp_image}' alt='' style='width: 50px; height:50px; border-radius: 100%; margin-right: 12px;'>

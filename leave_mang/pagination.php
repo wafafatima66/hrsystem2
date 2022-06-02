@@ -115,30 +115,32 @@ if (mysqli_num_rows($result) > 0) {
 					
 						<div class=''>";
 
-						if($_SESSION['user_role']=='Super Administrator')
-								{
+						// if($_SESSION['user_role']=='Super Administrator')
+						// 		{
 
-									$output .="<div class=''>";
-									if (($mydata['final_status'])  == '1') {
-												$output .= "Approved";
-											} else if (($mydata['final_status'])  == '0') {
-												$output .= "Disapprove";
-											}else if (($mydata['final_status'])  == '2'){
-												$output .= "Pending";
-											}else {
-												$output .= "Pending";
-											}
-											$output .="</div>";
-								}
+						// 			$output .="<div class=''>";
+						// 			if (($mydata['final_status'])  == '1') {
+						// 						$output .= "Approved";
+						// 					} else if (($mydata['final_status'])  == '0') {
+						// 						$output .= "Disapprove";
+						// 					}else if (($mydata['final_status'])  == '2'){
+						// 						$output .= "Pending";
+						// 					}else {
+						// 						$output .= "Pending";
+						// 					}
+						// 					$output .="</div>";
+						// 		}
 
-								else if($_SESSION['user_role']=='Agency Head' )
+						// 		else 
+								
+								if($_SESSION['user_role']=='Agency Head')
 								{
 
 									if($mydata['role'] == 'Division Head')
 									{
 										$output .="<div class='final_status-{$mydata['id']}'>
 
-										<label>Agency Head</label>
+										<label class='mt-2'>Agency Head</label>
 
 											<select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'
 											<option >Select</option>
@@ -179,7 +181,7 @@ if (mysqli_num_rows($result) > 0) {
 									{
 										$output .="<div class='final_status-{$mydata['id']}'>
 
-										<label>Agency Head</label>
+										<label class='mt-2'>Agency Head</label>
 
 											<select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'
 											<option >Select</option>
@@ -216,9 +218,9 @@ if (mysqli_num_rows($result) > 0) {
 
 									$output .="<div class='status-{$mydata['id']}'>
 
-										<label>Division Head</label>
+										<label class='mt-2'>Division Head</label>
 
-											<select class='form-control text-input leave_status_dropdown' id='{$mydata['id']}' disabled >
+											<select class='form-control text-input leave_status_dropdown' id='{$mydata['id']}'  >
 											<option>Select</option>
 
 											<option value='1'";
@@ -271,13 +273,13 @@ if (mysqli_num_rows($result) > 0) {
 									}
 								} 
 
-								else if($_SESSION['user_role']=='Division Head' ){
+								else if($_SESSION['user_role']=='Division Head'  ){
 
 									if($mydata['role'] == 'Employee')
 									{
 										$output .="<div class='final_status-{$mydata['id']}'>
 
-										<label>Division Head</label>
+										<label class='mt-2'>Division Head</label>
 
 										<select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'
 
@@ -315,9 +317,9 @@ if (mysqli_num_rows($result) > 0) {
 
 									$output .="<div class='status-{$mydata['id']}'>
 
-										<label>Supervisor</label>
+										<label class='mt-2' >Supervisor</label>
 
-										<select  class='form-control text-input leave_status_dropdown' id='{$mydata['id']}' disabled >
+										<select  class='form-control text-input leave_status_dropdown' id='{$mydata['id']}'  >
 
 										<option>Select</option>
 
@@ -356,7 +358,7 @@ if (mysqli_num_rows($result) > 0) {
 									{
 										$output .="<div class='mr-2 status-{$mydata['id']}'>
 
-										<label>Division Head</label>
+										<label class='mt-2' >Division Head</label>
 
 										<select  class='form-control text-input leave_status_dropdown' id='{$mydata['id']}' >
 
@@ -394,7 +396,7 @@ if (mysqli_num_rows($result) > 0) {
 
 								$output .="<div class='mr-2 final_status-{$mydata['id']}'  >
 
-										<label>Agency Head</label>
+										<label class='mt-2' >Agency Head</label>
 
 										<select  class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}' disabled >
 
@@ -432,6 +434,7 @@ if (mysqli_num_rows($result) > 0) {
 									
 						
 								}
+								
 									else {
 										
 										$output .="<div class=''>";
@@ -451,13 +454,13 @@ if (mysqli_num_rows($result) > 0) {
 
 								}
 									
-								else if($_SESSION['user_role'] == 'Supervisor' ){
+								else if($_SESSION['user_role'] == 'Supervisor'  ){
 
 									if($mydata['role'] == 'Employee'){
 
 										$output .="<div class='mr-2 status-{$mydata['id']}'>
 
-										<label>Supervisor</label>
+										<label class='mt-2' >Supervisor</label>
 
 										<select  class='form-control text-input leave_status_dropdown' id='{$mydata['id']}' >
 										<option>Select</option>
@@ -494,7 +497,7 @@ if (mysqli_num_rows($result) > 0) {
 
 									$output .="<div class='mr-2 final_status-{$mydata['id']}'>
 
-										<label>Division Head</label>
+										<label class='mt-2' >Division Head</label>
 
 										<select  class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}' disabled >
 										<option>Select</option>
@@ -547,6 +550,52 @@ if (mysqli_num_rows($result) > 0) {
 											
 										}
 								}
+
+								else if ($_SESSION['user_role']=='Super Administrator'){
+									
+									// if($mydata['role'] == 'Agency Head'){
+
+										$output .="<div class='mr-2 final_status-{$mydata['id']}'  >
+
+										<label class='mt-2' >Super Administrator</label>
+
+										<select  class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'  >
+
+										<option>Select</option>
+
+										<option value='1'";
+											if (($mydata['final_status'])  == '1') {
+												$output .= 'selected';
+											} else {
+												$output .= '';
+											};
+											$output .= ">Approved
+										</option>
+
+										<option value='0' ";
+											if (($mydata['final_status'])  == '0') {
+												$output .= 'selected';
+											} else {
+												$output .= '';
+											};
+											$output .= ">Disapprove
+										</option>
+
+										<option value='2' ";
+											if (($mydata['final_status'])  == '2') {
+												$output .= 'selected';
+											} else {
+												$output .= '';
+											};
+											$output .= ">Pending
+										</option>
+
+									</select>
+								</div>";
+
+									// }
+								}
+								
 						$output .="</div>
 					</td>
 
@@ -554,7 +603,7 @@ if (mysqli_num_rows($result) > 0) {
 						<a  href='edit_leave.php?leave_id={$mydata['id']} '><i class='fa fa-edit mx-2'></i></a>
 						<a href='' class='delete_modal' data-toggle='modal' data-target='#delete_modal' data-id='leave_id={$mydata['id']}'><i class='fa fa-trash mx-2'></i></a>";
 
-						if ( $_SESSION['emp_id'] == $mydata['emp_id'] ) {
+						if ( $_SESSION['emp_id'] == $mydata['emp_id'] || $_SESSION['user_role']=='Super Administrator' ) {
 							
 
 						$output .="<a href='../includes/export_excel.php?leave_application_report={$mydata['id']}'><i class='fa fa-print mx-2' style='color:#505a43;' ; ></i></a>";

@@ -137,6 +137,7 @@
         } else if ($row['role'] == 'Employee' || $row['role'] == 'Division Head' || $row['role'] == 'Supervisor' || $row['role'] == 'HR Administrator' || $row['role'] == 'Agency Head') {
 
           $emp_id = $row['emp_id'];
+        //   $emp_id = $_SESSION['emp_name'];
           $sql = "SELECT id FROM employee WHERE emp_id = '$emp_id'";
           $result = mysqli_query($conn, $sql);
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -144,7 +145,7 @@
         ?>
 
         <li class="slide">
-            <a class="side-menu__item <?php active('emp_mang'); ?>" href="../emp_mang/emp_profile.php?id=<?php echo $id ?>">
+            <a class="side-menu__item <?php active('emp_mang'); ?>" href="../emp_mang/emp_profile.php?id=<?php echo $id?>#emp_agency">
                 <span class="side-menu__icon "><i class="fas fa-user"></i></span>
                 <span class="side-menu__label">Profile Management</span>
             </a>
@@ -204,7 +205,7 @@
         <?php } ?>
 
         <div class="text-center mt-3 ">
-          <img src="../loginassets/images/login.png" alt="" style="" class="nav-aside-footer-logo">
+          <img src="../loginassets/images/login.png" alt=""  class="nav-aside-footer-logo">
         </div>
         
         
