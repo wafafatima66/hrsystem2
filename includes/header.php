@@ -39,7 +39,7 @@ if (!isset($_SESSION['login_user'])) {
 
   if ($row['role'] == 'Super Administrator') {
 
-    if(empty($row1['emp_image'])){
+    if(empty($row1['emp_image']) || is_null($row1['emp_image'] ) ){
 
       $admin_photo_to_show = '../assets/img/brand/logo.png';
 

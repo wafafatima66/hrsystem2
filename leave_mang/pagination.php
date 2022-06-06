@@ -255,6 +255,83 @@ if (mysqli_num_rows($result) > 0) {
 
 									}
 									
+									else if($mydata['role'] == 'Employee')
+									{
+										$output .="<div class='final_status-{$mydata['id']}'>
+
+										<label class='mt-2'>Division Head</label>
+
+											<select class='form-control text-input leave_status_dropdown_final' id='{$mydata['id']}'
+											<option >Select</option>
+
+											<option value='1'";
+												if (($mydata['final_status']) == '1') {
+													$output .= 'selected';
+												} else {
+													$output .= '';
+												};
+												$output .=">Approved
+											</option>
+
+											<option value='0' ";
+												if (($mydata['final_status'])  == '0') {
+													$output .= 'selected';
+												} else {
+													$output .= '';
+												};
+												$output .= ">Disapprove
+											</option>
+											
+											<option value='2' ";
+												if (($mydata['final_status'])  == '2') {
+													$output .= 'selected';
+												} else {
+													$output .= '';
+												};
+												$output .= ">Pending
+											</option>
+
+										</select>
+									</div>";
+
+									$output .="<div class='status-{$mydata['id']}'>
+
+										<label class='mt-2'>Supervisor</label>
+
+											<select class='form-control text-input leave_status_dropdown' id='{$mydata['id']}'  >
+											<option>Select</option>
+
+											<option value='1'";
+												if (($mydata['status']) == '1') {
+													$output .= 'selected';
+												} else {
+													$output .= '';
+												};
+												$output .=">Approved
+											</option>
+
+											<option value='0' ";
+												if (($mydata['status'])  == '0') {
+													$output .= 'selected';
+												} else {
+													$output .= '';
+												};
+												$output .= ">Disapprove
+											</option>
+											
+											<option value='2' ";
+												if (($mydata['status'])  == '2') {
+													$output .= 'selected';
+												} else {
+													$output .= '';
+												};
+												$output .= ">Pending
+											</option>
+
+										</select>
+									</div>";
+
+									}
 									
 									else {
 										$output .="<div class=''>";

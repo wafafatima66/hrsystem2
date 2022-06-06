@@ -140,8 +140,8 @@
         //   $emp_id = $_SESSION['emp_name'];
           $sql = "SELECT id FROM employee WHERE emp_id = '$emp_id'";
           $result = mysqli_query($conn, $sql);
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-          $id = $row['id'];
+          $row1 = mysqli_fetch_array($result, MYSQLI_ASSOC);
+          $id = $row1['id'];
         ?>
 
         <li class="slide">
@@ -181,9 +181,13 @@
             <ul class="slide-menu">
                 <li><a href="../learning" class="slide-item <?php list_active('learning'); ?>">Trainings & Seminars</a></li>
 
+                <?php
+                if ($row['role'] != 'Employee'){
+                ?>
                 <li><a href="../learning_summary" class="slide-item <?php list_active('learning_summary'); ?>">Summary of Trainings</a></li>
+                <?php } ?>
 
-                <li><a href="../learning_post" class="slide-item <?php list_active('learning_post'); ?>">Posted Trainings</a></li>
+            <li><a href="../learning_post" class="slide-item <?php list_active('learning_post'); ?>">Posted Trainings</a></li>
             </ul>
         </li>
 

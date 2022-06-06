@@ -55,6 +55,17 @@ if(isset($_POST['emp_id'])){
          $total_bal = $vl_bal + $sl_bal ; 
        
  
+         $vl_now_pts = round($vl_now_pts, 2);
+         $sl_now_pts = round($sl_now_pts, 2);
+         $vl_pts = round($vl_pts, 2);
+         $sl_pts = round($sl_pts, 2);
+         $pts_total = round($pts_total, 2);
+         $total_pts_now = round($total_pts_now, 2);
+         $vl_bal = round($vl_bal, 2);
+         $sl_bal = round($sl_bal, 2);
+         $total_bal = round($total_bal, 2);
+
+
          echo json_encode( array('vl_now_pts'=>$vl_now_pts,'sl_now_pts'=>$sl_now_pts,'vl_pts'=>$vl_pts,'sl_pts'=>$sl_pts,'pts_total'=>$pts_total, 'total_pts_now'=>$total_pts_now,'vl_bal'=>$vl_bal,'sl_bal'=>$sl_bal,'total_bal'=>$total_bal));
         
  

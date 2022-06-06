@@ -1,6 +1,6 @@
 <?php
+
 require '../includes/conn.php';
-session_start();
 
 if (isset($_POST['limit'])) {
 	$limit = $_POST['limit'];
@@ -20,25 +20,7 @@ $add1 = "where 1";
 $add2 = "";
 $add3 = "";
 $add4 = "";
-$add5 = "";
 
-$pagination_sql= "SELECT id FROM employee";
-
-if($_SESSION['user_role']=='Supervisor'){
-
-	$session_office =  $_SESSION['office'] ; 
-	$add5 = "and p.area_wrk_assign = '$session_office' ";
-
-	$pagination_sql= "SELECT e.id , i.area_wrk_assign FROM employee e left join item i on e.emp_id = i.emp_id where i.area_wrk_assign = '$session_office' ";
-}
-
-if($_SESSION['user_role']=='Division Head'){
-
-	$session_dept =  $_SESSION['department'] ; 
-	$add5 = "and p.division = '$session_dept' ";
-
-	$pagination_sql= "SELECT e.id , i.division FROM employee e left join item i on e.emp_id = i.emp_id where i.division = '$session_dept' ";
-}
 
 
 if (isset($_POST['search_summary']) && !empty($_POST['search_summary'])) {
@@ -64,15 +46,23 @@ if (isset($_POST['office'])  && (!empty($_POST['office']))) {
 	
 		$add4 = "and p.area_wrk_assign = '$office'";
 	
+	
+	// $query = "SELECT * FROM item where division = '$dept' && area_wrk_assign = '$office' LIMIT $offset, $limit ";
 } 
+
+// $query = "SELECT t.*,  e.emp_id , e.emp_image, e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , e.ele_school_name , e.sec_school_name , e.voc_school_name , e.voc_degree, e.sec_degree ,e.ele_degree, p.appt_stat , p.area_wrk_assign , p.position FROM employee e join item p on e.emp_id = p.emp_id join emp_training t on e.emp_id = t.emp_id ".$add1." ".$add3." ORDER BY t.id DESC LIMIT $offset, $limit";
 
 $Technical = 0;
 			$Managerial = 0;
 			$Supervisory = 0;
 			$Clerical = 0;
 			
-			$query = "SELECT e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , e.ele_school_name , e.sec_school_name , e.voc_school_name , e.voc_degree, e.sec_degree ,e.ele_degree , p.appt_stat , p.area_wrk_assign , p.position FROM employee e LEFT JOIN item p on e.emp_id = p.emp_id 
-			" . $add1 . " " . $add2 . " " . $add3 . " " . $add4 . " " . $add5 . " LIMIT $offset, $limit ";
+$query = "SELECT t.*,  e.emp_id , e.emp_image, e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , e.ele_school_name , e.sec_school_name , e.voc_school_name , e.voc_degree, e.sec_degree ,e.ele_degree, p.appt_stat , p.area_wrk_assign  , p.position 
+FROM employee e join item p on e.emp_id = p.emp_id 
+join emp_training t on e.emp_id = t.emp_id 
+".$add1." ".$add2." ".$add3." ".$add4." 
+
+ORDER BY t.id DESC LIMIT $offset, $limit";
 
 $result = mysqli_query($conn, $query);
 
@@ -139,48 +129,16 @@ if (mysqli_num_rows($result) > 0) {
 		
 			// FIND OUT NUMBER OF HOURS 
 			
-			$query_hr = "SELECT SUM(training_no_of_hrs) FROM `emp_training` where training_type_of_position = 'Technical' and emp_id = '$emp_id' ORDER BY id DESC LIMIT 1 ";
-		$runquery_hr = $conn->query($query_hr);
-		$rowcount_hr = mysqli_num_rows($runquery_hr);
-		if ($rowcount_hr != 0) {
-		while ($mydata_hr = $runquery_hr->fetch_assoc()) {
-			$Technical = $mydata_hr['SUM(training_no_of_hrs)'];
-		}}
 
-		$query_hr = "SELECT SUM(training_no_of_hrs) FROM `emp_training` where training_type_of_position = 'Supervisory' and emp_id = '$emp_id' ORDER BY id DESC LIMIT 1 ";
-		$runquery_hr = $conn->query($query_hr);
-		$rowcount_hr = mysqli_num_rows($runquery_hr);
-		if ($rowcount_hr != 0) {
-		while ($mydata_hr = $runquery_hr->fetch_assoc()) {
-			$Supervisory = $mydata_hr['SUM(training_no_of_hrs)'];
-		}}
-
-		$query_hr = "SELECT SUM(training_no_of_hrs) FROM `emp_training` where training_type_of_position = 'Managerial' and emp_id = '$emp_id' ORDER BY id DESC LIMIT 1 ";
-		$runquery_hr = $conn->query($query_hr);
-		$rowcount_hr = mysqli_num_rows($runquery_hr);
-		if ($rowcount_hr != 0) {
-		while ($mydata_hr = $runquery_hr->fetch_assoc()) {
-			$Managerial = $mydata_hr['SUM(training_no_of_hrs)'];
-		}}
-
-		$query_hr = "SELECT SUM(training_no_of_hrs) FROM `emp_training` where training_type_of_position = 'Clerical' and emp_id = '$emp_id' ORDER BY id DESC LIMIT 1 ";
-		$runquery_hr = $conn->query($query_hr);
-		$rowcount_hr = mysqli_num_rows($runquery_hr);
-		if ($rowcount_hr != 0) {
-		while ($mydata_hr = $runquery_hr->fetch_assoc()) {
-			$Clerical = $mydata_hr['SUM(training_no_of_hrs)'];
-		}}
-			
-
-			// if($mydata['training_type_of_position']=='Technical'){
-			// 	$Technical += $mydata['training_no_of_hrs'];
-			// }else if($mydata['training_type_of_position']=='Managerial'){
-			// 	$Managerial += $mydata['training_no_of_hrs'];
-			// }else if($mydata['training_type_of_position']=='Supervisory'){
-			// 	$Supervisory += $mydata['training_no_of_hrs'];
-			// }else if($mydata['training_type_of_position']=='Clerical'){
-			// 	$Clerical += $mydata['training_no_of_hrs'];
-			// }
+			if($mydata['training_type_of_position']=='Technical'){
+				$Technical += $mydata['training_no_of_hrs'];
+			}else if($mydata['training_type_of_position']=='Managerial'){
+				$Managerial += $mydata['training_no_of_hrs'];
+			}else if($mydata['training_type_of_position']=='Supervisory'){
+				$Supervisory += $mydata['training_no_of_hrs'];
+			}else if($mydata['training_type_of_position']=='Clerical'){
+				$Clerical += $mydata['training_no_of_hrs'];
+			}
 
 		$output .= "<tr>
 						<td> {$mydata['emp_id']} </td>
@@ -204,7 +162,7 @@ if (mysqli_num_rows($result) > 0) {
 
 	// pagination
 
-	$sql = $pagination_sql;
+	$sql = 'SELECT id FROM training_table';
 	$records = mysqli_query($conn, $sql);
 	$totalRecords = mysqli_num_rows($records);
 	$totalPage = ceil($totalRecords / $limit);
@@ -234,3 +192,6 @@ if (mysqli_num_rows($result) > 0) {
 	$output .= "<tr><td colspan='7'>No data Available</td> </tr></tbody></table>";
 	echo $output;
 }
+
+?>
+

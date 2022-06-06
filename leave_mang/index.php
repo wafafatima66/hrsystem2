@@ -221,7 +221,7 @@ if (isset($_POST['edit_leave_approve'])) {
 
             <?php
 
-            $query = "SELECT date_filled , type_of_leave , leave_from_date , leave_to_date , no_of_working_days , final_status , final_remarks from emp_leaves where emp_id = '$emp_id' ORDER BY id DESC";
+            $query = "SELECT id , date_filled , type_of_leave , leave_from_date , leave_to_date , no_of_working_days , final_status , final_remarks from emp_leaves where emp_id = '$emp_id' ORDER BY id DESC";
 
             $result = mysqli_query($conn, $query);
 
@@ -235,6 +235,7 @@ if (isset($_POST['edit_leave_approve'])) {
                             <th scope="col">No of working days</th>
                             <th scope="col">Status</th>
                             <th scope="col">Remarks</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -271,6 +272,7 @@ if (isset($_POST['edit_leave_approve'])) {
                                         echo $mydata['final_remarks'];
                                     }  ?>
                                 </td>
+                                <td><a href='../includes/export_excel.php?leave_application_report=<?php echo $mydata['id']?>'><i class='fa fa-print mx-2' style='color:#505a43;' ; ></i></a></td>
                             </tr>
 
                         <?php } ?>
