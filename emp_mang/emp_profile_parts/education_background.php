@@ -54,11 +54,11 @@ if (isset($_GET['id'])) {
                 <!-- <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['ele_from_date'] ?>" name="ele_from_date">
                             <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['ele_to_date'] ?>" name="ele_to_date"> -->
 
-                <input name="ele_from_date" type="number" min="1900" max="2099" step="1"
-                    value="<?php echo (empty($mydata['ele_from_date']) ? "2021": $mydata['ele_from_date']  )?>"
+                <input name="ele_from_date" type="text" 
+                    value="<?php echo $mydata['ele_from_date']?>"
                     class="form-control text-input mx-sm-1" />
-                <input name="ele_to_date" type="number" min="1900" max="2099" step="1"
-                    value="<?php echo (empty($mydata['ele_to_date']) ? "2021": $mydata['ele_to_date']  )?>"
+                <input name="ele_to_date" type="text" 
+                    value="<?php echo ($mydata['ele_to_date'])  ?>"
                     class="form-control text-input mx-sm-1" />
             </div>
         </div>
@@ -118,11 +118,11 @@ if (isset($_GET['id'])) {
 
                             <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['sec_to_date'] ?>" name="sec_to_date"> -->
 
-                <input name="sec_from_date" type="number" min="1900" max="2099" step="1"
-                    value="<?php echo (empty($mydata['sec_from_date']) ? "2021": $mydata['sec_from_date']  )?>"
+                <input name="sec_from_date" type="text" 
+                    value="<?php echo ($mydata['sec_from_date']) ?>"
                     class="form-control text-input mx-sm-1" />
-                <input name="sec_to_date" type="number" min="1900" max="2099" step="1"
-                    value="<?php echo (empty($mydata['sec_to_date']) ? "2021": $mydata['sec_to_date']  )?>"
+                <input name="sec_to_date" type="text" 
+                    value="<?php echo ($mydata['sec_to_date']) ?>"
                     class="form-control text-input mx-sm-1" />
 
             </div>
@@ -187,11 +187,11 @@ if (isset($_GET['id'])) {
 
                             <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['voc_to_date'] ?>" name="voc_to_date"> -->
 
-                <input name="voc_from_date" type="number" min="1900" max="2099" step="1"
-                    value="<?php echo (empty($mydata['voc_from_date']) ? "2021": $mydata['voc_from_date']  )?>"
+                <input name="voc_from_date" type="text" 
+                    value="<?php echo ($mydata['voc_from_date']) ?>"
                     class="form-control text-input mx-sm-1" />
-                <input name="voc_to_date" type="number" min="1900" max="2099" step="1"
-                    value="<?php echo (empty($mydata['voc_to_date']) ? "2021": $mydata['voc_to_date']  )?>"
+                <input name="voc_to_date" type="text" 
+                    value="<?php echo ($mydata['voc_to_date']) ?>"
                     class="form-control text-input mx-sm-1" />
 
             </div>
@@ -265,11 +265,11 @@ if (isset($_GET['id'])) {
                     <!-- <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['from_date'] ?>" name="coll_from_date[]">
                                         <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['to_date'] ?>" name="coll_to_date[]"> -->
 
-                    <input name="coll_from_date[]" type="number" min="1900" max="2099" step="1"
-                        value="<?php echo (empty($mydata['from_date']) ? "2021": $mydata['from_date']  )?>"
+                    <input name="coll_from_date[]" type="text" 
+                        value="<?php echo ($mydata['from_date']) ?>"
                         class="form-control text-input mx-sm-1" />
-                    <input name="coll_to_date[]" type="number" min="1900" max="2099" step="1"
-                        value="<?php echo (empty($mydata['to_date']) ? "2021": $mydata['to_date']  )?>"
+                    <input name="coll_to_date[]" type="text" min="1900" max="2099" step="1"
+                        value="<?php echo ($mydata['to_date']) ?>"
                         class="form-control text-input mx-sm-1" />
 
                 </div>
@@ -325,9 +325,9 @@ if (isset($_GET['id'])) {
                     <!-- <input type="date" class="form-control text-input mx-sm-1" value="" name="coll_from_date[]">
                                     <input type="date" class="form-control text-input mx-sm-1" value="" name="coll_to_date[]"> -->
 
-                    <input name="coll_from_date[]" type="number" min="1900" max="2099" step="1" value=""
+                    <input name="coll_from_date[]" type="text"  value=""
                         class="form-control text-input mx-sm-1" />
-                    <input name="coll_to_date[]" type="number" min="1900" max="2099" step="1" value=""
+                    <input name="coll_to_date[]" type="text"  value=""
                         class="form-control text-input mx-sm-1" />
 
                 </div>
@@ -408,11 +408,11 @@ if (isset($_GET['id'])) {
                     <!-- <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['from_date'] ?>" name="gra_from_date[]">
                                         <input type="date" class="form-control text-input mx-sm-1" value="<?php echo $mydata['to_date'] ?>" name="gra_to_date[]"> -->
 
-                    <input name="gra_from_date[]" type="number" min="1900" max="2099" step="1"
-                        value="<?php echo (empty($mydata['from_date']) ? "2021": $mydata['from_date']  )?>"
+                    <input name="gra_from_date[]" type="text" 
+                        value="<?php echo ($mydata['from_date']) ?>"
                         class="form-control text-input mx-sm-1" />
-                    <input name="gra_to_date[]" type="number" min="1900" max="2099" step="1"
-                        value="<?php echo (empty($mydata['to_date']) ? "2021": $mydata['to_date']  )?>"
+                    <input name="gra_to_date[]" type="text" 
+                        value="<?php echo ($mydata['to_date']) ?>"
                         class="form-control text-input mx-sm-1" />
 
                 </div>
@@ -468,9 +468,9 @@ if (isset($_GET['id'])) {
                     <!-- <input type="date" class="form-control text-input mx-sm-1" value="" name="gra_from_date[]">
                                     <input type="date" class="form-control text-input mx-sm-1" value="" name="gra_to_date[]"> -->
 
-                    <input name="gra_from_date[]" type="number" min="1900" max="2099" step="1" value=""
+                    <input name="gra_from_date[]" type="text"  value=""
                         class="form-control text-input mx-sm-1" />
-                    <input name="gra_to_date[]" type="number" min="1900" max="2099" step="1" value=""
+                    <input name="gra_to_date[]" type="text"  value=""
                         class="form-control text-input mx-sm-1" />
 
                 </div>
@@ -523,7 +523,7 @@ if (isset($_GET['id'])) {
                 x++;
 
                 $('.coll_wrapper').append(
-                    '<div><div class="form-row mt-3"> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">NAME OF SCHOOL</label> <input type="text" class="form-control text-input" value="" name="coll_school_name[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">BASIC EDUCATION</label> <input type="text" class="form-control text-input" value="" name="coll_degree[]"> </div> </div> <div class="col-lg-6 col-sm-12"> <div class="d-flex flex-column"> <label for="">PERIOD OF ATTENDANCE</label> <div class="d-md-flex justify-content-center">  <input name="coll_from_date[]" type="number" min="1900" max="2099" step="1" value=""  class="form-control text-input mx-sm-1"/> <input name="coll_to_date[]" type="number" min="1900" max="2099" step="1" value="" class="form-control text-input mx-sm-1" /> </div> </div> </div> </div> <div class="form-row mt-3 pb-5"> <div class="col-lg-3 col-sm-12"> <label for="">HIGHEST UNITS EARNED</label> <input type="text" class="form-control text-input" value="" name="coll_units[]"> </div> <div class="col-lg-3 col-sm-12"> <label for="">SCHOLARSHIP/AWARDS</label> <input type="text" class="form-control text-input" value="" name="coll_award[]"> </div> <div class="col-lg-3 col-sm-12"> <label for="">YEAR GRADUATED</label> <input type="text" class="form-control text-input" value="" name="coll_graduation[]"> </div>  </div> <a class="mt-3 btn button-1 remove_coll_button" style="height: fit-content;">-</a></div>'
+                    '<div><div class="form-row mt-3"> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">NAME OF SCHOOL</label> <input type="text" class="form-control text-input" value="" name="coll_school_name[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">BASIC EDUCATION</label> <input type="text" class="form-control text-input" value="" name="coll_degree[]"> </div> </div> <div class="col-lg-6 col-sm-12"> <div class="d-flex flex-column"> <label for="">PERIOD OF ATTENDANCE</label> <div class="d-md-flex justify-content-center">  <input name="coll_from_date[]" type="text"  value=""  class="form-control text-input mx-sm-1"/> <input name="coll_to_date[]" type="text"  value="" class="form-control text-input mx-sm-1" /> </div> </div> </div> </div> <div class="form-row mt-3 pb-5"> <div class="col-lg-3 col-sm-12"> <label for="">HIGHEST UNITS EARNED</label> <input type="text" class="form-control text-input" value="" name="coll_units[]"> </div> <div class="col-lg-3 col-sm-12"> <label for="">SCHOLARSHIP/AWARDS</label> <input type="text" class="form-control text-input" value="" name="coll_award[]"> </div> <div class="col-lg-3 col-sm-12"> <label for="">YEAR GRADUATED</label> <input type="text" class="form-control text-input" value="" name="coll_graduation[]"> </div>  </div> <a class="mt-3 btn button-1 remove_coll_button" style="height: fit-content;">-</a></div>'
                 );
 
             }
@@ -544,7 +544,7 @@ if (isset($_GET['id'])) {
                 y++;
 
                 $('.gra_wrapper').append(
-                    '<div><div class="form-row mt-3"> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">NAME OF SCHOOL</label> <input type="text" class="form-control text-input" value="" name="gra_school_name[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">BASIC EDUCATION</label> <input type="text" class="form-control text-input" value="" name="gra_degree[]"> </div> </div> <div class="col-lg-6 col-sm-12"> <div class="d-flex flex-column"> <label for="">PERIOD OF ATTENDANCE</label> <div class="d-md-flex justify-content-center"> <input name="gra_from_date[]" type="number" min="1900" max="2099" step="1" value=""  class="form-control text-input mx-sm-1"/> <input name="gra_to_date[]" type="number" min="1900" max="2099" step="1" value="" class="form-control text-input mx-sm-1" /> </div> </div> </div> </div> <div class="form-row mt-3 pb-5"> <div class="col-lg-3 col-sm-12"> <label for="">HIGHEST UNITS EARNED</label> <input type="text" class="form-control text-input" value="" name="gra_units[]"> </div> <div class="col-lg-3 col-sm-12"> <label for="">SCHOLARSHIP/AWARDS</label> <input type="text" class="form-control text-input" value="" name="gra_award[]"> </div> <div class="col-lg-3 col-sm-12"> <label for="">YEAR GRADUATED</label> <input type="text" class="form-control text-input" value="" name="gra_graduation[]"> </div> </div> <a class="mt-3 btn button-1 remove_gra_button" style="height: fit-content;">-</a></div>'
+                    '<div><div class="form-row mt-3"> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">NAME OF SCHOOL</label> <input type="text" class="form-control text-input" value="" name="gra_school_name[]"> </div> </div> <div class="col-lg-3 col-sm-6"> <div class="d-flex flex-column"> <label for="">BASIC EDUCATION</label> <input type="text" class="form-control text-input" value="" name="gra_degree[]"> </div> </div> <div class="col-lg-6 col-sm-12"> <div class="d-flex flex-column"> <label for="">PERIOD OF ATTENDANCE</label> <div class="d-md-flex justify-content-center"> <input name="gra_from_date[]" type="text"  value=""  class="form-control text-input mx-sm-1"/> <input name="gra_to_date[]" type="text"  value="" class="form-control text-input mx-sm-1" /> </div> </div> </div> </div> <div class="form-row mt-3 pb-5"> <div class="col-lg-3 col-sm-12"> <label for="">HIGHEST UNITS EARNED</label> <input type="text" class="form-control text-input" value="" name="gra_units[]"> </div> <div class="col-lg-3 col-sm-12"> <label for="">SCHOLARSHIP/AWARDS</label> <input type="text" class="form-control text-input" value="" name="gra_award[]"> </div> <div class="col-lg-3 col-sm-12"> <label for="">YEAR GRADUATED</label> <input type="text" class="form-control text-input" value="" name="gra_graduation[]"> </div> </div> <a class="mt-3 btn button-1 remove_gra_button" style="height: fit-content;">-</a></div>'
                 );
 
             }

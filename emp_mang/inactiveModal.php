@@ -44,9 +44,14 @@ if (isset($_POST['inactiveModalSubmit'])) {
     $sql1 = "UPDATE employee SET active='0' WHERE emp_id='$emp_id'";
     mysqli_query($conn, $sql1);
 
+    $sql2 = "UPDATE item SET filled='0' WHERE emp_id='$emp_id'";
+    mysqli_query($conn, $sql2);
+
     if (mysqli_query($conn, $sql)) {
+        echo "<meta http-equiv='refresh' content='0'>";
         echo  '<script>toastr.success("Employee Status updated")</script>';
     } else {
+        echo "<meta http-equiv='refresh' content='0'>";
         echo  '<script>toastr.error("Employee status not updated. Try again !")</script>';
     }
 }

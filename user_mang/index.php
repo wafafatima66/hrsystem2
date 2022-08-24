@@ -92,15 +92,15 @@ if (isset($_GET['delete'])) {
             <div class="col-lg-2 col-sm-6">
                   <select id="dept_dropdown" class="form-control text-input">
                         <?php
-                        $query = "SELECT DISTINCT division FROM item where division != '' ";
+                        $query = "select * from (SELECT DISTINCT department_name FROM department union select division from item ) as tablec where tablec.department_name != ''";
                         $result = mysqli_query($conn, $query);
                         if (mysqli_num_rows($result) > 0) {
-                              echo "<option value=''> Department </option> ";
+                              echo "<option value='' disabled selected hidden> Department </option> ";
                               while ($mydata = mysqli_fetch_assoc($result)) {
-                                    echo "<option value= '" . $mydata['division'] . "'>" . $mydata['division'] . "</option>";
+                                    echo "<option value= '" . $mydata['department_name'] . "'>" . $mydata['department_name'] . "</option>";
                               }
                         } else {
-                              echo "<option value=''> Department </option>";
+                              echo "<option value='' disabled selected hidden> Department </option>";
                         }
                         ?>
                   </select>
@@ -109,15 +109,16 @@ if (isset($_GET['delete'])) {
             <div class="col-lg-2 col-sm-6">
                   <select id="office_dropdown" class="form-control text-input">
                         <?php
-                        $query = "SELECT DISTINCT area_wrk_assign FROM item where area_wrk_assign != ''";
+                        $query = "SELECT * FROM ( SELECT DISTINCT area_wrk_assign from item UNION SELECT DISTINCT office_name FROM office ) as tableC WHERE tableC.area_wrk_assign != '' ";
+
                         $result = mysqli_query($conn, $query);
                         if (mysqli_num_rows($result) > 0) {
-                              echo "<option value=''> Office </option> ";
+                              echo "<option value='' disabled selected hidden> Office </option> ";
                               while ($mydata = mysqli_fetch_assoc($result)) {
                                     echo "<option value= '" . $mydata['area_wrk_assign'] . "'>" . $mydata['area_wrk_assign'] . "</option>";
                               }
                         } else {
-                              echo "<option value=''>  Office</option>";
+                              echo "<option value='' disabled selected hidden>  Office</option>";
                         }
                         ?>
                   </select>

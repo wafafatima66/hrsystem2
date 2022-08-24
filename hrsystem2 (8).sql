@@ -8428,6 +8428,11 @@ ALTER TABLE `training_post_table` ADD `role_posted` VARCHAR(255) NULL AFTER `tra
 ALTER TABLE `training_post_table` ADD `role_posted_dept` VARCHAR(255) NULL AFTER `role_posted`;
 ALTER TABLE `training_post_table` ADD `role_posted_office` VARCHAR(255) NULL AFTER `role_posted_dept`;
 
--- new
+
 ALTER TABLE `training_post_table` ADD `role_posted_name` VARCHAR(255) NULL AFTER `role_posted_office`;
 ALTER TABLE `training_table` ADD `role_posted` VARCHAR(255) NULL AFTER `training_details`, ADD `role_posted_name` VARCHAR(255) NULL AFTER `role_posted`;
+
+-- NEW
+ALTER TABLE `item` ADD `time_allocations` VARCHAR(500) NULL AFTER `date_modified`;
+ALTER TABLE `item` ADD `level_of_competency` INT NULL AFTER `time_allocations`;
+ALTER TABLE `emp_civil_service` CHANGE `civil_exam_rating` `civil_exam_rating` DOUBLE NULL DEFAULT NULL;

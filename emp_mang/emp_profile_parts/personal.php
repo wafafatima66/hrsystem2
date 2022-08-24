@@ -13,15 +13,15 @@ if (isset($_GET['id'])) {
             <div class="form-row mt-3">
                 <div class="col-lg-2 col-sm-6">
                     <small>First Name</small>
-                    <input type="text" class=" form-control text-input" placeholder="First name" name="emp_first_name" value="<?php echo $mydata['emp_first_name'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="First name" name="emp_first_name" value="<?php echo $mydata['emp_first_name'] ?>" >
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <small>Last Name</small>
-                    <input type="text" class=" form-control text-input" placeholder="Last name" name="emp_last_name" value="<?php echo $mydata['emp_last_name'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="Last name" name="emp_last_name" value="<?php echo $mydata['emp_last_name'] ?>">
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <small>Middle Name</small>
-                    <input type="text" class=" form-control text-input" placeholder="Middle name" name="emp_middle_name" value="<?php echo $mydata['emp_middle_name'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="Middle name" name="emp_middle_name" value="<?php echo $mydata['emp_middle_name'] ?>">
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <small>Extension Name</small>
@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
                         <?php if (!empty($mydata['emp_ext'])) {
                             echo "<option value= '" . $mydata['emp_ext'] . "'>" . $mydata['emp_ext'] . "</option>";
                         } else {
-                            echo "<option value='' >Name Extension</option>";
+                            echo "<option value='' >Select</option>";
                         } ?>
 
                         <option value='JR' <?php echo ($mydata['emp_ext'] == 'JR' ? 'style="display: none;"' : '') ?>> JR </option>
@@ -118,7 +118,7 @@ if (isset($_GET['id'])) {
 
                 <div class="col-lg-2 col-sm-6">
                     <small>Citizenship</small>  
-                    <input type="text" class=" form-control text-input" placeholder="Citizenship" name="emp_citizen" value="<?php echo $mydata['emp_citizen'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="Citizenship" name="emp_citizen" value="<?php echo $mydata['emp_citizen'] ?>">
 
                 </div>
                 <div class="col-lg-2 col-sm-6">
@@ -141,10 +141,10 @@ if (isset($_GET['id'])) {
 
                 <div class="col-lg-2 col-sm-6">
                     <small>Barangay</small>
-                    <input type="text" class=" form-control text-input" placeholder="Barangay" name="emp_birth_add_barangay" value="<?php echo $mydata['emp_birth_add_barangay'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="Barangay" name="emp_birth_add_barangay" value="<?php echo $mydata['emp_birth_add_barangay'] ?>">
                 </div>
 
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <small>Province</small>
                      <select class="form-control text-input" name="emp_birth_add_province" id="emp_birth_add_street">
                      <?php if (!empty($mydata['emp_birth_add_province'])) {
@@ -156,7 +156,7 @@ if (isset($_GET['id'])) {
                     </select>
                 </div>
 
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <small>City/Municipality</small>
                     <select class="form-control text-input" name="emp_birth_add_municipal" id="emp_birth_add_municipal" >
                         <?php if (!empty($mydata['emp_birth_add_municipal'])) {
@@ -185,24 +185,24 @@ if (isset($_GET['id'])) {
             <h5 class="mt-3">Residential Address</h5>
             <div class="form-row ">
 
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <small>House/Block/Lot No.</small>
-                    <input type="text" class=" form-control text-input" placeholder="House no/Block no/Lot no." name="emp_resi_add" value="<?php echo $mydata['emp_resi_add'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="House no/Block no/Lot no." name="emp_resi_add" value="<?php echo $mydata['emp_resi_add'] ?>">
                 </div>
                 <div class="col-lg-1 col-sm-6">
                     <small>Street</small>
-                    <input type="text" class=" form-control text-input" placeholder="Street" name="emp_resi_add_street" value="<?php echo $mydata['emp_resi_add_street'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="Street" name="emp_resi_add_street" value="<?php echo $mydata['emp_resi_add_street'] ?>">
                 </div>
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <small>Subdivision/Village</small>
-                    <input type="text" class=" form-control text-input" placeholder="Subdivision/Village" name="emp_resi_add_subvillage" value="<?php echo $mydata['emp_resi_add_subvillage'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="Subdivision/Village" name="emp_resi_add_subvillage" value="<?php echo $mydata['emp_resi_add_subvillage'] ?>">
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <small>Barangay</small>
-                    <input type="text" class=" form-control text-input" placeholder="Barangay" name="emp_resi_add_barangay" value="<?php echo $mydata['emp_resi_add_barangay'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="Barangay" name="emp_resi_add_barangay" value="<?php echo $mydata['emp_resi_add_barangay'] ?>">
                 </div>
 
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <small>Province</small>
                      <select class="form-control text-input" name="emp_resi_add_province" id="emp_resi_add_street">
                      <?php if (!empty($mydata['emp_resi_add_province'])) {
@@ -214,7 +214,7 @@ if (isset($_GET['id'])) {
                     </select>
                 </div>
 
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <small>City/Municipality</small>
                     <!-- <input type="text" class=" form-control text-input" placeholder="City/Municipality" name="emp_resi_add_municipal" value="<?php echo $mydata['emp_resi_add_municipal'] ?>"> -->
                     <select class="form-control text-input" name="emp_resi_add_municipal" id="emp_resi_add_municipal" >
@@ -227,7 +227,7 @@ if (isset($_GET['id'])) {
                     </select>
                 </div>
 
-                <div class="col-lg-1 col-sm-6">
+                <div class="col-lg-2 col-sm-6">
                     <small>ZIP Code</small>
                     <!-- <input type="text" class=" form-control text-input" placeholder="" name="emp_resi_add_zipcode" value="<?php echo $mydata['emp_resi_add_zipcode'] ?>"> -->
                     <select class="form-control text-input" name="emp_resi_add_zipcode" id="emp_resi_add_zipcode" >
@@ -245,24 +245,24 @@ if (isset($_GET['id'])) {
             <h5 class="mt-3">Permanent Address</h5>
             <div class="form-row ">
 
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                     <small>House/Block/Lot No.</small>
-                    <input type="text" class=" form-control text-input" placeholder="House no/Block no/Lot no." name="emp_per_add" value="<?php echo $mydata['emp_per_add'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="House no/Block no/Lot no." name="emp_per_add" value="<?php echo $mydata['emp_per_add'] ?>">
                 </div>
                 <div class="col-lg-1 col-sm-6">
                     <small>Street</small>
-                    <input type="text" class=" form-control text-input" placeholder="Street" name="emp_per_add_street" value="<?php echo $mydata['emp_per_add_street'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="Street" name="emp_per_add_street" value="<?php echo $mydata['emp_per_add_street'] ?>">
                 </div>
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <small>Subdivision/Village</small>
-                    <input type="text" class=" form-control text-input" placeholder="Subdivision/Village" name="emp_per_add_subvillage" value="<?php echo $mydata['emp_per_add_subvillage'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="Subdivision/Village" name="emp_per_add_subvillage" value="<?php echo $mydata['emp_per_add_subvillage'] ?>">
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <small>Barangay</small>
-                    <input type="text" class=" form-control text-input" placeholder="Barangay" name="emp_per_add_barangay" value="<?php echo $mydata['emp_per_add_barangay'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="Barangay" name="emp_per_add_barangay" value="<?php echo $mydata['emp_per_add_barangay'] ?>">
                 </div>
 
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <small>Province</small>
                      <select class="form-control text-input" name="emp_per_add_province" id="emp_per_add_street">
                      <?php if (!empty($mydata['emp_per_add_province'])) {
@@ -274,7 +274,7 @@ if (isset($_GET['id'])) {
                     </select>
                 </div>
 
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <small>City/Municipality</small>
                     <!-- <input type="text" class=" form-control text-input" placeholder="City/Municipality" name="emp_per_add_municipal" value="<?php echo $mydata['emp_per_add_municipal'] ?>"> -->
                     <select class="form-control text-input" name="emp_per_add_municipal" id="emp_per_add_municipal" >
@@ -287,7 +287,7 @@ if (isset($_GET['id'])) {
                     </select>
                 </div>
 
-                <div class="col-lg-1 col-sm-6">
+                <div class="col-lg-2 col-sm-6">
                     <small>ZIP Code</small>
                     <!-- <input type="text" class=" form-control text-input" placeholder="" name="emp_per_add_zipcode" value="<?php echo $mydata['emp_per_add_zipcode'] ?>"> -->
                     <select class="form-control text-input" name="emp_per_add_zipcode" id="emp_per_add_zipcode" >
@@ -318,11 +318,11 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <small>GSIS</small>
-                    <input type="text" class=" form-control text-input" placeholder="GSIS ID NO" name="emp_contact_gs" value="<?php echo $mydata['emp_contact_gs'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="GSIS ID NO" name="emp_contact_gs" value="<?php echo $mydata['emp_contact_gs'] ?>">
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <small>PAG-IBIG</small>
-                    <input type="text" class=" form-control text-input" placeholder="PAG-ibig ID NO" name="emp_contact_pag" value="<?php echo $mydata['emp_contact_pag'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="PAG-ibig ID NO" name="emp_contact_pag" value="<?php echo $mydata['emp_contact_pag'] ?>">
                 </div>
             </div>
 
@@ -330,16 +330,16 @@ if (isset($_GET['id'])) {
             <div class="form-row mt-3">
                 <div class="col-lg-3 col-sm-6">
                     <small>PHILHEALTH</small>
-                    <input type="text" class="form-control text-input" placeholder="Philhealth No" name="emp_contact_ph" value="<?php echo $mydata['emp_contact_ph'] ?>">
+                    <input type="text" class="form-control text-input text-uppercase" placeholder="Philhealth No" name="emp_contact_ph" value="<?php echo $mydata['emp_contact_ph'] ?>">
                 </div>
 
                 <div class="col-lg-3 col-sm-6">
                     <small>SSS</small>
-                    <input type="text" class=" form-control text-input" placeholder="SIS NO" name="emp_contact_ss" value="<?php echo $mydata['emp_contact_ss'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="SIS NO" name="emp_contact_ss" value="<?php echo $mydata['emp_contact_ss'] ?>">
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <small>TIN</small>
-                    <input type="text" class=" form-control text-input" placeholder="TIN NO" name="emp_contact_tin" value="<?php echo $mydata['emp_contact_tin'] ?>">
+                    <input type="text" class=" form-control text-input text-uppercase" placeholder="TIN NO" name="emp_contact_tin" value="<?php echo $mydata['emp_contact_tin'] ?>">
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <small>EMPLOYEE ID</small>

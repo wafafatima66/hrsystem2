@@ -25,7 +25,7 @@
 
     $runquery = $conn->query($query);
     $rowcount = mysqli_num_rows($runquery);
-    if ($rowcount > 0) {
+    if ($rowcount > 2) {
 
         while ($mydata = $runquery->fetch_assoc()) {  ?>
 

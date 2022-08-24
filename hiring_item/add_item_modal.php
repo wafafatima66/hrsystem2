@@ -9,13 +9,30 @@ if (isset($_POST['submit'])) {
     $department = $_POST['department'];
     $office = $_POST['office'];
     $description = $_POST['description'];
+    $monthly_salary = $_POST['monthly_salary'];
+    $level_of_competency = $_POST['level_of_competency'];
     $filled = 0;
     $date_posted = date('Y-m-d');
     // $nature = 'Original';
     $job_type = 'P';
 
+    $time = array();
+    $functions = array();
+  
+    if (isset($_POST['time_allocation'])) {
+      for ($i = 0; $i < count($_POST['time_allocation']); $i++) {
+        $time[$i] = $_POST['time_allocation'][$i] ;
+        $functions[$i] = $_POST['time_allocation_function'][$i];
+      }
+      $myjson = array(
+        "time" => $time,
+        "functions" => $functions
+      );
+      $time_allocations = json_encode($myjson);
+    }
+
     $sql = "INSERT INTO item (
-         item_no  , position , salary_grade , date_created , filled , place_of_assignment , date_posted , appt_stat , division , area_wrk_assign , description) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled' , '$place_of_assignment' , '$date_posted' , '$job_type' , '$department' , '$office' , '$description' )";
+         item_no  , position , salary_grade , date_created , filled , place_of_assignment , date_posted , appt_stat , division , area_wrk_assign , description , monthly_salary , time_allocations , level_of_competency) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled' , '$place_of_assignment' , '$date_posted' , '$job_type' , '$department' , '$office' , '$description' , '$monthly_salary' , '$time_allocations' , '$level_of_competency')";
 
     if (!empty($_POST['hiring_education'])) {
         for ($i = 0; $i < count($_POST['hiring_education']); $i++) {
@@ -109,7 +126,6 @@ if (isset($_POST['submit'])) {
 
 
     if (mysqli_query($conn, $sql)) {
-
         echo  '<script>toastr.success("Item added successfully")</script>';
     } else {
         echo  '<script>toastr.error("Item not added. Try again !")</script>';
@@ -136,7 +152,7 @@ if (isset($_POST['submit'])) {
 
                         <div class="form-row">
                             <div class="col-lg-12 col-sm-12">
-                                <label for="" class="h6">Item Information</label>
+                                <label for="" class="lead">Item Information</label>
                             </div>
                         </div>
 
@@ -152,11 +168,15 @@ if (isset($_POST['submit'])) {
                                 <input type="text" class="form-control text-input" name="position" placeholder="Position">
                             </div>
 
-                            <div class="col-lg-3 col-sm-6">
-                                <input type="text" class="form-control text-input" name="salary_grade" placeholder="Salary Grade">
+                            <div class="col-lg-1 col-sm-6">
+                                <input type="text" class="form-control text-input" name="salary_grade" placeholder="SG">
                             </div>
 
                             <div class="col-lg-3 col-sm-6">
+                                <input type="text" class="form-control text-input" name="monthly_salary" placeholder="Monthly Salary">
+                            </div>
+
+                            <div class="col-lg-2 col-sm-6">
                                 <div class="d-flex flex-column">
                                     <input type="date" class="form-control text-input" name="date_created">
                                     <small class="text-muted"> (Date created)</small>
@@ -167,19 +187,55 @@ if (isset($_POST['submit'])) {
                                 <input type="text" class="form-control text-input" name="place_of_assignment" placeholder="Place of assignment">
                             </div>
 
-                            <div class="col-lg-3 col-sm-6">
+                            <!-- <div class="col-lg-3 col-sm-6">
                                 <input type="text" class="form-control text-input" name="department" placeholder="Department">
                             </div>
 
                             <div class="col-lg-3 col-sm-6">
                                 <input type="text" class="form-control text-input" name="office" placeholder="Office">
+                            </div> -->
+
+                            <div class="col-lg-3 col-sm-6">
+                                <select class="form-control text-input" name="department">
+
+                                    <?php
+                                    $query = "select * from (SELECT DISTINCT department_name FROM department union select division from item ) as tablec where tablec.department_name != '' ";
+                                    $result = mysqli_query($conn, $query);
+                                    if (mysqli_num_rows($result) > 0) {
+                                        echo "<option value='' disabled selected hidden> Department </option> ";
+                                        while ($mydata = mysqli_fetch_assoc($result)) {
+                                            echo "<option value= '" . $mydata['department_name'] . "'>" . $mydata['department_name'] . "</option>";
+                                        }
+                                    } else {
+                                        echo "<option value='' disabled selected hidden> Department </option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                                <select class="form-control text-input" name="office">
+                                    <?php
+                                    $query = "SELECT * FROM ( SELECT DISTINCT area_wrk_assign from item UNION SELECT DISTINCT office_name FROM office ) as tableC WHERE tableC.area_wrk_assign != '' ";
+
+                                    $result = mysqli_query($conn, $query);
+                                    if (mysqli_num_rows($result) > 0) {
+                                        echo "<option value='' disabled selected hidden> Office </option> ";
+                                        while ($mydata = mysqli_fetch_assoc($result)) {
+                                            echo "<option value= '" . $mydata['area_wrk_assign'] . "'>" . $mydata['area_wrk_assign'] . "</option>";
+                                        }
+                                    } else {
+                                        echo "<option value='' disabled selected hidden>  Office</option>";
+                                    }
+                                    ?>
+                                </select>
                             </div>
 
                         </div>
 
                         <div class="form-row mt-3">
                             <div class="col-lg-12 col-sm-12">
-                                <label for="" class="h6">Minimum Qualification</label>
+                                <label for="" class="lead">Minimum Qualification</label>
                             </div>
                         </div>
 
@@ -229,14 +285,18 @@ if (isset($_POST['submit'])) {
 
                         <div class="form-row mt-2">
                             <div class="col-lg-12 col-sm-12">
-                                <label for="" class="h6">Applicable competency</label>
+                                <label class="lead">Applicable competency</label>
+                            </div>
+                            <div class="col-lg-3 col-sm-3">
+                                <span>Level of Competency</span>
+                                <input type="number" min="0" max="5" step="1" class="form-control text-input" name="level_of_competency" value="0" />
                             </div>
                         </div>
 
-                        <div class="form-row mb-2">
+                        <div class="form-row mb-2 mt-2">
 
                             <div class="col-lg-3 col-sm-6 ">
-                                <span>Competency 1</span>
+                                <span class="small">Core Competencies</span>
 
                                 <div class="com_wrapper_1">
                                     <input type="text" class="form-control text-input mt-1 mb-1" name="add_com_1[]">
@@ -246,7 +306,7 @@ if (isset($_POST['submit'])) {
                             </div>
 
                             <div class="col-lg-3 col-sm-6 ">
-                                <span>Competency 2</span>
+                                <span class="small">Organization Competencies</span>
 
                                 <div class="com_wrapper_2">
                                     <input type="text" class="form-control text-input mt-1 mb-1" name="add_com_2[]">
@@ -256,7 +316,7 @@ if (isset($_POST['submit'])) {
                             </div>
 
                             <div class="col-lg-3 col-sm-6 ">
-                                <span>Competency 3</span>
+                                <span class="small">Leadership Competencies</span>
 
                                 <div class="com_wrapper_3">
                                     <input type="text" class="form-control text-input mt-1 mb-1" name="add_com_3[]">
@@ -266,7 +326,7 @@ if (isset($_POST['submit'])) {
                             </div>
 
                             <div class="col-lg-3 col-sm-6 ">
-                                <span>Competency 4</span>
+                                <span class="small">Technical Competencies</span>
 
                                 <div class="com_wrapper_4">
                                     <input type="text" class="form-control text-input mt-1 mb-1" name="add_com_4[]">
@@ -279,11 +339,27 @@ if (isset($_POST['submit'])) {
 
                         <div class="form-row mb-2 ">
                             <div class="col-lg-12 col-sm-6">
-                            <textarea name="description" id="" cols="30" rows="5" class="form-control text-input mt-2 mb-1" placeholder="Description"></textarea>
+                                <textarea name="description" id="" cols="30" rows="5" class="form-control text-input mt-2 mb-1" placeholder="Brief Description of functions"></textarea>
                             </div>
-                            
                         </div>
 
+                        
+
+                            <div class="time_wrapper mb-2">
+
+                            <div class="form-row">
+                                <div class="col-lg-3 col-sm-6 ">
+                                    <input type="text" class="form-control text-input mt-1 mb-1" name="time_allocation[]" placeholder="Time allocation">
+                                </div>
+
+                                <div class="col-lg-3 col-sm-6 ">
+                                    <input type="text" class="form-control text-input mt-1 mb-1" name="time_allocation_function[]" placeholder="Functions">
+                                </div>
+
+                                <button type="button" class="btn button-1 float-right add_time pr-1 pl-1 pt-0 pb-0">+</button>
+
+                            </div>
+                            </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn button-1 mr-2" data-dismiss="modal" aria-label="Close">Close
@@ -307,24 +383,22 @@ if (isset($_POST['submit'])) {
 </div>
 
 <script>
-   
-      function checkAvailability() {
-    // $("#loaderIcon").show();
+    function checkAvailability() {
+        // $("#loaderIcon").show();
 
         var item_no = 'item_no=' + $("#item_no").val();
 
         // console.log(applicant_id);
 
         jQuery.ajax({
-        url: "check_item_no.php",
-        data: item_no,
-        type: "POST",
-        success: function(data) {
-            $("#user-availability-status").html(data);
-            // $("#loaderIcon").hide();
-        },
-        error: function() {}
+            url: "check_item_no.php",
+            data: item_no,
+            type: "POST",
+            success: function(data) {
+                $("#user-availability-status").html(data);
+                // $("#loaderIcon").hide();
+            },
+            error: function() {}
         });
-  }
-
+    }
 </script>
