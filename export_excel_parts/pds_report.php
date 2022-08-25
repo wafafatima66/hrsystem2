@@ -13,19 +13,24 @@ $emp_image = '';
 if (mysqli_num_rows($result) > 0) {
     
     while ($mydata = mysqli_fetch_assoc($result)) {
+
+
         $emp_image = $mydata['emp_image'];
 
-        $emp_birth_place = $mydata['emp_birth_add_barangay'] .' ,' . $mydata['emp_birth_add_province'] . ',' . $mydata['emp_birth_add_municipal'];
+        //checks data
+        $emp_birth_place = strtoupper($mydata['emp_birth_add_barangay'] .' ,' . $mydata['emp_birth_add_municipal'] . ',' . $mydata['emp_birth_add_province']) ;
+
+        $emp_birth_date = ($mydata['emp_dob'] == '0000-00-00' ? '' : date("m/d/Y", strtotime($mydata['emp_dob'])) ) ;
 
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D10', $mydata['emp_last_name']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D11', $mydata['emp_first_name']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D12', $mydata['emp_middle_name']);
-        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D13', date("m/d/Y", strtotime($mydata['emp_dob'])));
+        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D13', $emp_birth_date);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D15', $emp_birth_place);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('J13', $mydata['emp_citizen']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('K16', $mydata['emp_nationality']);
-        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D16', $mydata['emp_gender']);
-        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D17', $mydata['emp_civil_status']);
+        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D16', strtoupper($mydata['emp_gender']));
+        $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('D17', strtoupper($mydata['emp_civil_status']));
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('I17', $mydata['emp_resi_add']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('L17', $mydata['emp_resi_add_street']);
         $spreadsheet->setActiveSheetIndexByName('C1')->setCellValue('I19', $mydata['emp_resi_add_subvillage']);
@@ -89,7 +94,11 @@ if (mysqli_num_rows($result) > 0) {
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('I15', $mydata['condition_3_des']);
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('H18', $mydata['condition_4']);
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('K19', $mydata['condition_4_des']);
-        $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('K20', date("m/d/Y", strtotime($mydata['condition_4_date'])) );
+
+        $condition_4_date = ($mydata['condition_4_date'] == '0000-00-00' ? '' : date("m/d/Y", strtotime($mydata['condition_4_date'])) ) ;
+
+        $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('K20', $condition_4_date );
+
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('K21', $mydata['condition_4_status']);
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('H27', $mydata['condition_5']);
         $spreadsheet->setActiveSheetIndexByName('C4')->setCellValue('H29', $mydata['condition_5_des']);
@@ -169,7 +178,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 } 
 
-$query6 = "SELECT * FROM `emp_civil_service` WHERE emp_id = '$emp_id' order by id desc limit 7";
+$query6 = "SELECT * FROM `emp_civil_service` WHERE emp_id = '$emp_id' and civil_exam_name is not null and civil_exam_name != '' order by id desc limit 7";
 $count = 5;
 $result = mysqli_query($conn, $query6);
 if (mysqli_num_rows($result) > 0) {
@@ -184,16 +193,25 @@ if (mysqli_num_rows($result) > 0) {
     }
 } 
 
-$query7 = "SELECT * FROM `emp_work_experience` WHERE emp_id = '$emp_id' order by id desc limit 25";
+$query7 = "SELECT * FROM `emp_work_experience` WHERE emp_id = '$emp_id' and work_position is not null and work_position != '' order by id desc limit 25";
 $count = 18;
 $result = mysqli_query($conn, $query7);
 if (mysqli_num_rows($result) > 0) {
     while ($mydata = mysqli_fetch_assoc($result)) {
+
+        //check datas
+        if(!empty($mydata['work_monthly_sal'])){
+            $work_monthly_salary =  preg_replace("/[^0-9]/", "", $mydata['work_monthly_sal'] );
+            $work_monthly_salary = number_format($work_monthly_salary , 2, '.', ',' );
+        }else {
+            $work_monthly_salary = "";
+        }
+
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("A" . $count, date("m/d/Y", strtotime($mydata['work_from_date'])));
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("C" . $count, date("m/d/Y", strtotime($mydata['work_to_date'])));
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("D" . $count, $mydata['work_position']);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("G" . $count, $mydata['work_employer']);
-        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("J" . $count, $mydata['work_monthly_sal']);
+        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("J" . $count, $work_monthly_salary);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("K" . $count, $mydata['work_increment']);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("L" . $count, $mydata['work_status']);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("M" . $count, $mydata['work_govt_service']);
@@ -201,7 +219,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 } 
 
-$query8 = "SELECT * FROM `emp_voluntary_work` WHERE emp_id = '$emp_id' order by id desc limit 5";
+$query8 = "SELECT * FROM `emp_voluntary_work` WHERE emp_id = '$emp_id'  and vol_name_org is not null and vol_name_org != '' order by id desc limit 5";
 $count = 6;
 $result = mysqli_query($conn, $query8);
 if (mysqli_num_rows($result) > 0) {
@@ -216,7 +234,7 @@ if (mysqli_num_rows($result) > 0) {
     }
 } 
 
-$query9 = "SELECT * FROM `emp_training` WHERE emp_id = '$emp_id' order by id desc limit 24";
+$query9 = "SELECT * FROM `emp_training` WHERE emp_id = '$emp_id' and title_of_training is not null and title_of_training != '' order by id desc limit 24";
 $count = 18;
 $result = mysqli_query($conn, $query9);
 if (mysqli_num_rows($result) > 0) {

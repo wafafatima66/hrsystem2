@@ -80,17 +80,23 @@ $output .= ' <p class="text-center">BALANCE FORWARDED AS OF <span style="font-st
             </div>
 
 
-        </div>
+        </div>';
 
-        <div class="container">
+        if ($_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'HR Administrator' ) {
+
+           
+
+            $output .= ' <div class="container">
             <div class="text-center">
                 <input type="submit" class="btn m-3 button-1" name="upgrade" value="Update" id="update_year">
             </div>
-        </div>
+        </div>';
 
-        <!-- </form> -->
+        }
 
-    </div>
+      
+
+        $output .= '</div>
 
     <div class="row">
 
