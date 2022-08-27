@@ -183,12 +183,17 @@ $count = 5;
 $result = mysqli_query($conn, $query6);
 if (mysqli_num_rows($result) > 0) {
     while ($mydata = mysqli_fetch_assoc($result)) {
+
+        $civil_exam_date = ($mydata['civil_exam_date'] == '0000-00-00' ? '' : date("m/d/Y", strtotime($mydata['civil_exam_date'])) ) ;
+
+        $civil_exam_licence_val = ($mydata['civil_exam_licence_val'] == '0000-00-00' ? '' : date("m/d/Y", strtotime($mydata['civil_exam_licence_val'])) ) ;
+
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("A" . $count, $mydata['civil_exam_name']);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("F" . $count, $mydata['civil_exam_rating']);
-        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("G" . $count, date("m/d/Y", strtotime($mydata['civil_exam_date'])));
+        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("G" . $count, $civil_exam_date);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("I" . $count, $mydata['civil_exam_place']);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("L" . $count, $mydata['civil_exam_licence_no']);
-        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("M" . $count, date("m/d/Y", strtotime($mydata['civil_exam_licence_val'])));
+        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("M" . $count, $civil_exam_licence_val);
         $count++;
     }
 } 
@@ -207,8 +212,12 @@ if (mysqli_num_rows($result) > 0) {
             $work_monthly_salary = "";
         }
 
-        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("A" . $count, date("m/d/Y", strtotime($mydata['work_from_date'])));
-        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("C" . $count, date("m/d/Y", strtotime($mydata['work_to_date'])));
+        $work_from_date = ($mydata['work_from_date'] == '0000-00-00' ? '' : date("m/d/Y", strtotime($mydata['work_from_date'])) ) ;
+
+        $work_to_date = ($mydata['work_to_date'] == '0000-00-00' ? '' : date("m/d/Y", strtotime($mydata['work_to_date'])) ) ;
+
+        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("A" . $count, $work_from_date);
+        $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("C" . $count, $work_to_date);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("D" . $count, $mydata['work_position']);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("G" . $count, $mydata['work_employer']);
         $spreadsheet->setActiveSheetIndexByName('C2')->setCellValue("J" . $count, $work_monthly_salary);
@@ -224,10 +233,15 @@ $count = 6;
 $result = mysqli_query($conn, $query8);
 if (mysqli_num_rows($result) > 0) {
     while ($mydata = mysqli_fetch_assoc($result)) {
+
+        $vol_from_date = ($mydata['vol_from_date'] == '0000-00-00' ? '' : date("m/d/Y", strtotime($mydata['vol_from_date'])) ) ;
+
+        $vol_to_date = ($mydata['vol_to_date'] == '0000-00-00' ? '' : date("m/d/Y", strtotime($mydata['vol_to_date'])) ) ;
+
         $vol = $mydata['vol_name_org'] . "  -  " .$mydata['vol_org_add'];
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("A" . $count, $vol);
-        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("E" . $count, date("m/d/Y", strtotime($mydata['vol_from_date'])));
-        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("F" . $count, date("m/d/Y", strtotime($mydata['vol_to_date'] )));
+        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("E" . $count, $vol_from_date);
+        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("F" . $count, $vol_to_date);
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("G" . $count, $mydata['vol_no_of_hrs']);
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("H" . $count, $mydata['vol_position']);
         $count++;
@@ -239,9 +253,14 @@ $count = 18;
 $result = mysqli_query($conn, $query9);
 if (mysqli_num_rows($result) > 0) {
     while ($mydata = mysqli_fetch_assoc($result)) {
+
+        $training_from_date = ($mydata['training_from_date'] == '0000-00-00' ? '' : date("m/d/Y", strtotime($mydata['training_from_date'])) ) ;
+
+        $training_to_date = ($mydata['training_to_date'] == '0000-00-00' ? '' : date("m/d/Y", strtotime($mydata['training_to_date'])) ) ;
+        
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("A" . $count, $mydata['title_of_training']);
-        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("E" . $count, date("m/d/Y", strtotime($mydata['training_from_date'] )));
-        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("F" . $count, date("m/d/Y", strtotime($mydata['training_to_date'] )));
+        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("E" . $count, $training_from_date);
+        $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("F" . $count, $training_to_date);
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("G" . $count, $mydata['training_no_of_hrs']);
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("H" . $count, $mydata['training_type_of_position']);
         $spreadsheet->setActiveSheetIndexByName('C3')->setCellValue("K" . $count, $mydata['training_conducted_by']);
