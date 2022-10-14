@@ -198,4 +198,15 @@ if (!empty($_GET["learning_post_id"])) {
   }
 }
 
+if (!empty($_GET["daily_accomplishment"])) {
+
+  $id = $_GET["daily_accomplishment"];
+  $sql = "DELETE FROM daily_accomplishment WHERE id = '$id'";
+  if (mysqli_query($conn, $sql)) {
+    header("Location:../performance_mang?delete");
+  } else {
+    header("Location:../performance_mang?notdelete");
+  }
+}
+
 ?>

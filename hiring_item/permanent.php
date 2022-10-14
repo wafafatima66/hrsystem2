@@ -72,7 +72,6 @@
 
 
 <?php
-
 echo '<div id="table-data"> </div>';
 ?>
 

@@ -5,7 +5,7 @@ include SITE_ROOT . '/includes/header.php'; ?>
 <?php
 if (isset($_POST['submit'])) {
 
-    // $nature = 'Original';
+
     $item_no = $_POST['item_no'];
     $position = $_POST['position'];
     $salary_grade = $_POST['salary_grade'];
@@ -14,11 +14,27 @@ if (isset($_POST['submit'])) {
     $department = $_POST['department'];
     $office = $_POST['office'];
     $description = $_POST['description'];
+    $monthly_salary = $_POST['monthly_salary'];
+    $level_of_competency = $_POST['level_of_competency'];
     $filled = 0;
     $date_posted = date('Y-m-d');
-    //  $nature = 'Original';
+    // $nature = 'Original';
     $job_type = 'P';
 
+    $time = array();
+    $functions = array();
+  
+    if (isset($_POST['time_allocation'])) {
+      for ($i = 0; $i < count($_POST['time_allocation']); $i++) {
+        $time[$i] = $_POST['time_allocation'][$i] ;
+        $functions[$i] = $_POST['time_allocation_function'][$i];
+      }
+      $myjson = array(
+        "time" => $time,
+        "functions" => $functions
+      );
+      $time_allocations = json_encode($myjson);
+    }
 
     $del_sql_1 = "DELETE FROM item WHERE item_no='$item_no'";
     $conn->query($del_sql_1);
@@ -41,7 +57,7 @@ if (isset($_POST['submit'])) {
 
 
     $sql = "INSERT INTO item (
-            item_no  , position , salary_grade , date_created , filled , place_of_assignment , date_posted , appt_stat , division , area_wrk_assign, description) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled' , '$place_of_assignment' , '$date_posted' , '$job_type' , '$department' , '$office' , '$description' )";
+         item_no  , position , salary_grade , date_created , filled , place_of_assignment , date_posted , appt_stat , division , area_wrk_assign , description , monthly_salary , time_allocations , level_of_competency) VALUES (  '$item_no'  , '$position' , '$salary_grade' ,' $date_created' , '$filled' , '$place_of_assignment' , '$date_posted' , '$job_type' , '$department' , '$office' , '$description' , '$monthly_salary' , '$time_allocations' , '$level_of_competency')";
 
     if (!empty($_POST['hiring_education'])) {
         for ($i = 0; $i < count($_POST['hiring_education']); $i++) {
@@ -157,9 +173,9 @@ if (isset($_GET['item_no'])) {
 
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0) {
-        while ($mydata = mysqli_fetch_assoc($result)) {
+        while ($mydata1 = mysqli_fetch_assoc($result)) {
 
-            $item_no = $mydata['item_no'];
+            $item_no = $mydata1['item_no'];
 
 ?>
             <div class="form-row mt-2 mb-4">
@@ -189,52 +205,101 @@ if (isset($_GET['item_no'])) {
                     <div class="form-row mt-2">
                         <div class="col-lg-3 col-sm-6">
                             <label for="">Item No</label>
-                            <input type="text" class="form-control text-input" placeholder="Item No " value="<?php echo $mydata['item_no'] ?>" disabled>
+                            <input type="text" class="form-control text-input" placeholder="Item No " value="<?php echo $mydata1['item_no'] ?>" disabled>
 
-                            <input type="hidden" name="item_no" value="<?php echo $mydata['item_no'] ?>">
+                            <input type="hidden" name="item_no" value="<?php echo $mydata1['item_no'] ?>">
                         </div>
 
                         <div class="col-lg-5 col-sm-6">
                             <label for="">Position</label>
-                            <input type="text" class="form-control text-input" name="position" placeholder="Position" value="<?php echo $mydata['position'] ?>">
+                            <input type="text" class="form-control text-input" name="position" placeholder="Position" value="<?php echo $mydata1['position'] ?>">
                         </div>
 
                         <div class="col-lg-1 col-sm-6">
                             <label for="">SG</label>
-                            <input type="text" class="form-control text-input" name="salary_grade" placeholder="Salary Grade" value="<?php echo $mydata['salary_grade'] ?>">
+                            <input type="text" class="form-control text-input" name="salary_grade" placeholder="Salary Grade" value="<?php echo $mydata1['salary_grade'] ?>">
                         </div>
+
+                        <div class="col-lg-3 col-sm-6">
+                            <label for="">Monthly Salary</label>
+                                <input type="text" class="form-control text-input" name="monthly_salary" placeholder="Monthly Salary" value="<?php echo $mydata1['monthly_salary'] ?>">
+                            </div>
 
                         <div class="col-lg-3 col-sm-6">
                             <div class="d-flex flex-column">
                                 <label for="">Date created</label>
-                                <input type="date" class="form-control text-input" name="date_created" value="<?php echo $mydata['date_created'] ?>">
+                                <input type="date" class="form-control text-input" name="date_created" value="<?php echo $mydata1['date_created'] ?>">
                                 <small class="text-muted"> (Date created)</small>
                             </div>
                         </div>
 
                         <div class="col-lg-3 col-sm-6">
                             <label for="">Place of assignment</label>
-                            <input type="text" class="form-control text-input" name="place_of_assignment" placeholder="Place of assignment" value="<?php echo $mydata['place_of_assignment'] ?>">
+                            <input type="text" class="form-control text-input" name="place_of_assignment" placeholder="Place of assignment" value="<?php echo $mydata1['place_of_assignment'] ?>">
                         </div>
 
-                        <div class="col-lg-3 col-sm-6">
+                        <!-- <div class="col-lg-3 col-sm-6">
                             <label for="">Department</label>
-                            <input type="text" class="form-control text-input" name="department" placeholder="Department" value="<?php echo $mydata['division'] ?>">
+                            <input type="text" class="form-control text-input" name="department" placeholder="Department" value="<?php echo $mydata1['division'] ?>">
                         </div>
 
                         <div class="col-lg-3 col-sm-6">
                             <label for="">Office</label>
-                            <input type="text" class="form-control text-input" name="office" placeholder="Office" value="<?php echo $mydata['area_wrk_assign'] ?>">
-                        </div>
+                            <input type="text" class="form-control text-input" name="office" placeholder="Office" value="<?php echo $mydata1['area_wrk_assign'] ?>">
+                        </div> -->
+
+                        <div class="col-lg-3 col-sm-6">
+                        <label for="">Department</label>
+                                <select class="form-control text-input" name="department">
+
+                                    <?php
+                                    $query = "select * from (SELECT DISTINCT department_name FROM department union select division from item ) as tablec where tablec.department_name != '' ";
+                                    $result = mysqli_query($conn, $query);
+                                    if (mysqli_num_rows($result) > 0) {
+                                        echo "<option value='' disabled selected hidden> Department </option> ";
+                                        while ($dept_data = mysqli_fetch_assoc($result)) {?>
+                                       
+                                            <option value= "<?php echo $dept_data['department_name']?>" 
+                                            <?php echo ($dept_data['department_name'] == $mydata1['division'] ? 'selected' : '' ) ?> > 
+                                            <?php echo $dept_data['department_name']?> 
+
+                                        </option>
+
+                                       <?php }
+                                    } else {
+                                        echo "<option value='' disabled selected hidden> Department </option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                            <label for="">Office</label>
+                                <select class="form-control text-input" name="office">
+                                    <?php
+                                    $query = "SELECT * FROM ( SELECT DISTINCT area_wrk_assign from item UNION SELECT DISTINCT office_name FROM office ) as tableC WHERE tableC.area_wrk_assign != '' ";
+
+                                    $result = mysqli_query($conn, $query);
+                                    if (mysqli_num_rows($result) > 0) {
+                                        echo "<option value='' disabled selected hidden> Office </option> ";
+                                        while ($office_data = mysqli_fetch_assoc($result)) {?>
+
+                                            <!-- echo "<option value= '" . $office_data['area_wrk_assign'] . "'>" . $office_data['area_wrk_assign'] . "</option>"; -->
+
+                                            <option value= "<?php echo $office_data['area_wrk_assign']?>" 
+                                            <?php echo ($office_data['area_wrk_assign'] == $mydata1['area_wrk_assign'] ? 'selected' : '' ) ?> > 
+                                            <?php echo $office_data['area_wrk_assign']?> 
+
+                                      <?php  }
+                                    } else {
+                                        echo "<option value='' disabled selected hidden>  Office</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
 
                     </div>
 
-                    <div class="form-row mb-2 ">
-                            <div class="col-lg-12 col-sm-6">
-                            <textarea name="description" id="" cols="30" rows="5" class="form-control text-input mt-2 mb-1" placeholder="Description"><?php echo $mydata['description'] ?></textarea>
-                            </div>
-                            
-                        </div>
 
                     <div class="form-row mt-4">
                         <div class="col-lg-12 col-sm-12">
@@ -356,16 +421,26 @@ if (isset($_GET['item_no'])) {
 
                     </div>
 
-                    <div class="form-row mt-2">
+                    <!-- <div class="form-row mt-2">
                         <div class="col-lg-12 col-sm-12">
                             <label for="" class="h6">Applicable competency</label>
                         </div>
-                    </div>
+                    </div> -->
+
+                    <div class="form-row mt-2">
+                            <div class="col-lg-12 col-sm-12">
+                                <label class="lead">Applicable competency</label>
+                            </div>
+                            <div class="col-lg-3 col-sm-3">
+                                <span>Level of Competency</span>
+                                <input type="number" min="0" max="5" step="1" class="form-control text-input" name="level_of_competency" value="<?php echo $mydata1['level_of_competency'] ?>" />
+                            </div>
+                        </div>
 
                     <div class="form-row mb-2">
 
                         <div class="col-lg-3 col-sm-6 ">
-                            <span>Competency 1</span>
+                            <span>Core Competencies</span>
 
                             <div class="com_wrapper_1">
 
@@ -393,7 +468,7 @@ if (isset($_GET['item_no'])) {
                         </div>
 
                         <div class="col-lg-3 col-sm-6 ">
-                            <span>Competency 2</span>
+                            <span>Organization Competencies</span>
 
                             <div class="com_wrapper_2">
 
@@ -419,7 +494,7 @@ if (isset($_GET['item_no'])) {
                         </div>
 
                         <div class="col-lg-3 col-sm-6 ">
-                            <span>Competency 3</span>
+                            <span>Leadership Competencies</span>
 
                             <div class="com_wrapper_3">
                                 <?php
@@ -445,7 +520,7 @@ if (isset($_GET['item_no'])) {
                         </div>
 
                         <div class="col-lg-3 col-sm-6 ">
-                            <span>Competency 4</span>
+                            <span>Technical Competencies</span>
 
                             <div class="com_wrapper_4">
                                 <?php
@@ -471,6 +546,71 @@ if (isset($_GET['item_no'])) {
                         </div>
 
                     </div>
+
+                    <div class="form-row mb-2 ">
+                            <div class="col-lg-12 col-sm-6">
+                            <textarea name="description"  cols="30" rows="5" class="form-control text-input mt-2 mb-1" placeholder="Brief Description of functions"> <?php echo $mydata1['description'] ?> </textarea>
+                            </div>
+                            
+                     </div>
+
+
+                        <div class="form-row">
+                            <div class="col-lg-12 col-sm-12">
+                                <label for="" class="lead">Time Allocation and Functions</label>
+                            </div>
+                        </div>
+
+                            <div class="time_wrapper mb-2">
+
+                            <?php 
+                            
+                            $time_allocations = json_decode($mydata1['time_allocations']);
+
+                            // var_dump($time_allocations->time[0]) ; 
+                            // die ; 
+
+                            if(!empty($time_allocations)){
+                            for ($i = 0; $i < count($time_allocations->time); $i++) {
+
+                            ?>
+                            <div class="form-row">
+                                <div class="col-lg-3 col-sm-6 ">
+                                    <input type="text" class="form-control text-input mt-1 mb-1" name="time_allocation[]" placeholder="Time allocation" value="<?php echo $time_allocations->time[$i] ?>">
+                                </div>
+
+                                <div class="col-lg-8 col-sm-8 ">
+
+                                    <textarea class="form-control text-input mt-1 mb-1" name="time_allocation_function[]" placeholder="Functions" rows="0"><?php echo $time_allocations->functions[$i] ?>
+                                    </textarea>
+
+                                </div>
+
+                                <a class="ml-4 btn button-1 add_time mt-1" style="height: fit-content;">+</a>
+
+                            </div>
+
+                            <?php } } else {?>
+
+                                <div class="form-row">
+                                <div class="col-lg-3 col-sm-6 ">
+                                    <input type="text" class="form-control text-input mt-1 mb-1" name="time_allocation[]" placeholder="Time allocation">
+                                </div>
+
+                                <div class="col-lg-8 col-sm-8 ">
+
+                                    <textarea class="form-control text-input mt-1 mb-1" name="time_allocation_function[]" placeholder="Functions" rows="0"></textarea>
+
+                                </div>
+
+                                <a class="ml-4 btn button-1 add_time mt-1" style="height: fit-content;">+</a>
+
+                                </div>
+
+
+                            
+<?php }?>
+                            </div>
 
 
                     <div class="modal-footer">
@@ -545,6 +685,18 @@ if (isset($_GET['item_no'])) {
             }
         });
 
+        $('.add_time').click(function() {
+            if (x < maxField) {
+                x++; 
+                $('.time_wrapper').append('<div class="form-row"><div class="col-lg-3 col-sm-6 "> <input type="text" class="form-control text-input mt-1 mb-1" name="time_allocation[]" placeholder="Time allocation"> </div> <div class="col-lg-8 col-sm-8 "> <textarea class="form-control text-input mt-1 mb-1" name="time_allocation_function[]" placeholder="Functions" rows="0"></textarea> </div> <a class="ml-4 btn button-1 remove_time_button mt-1" style="height: fit-content;">-</a> </div>'); 
+            }
+        });
+
+        $('.time_wrapper').on('click', '.remove_time_button', function(e) {
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
 
     });
 </script>

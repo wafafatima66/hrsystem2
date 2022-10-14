@@ -2,9 +2,6 @@
 
       <form action="pds_config.php" method="post" enctype="multipart/form-data" id="emp_profile_form">
 
-
-
-
             <div class="row ">
 
                   <div class=" col-lg-12 ">

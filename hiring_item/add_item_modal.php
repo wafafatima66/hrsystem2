@@ -343,7 +343,11 @@ if (isset($_POST['submit'])) {
                             </div>
                         </div>
 
-                        
+                        <div class="form-row">
+                            <div class="col-lg-12 col-sm-12">
+                                <label for="" class="lead">Time Allocation and Functions</label>
+                            </div>
+                        </div>
 
                             <div class="time_wrapper mb-2">
 
@@ -352,11 +356,15 @@ if (isset($_POST['submit'])) {
                                     <input type="text" class="form-control text-input mt-1 mb-1" name="time_allocation[]" placeholder="Time allocation">
                                 </div>
 
-                                <div class="col-lg-3 col-sm-6 ">
-                                    <input type="text" class="form-control text-input mt-1 mb-1" name="time_allocation_function[]" placeholder="Functions">
+                                <div class="col-lg-8 col-sm-8 ">
+                                    <!-- <input type="text" class="form-control text-input mt-1 mb-1" name="time_allocation_function[]" placeholder="Functions"> -->
+
+                                    <textarea class="form-control text-input mt-1 mb-1" name="time_allocation_function[]" placeholder="Functions" rows="0"></textarea>
                                 </div>
 
-                                <button type="button" class="btn button-1 float-right add_time pr-1 pl-1 pt-0 pb-0">+</button>
+                                <!-- <button type="button" class="btn button-1 float-right add_time pr-1 pl-1 pt-0 pb-0">+</button> -->
+
+                                <a class="ml-4 btn button-1 add_time mt-1" style="height: fit-content;">+</a>
 
                             </div>
                             </div>

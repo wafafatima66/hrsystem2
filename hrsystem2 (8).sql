@@ -8432,7 +8432,26 @@ ALTER TABLE `training_post_table` ADD `role_posted_office` VARCHAR(255) NULL AFT
 ALTER TABLE `training_post_table` ADD `role_posted_name` VARCHAR(255) NULL AFTER `role_posted_office`;
 ALTER TABLE `training_table` ADD `role_posted` VARCHAR(255) NULL AFTER `training_details`, ADD `role_posted_name` VARCHAR(255) NULL AFTER `role_posted`;
 
--- NEW
 ALTER TABLE `item` ADD `time_allocations` VARCHAR(500) NULL AFTER `date_modified`;
 ALTER TABLE `item` ADD `level_of_competency` INT NULL AFTER `time_allocations`;
 ALTER TABLE `emp_civil_service` CHANGE `civil_exam_rating` `civil_exam_rating` DOUBLE NULL DEFAULT NULL;
+
+--new
+
+ALTER TABLE `emp_performance` ADD `date_of_submission` DATE NULL AFTER `excel_file_name`;
+ALTER TABLE `emp_performance` ADD `date_of_resubmission` DATE NULL AFTER `date_of_submission`;
+ALTER TABLE `emp_performance` ADD `remarks` VARCHAR(1000) NULL AFTER `date_of_resubmission`;
+
+CREATE TABLE `daily_accomplishment` ( 
+  `id` INT NOT NULL AUTO_INCREMENT , 
+  `date` DATE NULL , 
+  `qty` INT(11) NOT NULL , 
+  `output_description` VARCHAR(1000) NULL , 
+  `output_date` DATE NULL , 
+  `success_description` VARCHAR(1000) NULL , 
+  `success_date` DATE NULL , 
+  `emp_id` VARCHAR(255) NOT NULL , 
+  PRIMARY KEY (`id`)) ;
+
+ALTER TABLE `daily_accomplishment` ADD `output_checked` INT(11) NULL AFTER `success_date`;
+ALTER TABLE `daily_accomplishment` ADD `success_checked` INT(11) NULL AFTER `output_checked`;

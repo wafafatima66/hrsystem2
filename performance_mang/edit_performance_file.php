@@ -18,6 +18,10 @@ if (isset($_POST['submit'])) {
     $rating = $_POST['rating'];
     $file_date = date("Y-m-d");
 
+    $date_of_submission = $_POST['date_of_submission'];
+    $date_of_resubmission = $_POST['date_of_resubmission'];
+    $remarks = $_POST['remarks'];
+
     // $excel_file_name = $_POST['excel_file_name'];
 
 
@@ -38,17 +42,25 @@ if (isset($_POST['submit'])) {
         } else {
             (move_uploaded_file($tempname, $folder));
         }
-    }
-    else{
+    } else {
         $query = "SELECT excel_file_name FROM emp_performance where id = '$performance_file_id'";
         $runquery = $conn->query($query);
         while ($mydata = $runquery->fetch_assoc()) {
             $excel_file_name = ($mydata['excel_file_name']);
         }
     }
-    
 
-    $sql = "UPDATE emp_performance SET excel_file_type = '$excel_file_type' , year = '$year', rating_period ='$rating_period',rating = '$rating' , excel_file_name ='$excel_file_name' WHERE id = '$performance_file_id'";
+
+    $sql = "UPDATE emp_performance SET 
+    excel_file_type = '$excel_file_type' , 
+    year = '$year', 
+    rating_period ='$rating_period',
+    rating = '$rating' , 
+    excel_file_name ='$excel_file_name' ,
+    date_of_submission = '$date_of_submission',
+    date_of_resubmission = '$date_of_resubmission',
+    remarks = '$remarks'
+    WHERE id = '$performance_file_id'";
 
 
     $sql1 = "UPDATE emp_file SET file_name = '$excel_file_name' , file_date = '$file_date' WHERE performance_file_id = '$performance_file_id'";
@@ -75,9 +87,9 @@ if (isset($_GET['performance_file_id'])) {
 
                 $excel_file_name = '../files/' . $mydata['excel_file_name']; ?>
 
-<div class=" col-lg-12 col-sm-12 mt-2">
-    <h4 class="h4-heading">EDIT PERFORMANCE</h4>
-  </div>
+                <div class=" col-lg-12 col-sm-12 mt-2">
+                    <h4 class="h4-heading">EDIT PERFORMANCE</h4>
+                </div>
                 <form class="container mt-3 container-box" action="" method="post" enctype="multipart/form-data">
 
                     <input type="hidden" value="<?php echo $mydata['id'] ?>" name="performance_file_id">
@@ -104,8 +116,8 @@ if (isset($_GET['performance_file_id'])) {
                             <label for="">Rating Period</label>
                             <select name="rating_period" class="form-control text-input">
                                 <option value="">Rating period</option>
-                                <option value="1" <?php echo ($mydata['rating_period'] == '1') ? "selected" : "" ?>>1</option>
-                                <option value="2" <?php echo ($mydata['rating_period'] == '2') ? "selected" : "" ?>>2</option>
+                                <option value="1" <?php echo ($mydata['rating_period'] == '1') ? "selected" : "" ?>>Jan-Jun</option>
+                                <option value="2" <?php echo ($mydata['rating_period'] == '2') ? "selected" : "" ?>>Jul-Dec</option>
                             </select>
                         </div>
 
@@ -118,11 +130,29 @@ if (isset($_GET['performance_file_id'])) {
                         <input type="file" name="excel_file_name" required>
                     </div> -->
                     </div>
+
+                    <div class="form-row mt-2">
+
+                        <div class="col-lg-3 col-sm-6">
+                            <label>Date of Submission</label>
+                            <input type="date" name="date_of_submission" class="form-control text-input" value="<?php echo ($mydata['date_of_submission']) ?>">
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6">
+                            <label>Date of Re-submission</label>
+                            <input type="date" name="date_of_resubmission" class="form-control text-input" value="<?php echo ($mydata['date_of_resubmission']) ?>">
+                        </div>
+
+                        <div class="col-lg-3 col-sm-6">
+                            <label>Remark</label>
+                            <textarea class="form-control text-input" name="remarks"><?php echo ($mydata['remarks']) ?></textarea>
+                        </div>
+
+                    </div>
+
                     <div class="form-row mt-2">
                         <div class="col-lg-2 col-sm-6 col-6" style="cursor: pointer;">
-                        <a href="<?php echo $excel_file_name; ?>" class="btn button-1">View File</a>
-                                <!-- <img src="../img/excel.png" alt="" style="width:100%; height:50%"></a>
-                                <small>View File</small> -->
+                            <a href="<?php echo $excel_file_name; ?>" class="btn button-1">View File</a>
                         </div>
 
                         <div class="col-lg-3 col-sm-6 mt-2">

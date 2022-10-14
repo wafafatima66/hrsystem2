@@ -51,4 +51,13 @@ if (isset($_GET["leave_credits"])) {
     include "../export_excel_parts/leave_credits.php";
 }
 
+if (isset($_GET["performance_summary_list"])) {
+
+    include "../export_excel_parts/performance_summary_list.php";
+}
+
+if (isset($_GET["daily_accomplishment_report"])) {
+
+    include "../export_excel_parts/daily_accomplishment_report.php";
+}
 

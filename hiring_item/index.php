@@ -103,8 +103,14 @@ if(isset($_GET['item_delete'])){
         $('.add_time').click(function() {
             if (x < maxField) {
                 x++; 
-                $('.time_wrapper').append('<div class="form-row"><div class="col-lg-3 col-sm-6 "> <input type="text" class="form-control text-input mt-1 mb-1" name="time_allocation[]" placeholder="Time allocation"> </div> <div class="col-lg-3 col-sm-6 "> <input type="text" class="form-control text-input mt-1 mb-1" name="time_allocation_function[]" placeholder="Functions"> </div> </div>'); 
+                $('.time_wrapper').append('<div class="form-row"><div class="col-lg-3 col-sm-6 "> <input type="text" class="form-control text-input mt-1 mb-1" name="time_allocation[]" placeholder="Time allocation"> </div> <div class="col-lg-8 col-sm-8 "> <textarea class="form-control text-input mt-1 mb-1" name="time_allocation_function[]" placeholder="Functions" rows="0"></textarea> </div> <a class="ml-4 btn button-1 remove_time_button mt-1" style="height: fit-content;">-</a> </div>'); 
             }
+        });
+
+        $('.time_wrapper').on('click', '.remove_time_button', function(e) {
+            e.preventDefault();
+            $(this).parent('div').remove(); //Remove field html
+            x--; //Decrement field counter
         });
 
     });

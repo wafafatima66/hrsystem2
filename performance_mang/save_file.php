@@ -10,12 +10,16 @@ if (isset($_POST['submit'])) {
     $rating_period = $_POST['rating_period'];
     $rating = $_POST['rating'];
     $file_date = date("Y-m-d");
+
+    $date_of_submission = $_POST['date_of_submission'];
+    $date_of_resubmission = $_POST['date_of_resubmission'];
+    $remarks = $_POST['remarks'];
     
     // $excel_file_name = $_POST['excel_file_name'];
    
 
     if (!empty($_FILES["excel_file_name"]["name"])) {
-        $excel_file_name = "excel-".time().'-' . $emp_id . "-" . $_FILES["excel_file_name"]["name"];
+        $excel_file_name = "pdf-".time().'-' . $emp_id . "-" . $_FILES["excel_file_name"]["name"];
         $tempname = $_FILES["excel_file_name"]["tmp_name"];
         $folder = "../files/" . $excel_file_name;
         $file_size = $_FILES['excel_file_name']['size'];
@@ -24,14 +28,14 @@ if (isset($_POST['submit'])) {
         $text1 = explode('.', $_FILES['excel_file_name']['name']);
         $text = strtolower(end($text1));
         $file_ext = strtolower($text);
-        $extensions = array("xlsx");
+        $extensions = array("pdf");
 
         if (in_array($file_ext, $extensions) === false) {
             header("Location:../performance_mang/emp_profile.php?id=".$id."&file");
         } else {
             (move_uploaded_file($tempname, $folder));
             
-            $sql = "INSERT INTO emp_performance (emp_id  , excel_file_type , year , rating_period , rating , excel_file_name) VALUES (  '$emp_id'  , '$excel_file_type' , '$year' ,' $rating_period' , '$rating', '$excel_file_name')";
+            $sql = "INSERT INTO emp_performance (emp_id  , excel_file_type , year , rating_period , rating , excel_file_name , date_of_submission , date_of_resubmission , remarks) VALUES (  '$emp_id'  , '$excel_file_type' , '$year' ,' $rating_period' , '$rating', '$excel_file_name' , '$date_of_submission' , '$date_of_resubmission' , '$remarks')";
 
             mysqli_query($conn, $sql);
             // take id from emp_performance table 
