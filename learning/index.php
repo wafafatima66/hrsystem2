@@ -1,4 +1,6 @@
-<?php include '../config.php';
+<?php 
+
+include '../config.php';
 
 include SITE_ROOT . '/includes/header.php'; ?>
 
@@ -8,6 +10,8 @@ if (isset($_GET['delete'])) {
 } else if (isset($_GET['notdelete'])) {
       echo  '<script>toastr.error("Training/Seminar not Deleted. Try again !")</script>';
 }
+
+
 
 ?>
 <div class="container">
@@ -19,38 +23,33 @@ if (isset($_GET['delete'])) {
             </div>
 
             <?php if ($_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'HR Administrator' || $_SESSION['user_role'] == 'Division Head' || $_SESSION['user_role'] == 'Agency Head' || $_SESSION['user_role'] == 'Supervisor') { ?>
-            <div class="col-lg-5 col-sm-12 mt-3">
-                  <div class="input-group">
-                        <input type="search" class="form-control" id="search_input">
-                        <button type="button" class="home-page-search-btn" id="search_button">
-                              <i class="fa fa-search"></i>
-                        </button>
 
-                        
-                              <button type="button" class="ml-3 btn button-1" data-toggle="modal" data-target="#addlearning">Add Training</button>
-                        
+                  <div class="col-lg-5 col-sm-12 mt-3">
+                        <div class="input-group">
+                              <input type="search" class="form-control" id="search_input">
+                              <button type="button" class="home-page-search-btn" id="search_button">
+                                    <i class="fa fa-search"></i>
+                              </button>
 
-                       
-                              <button type="button" class="ml-3 btn button-1" data-toggle="modal" data-target="#addpost">Post</button>
-                       
+
+                              <button type="button" class="ml-3 btn button-1" data-toggle="modal" data-target="#addlearning">Add Internal Training</button>
+
+                        </div>
 
                   </div>
-                  
-            </div>
-            
 
 
-            <div class="col-lg-2 col-sm-5  mt-3">
-                  <input type="date" class="form-control text-input" placeholder="Date Picker" id="from_date">
-            </div>
-            <span class="mr-2 ml-2 mt-4">to</span>
-            <div class="col-lg-2 col-sm-5 mt-3">
-                  <input type="date" class="form-control text-input" placeholder="Date Picker" id="to_date">
-            </div>
+                  <div class="col-lg-2 col-sm-5  mt-3">
+                        <input type="date" class="form-control text-input" placeholder="Date Picker" id="from_date">
+                  </div>
+                  <span class="mr-2 ml-2 mt-4">to</span>
+                  <div class="col-lg-2 col-sm-5 mt-3">
+                        <input type="date" class="form-control text-input" placeholder="Date Picker" id="to_date">
+                  </div>
 
-            <div class="col-lg-2 col-sm-6 mt-3">
-                  <button type="button" class="ml-3 btn button-1" id="search_date">Search</button>
-            </div>
+                  <div class="col-lg-2 col-sm-6 mt-3">
+                        <button type="button" class="ml-3 btn button-1" id="search_date">Search</button>
+                  </div>
 
             <?php } ?>
       </div>
@@ -58,9 +57,8 @@ if (isset($_GET['delete'])) {
 
       <!-- main table -->
       <?php
-      if ( $_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'Agency Head' || $_SESSION['user_role'] == 'Division Head' || $_SESSION['user_role'] == 'Supervisor' || $_SESSION['user_role'] == 'HR Administrator')
-       { 
-              echo '<div id="table-data"></div>'; 
+      if ($_SESSION['user_role'] == 'Super Administrator' || $_SESSION['user_role'] == 'Agency Head' || $_SESSION['user_role'] == 'Division Head' || $_SESSION['user_role'] == 'Supervisor' || $_SESSION['user_role'] == 'HR Administrator') {
+            echo '<div id="table-data"></div>';
       }
       ?>
 
@@ -110,7 +108,7 @@ if (isset($_GET['delete'])) {
                                                 <td><?php echo $mydata['no_of_hrs'];  ?></td>
                                                 <td><?php echo $mydata['sponsors'];  ?></td>
 
-                                                <td> <a class='view_post_btn' data-toggle='modal' data-target='#view_post' data-id='<?php echo $mydata['id'];?>' style="color:black ; cursor:pointer ; ">View</a></td>
+                                                <td> <a class='view_post_btn' data-toggle='modal' data-target='#view_post' data-id='<?php echo $mydata['id']; ?>' style="color:black ; cursor:pointer ; ">View</a></td>
 
                                           </tr>
 

@@ -8,21 +8,24 @@ $(document).ready(function () {
       ''
 
     var fieldHTML3 =
-      '  <div class="form-row mt-2"> <div class="col-lg-3 col-sm-6"> </div> <div class="col-lg-4 col-sm-6"> <input type="text" class="form-control text-input" name="sponsor[]" placeholder="Sponsor"> </div> </div>';
+      '  <div class="form-row mt-2"><div class="col-lg-4 col-sm-6"> <input type="text" class="form-control text-input" name="sponsor[]" placeholder="Sponsor"> </div> </div>';
 
      
     $('.add_emp_id_modal').click(function () {
       if (x < maxField) {
         x++;
-        console.log(x)
-        $('.add_emp_id_wrapper_modal').append('<div class="form-row mt-2"> <div class="col-lg-6 col-sm-6"> <input type="text" class="form-control text-input emp_id" placeholder="Employee Id" name="emp_id[]" id="'+x+'" onkeyup = get_info(this.id); > </div> <div class="col-lg-6 col-sm-6"> <input type="text" class=" form-control text-input" placeholder="First Name,Last Name,Middle Name , Ext" name="emp_name[]" id="emp_name_'+x+'"> </div> </div>'); 
+        // console.log(x)
+        $('.add_emp_id_wrapper_modal').append('<div class="form-row mt-2"> <div class="col-lg-6 col-sm-6"> <input type="text" class="form-control text-input emp_id" placeholder="Employee Name"  id="add_learning_'+x+'" onkeyup = get_info(this.id) name="emp_name[]" > <div id="emplist_'+x+'"></div><input type="hidden" name="emp_id[]" id="get_emp_id_'+x+'"> </div> <div class="col-lg-6 col-sm-6"> <input type="text" class=" form-control text-input" placeholder="Office"  id="office_'+x+'"> </div> </div>'); 
       }
     });
 
+
+    var lastid = $( '.add_emp_id' ).attr( 'last-id' );
+    // console.log(lastid)
     $('.add_emp_id').click(function () {
-      if (x < maxField) {
-        x++;
-        $('.add_emp_id_wrapper').append('<div class="form-row mt-2"> <div class="col-lg-6 col-sm-6"><input type="text" class="form-control text-input emp_id" placeholder="Employee Id"  name="emp_id[]"> </div> </div> </div>'); //Add field html
+      if (lastid < maxField) {
+        lastid++;
+        $('.add_emp_id_wrapper').append('<div class="form-row mt-2"> <div class="col-lg-6 col-sm-6"> <input type="text" class="form-control text-input emp_id" placeholder="Employee Name"  id="add_learning_'+lastid+'" onkeyup = get_info(this.id) name="emp_name[]" > <div id="emplist_'+lastid+'"></div><input type="hidden" name="emp_id[]" id="get_emp_id_'+lastid+'"> </div> </div> '); //Add field html
       }
     });
 

@@ -20,12 +20,20 @@ $add1 = "where 1";
 $add2 = "";
 $add3 = "";
 
+if (isset($_POST['from_date']) && isset($_POST['to_date']) && !empty($_POST['from_date']) && !empty($_POST['to_date'])) {
+
+	$from_date = $_POST['from_date'];
+	$to_date = $_POST['to_date'];
+	$add2 = "and from_date BETWEEN '$from_date' AND '$to_date'";
+
+}
 
 
 if (isset($_POST['search_post']) && !empty($_POST['search_post'])) {
 
 	$search_post = $_POST['search_post'];
 	$add3 = "and title_of_training LIKE '%{$search_post}%' OR type_of_training LIKE '%{$search_post}%'";
+	
 }
 
 

@@ -7,6 +7,8 @@ $year = date('Y');
 $k = 7;
 $i = 0;
 
+// echo $rating_period ; 
+// die ; 
 
 $bold = [
     'font' => [
@@ -31,19 +33,25 @@ $yellow = [
     ],
 ];
 
+$green = [
+    'fill' => [
+            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+            'startColor' => array('argb' => '92D050')
+        
+    ],
+];
 
 $reader = new PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
-$spreadsheet = $reader->load('../export_excel_parts/performance_summary_list.xlsx');
+$spreadsheet = $reader->load('../export_excel_parts/consolidated_performance_review.xlsx');
 
 if ($rating_period == 1) {
     $spreadsheet->getActiveSheet()->setCellValue("A3", "Rating Period : JANUARY TO JUNE " . $year);
-    $spreadsheet->getActiveSheet()->setCellValue("D6", "JAN-JUN " . $year);
+
 } else if ($rating_period == 2) {
     $spreadsheet->getActiveSheet()->setCellValue("A3", "Rating Period : JULY TO DECEMBER " . $year);
-    $spreadsheet->getActiveSheet()->setCellValue("D6", "JUL-DEC " . $year);
-}
 
+}
 
 
 //all dept all office
@@ -77,7 +85,7 @@ else if ( $dept != 'all')
         while ($mydata1 = $runquery1->fetch_assoc()) {
 
           
-            $k += 1;
+           
             $division_value = $mydata1["division"];
 
             if ($office == 'all') 
@@ -99,11 +107,13 @@ else if ( $dept != 'all')
 
                     $area_wrk_assign_value = $mydata2["area_wrk_assign"];
 
-                    $spreadsheet->getActiveSheet()->setCellValue("B" . $k, $area_wrk_assign_value);
+                    $spreadsheet->getActiveSheet()->setCellValue("A" . $k, $area_wrk_assign_value);
 
-                    $spreadsheet->getActiveSheet()->getStyle("B" . $k)->applyFromArray($bold);
+                    $spreadsheet->getActiveSheet()->getStyle("A" . $k)->applyFromArray($bold);
 
-                    $query3 = "SELECT  i.division , i.area_wrk_assign , i.position ,  e.emp_first_name , e.emp_middle_name , e.emp_last_name , e.emp_ext , e.id ,  p.rating , p.rating_period , p.remarks FROM employee e left join item i on i.emp_id = e.emp_id left join emp_performance p on e.emp_id = p.emp_id where i.division = '$division_value' and i.area_wrk_assign = '$area_wrk_assign_value' and p.rating_period = '$rating_period'";
+                    $spreadsheet->getActiveSheet()->mergeCells("A" .$k.":K" .$k);
+
+                    $query3 = "SELECT  i.division , i.area_wrk_assign , i.position ,  e.emp_first_name , e.emp_middle_name , e.emp_last_name , e.emp_ext , e.id ,  p.*  FROM employee e left join item i on i.emp_id = e.emp_id left join emp_performance p on e.emp_id = p.emp_id where i.division = '$division_value' and i.area_wrk_assign = '$area_wrk_assign_value' and p.rating_period = '$rating_period'";
 
                     $runquery3 = $conn->query($query3);
                     $rowcount3 = mysqli_num_rows($runquery3);
@@ -135,7 +145,9 @@ else if ( $dept != 'all')
                             $spreadsheet->getActiveSheet()->setCellValue("C" . $k, $mydata3['position']);
                             $spreadsheet->getActiveSheet()->setCellValue("D" . $k, $mydata3['rating']);
                             $spreadsheet->getActiveSheet()->setCellValue("E" . $k, $adjectival_rating);
-                            $spreadsheet->getActiveSheet()->setCellValue("F" . $k, $mydata3['remarks']);
+                            $spreadsheet->getActiveSheet()->setCellValue("H" . $k, $mydata3['date_of_submission']);
+                            $spreadsheet->getActiveSheet()->setCellValue("J" . $k, $mydata3['date_of_resubmission']);
+                            $spreadsheet->getActiveSheet()->setCellValue("K" . $k, $mydata3['remarks']);
                         }
                     }
                 }
@@ -149,37 +161,73 @@ else if ( $dept != 'all')
                 $k+=1 ; 
 
                 $spreadsheet->getActiveSheet()->setCellValue("B" . $k, 'Over all Rating of ' . $division_value);
+                $spreadsheet->getActiveSheet()->mergeCells("B" .$k.":C" .$k);
                 $spreadsheet->getActiveSheet()->getStyle("B" . $k)->applyFromArray($bold);
-                $spreadsheet->getActiveSheet()->getStyle("A" . $k .":F" . $k)->applyFromArray($yellow);
+                $spreadsheet->getActiveSheet()->getStyle("A" . $k .":K" . $k)->applyFromArray($yellow);
 
 
 
             }
         }
+
+        foreach (range(8, $k) as $columnID) {
+            $spreadsheet->getActiveSheet()->getRowDimension($columnID)->setRowHeight(-1);
+          }
+
+        $k+=3 ; 
+
+        $spreadsheet->getActiveSheet()->setCellValue("A" . $k, 'DIVISION AVERAGE RATING');
+        $spreadsheet->getActiveSheet()->mergeCells("A" .$k.":C" .$k);
+        $spreadsheet->getActiveSheet()->getStyle("A" . $k)->applyFromArray($bold);
+        $spreadsheet->getActiveSheet()->getStyle("A" . $k .":K" . $k)->applyFromArray($yellow);
+        $spreadsheet->getActiveSheet()->getRowDimension($k)->setRowHeight(50);
+        // $sheet->getDefaultRowDimension()->setRowHeight(15);
+
+        $k+=1 ; 
+
+        $spreadsheet->getActiveSheet()->setCellValue("A" . $k, 'OVERALL RATING');
+        $spreadsheet->getActiveSheet()->mergeCells("A" .$k.":C" .$k);
+        $spreadsheet->getActiveSheet()->getStyle("A" . $k)->applyFromArray($bold);
+        $spreadsheet->getActiveSheet()->getStyle("A" . $k .":K" . $k)->applyFromArray($green);
+        $spreadsheet->getActiveSheet()->getRowDimension($k)->setRowHeight(50);
+
     }
 
 
-foreach (range('A', 'F') as $columnID) {
+foreach (range('A', 'K') as $columnID) {
     // $spreadsheet->getActiveSheet()->getColumnDimension($columnID)
     //     ->setAutoSize(true);
     $spreadsheet->getActiveSheet()->getStyle($columnID)
         ->getAlignment()->setWrapText(true);
 }
 
-$spreadsheet->getActiveSheet()->getStyle("A9:F" . $k + 2)->applyFromArray($all_borders);
+
+$spreadsheet->getActiveSheet()->getStyle("A8:K" . $k)->applyFromArray($all_borders);
+
+
 $j = $k + 4;
+
 $spreadsheet->getActiveSheet()->setCellValue("B" . $j, 'Prepared By : ');
-$spreadsheet->getActiveSheet()->setCellValue("B" . $j + 3, 'PAMELA C. PAKIPAC, RND, MPA');
-$spreadsheet->getActiveSheet()->setCellValue("B" . $j + 4, 'Administrative Officer V');
-$spreadsheet->getActiveSheet()->setCellValue("B" . $j + 7, 'Approved by:');
-$spreadsheet->getActiveSheet()->setCellValue("B" . $j + 9, 'EDUARDO B. CALPITO, MD, MHA, FPSMS');
-$spreadsheet->getActiveSheet()->setCellValue("B" . $j + 10, 'Medical Center Chief I');
+$spreadsheet->getActiveSheet()->setCellValue("B" . $j + 2, 'BRIGET M. GAWADING');
+$spreadsheet->getActiveSheet()->getStyle("B" . $j + 2)->applyFromArray($bold);
+$spreadsheet->getActiveSheet()->setCellValue("B" . $j + 3, 'Administrative Officer IV');
 
+$spreadsheet->getActiveSheet()->setCellValue("H" . $j, 'Noted by:');
+$spreadsheet->getActiveSheet()->setCellValue("H" . $j + 2, 'RACHEL A. BENITO, RN, MAN');
+$spreadsheet->getActiveSheet()->getStyle("H" . $j + 2)->applyFromArray($bold);
+$spreadsheet->getActiveSheet()->setCellValue("H" . $j + 3, 'PMT Chairperson/Supervising Administrative Officer');
 
-$fileName = "performance_summary_list- " . $year . ".xlsx"; //date('d/m/Y')
+$a= $j+5 ; 
+$spreadsheet->getActiveSheet()->getStyle("B".$j. ":K" . $a)
+        ->getAlignment()->setWrapText(false);
+
+$fileName = "division_performance_review- " . $year . ".xlsx"; //date('d/m/Y')
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment ; filename=' . $fileName);
 $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
 $writer->save('php://output');
 die;
+
+
+?>

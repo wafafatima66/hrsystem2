@@ -4,9 +4,9 @@ include SITE_ROOT . '/includes/header.php'; ?>
 
 <?php
 if (isset($_GET['delete'])) {
-      echo  '<script>toastr.success("Daily Accomplishment Deleted Successfully !")</script>';
+  echo  '<script>toastr.success("Daily Accomplishment Deleted Successfully !")</script>';
 } else if (isset($_GET['notdelete'])) {
-      echo  '<script>toastr.error("Daily Accomplishment not Deleted. Try again !")</script>';
+  echo  '<script>toastr.error("Daily Accomplishment not Deleted. Try again !")</script>';
 }
 ?>
 
@@ -30,13 +30,13 @@ if (isset($_GET['delete'])) {
 
     <div class="col-lg-2 col-sm-6">
       <select id="dept_dropdown" class="form-control text-input department-select">
-       <option value='all' selected >All Division</option>
+        <option value='all' selected>All Division</option>
         <?php
         $query = "select * from (SELECT DISTINCT department_name FROM department union select division from item ) as tablec where tablec.department_name != ''";
         $result = mysqli_query($conn, $query);
         if (mysqli_num_rows($result) > 0) {
           echo "<option value='' disabled  hidden> Select Division </option> ";
-         
+
           while ($mydata = mysqli_fetch_assoc($result)) {
             echo "<option value= '" . $mydata['department_name'] . "'>" . $mydata['department_name'] . "</option>";
           }
@@ -86,11 +86,11 @@ if (isset($_GET['delete'])) {
     <div class="form-row mt-4">
 
       <div class="col-lg-12 col-sm-12 mt-2">
-        <a href="">DIVISION PERFORMANCE REVIEW & EVALUATION</a>
+        <a href="#" id="division_performance_review">DIVISION PERFORMANCE REVIEW & EVALUATION</a>
       </div>
 
       <div class="col-lg-12 col-sm-12 mt-2">
-        <a href="">CONSOLIDATED PERFORMANCE REVIEW & EVALUATION FORM</a>
+        <a href="#" id="consolidated_performance_review">CONSOLIDATED PERFORMANCE REVIEW & EVALUATION FORM</a>
       </div>
 
       <div class="col-lg-12 col-sm-12 mt-2">
@@ -106,6 +106,7 @@ if (isset($_GET['delete'])) {
 <script type="text/javascript">
   $(document).ready(function() {
 
+    // excels 
     $('#performance_summary_list').on('click', function() {
       var dept = $('#dept_dropdown').val();
       var office = $('#office_dropdown').val();
@@ -113,7 +114,7 @@ if (isset($_GET['delete'])) {
       if (dept == '' || dept == null) {
         toastr.error("Select a Department/Division")
       } else {
-        if (rating == '' ||  rating == null) {
+        if (rating == '' || rating == null) {
           rating = 1
         }
         var url = '../includes/export_excel.php?performance_summary_list&';
@@ -124,6 +125,51 @@ if (isset($_GET['delete'])) {
 
     });
 
+    $('#consolidated_performance_review').on('click', function() {
+      var dept = $('#dept_dropdown').val();
+      var office = $('#office_dropdown').val();
+      var rating = $('#rating_dropdown').val();
+
+      // console.log(rating);
+      if (dept == '' || dept == null) {
+        toastr.error("Select a Department/Division")
+      } else {
+        if (rating == '' || rating == null) {
+          rating = 1
+        }
+        var url = '../includes/export_excel.php?consolidated_performance_review&';
+        var newHref = url.concat('office=' + office + '&dept=' + dept + '&rating_period=' + rating);
+        // console.log(newHref);
+        $('#consolidated_performance_review').attr('href', newHref);
+      }
+
+    });
+
+    $('#division_performance_review').on('click', function() {
+      var dept = $('#dept_dropdown').val();
+      var rating = $('#rating_dropdown').val();
+
+      // console.log(rating);
+      if (dept == 'all') {
+        toastr.error("Select a Department/Division")
+      } else {
+
+        if (rating == '' || rating == null) {
+          toastr.error("Select Rating Period")
+        } else {
+
+          var url = '../includes/export_excel.php?division_performance_review&';
+          var newHref = url.concat('dept=' + dept + '&rating_period=' + rating);
+          // console.log(newHref);
+          $('#division_performance_review').attr('href', newHref);
+
+        }
+
+      }
+
+    });
+
+    // pagintion
     function loadData(page, limit, search, dept, office, rating) {
       $.ajax({
         url: "pagination.php",

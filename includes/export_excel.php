@@ -61,3 +61,14 @@ if (isset($_GET["daily_accomplishment_report"])) {
     include "../export_excel_parts/daily_accomplishment_report.php";
 }
 
+if (isset($_GET["consolidated_performance_review"])) {
+
+    include "../export_excel_parts/consolidated_performance_review.php";
+}
+
+if (isset($_GET["division_performance_review"])) {
+
+    include "../export_excel_parts/division_performance_review.php";
+}
+
+

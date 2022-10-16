@@ -8455,3 +8455,7 @@ CREATE TABLE `daily_accomplishment` (
 
 ALTER TABLE `daily_accomplishment` ADD `output_checked` INT(11) NULL AFTER `success_date`;
 ALTER TABLE `daily_accomplishment` ADD `success_checked` INT(11) NULL AFTER `output_checked`;
+
+ALTER TABLE `training_table` ADD `classification` VARCHAR(255) NULL AFTER `role_posted_name`, ADD `proponent` VARCHAR(255) NULL AFTER `classification`, ADD `budgetary_requirement` VARCHAR(255) NULL AFTER `proponent`, ADD `financed_by` VARCHAR(255) NULL AFTER `budgetary_requirement`, ADD `source_of_fund` VARCHAR(255) NULL AFTER `financed_by`;
+
+ALTER TABLE `training_table` ADD `employee_names` VARCHAR(255) NULL AFTER `source_of_fund`;

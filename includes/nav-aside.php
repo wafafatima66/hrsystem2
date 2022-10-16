@@ -96,9 +96,10 @@
             <ul class="slide-menu">
                 <li><a href="../learning" class="slide-item <?php list_active('learning'); ?>">Trainings & Seminars</a></li>
 
-                <li><a href="../learning_summary" class="slide-item <?php list_active('learning_summary'); ?>">Summary of Trainings</a></li>
-
                 <li><a href="../learning_post" class="slide-item <?php list_active('learning_post'); ?>">Posted Trainings</a></li>
+
+                <li><a href="../learning_summary" class="slide-item <?php list_active('learning_summary'); ?>">Summary of Trainings</a></li>
+                
             </ul>
         </li>
 
