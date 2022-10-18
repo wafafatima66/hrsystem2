@@ -22,7 +22,7 @@
     </select>
   </div>
 
-  <div class="col-lg-2 col-sm-6">
+  <!-- <div class="col-lg-2 col-sm-6">
     <select id="dept_dropdown" class="form-control text-input">
       <?php
       $query = "SELECT DISTINCT division FROM item where division != '' ";
@@ -37,9 +37,9 @@
       }
       ?>
     </select>
-  </div>
+  </div> -->
 
-  <div class="col-lg-2 col-sm-6">
+  <!-- <div class="col-lg-2 col-sm-6">
     <select id="office_dropdown" class="form-control text-input">
       <?php
       $query = "SELECT DISTINCT area_wrk_assign FROM item where area_wrk_assign != ''";
@@ -54,7 +54,33 @@
       }
       ?>
     </select>
-  </div>
+  </div> -->
+
+  <div class="col-lg-2 col-sm-6 ">
+      <select id="dept_dropdown" class="form-control text-input department-select">
+        <option value='' selected>All Division</option>
+        <?php
+        $query = "select * from (SELECT DISTINCT department_name FROM department union select division from item ) as tablec where tablec.department_name != ''";
+        $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) > 0) {
+          echo "<option value='' disabled  hidden> Select Division </option> ";
+
+          while ($mydata = mysqli_fetch_assoc($result)) {
+            echo "<option value= '" . $mydata['department_name'] . "'>" . $mydata['department_name'] . "</option>";
+          }
+        } else {
+          echo "<option value='' disabled  hidden> Select Division </option>";
+        }
+        ?>
+      </select>
+    </div>
+
+    <div class="col-lg-2 col-sm-6">
+      <select name="office_name" class="form-control text-input office-select" id="office_dropdown">
+      <option value='' disabled > Select Office </option>
+        <option value="">All Office</option>
+      </select>
+    </div>
 
   <div class="ml-auto col-lg-2 col-sm-6">
 
@@ -83,9 +109,41 @@ echo '<div id="table-data"> </div>';
 <!-- delete modal -->
 <?php include "../includes/delete_modal.php";  ?>
 
+
+<div class="container-box emp_report_gen_box">
+
+<h4 class="h4-heading">ITEM REPORT GENERATION</h4>
+
+<div class="form-row mt-4">
+
+  <div class="col-lg-12 col-sm-12 mt-2">
+    <a href="../includes/export_excel.php?item_report_generation" >PERSONAL SERVICES ITEMAZATION AND PLANTILLA OF PERSONNEL (PSIPOP) </a>
+  </div>
+
+
+
+</div>
+
+</div>
+
 <script>
   $(document).ready(function() {
 
+    $(".department-select").change(function() {
+            var department = $(".department-select").val();
+            console.log(department);
+            jQuery.ajax({
+                  url: "get_office.php",
+                  data: {
+                        department: department
+                  },
+                  type: "POST",
+                  success: function(data) {
+                        $(".office-select").html(data);
+                  },
+                  error: function() {}
+            });
+      });
 
     function loadData(page, limit, dept, office, status ,search_item ) {
       $.ajax({

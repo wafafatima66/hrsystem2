@@ -74,5 +74,10 @@ if (isset($_GET["view_learning_summary_print"])) {
 
     include "../export_excel_parts/view_learning_summary_print.php";
 }
+if (isset($_GET["item_report_generation"])) {
+
+    include "../export_excel_parts/item_report_generation.php";
+}
+
 
 

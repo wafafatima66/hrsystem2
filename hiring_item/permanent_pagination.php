@@ -1,5 +1,3 @@
-
-
 <?php
 
 // Connect database 
@@ -19,68 +17,99 @@ if (isset($_POST['page_no'])) {
 
 $offset = ($page_no - 1) * $limit;
 
+$add1 = 'where 1';
+$add2 = '';
+$add3 = '';
+$add4 = '';
+$add5 = '';
+
 if (isset($_POST['search_item']) && (!empty($_POST['search_item']))) {
 
 	$search_item = $_POST['search_item'];
 
-	$query = "SELECT * FROM item WHERE item_no LIKE '%{$search_item}%' or  position LIKE '%{$search_item}%'  LIMIT $offset, $limit";
+  $add2 = "and item_no LIKE '%{$search_item}%' or  position LIKE '%{$search_item}%'";
+	// $query = "SELECT * FROM item WHERE item_no LIKE '%{$search_item}%' or  position LIKE '%{$search_item}%'  LIMIT $offset, $limit";
 }
 
-else if ( isset($_POST['dept'])  && (!empty($_POST['dept'])) && isset($_POST['office'])  && (!empty($_POST['office'])) && isset($_POST['status'])  && (!empty($_POST['status']))) {
-  $dept = $_POST['dept'];
-  $office = $_POST['office'];
-  $status = $_POST['status'];
-  if ($_POST['status'] == 'Filled') {
+if (isset($_POST['dept']) && (!empty($_POST['dept']))) {
+
+	$dept = $_POST['dept'];
+
+  $add3 = "and (i.division = '$dept')";
+}
+
+if (isset($_POST['office']) && (!empty($_POST['office']))) {
+
+	$office = $_POST['office'];
+
+  $add4 = "and (i.area_wrk_assign = '$office')";
+}
+
+if (isset($_POST['status']) && (!empty($_POST['status']))) {
+
+	if ($_POST['status'] == 'Filled') {
     $status = 1;
   } else {$status = 0;}
-  $query = "SELECT * FROM item where (division = '$dept') && (area_wrk_assign = '$office') && (filled = '$status') LIMIT $offset, $limit ";
+
+  $add5 = "and (i.filled = '$status')";
 }
 
-else if ( isset($_POST['dept'])  && (!empty($_POST['dept'])) && isset($_POST['office'])  && (!empty($_POST['office']))) {
-  $dept = $_POST['dept'];
-  $office = $_POST['office'];
-  $query = "SELECT * FROM item where division = '$dept' && area_wrk_assign = '$office' LIMIT $offset, $limit ";
-}
+// else if ( isset($_POST['dept'])  && (!empty($_POST['dept'])) && isset($_POST['office'])  && (!empty($_POST['office'])) && isset($_POST['status'])  && (!empty($_POST['status']))) {
+//   $dept = $_POST['dept'];
+//   $office = $_POST['office'];
+//   $status = $_POST['status'];
+//   if ($_POST['status'] == 'Filled') {
+//     $status = 1;
+//   } else {$status = 0;}
+//   $query = "SELECT * FROM item where (division = '$dept') && (area_wrk_assign = '$office') && (filled = '$status') LIMIT $offset, $limit ";
+// }
 
-else if ( isset($_POST['dept'])  && (!empty($_POST['dept']))  && isset($_POST['status'])  && (!empty($_POST['status']))) {
-  $dept = $_POST['dept'];
-  $status = $_POST['status'];
-  if ($_POST['status'] == 'Filled') {
-    $status = 1;
-  } else {$status = 0;}
-  $query = "SELECT * FROM item where (division = '$dept')  && (filled = '$status') LIMIT $offset, $limit ";
-}
+// else if ( isset($_POST['dept'])  && (!empty($_POST['dept'])) && isset($_POST['office'])  && (!empty($_POST['office']))) {
+//   $dept = $_POST['dept'];
+//   $office = $_POST['office'];
+//   $query = "SELECT * FROM item where division = '$dept' && area_wrk_assign = '$office' LIMIT $offset, $limit ";
+// }
 
-else if ( isset($_POST['office'])  && (!empty($_POST['office'])) && isset($_POST['status'])  && (!empty($_POST['status']))) {
-  $office = $_POST['office'];
-  $status = $_POST['status'];
-  if ($_POST['status'] == 'Filled') {
-    $status = 1;
-  } else {$status = 0;}
-  $query = "SELECT * FROM item where (area_wrk_assign = '$office') && (filled = '$status') LIMIT $offset, $limit ";
-}
+// else if ( isset($_POST['dept'])  && (!empty($_POST['dept']))  && isset($_POST['status'])  && (!empty($_POST['status']))) {
+//   $dept = $_POST['dept'];
+//   $status = $_POST['status'];
+//   if ($_POST['status'] == 'Filled') {
+//     $status = 1;
+//   } else {$status = 0;}
+//   $query = "SELECT * FROM item where (division = '$dept')  && (filled = '$status') LIMIT $offset, $limit ";
+// }
 
-else if (isset($_POST['dept'])  && (!empty($_POST['dept']))) {
-  $dept = $_POST['dept'];
-  $query = "SELECT * FROM item where (division = '$dept')  LIMIT $offset, $limit ";
-}
+// else if ( isset($_POST['office'])  && (!empty($_POST['office'])) && isset($_POST['status'])  && (!empty($_POST['status']))) {
+//   $office = $_POST['office'];
+//   $status = $_POST['status'];
+//   if ($_POST['status'] == 'Filled') {
+//     $status = 1;
+//   } else {$status = 0;}
+//   $query = "SELECT * FROM item where (area_wrk_assign = '$office') && (filled = '$status') LIMIT $offset, $limit ";
+// }
 
-else if (isset($_POST['office'])  && (!empty($_POST['office']))) {
-  $office = $_POST['office'];
-  $query = "SELECT * FROM item where  (area_wrk_assign = '$office')  LIMIT $offset, $limit ";
-}
+// else if (isset($_POST['dept'])  && (!empty($_POST['dept']))) {
+//   $dept = $_POST['dept'];
+//   $query = "SELECT * FROM item where (division = '$dept')  LIMIT $offset, $limit ";
+// }
 
-else if (isset($_POST['status'])  && (!empty($_POST['status']))) {
-  if ($_POST['status'] == 'Filled') {
-    $status = 1;
-  } else $status = 0;
-  $query = "SELECT * FROM item where filled = '$status'  LIMIT $offset, $limit ";
-}
+// else if (isset($_POST['office'])  && (!empty($_POST['office']))) {
+//   $office = $_POST['office'];
+//   $query = "SELECT * FROM item where  (area_wrk_assign = '$office')  LIMIT $offset, $limit ";
+// }
 
-else if (empty($_POST['office'])  && empty($_POST['status']) && empty($_POST['dept'])) {
-  $query = "SELECT * FROM item LIMIT $offset, $limit ";
-}
+// else if (isset($_POST['status'])  && (!empty($_POST['status']))) {
+//   if ($_POST['status'] == 'Filled') {
+//     $status = 1;
+//   } else $status = 0;
+//   $query = "SELECT * FROM item where filled = '$status'  LIMIT $offset, $limit ";
+// }
 
+// else if (empty($_POST['office'])  && empty($_POST['status']) && empty($_POST['dept'])) {
+//   $query = "SELECT * FROM item LIMIT $offset, $limit ";
+// }
+
+$query = "SELECT concat(e.emp_first_name , e.emp_middle_name, e.emp_last_name) as emp_full_name , i.* from employee e join item i on e.emp_id = i.emp_id  " . $add1 . " " . $add2 . " " . $add3 . " " . $add4 . " " . $add5 . " LIMIT $offset, $limit ";
 $result = mysqli_query($conn, $query);
 
 $output = '';
@@ -90,6 +119,8 @@ $output .= '<table class="table home-page-table mt-4 table-striped table-respons
   <tr>
     <th scope="col">Item No</th>
     <th scope="col">Plantilla</th>
+    <th scope="col">Employee Name</th>
+    <th scope="col">Nature</th>
     <th scope="col">Date created</th>
     <th scope="col">Department</th>
     <th scope="col">Office</th>
@@ -105,6 +136,8 @@ if (mysqli_num_rows($result) > 0) {
     $output .= "<tr>
         <td>{$mydata['item_no']}</td>
         <td> {$mydata['position']} </td>
+        <td> {$mydata['emp_full_name']} </td>
+        <td> {$mydata['nature']} </td>
         <td>{$mydata['date_created']}</td>
         <td>{$mydata['division']}</td>
         <td>{$mydata['area_wrk_assign']}</td>

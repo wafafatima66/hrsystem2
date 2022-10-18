@@ -34,7 +34,11 @@ if(isset($_GET['item_delete'])){
 
   <?php include "permanent.php"; ?>
 
-  <?php include "contractual.php"; ?>
+  <?php 
+  
+//   include "contractual.php";
+  
+  ?>
 
 
 </div>
