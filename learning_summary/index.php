@@ -16,19 +16,19 @@ include SITE_ROOT . '/includes/header.php'; ?>
                   </button>
             </div>
       </div>
-
+<!-- 
       <div class="col-lg-2 col-sm-6 mt-3">
                   <select id="dept_dropdown" class="form-control text-input">
                         <?php
                         $query = "SELECT DISTINCT division FROM item where division != '' ";
                         $result = mysqli_query($conn, $query);
                         if (mysqli_num_rows($result) > 0) {
-                              echo "<option value=''> Department </option> ";
+                              echo "<option value=''> Division </option> ";
                               while ($mydata = mysqli_fetch_assoc($result)) {
                                     echo "<option value= '" . $mydata['division'] . "'>" . $mydata['division'] . "</option>";
                               }
                         } else {
-                              echo "<option value=''> Department </option>";
+                              echo "<option value=''> Division </option>";
                         }
                         ?>
                   </select>
@@ -49,7 +49,33 @@ include SITE_ROOT . '/includes/header.php'; ?>
                         }
                         ?>
                   </select>
-            </div>
+            </div> -->
+
+            <div class="col-lg-2 col-sm-6 mt-3">
+      <select id="dept_dropdown" class="form-control text-input department-select">
+        <option value='' selected>All Division</option>
+        <?php
+        $query = "select * from (SELECT DISTINCT department_name FROM department union select division from item ) as tablec where tablec.department_name != ''";
+        $result = mysqli_query($conn, $query);
+        if (mysqli_num_rows($result) > 0) {
+          echo "<option value='' disabled  hidden> Select Division </option> ";
+
+          while ($mydata = mysqli_fetch_assoc($result)) {
+            echo "<option value= '" . $mydata['department_name'] . "'>" . $mydata['department_name'] . "</option>";
+          }
+        } else {
+          echo "<option value='' disabled  hidden> Select Division </option>";
+        }
+        ?>
+      </select>
+    </div>
+
+    <div class="col-lg-2 col-sm-6 mt-3">
+      <select name="office_name" class="form-control text-input office-select" id="office_dropdown">
+        <option value="">All Office</option>
+      </select>
+    </div>
+
 
             <div class="col-lg-1 col-sm-6 mt-3">
                   <select id="limit_dropdown" class="form-control text-input">
@@ -148,5 +174,7 @@ include SITE_ROOT . '/includes/header.php'; ?>
                   error: function() {}
             });
       });
+
+  
 
 </script>

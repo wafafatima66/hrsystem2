@@ -98,7 +98,25 @@
 
                 <li><a href="../learning_post" class="slide-item <?php list_active('learning_post'); ?>">Posted Trainings</a></li>
 
-                <li><a href="../learning_summary" class="slide-item <?php list_active('learning_summary'); ?>">Summary of Trainings</a></li>
+                <!-- <li><a href="../learning_summary" class="slide-item <?php list_active('learning_summary'); ?>">Summary of Trainings</a></li> -->
+
+                <li>
+                    <a href="#" class="slide-item <?php list_active('learning_summary'); ?>">Summary of Trainings</a>
+                    
+                <ul>
+
+                    <li> 
+                    <a href="../learning_summary" class=" slide-item slide-item-sub <?php list_active('learning_summary'); ?>">Employee Trainings</a>
+                    </li>
+
+                    <li>
+                    <a href="../ld_summary" class=" slide-item slide-item-sub <?php list_active('ld_summary'); ?>">L & D Summary</a>
+                    </li>
+
+
+                </ul>
+            
+            </li>
                 
             </ul>
         </li>

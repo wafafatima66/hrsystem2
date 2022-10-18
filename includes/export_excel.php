@@ -70,5 +70,9 @@ if (isset($_GET["division_performance_review"])) {
 
     include "../export_excel_parts/division_performance_review.php";
 }
+if (isset($_GET["view_learning_summary_print"])) {
+
+    include "../export_excel_parts/view_learning_summary_print.php";
+}
 
 

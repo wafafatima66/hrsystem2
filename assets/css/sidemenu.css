@@ -1386,3 +1386,8 @@
     max-height: 100%;
   }
 }
+
+/* added */
+.slide-item-sub{
+  padding: 8px 14px 8px 75px !important;
+}
