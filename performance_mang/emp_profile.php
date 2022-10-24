@@ -249,7 +249,7 @@ if (isset($_GET['id'])) {
                     </div>
 
                     <div class="col-lg-2 col-sm-12 mt-2">
-                        <button class="btn button-1  " type="submit" name="submit">Submit</button>
+                        <button class="btn button-1" type="submit" name="submit">Submit</button>
                     </div>
 
                 </div>

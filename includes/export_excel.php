@@ -78,6 +78,10 @@ if (isset($_GET["item_report_generation"])) {
 
     include "../export_excel_parts/item_report_generation.php";
 }
+if (isset($_GET["month_leave_report"])) {
+
+    include "../export_excel_parts/month_leave_report.php";
+}
 
 
 

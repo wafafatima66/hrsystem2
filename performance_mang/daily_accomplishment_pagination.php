@@ -42,24 +42,35 @@ if (mysqli_num_rows($result) > 0) {
   while ($mydata = mysqli_fetch_assoc($result)) {
 
     $output_description = json_decode($mydata['output_description']);
+    $output_description = array_values(array_filter($output_description, 'strlen'));
+
+    // var_dump($output_description) ; 
+    // die ; 
+
+
     $ul_output = "";
 
         if(!empty($output_description)){
           
         for ($i = 0; $i < count($output_description); $i++) {
-          $ul_output .= "<li> $output_description[$i] </li>" ;
+          $ul_output .= "<li class='text-left'> $output_description[$i] </li>" ;
         }
         
       };
 
 
       $success_description = json_decode($mydata['success_description']);
+      $success_description = array_values(array_filter($success_description, 'strlen'));
+
+    //   var_dump($success_description) ; 
+    // die ;
+
     $ul_success = "";
 
         if(!empty($success_description)){
           
         for ($i = 0; $i < count($success_description); $i++) {
-          $ul_success .= "<li> $success_description[$i] </li>" ;
+          $ul_success .= "<li class='text-left'> $success_description[$i] </li>" ;
         }
         
       };

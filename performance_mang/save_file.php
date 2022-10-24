@@ -9,6 +9,12 @@ if (isset($_POST['submit'])) {
     $year = $_POST['year'];
     $rating_period = $_POST['rating_period'];
     $rating = $_POST['rating'];
+    // $rating_period = preg_replace('/\s+/', ' ', $_POST['rating_period']);
+
+
+    // echo $rating_period ; 
+    // die ; 
+
     $file_date = date("Y-m-d");
 
     $date_of_submission = $_POST['date_of_submission'];
@@ -35,7 +41,10 @@ if (isset($_POST['submit'])) {
         } else {
             (move_uploaded_file($tempname, $folder));
             
-            $sql = "INSERT INTO emp_performance (emp_id  , excel_file_type , year , rating_period , rating , excel_file_name , date_of_submission , date_of_resubmission , remarks) VALUES (  '$emp_id'  , '$excel_file_type' , '$year' ,' $rating_period' , '$rating', '$excel_file_name' , '$date_of_submission' , '$date_of_resubmission' , '$remarks')";
+            $sql = "INSERT INTO emp_performance (emp_id ,excel_file_type,year ,rating_period ,rating ,excel_file_name ,date_of_submission ,date_of_resubmission ,remarks) VALUES ( 
+                 '$emp_id', 
+                 '$excel_file_type', 
+                 '$year','$rating_period' , '$rating', '$excel_file_name' , '$date_of_submission' , '$date_of_resubmission' , '$remarks')";
 
             mysqli_query($conn, $sql);
             // take id from emp_performance table 

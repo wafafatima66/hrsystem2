@@ -65,70 +65,7 @@ if (isset($_POST['submit'])) {
         echo  '<script>toastr.error("Daily Accomplishment not updated. Try again !")</script>';
     }
 }
-// if (isset($_POST['submit'])) {
 
-//     $id = $_POST['id'];
-//     $performance_file_id = $_POST['performance_file_id'];
-//     $emp_id = $_POST['emp_id'];
-//     $excel_file_type = $_POST['excel_file_type'];
-//     $year = $_POST['year'];
-//     $rating_period = $_POST['rating_period'];
-//     $rating = $_POST['rating'];
-//     $file_date = date("Y-m-d");
-
-//     $date_of_submission = $_POST['date_of_submission'];
-//     $date_of_resubmission = $_POST['date_of_resubmission'];
-//     $remarks = $_POST['remarks'];
-
-//     // $excel_file_name = $_POST['excel_file_name'];
-
-
-//     if (!empty($_FILES["excel_file_name"]["name"])) {
-//         $excel_file_name = "excel-" . time() . '-' . $emp_id . "-" . $_FILES["excel_file_name"]["name"];
-//         $tempname = $_FILES["excel_file_name"]["tmp_name"];
-//         $folder = "../files/" . $excel_file_name;
-//         $file_size = $_FILES['excel_file_name']['size'];
-//         //checking file extension
-
-//         $text1 = explode('.', $_FILES['excel_file_name']['name']);
-//         $text = strtolower(end($text1));
-//         $file_ext = strtolower($text);
-//         $extensions = array("xlsx");
-
-//         if (in_array($file_ext, $extensions) === false) {
-//             echo  '<script>toastr.error("File must be Excel sheet !")</script>';
-//         } else {
-//             (move_uploaded_file($tempname, $folder));
-//         }
-//     } else {
-//         $query = "SELECT excel_file_name FROM emp_performance where id = '$performance_file_id'";
-//         $runquery = $conn->query($query);
-//         while ($mydata = $runquery->fetch_assoc()) {
-//             $excel_file_name = ($mydata['excel_file_name']);
-//         }
-//     }
-
-
-//     $sql = "UPDATE emp_performance SET 
-//     excel_file_type = '$excel_file_type' , 
-//     year = '$year', 
-//     rating_period ='$rating_period',
-//     rating = '$rating' , 
-//     excel_file_name ='$excel_file_name' ,
-//     date_of_submission = '$date_of_submission',
-//     date_of_resubmission = '$date_of_resubmission',
-//     remarks = '$remarks'
-//     WHERE id = '$performance_file_id'";
-
-
-//     $sql1 = "UPDATE emp_file SET file_name = '$excel_file_name' , file_date = '$file_date' WHERE performance_file_id = '$performance_file_id'";
-
-//     if (mysqli_query($conn, $sql) && mysqli_query($conn, $sql1)) {
-//         echo  '<script>toastr.success("Performance File updated Succesfully ")</script>';
-//     } else {
-//         echo  '<script>toastr.error("Performance File not updated !")</script>';
-//     }
-// }
 
 
 if (isset($_GET['id'])) {
@@ -173,7 +110,7 @@ if (isset($_GET['id'])) {
 
                         <div class="col-lg-6 col-sm-6 ">
                             <label for="" class="h3">Output</label>
-                            <div class="row">
+                            <div class="row" style="display: none">
                                 <div class="col-lg-4">
                                     <input type="checkbox" class="form-check-input ml-1" value="1" name="output_checked"
                                     <?php echo ($mydata['output_checked'] == 1 ? 'checked' : ''); ?>
@@ -189,7 +126,7 @@ if (isset($_GET['id'])) {
 
                         <div class="col-lg-6 col-sm-6">
                             <label for="" class="h3">Success Indicator</label>
-                            <div class="row">
+                            <div class="row" style="display: none">
                                 <div class="col-lg-4">
                                     <input type="checkbox" class="form-check-input ml-1" value="1"
                                     name="success_checked"
@@ -214,14 +151,20 @@ if (isset($_GET['id'])) {
 
                                 <?php
                                 $output_description = json_decode($mydata['output_description']);
+                                $output_description = array_values(array_filter($output_description, 'strlen'));
+                                
                                 if (!empty($output_description)) {
                                     for ($i = 0; $i < count($output_description); $i++) {
                                 ?>
 
-                                        <textarea name="output_description[]" cols="30" rows="5" class="form-control text-input mt-2" placeholder="Output"><?php echo $output_description[$i]; ?></textarea>
+                                        <textarea name="output_description[]" cols="30" rows="5" class="form-control text-input mt-2" placeholder="Output"><?php echo $output_description[$i];?></textarea>
 
                                 <?php }
-                                } ?>
+                                } else {?>
+
+                                    <textarea name="output_description[]" cols="30" rows="5" class="form-control text-input mt-2" placeholder="Output"></textarea>
+
+                                    <?php } ?>
 
                             </div>
 
@@ -230,14 +173,20 @@ if (isset($_GET['id'])) {
 
                                 <?php
                                 $success_description = json_decode($mydata['success_description']);
+                                $success_description = array_values(array_filter($success_description, 'strlen'));
+
                                 if (!empty($success_description)) {
                                     for ($i = 0; $i < count($success_description); $i++) {
                                 ?>
 
-                                        <textarea name="success_description[]" cols="30" rows="5" class="form-control text-input mt-2" placeholder="Success"><?php echo $success_description[$i]; ?></textarea>
+                                        <textarea name="success_description[]" cols="30" rows="5" class="form-control text-input mt-2" placeholder="Success"><?php echo $success_description[$i];?></textarea>
 
                                 <?php }
-                                } ?>
+                                } else {?>
+
+                                    <textarea name="success_description[]" cols="30" rows="5" class="form-control text-input mt-2" placeholder="Success"></textarea>
+
+                                    <?php } ?>
 
 
                             </div>

@@ -20,6 +20,8 @@ if (isset($_POST['submit'])) {
     $budgetary_requirement = $_POST['budgetary_requirement'];
     $financed_by = $_POST['financed_by'];
     $source_of_fund = $_POST['source_of_fund'];
+    $no_of_days = $_POST['no_of_days'];
+    $registration_fee = $_POST['registration_fee'];
 
     $training_details = $_POST['training_details'];
 
@@ -70,9 +72,9 @@ if (isset($_POST['submit'])) {
 
     $employee_names = '';
     if (!empty($_POST['emp_name'])) {
-      for ($i = 0; $i < count($_POST['emp_name']); $i++) {
-        $employee_names .= $_POST['emp_name'][$i] . ',';
-      }
+        for ($i = 0; $i < count($_POST['emp_name']); $i++) {
+            $employee_names .= $_POST['emp_name'][$i] . ',';
+        }
     }
 
     $del = "DELETE FROM training_table WHERE id = '$learning_id'";
@@ -84,9 +86,9 @@ if (isset($_POST['submit'])) {
 
     //     VALUES ('$learning_id','$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province' ,'$speakers','$sponsors','$employees')";
 
-    $sql1 = "INSERT INTO training_table ( id , title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,speakers,sponsors,employees,training_details,role_posted , role_posted_name , classification , proponent , budgetary_requirement , financed_by , source_of_fund , employee_names)
+    $sql1 = "INSERT INTO training_table ( id , title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,speakers,sponsors,employees,training_details,role_posted , role_posted_name , classification , proponent , budgetary_requirement , financed_by , source_of_fund , employee_names , no_of_days , registration_fee)
 
-    VALUES ('$learning_id','$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province' ,'$speakers','$sponsors','$employees','$training_details','$role_posted' , '$role_posted_name' , '$classification' , '$proponent' , '$budgetary_requirement' , '$financed_by' , '$source_of_fund' , '$employee_names')";
+    VALUES ('$learning_id','$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province' ,'$speakers','$sponsors','$employees','$training_details','$role_posted' , '$role_posted_name' , '$classification' , '$proponent' , '$budgetary_requirement' , '$financed_by' , '$source_of_fund' , '$employee_names'  , '$no_of_days' , '$registration_fee')";
 
 
     if (mysqli_query($conn, $sql1)) {
@@ -133,16 +135,16 @@ if (isset($_GET['learning_id'])) {
 
 ?>
 
-<style>
-  .emp_list_ul {
-    background-color: #eee;
-    cursor: pointer;
-  }
+            <style>
+                .emp_list_ul {
+                    background-color: #eee;
+                    cursor: pointer;
+                }
 
-  .emp_list_li {
-    padding: 12px;
-  }
-</style>
+                .emp_list_li {
+                    padding: 12px;
+                }
+            </style>
 
             <form method="post" action="">
 
@@ -168,37 +170,30 @@ if (isset($_GET['learning_id'])) {
                             </div>
                             <?php
 
-                            $x = 0 ; 
-                            if (!empty($mydata['employee_names'])) { 
-                                
-                                ?>
+                            $x = 0;
+                            if (!empty($mydata['employee_names'])) {
+
+                            ?>
                                 <?php
                                 $employees = explode(',', $mydata['employee_names']);
                                 foreach (array_filter($employees) as $employee) {
-                                    $x+=1 ; 
-                                    ?>
+                                    $x += 1;
+                                ?>
                                     <div class="form-row">
                                         <div class="col-lg-6 col-sm-6">
 
-                                            <input type="text" 
-                                            class="form-control text-input emp_id mt-2" placeholder="Employee Name"
-                                            id="add_learning_<?php echo $x?>" 
-                                            onkeyup=get_info(this.id) 
-                                            name="emp_name[]" 
-                                            value="<?php echo $employee; ?>">
+                                            <input type="text" class="form-control text-input emp_id mt-2" placeholder="Employee Name" id="add_learning_<?php echo $x ?>" onkeyup=get_info(this.id) name="emp_name[]" value="<?php echo $employee; ?>">
 
                                             <!-- <div id="space"></div> -->
-                                            <div id="emplist_<?php echo $x?>"></div>
+                                            <div id="emplist_<?php echo $x ?>"></div>
 
-                                            <input type="hidden" 
-                                            name="emp_id[]" 
-                                            id="get_emp_id_<?php echo $x?>">
+                                            <input type="hidden" name="emp_id[]" id="get_emp_id_<?php echo $x ?>">
 
                                         </div>
                                     </div>
                                 <?php   }
-                            } else { 
-                                $x+=1 ;
+                            } else {
+                                $x += 1;
                                 ?>
                                 <div class="form-row">
                                     <div class="col-lg-6 col-sm-6">
@@ -218,7 +213,7 @@ if (isset($_GET['learning_id'])) {
 
                         <div class="form-row mt-1">
                             <div class="col-lg-3 col-sm-6 ">
-                                <a class="btn button-1 add_emp_id" last-id = <?php echo $x?> >Add</a>
+                                <a class="btn button-1 add_emp_id" last-id=<?php echo $x ?>>Add</a>
                             </div>
                         </div>
 
@@ -268,6 +263,10 @@ if (isset($_GET['learning_id'])) {
                                 </select>
                             </div>
 
+                            <div class="col-lg-3 col-sm-6">
+                                <label>No. of Days</label>
+                                <input type="text" class="form-control text-input" name="no_of_days" value="<?php echo $mydata['no_of_days'] ?>">
+                            </div>
 
                             <div class="col-lg-3 col-sm-6">
                                 <label>No. of Hours</label>
@@ -337,14 +336,14 @@ if (isset($_GET['learning_id'])) {
 
 
                         <div class="add_sponsor_wrapper mt-4">
-                        <label>Partner / Sponsor Agency<span style="text-transform: lowercase;">/ies</span></label>
+                            <label>Partner / Sponsor Agency<span style="text-transform: lowercase;">/ies</span></label>
                             <?php
                             if (!empty($mydata['sponsors'])) {
                                 $sponsors = explode(',', $mydata['sponsors']);
                             ?>
                                 <?php foreach (array_filter($sponsors) as $sponsor) { ?>
                                     <div class="form-row mt-2">
-                                       
+
                                         <div class="col-lg-4 col-sm-6">
                                             <input type="text" class="form-control text-input" name="sponsor[]" placeholder="Sponsor" value="<?php echo $sponsor ?>">
                                         </div>
@@ -352,7 +351,7 @@ if (isset($_GET['learning_id'])) {
                                 <?php  }
                             } else { ?>
                                 <div class="form-row mt-2">
-                                    
+
                                     <div class="col-lg-4 col-sm-6">
                                         <input type="text" class="form-control text-input" name="sponsor[]" placeholder="Sponsor" value="">
                                     </div>
@@ -371,11 +370,17 @@ if (isset($_GET['learning_id'])) {
                         <div class="form-row mt-5">
                             <div class="col-lg-3 col-sm-6">
                                 <label>Proponent<span style="text-transform: lowercase;">/s</span></label>
-                                <input type="text" class="form-control text-input" name="proponent" value="<?php echo $mydata['proponent'] ?>" >
+                                <input type="text" class="form-control text-input" name="proponent" value="<?php echo $mydata['proponent'] ?>">
                             </div>
                         </div>
 
                         <div class="form-row">
+
+                            <div class="col-lg-3 col-sm-6">
+                                <label>Registration Fee</label>
+                                <input type="text" class="form-control text-input" name="registration_fee" value="<?php echo $mydata['registration_fee'] ?>">
+                            </div>
+
                             <div class="col-lg-3 col-sm-6">
                                 <label>Budgetary Requirement</label>
                                 <input type="text" class="form-control text-input" name="budgetary_requirement" value="<?php echo $mydata['budgetary_requirement'] ?>">
@@ -409,66 +414,66 @@ if (isset($_GET['learning_id'])) {
 <script src="../learning/learning.js"></script>
 
 <script>
-  function get_info(full_id) {
+    function get_info(full_id) {
 
-    var array = full_id.split('_');
+        var array = full_id.split('_');
 
-    emp_id = document.getElementById(full_id).value;
+        emp_id = document.getElementById(full_id).value;
 
-    var id = array[2];
+        var id = array[2];
 
-    // emp_id = document.getElementById(id);
+        // emp_id = document.getElementById(id);
 
-    // console.log(id)
+        // console.log(id)
 
-    if (emp_id != '') {
-      $.ajax({
-        url: "fetchEmpNameData.php",
-        method: "POST",
-        data: {
-          emp_id: emp_id,
-          id: id
-        },
-        success: function(data) {
-          $('#emplist_' + id).fadeIn();
-          $('#emplist_' + id).html(data);
+        if (emp_id != '') {
+            $.ajax({
+                url: "fetchEmpNameData.php",
+                method: "POST",
+                data: {
+                    emp_id: emp_id,
+                    id: id
+                },
+                success: function(data) {
+                    $('#emplist_' + id).fadeIn();
+                    $('#emplist_' + id).html(data);
+                }
+            });
         }
-      });
-    }
 
-    $(document).on('click', '.emp_list_li_' + id, function() {
+        $(document).on('click', '.emp_list_li_' + id, function() {
 
-      $('#add_learning_' + id).val($(this).text());
-      $('#emplist_' + id).fadeOut();
+            $('#add_learning_' + id).val($(this).text());
+            $('#emplist_' + id).fadeOut();
 
-      jQuery(function($) {
-        var full_name = document.getElementById(full_id).value;
-        // console.log(id);
-        // console.log('emp_name_''+);
+            jQuery(function($) {
+                var full_name = document.getElementById(full_id).value;
+                // console.log(id);
+                // console.log('emp_name_''+);
 
-        $.ajax({
-          url: 'get_info_emp_id.php',
-          type: 'post',
-          data: {
-            full_name: full_name
-          },
-          dataType: 'json',
-          success: function(result) {
+                $.ajax({
+                    url: 'get_info_emp_id.php',
+                    type: 'post',
+                    data: {
+                        full_name: full_name
+                    },
+                    dataType: 'json',
+                    success: function(result) {
 
-            var office = result.area_wrk_assign;
-            var emp_id_value = result.emp_id;
+                        var office = result.area_wrk_assign;
+                        var emp_id_value = result.emp_id;
 
-            // $('#office_' + id).val(office);
+                        // $('#office_' + id).val(office);
 
-            $('#get_emp_id_' + id).val(emp_id_value);
+                        $('#get_emp_id_' + id).val(emp_id_value);
 
-          }
+                    }
+                });
+
+            });
+
         });
 
-      });
 
-    });
-
-
-  }
-  </script>
+    }
+</script>

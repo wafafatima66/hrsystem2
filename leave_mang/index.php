@@ -152,7 +152,7 @@ if (isset($_POST['edit_leave_approve'])) {
 
                 <div class="form-row  ">
                     <div class="col-lg-6 col-sm-6 mt-3 leave_details">
-                        <textarea class="form-control text-input" rows="5" placeholder="Details Of Leave(Required)" name="details_of_leave" ></textarea>
+                        <textarea class="form-control text-input" rows="5" placeholder="Details Of Leave(Required)" name="details_of_leave"></textarea>
                     </div>
                     <div class="col-lg-6 col-sm-6 mt-3">
                         <table class="table home-page-table table-sm ">
@@ -199,7 +199,7 @@ if (isset($_POST['edit_leave_approve'])) {
                 <div class="text-right"><button class="ml-3 btn button-1" name="submit" type="submit">Submit</button>
                 </div>
 
-                
+
             </form>
         </div>
 
@@ -246,7 +246,7 @@ if (isset($_POST['edit_leave_approve'])) {
                             // $leave_to = date("m/d/Y", strtotime($mydata['leave_to_date']));
                             $leave_from_date_array = json_decode($mydata['leave_from_date']);
                             $leave_to_date_array = json_decode($mydata['leave_to_date']);
-                            $lenght = count($leave_to_date_array)-1 ;
+                            $lenght = count($leave_to_date_array) - 1;
                             $leave_from_date = (date('m/d/Y', strtotime($leave_from_date_array[0])));
                             $leave_to_date = (date('m/d/Y', strtotime($leave_to_date_array[$lenght])));
                             $date_filled = date("m/d/Y", strtotime($mydata['date_filled']));
@@ -272,7 +272,7 @@ if (isset($_POST['edit_leave_approve'])) {
                                         echo $mydata['final_remarks'];
                                     }  ?>
                                 </td>
-                                <td><a href='../includes/export_excel.php?leave_application_report=<?php echo $mydata['id']?>'><i class='fa fa-print mx-2' style='color:#505a43;' ; ></i></a></td>
+                                <td><a href='../includes/export_excel.php?leave_application_report=<?php echo $mydata['id'] ?>'><i class='fa fa-print mx-2' style='color:#505a43;' ;></i></a></td>
                             </tr>
 
                         <?php } ?>
@@ -329,15 +329,18 @@ if (isset($_POST['edit_leave_approve'])) {
 
 
                 <div class="col-lg-2 col-sm-6 ml-5">
+                    <!-- <input type="month" id="month_input" class="form-control text-input" onchange="change_month()"> -->
 
-                    <input type="month" id="month_input" class="form-control text-input" onchange="change_month()">
+                    <input type="month" id="month_input" class="form-control text-input">
+
                     <small id="date_message" style="font-size: 10px;" class="text-muted">Select Month & year for Report</small>
+
                 </div>
 
                 <div class="col-lg-1 col-sm-1 ">
                     <!-- <button class="btn button-1 " style="height:35px ; " id="print_leave"
                               onclick="printDiv('printableArea_leave_summary')"><i class="fa fa-print"></i></button> -->
-                    <a class="btn button-1" href='' style="height:35px" id="print_leave_summary"><i class="fa fa-print"></i></a>
+                    <a class="btn button-1" href='#' style="height:35px" id="month_leave_report"><i class="fa fa-print"></i></a>
                 </div>
                 <!-- </form> -->
             </div>
@@ -367,26 +370,41 @@ if (isset($_POST['edit_leave_approve'])) {
         $('#delete_confirm_btn').attr('href', newHref);
     });
 
-    // print leave summary docs
-    function change_month() {
-        var a = document.getElementById('print_leave_summary');
-        var month_input = document.getElementById('month_input').value;
-        if (month_input == '') {
-            document.getElementById('date_message').innerHTML = '<p class="text-danger">Select Month for report</p>';
+    // PRINT SUMMARY 
+    $('#month_leave_report').on('click', function() {
+        var date = $('#month_input').val();
+        // console.log(month)
+
+        if (date == '' || date == null) {
+            toastr.error("Select a Month & Year")
         } else {
-            a.href = "../includes/export_doc.php?leave_summary=" + month_input;
+            var url = '../includes/export_excel.php?month_leave_report&';
+            var newHref = url.concat('date=' + date);
+            // console.log(newHref);
+            $('#month_leave_report').attr('href', newHref);
         }
 
-    }
+    });
+    // print leave summary docs
+    // function change_month() {
+    //     var a = document.getElementById('print_leave_summary');
+    //     var month_input = document.getElementById('month_input').value;
+    //     if (month_input == '') {
+    //         document.getElementById('date_message').innerHTML = '<p class="text-danger">Select Month for report</p>';
+    //     } else {
+    //         a.href = "../includes/export_doc.php?leave_summary=" + month_input;
+    //     }
+
+    // }
 
     // print
-    function printDiv(divName) {
-        var printContents = document.getElementById(divName).innerHTML;
-        var originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
-    }
+    // function printDiv(divName) {
+    //     var printContents = document.getElementById(divName).innerHTML;
+    //     var originalContents = document.body.innerHTML;
+    //     document.body.innerHTML = printContents;
+    //     window.print();
+    //     document.body.innerHTML = originalContents;
+    // }
 
     // to get the info
     $(document).ready(function() {

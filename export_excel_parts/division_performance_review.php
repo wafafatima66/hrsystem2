@@ -105,22 +105,26 @@ if($k < 15 ){
 $k+=2 ; 
 
 $spreadsheet->getActiveSheet()->setCellValue("B" . $k, 'Prepared:');
-$spreadsheet->getActiveSheet()->mergeCells("C" .$k+3 .":D" .$k+3);
-$spreadsheet->getActiveSheet()->setCellValue("C" . $k+3, 'Division Secretary');
-$spreadsheet->getActiveSheet()->getStyle("C" . $k + 3)->applyFromArray($bold);
-$spreadsheet->getActiveSheet()->getStyle("C" .$k+3 .":D" .$k+3)->applyFromArray($border_top);
-
 $spreadsheet->getActiveSheet()->setCellValue("G" . $k, 'Noted by:');
-$spreadsheet->getActiveSheet()->mergeCells("H" .$k+3 .":I" .$k+3);
-$spreadsheet->getActiveSheet()->setCellValue("H" . $k + 3, 'Division Head ');
-$spreadsheet->getActiveSheet()->getStyle("H" . $k + 3)->applyFromArray($bold);
-$spreadsheet->getActiveSheet()->getStyle("H" .$k+3 .":I" .$k+3)->applyFromArray($border_top);
+
+$k+=3 ; 
+
+$spreadsheet->getActiveSheet()->mergeCells("C" .$k .":D" .$k);
+$spreadsheet->getActiveSheet()->setCellValue("C" . $k, 'Division Secretary');
+$spreadsheet->getActiveSheet()->getStyle("C" . $k)->applyFromArray($bold);
+$spreadsheet->getActiveSheet()->getStyle("C" .$k .":D" .$k)->applyFromArray($border_top);
+
+
+$spreadsheet->getActiveSheet()->mergeCells("H" .$k .":I" .$k);
+$spreadsheet->getActiveSheet()->setCellValue("H" . $k, 'Division Head ');
+$spreadsheet->getActiveSheet()->getStyle("H" . $k)->applyFromArray($bold);
+$spreadsheet->getActiveSheet()->getStyle("H" .$k .":I" .$k)->applyFromArray($border_top);
 
 $a= $k+5 ; 
 $spreadsheet->getActiveSheet()->getStyle("A".$k. ":J" . $a)
         ->getAlignment()->setWrapText(false);
 
-$fileName = "consolidated_performance_review- " . $year . ".xlsx"; //date('d/m/Y')
+$fileName = "division_performance_review- " . $year . ".xlsx"; //date('d/m/Y')
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment ; filename=' . $fileName);

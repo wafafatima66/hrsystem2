@@ -24,14 +24,14 @@ if (isset($_POST['search_employee']) && !empty($_POST['search_employee'])) {
 	$search_employee = $_POST['search_employee'];
 
 	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.appt_stat , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id 
-	WHERE e.emp_first_name LIKE '%{$search_employee}%' OR e.emp_last_name LIKE '%{$search_employee}%' OR e.emp_id LIKE '%{$search_employee}%' LIMIT $offset, $limit";
+	WHERE e.active='1' and e.emp_first_name LIKE '%{$search_employee}%' OR e.emp_last_name LIKE '%{$search_employee}%' OR e.emp_id LIKE '%{$search_employee}%' LIMIT $offset, $limit";
 }
 
 else if (isset($_POST['date_appointed_search']) && !empty($_POST['date_appointed_search'])){
 
 	$date_appointed_search = $_POST['date_appointed_search'];
 	
-	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.appt_stat , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id where p.date_orgappnt_lhmrh = '$date_appointed_search'  LIMIT $offset, $limit";
+	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.appt_stat , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id where e.active='1' and p.date_orgappnt_lhmrh = '$date_appointed_search'  LIMIT $offset, $limit";
 
 }
 
@@ -39,11 +39,11 @@ else if (isset($_POST['date_modified_search']) && !empty($_POST['date_modified_s
 
 	$date_modified_search = $_POST['date_modified_search'];
 	
-	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.appt_stat , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id where p.date_modified = '$date_modified_search'  LIMIT $offset, $limit";
+	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.appt_stat , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id where e.active='1' and p.date_modified = '$date_modified_search'  LIMIT $offset, $limit";
 
 }
 else {
-	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.appt_stat , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id  LIMIT $offset, $limit";
+	$query = "SELECT e.id, e.emp_id , e.emp_first_name , e.emp_last_name , e.emp_middle_name , e.emp_ext , e.emp_gender , e.emp_image , p.appt_stat , p.area_wrk_assign , p.position  FROM employee e join item p on e.emp_id = p.emp_id where e.active='1' LIMIT $offset, $limit";
 }
 
 

@@ -71,23 +71,21 @@ if (mysqli_num_rows($result) > 0) {
 	$i = 1;
 	while ($mydata = mysqli_fetch_assoc($result)) {
 
-		if (!empty(strtotime($mydata['from_date']))) {
+		$female_count = 0;
+		$male_count = 0;
+		$id = $mydata['id'];
 
-			$female_count = 0;
-			$male_count = 0;
+		// if (!empty(strtotime($mydata['from_date']))) {
 
-			// $leave_from = date("m/d/Y", strtotime($mydata['from_date']));
-			// $leave_to = date("m/d/Y", strtotime($mydata['to_date']));
+		// 	
+		// 	$diff = abs(strtotime($mydata['from_date']) - strtotime($mydata['to_date']));
 
-			$id = $mydata['id'];
-			$diff = abs(strtotime($mydata['from_date']) - strtotime($mydata['to_date']));
-
-			$years = floor($diff / (365 * 60 * 60 * 24));
-			$months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
-			$numberDays = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
-		} else {
-			$numberDays = 0;
-		}
+		// 	$years = floor($diff / (365 * 60 * 60 * 24));
+		// 	$months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+		// 	$numberDays = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+		// } else {
+		// 	$numberDays = 0;
+		// }
 
 		$query1 = "SELECT e.emp_gender ,  a.id from employee e join emp_training t on t.emp_id = e.emp_id join training_table a on a.id = t.learning_id where a.id = '$id'";
 
@@ -110,7 +108,7 @@ if (mysqli_num_rows($result) > 0) {
 		<td> {$mydata['classification']} </td>
 		<td> {$mydata['title_of_training']} </td>
 		<td> </td>
-		<td> {$numberDays} </td>
+		<td> {$mydata['no_of_days']} </td>
 		<td> {$mydata['no_of_hrs']} </td>
 		<td>{$mydata['budgetary_requirement']}</td>
 		<td> {$female_count} </td>

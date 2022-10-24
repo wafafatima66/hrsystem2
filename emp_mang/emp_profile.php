@@ -42,8 +42,14 @@ if (isset($_GET['id'])) {
 
                   $banner = '../emp_img/' . $mydata['emp_banner'];
                   // getting position 
-                  $get = mysqli_fetch_assoc(mysqli_query($conn, "SELECT position FROM item WHERE emp_id = '$emp_id'"));
-                  $position = $get['position'];
+                  $get = mysqli_fetch_assoc(mysqli_query($conn, "SELECT position FROM item WHERE emp_id = '$emp_id' ORDER BY id DESC LIMIT 1"));
+
+                  if(!empty($get)){
+                        $position = $get['position'];
+                  }else {
+                        $position = '';
+                  }
+                  
 
 ?>
 

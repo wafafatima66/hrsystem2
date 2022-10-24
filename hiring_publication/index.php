@@ -40,11 +40,15 @@ if(isset($_GET['export'])){
 }
 </style>
 
-<div class="container ">
+<div class="">
 
   <?php include "permanent.php"; ?>
 
-  <?php include "contractual.php"; ?>
+  <?php 
+  
+//   include "contractual.php"; 
+  
+  ?>
 
 
 </div>

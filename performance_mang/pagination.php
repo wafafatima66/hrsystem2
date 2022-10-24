@@ -65,6 +65,8 @@ $offset = ($page_no - 1) * $limit;
 
 $query = "SELECT  i.division , i.area_wrk_assign , i.position ,  e.emp_first_name , e.emp_middle_name , e.emp_last_name , e.emp_ext , e.id ,  p.rating , p.rating_period , p.remarks FROM employee e left join item i on i.emp_id = e.emp_id left join emp_performance p on e.emp_id = p.emp_id " . $add . " " . $add1 . " " . $add2 . " " . $add3 . " " . $add4 . " LIMIT $offset, $limit ";
 
+
+
 $result = mysqli_query($conn, $query);
 
 $output = '';

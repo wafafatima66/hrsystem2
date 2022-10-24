@@ -118,7 +118,7 @@ $output .= '<table class="table home-page-table mt-4 table-striped table-respons
 <thead>
   <tr>
     <th scope="col">Item No</th>
-    <th scope="col">Plantilla</th>
+    <th scope="col">Plantilla</th> 
     <th scope="col">Employee Name</th>
     <th scope="col">Nature</th>
     <th scope="col">Date created</th>
@@ -133,10 +133,12 @@ $output .= '<table class="table home-page-table mt-4 table-striped table-respons
 if (mysqli_num_rows($result) > 0) {
   while ($mydata = mysqli_fetch_assoc($result)) {
 
+    $emp_name = ($mydata['filled'] == 1) ? $mydata['emp_full_name'] : '';
+
     $output .= "<tr>
         <td>{$mydata['item_no']}</td>
         <td> {$mydata['position']} </td>
-        <td> {$mydata['emp_full_name']} </td>
+        <td> {$emp_name} </td>
         <td> {$mydata['nature']} </td>
         <td>{$mydata['date_created']}</td>
         <td>{$mydata['division']}</td>

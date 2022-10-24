@@ -10,7 +10,15 @@ if (isset($_POST['submit'])) {
     $appointment_date = $_POST['appointment_date'];
     $nature = $_POST['nature'];
     $emp_id = $_POST['emp_id'];
+
+    $old_employee = $_POST['old_employee'];
+    $emp_id = $_POST['emp_id'];
+
+ 
+
     // $nature = 'Original';
+
+    if($old_employee != 1){
 
     $query = "SELECT * FROM applicant where applicant_id = '$applicant_id' ";
     $result = mysqli_query($conn, $query);
@@ -28,18 +36,30 @@ if (isset($_POST['submit'])) {
         $applicant_barangay = $mydata['applicant_barangay'];
     }
 
+
     $sql1 = "INSERT INTO employee (emp_id , emp_first_name , emp_middle_name , emp_last_name , emp_ext , emp_gender , emp_nationality , emp_resi_add  , emp_resi_add_municipal  , emp_resi_add_zipcode,emp_resi_add_barangay , active)
     VALUES ('$emp_id', '$applicant_first_name', '$applicant_middle_name', '$applicant_last_name', '$applicant_ext', '$applicant_gender', '$applicant_country', '$applicant_state', '$applicant_municipal', '$applicant_zip' , '$applicant_barangay' , '1' )";
-
-
-
-    $sql2 = "UPDATE item SET  emp_id = '$emp_id' , date_orgappnt_lhmrh = '$appointment_date', nature = '$nature' ,  filled = 1 , appt_stat = 'P'  WHERE item_no='$item_no'";
-
 
     $year = date("Y");
 
 
     $sql3 = "INSERT INTO `leave_credits_result` (`emp_id`, `year`, `vl_pts_1`, `vl_pts_2`, `vl_pts_3`, `vl_pts_4`, `vl_pts_5`, `vl_pts_6`, `vl_pts_7`, `vl_pts_8`, `vl_pts_9`, `vl_pts_10`, `vl_pts_11`, `vl_pts_12`, `sl_pts_1`, `sl_pts_2`, `sl_pts_3`, `sl_pts_4`, `sl_pts_5`, `sl_pts_6`, `sl_pts_7`, `sl_pts_8`, `sl_pts_9`, `sl_pts_10`, `sl_pts_11`, `sl_pts_12`) VALUES ('$emp_id', '$year', '16.25', '17.5', '18.75', '20', '21.25', '22.5', '23.75', '25', '26.25', '27.5', '28.75', '30', '16.25', '17.5', '18.75', '20', '21.25', '22.5', '23.75', '25', '26.25', '27.5', '28.75', '30');";
+
+    
+
+    } else {
+
+        $sql1 = "UPDATE employee SET active = '1'  WHERE emp_id = '$emp_id'";
+        $sql3 = "DELETE FROM termination WHERE emp_id='$emp_id'";
+        $sql5 = "UPDATE item SET emp_id = ''  WHERE emp_id='$emp_id'";
+
+        mysqli_query($conn, $sql5);
+    }
+    
+
+
+    $sql2 = "UPDATE item SET  emp_id = '$emp_id' , date_orgappnt_lhmrh = '$appointment_date', nature = '$nature' ,  filled = 1 , appt_stat = 'P'  WHERE item_no='$item_no'";
+
 
     $sql4 = "UPDATE applicant SET appointmented = '1'  WHERE applicant_id='$applicant_id'";
 
@@ -63,7 +83,7 @@ if (isset($_POST['submit'])) {
 
 <h4 class="background-title-1 p-3">Item profile (Appointment)</h4>
 
-<div class="container container-box">
+<div class="container-box">
 
     <?php
 
@@ -216,6 +236,8 @@ if (isset($_POST['submit'])) {
 
                 </div>
 
+                <input type="hidden" name="old_employee" id="old_employee">
+
                 <div class="col-lg-5 col-sm-6 mt-2">
                     <input type="text" class="form-control text-input" name="applicant_name" placeholder="LastName , FirstName , MiddleName , Ext" id="applicant_name">
                 </div>
@@ -237,7 +259,7 @@ if (isset($_POST['submit'])) {
 
             <div class="form-row">
                 <div class="col-lg-3 col-sm-6 mt-2">
-                    <input type="text" class="form-control text-input" name="emp_id" placeholder="Employee ID">
+                    <input type="text" class="form-control text-input" name="emp_id" placeholder="Employee ID" id="emp_id">
                 </div>
             </div>
 
@@ -291,6 +313,8 @@ if (isset($_POST['submit'])) {
                     $('#applicant_name').val(result.applicant_name);
                     $('#applicant_rating').val(result.applicant_rating);
                     $('#applicant_rank').val(result.applicant_rank);
+                    $('#old_employee').val(result.old_employee);
+                    $('#emp_id').val(result.emp_id);
                     // $('#applicant_ext').val(result.applicant_ext);
 
                 }

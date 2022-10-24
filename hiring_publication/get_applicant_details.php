@@ -62,6 +62,10 @@ if (isset($_POST['id'])) {
                         </div>
                     </div>
 
+                    <input type="hidden" name="old_employee" value="<?php echo $mydata['old_employee']; ?>" >
+                    
+                    <input type="hidden" name="emp_id" value="<?php echo $mydata['emp_id']; ?>" >
+
                     <div class="form-row ">
                         <div class="col-lg-3 col-sm-6">
                             <label for="" class="text-secondary">First Name</label>

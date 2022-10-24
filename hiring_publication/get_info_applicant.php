@@ -18,16 +18,21 @@ if(isset($_POST['applicant_id'])){
        
     while($mydata = $runquery -> fetch_assoc()){
 
+
         $applicant_last_name = $mydata["applicant_last_name"];
         $applicant_first_name = $mydata["applicant_first_name"];
         $applicant_middle_name = $mydata["applicant_middle_name"];
         $applicant_ext = $mydata["applicant_ext"];
         $applicant_rating = $mydata["applicant_rating"];
         $applicant_rank = $mydata["applicant_rank"];
+        $old_employee = $mydata["old_employee"];
+        $emp_id = $mydata["emp_id"];
+
+      
 
         $applicant_name = $applicant_last_name ." ".  $applicant_first_name ." ".  $applicant_middle_name ." ".  $applicant_ext  ; 
 
-        echo json_encode( array('applicant_name'=>$applicant_name,'applicant_rating'=>$applicant_rating,'applicant_rank'=>$applicant_rank));
+        echo json_encode( array('applicant_name'=>$applicant_name,'applicant_rating'=>$applicant_rating,'applicant_rank'=>$applicant_rank , 'old_employee'=>$old_employee , 'emp_id'=>$emp_id));
 
 }
     }

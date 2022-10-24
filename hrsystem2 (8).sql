@@ -8459,3 +8459,9 @@ ALTER TABLE `daily_accomplishment` ADD `success_checked` INT(11) NULL AFTER `out
 ALTER TABLE `training_table` ADD `classification` VARCHAR(255) NULL AFTER `role_posted_name`, ADD `proponent` VARCHAR(255) NULL AFTER `classification`, ADD `budgetary_requirement` VARCHAR(255) NULL AFTER `proponent`, ADD `financed_by` VARCHAR(255) NULL AFTER `budgetary_requirement`, ADD `source_of_fund` VARCHAR(255) NULL AFTER `financed_by`;
 
 ALTER TABLE `training_table` ADD `employee_names` VARCHAR(255) NULL AFTER `source_of_fund`;
+
+-- new
+ALTER TABLE `applicant` ADD `old_employee` INT NULL AFTER `appointmented`;
+ALTER TABLE `applicant` ADD `emp_id` VARCHAR(255) NULL AFTER `old_employee`;
+ALTER TABLE `training_table` ADD `no_of_days` INT NULL AFTER `employee_names`;
+ALTER TABLE `training_table` ADD `registration_fee` VARCHAR(255) NULL AFTER `no_of_days`;

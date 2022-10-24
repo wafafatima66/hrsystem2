@@ -11,17 +11,17 @@ if (isset($_POST['submit'])) {
 
     if (isset($_POST['success_checked'])) {
         $success_checked = $_POST['success_checked'];
-    }else {
+    } else {
         $success_checked = '';
     }
 
     if (isset($_POST['output_checked'])) {
-        $output_checked= $_POST['output_checked'];
-    }else {
+        $output_checked = $_POST['output_checked'];
+    } else {
         $output_checked = '';
     }
-   
-    
+
+
 
     $output = array();
     $success = array();
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
 
                     <form method="post" action="" enctype="multipart/form-data">
 
-                        <input type="hidden" value="<?php echo  $emp_id ?>" name="emp_id">
+                        <input type="hidden" value="<?php echo $emp_id ?>" name="emp_id" id="emp_id">
 
                         <div class="form-row">
 
@@ -97,31 +97,40 @@ if (isset($_POST['submit'])) {
 
                                 <div class="col-lg-6 col-sm-6 ">
                                     <label for="">Output</label>
-                                    <textarea name="output_description[]" cols="30" rows="5" class="form-control text-input" placeholder="Output"></textarea>
+
+                                    <textarea name="output_description[]" cols="30" rows="5" class="form-control text-input" placeholder="Output" id="output_description"></textarea>
+
                                     <div class="row">
+
                                         <div class="col-lg-6">
-                                            <input type="checkbox" class="form-check-input ml-1"
-                                            name="output_checked" value="1">
+                                            <input type="checkbox" class="form-check-input ml-1" name="output_checked" value="1" id="output_checked_id">
                                             <label class="form-check-label ml-4">Same as</label>
                                         </div>
+
                                         <div class="col-lg-6 mt-2">
-                                            <input type="date" class="form-control text-input" name="output_date">
+                                            <input type="date" class="form-control text-input" name="output_date" id="output_date">
                                         </div>
+
                                     </div>
 
                                 </div>
 
                                 <div class="col-lg-6 col-sm-6">
+
                                     <label for="">Success Indicator</label>
-                                    <textarea name="success_description[]" cols="30" rows="5" class="form-control text-input" placeholder="Success Indicator"></textarea>
+                                    
+                                    <textarea name="success_description[]" cols="30" rows="5" class="form-control text-input" placeholder="Success Indicator" id="success_description"></textarea>
+
                                     <div class="row">
+
                                         <div class="col-lg-6">
-                                            <input type="checkbox" class="form-check-input ml-1"
-                                            name="success_checked" value="1">
+                                            <input type="checkbox" class="form-check-input ml-1" name="success_checked" value="1" id="success_checked_id">
                                             <label class="form-check-label ml-4">Same as</label>
                                         </div>
+
                                         <div class="col-lg-6 mt-2">
-                                            <input type="date" class="form-control text-input" name="success_date">
+                                            <input type="date" class="form-control text-input" name="success_date" id="success_date">
+
                                         </div>
                                     </div>
                                 </div>
@@ -167,5 +176,79 @@ if (isset($_POST['submit'])) {
         e.preventDefault();
         $(this).parent('div').remove(); //Remove field html
         x--; //Decrement field counter
+    });
+
+    // output check 
+
+    function get_output_data(){
+    var output_date = $("#output_date").val();
+            var emp_id = $("#emp_id").val();
+            // console.log(department);
+            jQuery.ajax({
+                url: "get_output_data.php",
+                data: {
+                    output_date: output_date,
+                    emp_id : emp_id
+                },
+                type: "POST",
+                success: function(data) {
+                    $(".wrapper").append(data);
+                },
+                error: function() {}
+            });
+    }
+
+    $("#output_checked_id").change(function() {
+        if (this.checked) {
+            if($("#output_date").val()){
+                get_output_data()
+            }else {
+                toastr.error('Please select a date')
+            }
+            
+        }
+    });
+
+    $("#output_date").change(function() {
+        if($('#output_checked_id').is(':checked')){
+            get_output_data()
+        }
+    });
+
+// success check 
+
+function get_success_data(){
+    var success_date = $("#success_date").val();
+            var emp_id = $("#emp_id").val();
+            // console.log(department);
+            jQuery.ajax({
+                url: "get_success_data.php",
+                data: {
+                    success_date: success_date,
+                    emp_id : emp_id
+                },
+                type: "POST",
+                success: function(data) {
+                    $(".wrapper").append(data);
+                },
+                error: function() {}
+            });
+    }
+
+    $("#success_checked_id").change(function() {
+        if (this.checked) {
+            if($("#success_date").val()){
+                get_success_data()
+            }else {
+                toastr.error('Please select a date')
+            }
+            
+        }
+    });
+
+    $("#success_date").change(function() {
+        if($('#success_checked_id').is(':checked')){
+            get_success_data()
+        }
     });
 </script>

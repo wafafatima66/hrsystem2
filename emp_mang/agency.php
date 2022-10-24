@@ -5,7 +5,7 @@
   <?php 
 
 
- $query = "SELECT * FROM item where emp_id = '$emp_id'  ";
+ $query = "SELECT * FROM item where emp_id = '$emp_id' ORDER BY id DESC LIMIT 1 ";
  $result = mysqli_query($conn, $query);
  if (mysqli_num_rows($result) > 0) {
      while ($mydata = mysqli_fetch_assoc($result)) {

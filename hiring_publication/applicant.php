@@ -40,6 +40,9 @@ if (isset($_POST['submit'])) {
     $applicant_municipal = $_POST['applicant_municipal'];
     $applicant_zip = $_POST['applicant_zip'];
 
+    $old_employee = $_POST['old_employee'];
+    $emp_id = $_POST['emp_id'];
+
     
     $targetDir = "../files/";
     $fileNames = array_filter($_FILES['applicant_files']['name']);
@@ -68,7 +71,7 @@ if (isset($_POST['submit'])) {
     }
 
     $sql = "INSERT INTO applicant (
-        item_no  , position_no, applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_barangay, applicant_state, applicant_municipal, applicant_zip , appointmented) VALUES (  '$item_no' , '$position_no', '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_barangay', '$applicant_state', '$applicant_municipal','$applicant_zip' , '0' )";
+        item_no  , position_no, applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_barangay, applicant_state, applicant_municipal, applicant_zip , appointmented , old_employee , emp_id) VALUES (  '$item_no' , '$position_no', '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_barangay', '$applicant_state', '$applicant_municipal','$applicant_zip' , '0' , '$old_employee' , '$emp_id')";
 
 
     if (!empty($_POST['hiring_education'])) {
@@ -153,6 +156,9 @@ if (isset($_POST['edit_applicant'])) {
     $applicant_municipal = $_POST['applicant_municipal'];
     $applicant_zip = $_POST['applicant_zip'];
 
+    $old_employee = $_POST['old_employee'];
+    $emp_id = $_POST['emp_id'];
+
     $sql = mysqli_query($conn, "SELECT appointmented FROM applicant WHERE applicant_id = '$applicant_id' ");
     $row = mysqli_fetch_array($sql, MYSQLI_ASSOC);
     $appointmented = $row['appointmented'];
@@ -201,7 +207,7 @@ if (isset($_POST['edit_applicant'])) {
     }
 
     $sql = "INSERT INTO applicant (
-    item_no  , position_no,  applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_barangay, applicant_state, applicant_municipal, applicant_zip , appointmented ) VALUES (  '$item_no'  , '$position_no',  '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_barangay', '$applicant_state', '$applicant_municipal','$applicant_zip' , '$appointmented' )";
+    item_no  , position_no,  applicant_id , applicant_rating , applicant_rank , applicant_first_name, applicant_last_name, applicant_middle_name, applicant_ext, applicant_gender, applicant_barangay, applicant_state, applicant_municipal, applicant_zip , appointmented , old_employee  , emp_id) VALUES (  '$item_no'  , '$position_no',  '$applicant_id' ,' $applicant_rating' , '$applicant_rank', '$applicant_first_name', '$applicant_last_name', '$applicant_middle_name', '$applicant_ext', '$applicant_gender', '$applicant_barangay', '$applicant_state', '$applicant_municipal','$applicant_zip' , '$appointmented' , '$old_employee' , '$emp_id' )";
 
 
     if (!empty($_POST['hiring_education'])) {

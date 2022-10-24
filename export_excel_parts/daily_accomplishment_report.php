@@ -156,6 +156,7 @@ if ($rowcount1 != 0) {
 
 
     $output_description = json_decode($mydata['output_description']);
+    $output_description = array_values(array_filter($output_description, 'strlen'));
     $ul_output = "";
 
     if (!empty($output_description)) {
@@ -167,6 +168,8 @@ if ($rowcount1 != 0) {
 
 
     $success_description = json_decode($mydata['success_description']);
+    $success_description = array_values(array_filter($success_description, 'strlen'));
+    
     $ul_success = "";
 
     if (!empty($success_description)) {

@@ -18,6 +18,8 @@ if (isset($_POST['submit'])) {
   $budgetary_requirement = $_POST['budgetary_requirement'];
   $financed_by = $_POST['financed_by'];
   $source_of_fund = $_POST['source_of_fund'];
+  $no_of_days = $_POST['no_of_days'];
+  $registration_fee = $_POST['registration_fee'];
 
   $training_details = $_POST['training_details'];
 
@@ -74,9 +76,9 @@ if (isset($_POST['submit'])) {
     }
   }
 
-  $sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,speakers,sponsors,employees,training_details,role_posted , role_posted_name , classification , proponent , budgetary_requirement , financed_by , source_of_fund, employee_names)
+  $sql1 = "INSERT INTO training_table (title_of_training,from_date ,to_date, type_of_training, no_of_hrs, venue,province,speakers,sponsors,employees,training_details,role_posted , role_posted_name , classification , proponent , budgetary_requirement , financed_by , source_of_fund, employee_names , no_of_days , registration_fee)
 
-    VALUES ('$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province' ,'$speakers','$sponsors','$employees','$training_details','$role_posted' , '$role_posted_name' , '$classification' , '$proponent' , '$budgetary_requirement' , '$financed_by' , '$source_of_fund' , '$employee_names')";
+    VALUES ('$title_of_training','$from_date', '$to_date', '$type_of_training', '$no_of_hrs', '$venue','$province' ,'$speakers','$sponsors','$employees','$training_details','$role_posted' , '$role_posted_name' , '$classification' , '$proponent' , '$budgetary_requirement' , '$financed_by' , '$source_of_fund' , '$employee_names' , '$no_of_days' , '$registration_fee')";
 
 
 
@@ -227,6 +229,11 @@ if (isset($_POST['submit'])) {
 
 
               <div class="col-lg-3 col-sm-6">
+                <label>No. of Days</label>
+                <input type="text" class="form-control text-input" name="no_of_days">
+              </div>
+
+              <div class="col-lg-3 col-sm-6">
                 <label>No. of Hours</label>
                 <input type="text" class="form-control text-input" name="no_of_hrs">
               </div>
@@ -324,6 +331,12 @@ if (isset($_POST['submit'])) {
             </div>
 
             <div class="form-row">
+
+            <div class="col-lg-3 col-sm-6">
+                <label>Registration Fee</label>
+                <input type="text" class="form-control text-input" name="registration_fee">
+              </div>
+
               <div class="col-lg-3 col-sm-6">
                 <label>Budgetary Requirement</label>
                 <input type="text" class="form-control text-input" name="budgetary_requirement">

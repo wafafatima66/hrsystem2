@@ -62,10 +62,39 @@
 
                         </div>
 
-                        <div class="form-row ">
+                        <div class="form-row mt-3">
                             <div class="col-lg-12 col-sm-12">
                                 <label for="" class="h6">Basic Information</label>
                             </div>
+                        </div>
+
+
+                        <div class="form-row mb-2 mt-2">
+
+                            <div class="col-lg-6 col-sm-6">
+
+                                <select class="form-control text-input" id="termination_employee" name="emp_id">
+                                    <?php
+                                    $query = "SELECT t.*  ,  concat(e.emp_first_name , e.emp_last_name , e.emp_middle_name) as emp_full_name , e.emp_ext from termination t join employee e on e.emp_id = t.emp_id ";
+
+                                    $result = mysqli_query($conn, $query);
+
+                                    if (mysqli_num_rows($result) > 0) {
+                                        echo "<option value='' disabled selected hidden> Select from Termination Page </option> ";
+                                        while ($mydata = mysqli_fetch_assoc($result)) {
+                                            echo "<option value= '" . $mydata['emp_id'] . "'>" . $mydata['emp_full_name'] . "</option>";
+                                        }
+                                    } else {
+                                        echo "<option value='' disabled selected hidden> Select from Termination Page </option>";
+                                    }
+
+                                    ?>
+                                </select>
+
+                                <input type="hidden" name="old_employee" >
+
+                            </div>
+
                         </div>
 
                         <div class="form-row ">
@@ -93,7 +122,7 @@
 
                         <div class="form-row mt-3">
 
-                            
+
                             <div class="col-lg-3 col-sm-6">
                                 <!-- <input type="text" class=" form-control text-input" placeholder="Province/State" name="applicant_state" value=""> -->
                                 <select class="form-control text-input" name="applicant_state">
@@ -234,4 +263,33 @@
             error: function() {}
         });
     }
+
+    // get termination employee info 
+
+    $('#termination_employee').change(function(){
+        // console.log($(this).val())
+        $('[name="old_employee"]').val(1);
+
+        $.ajax({
+                url: 'get_info_emp_id.php',
+                type: 'post',
+                data: {
+                    emp_id: $(this).val()
+                },
+                dataType: 'json',
+                success: function(result) {
+                    $('[name="applicant_first_name"]').val(result.emp_first_name);
+                    $('[name="applicant_last_name"]').val(result.emp_last_name);
+                    $('[name="applicant_middle_name"]').val(result.emp_middle_name);
+                    $('[name="applicant_ext"]').val(result.emp_ext);
+                    $('[name="applicant_state"]').val(result.emp_birth_add_province);
+                    $('[name="applicant_municipal"]').val(result.emp_birth_add_municipal);
+                    $('[name="applicant_barangay"]').val(result.emp_birth_add_barangay);
+                    $('[name="applicant_zip"]').val(result.emp_birth_add_zipcode);
+                    if(result.emp_gender != null){$('[name="applicant_gender"]').val(result.emp_gender);}
+                    
+                }
+            });
+
+    })
 </script>

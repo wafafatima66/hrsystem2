@@ -85,7 +85,7 @@ $output .= "<table class='table home-page-table mt-3 table-striped ' >
 				<th rowspan='2'>Position</th>
 				<th rowspan='2'>Office/Unit</th>
 				<th rowspan='2'>Highest Educational Attainment</th>
-				<th rowspan='4'>Action</th>
+				<th rowspan='4' style='width:10%'>Action</th>
 
 				<th colspan='6'>Trainings (Hrs)</th>
 				
