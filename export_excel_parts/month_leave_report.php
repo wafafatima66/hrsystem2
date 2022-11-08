@@ -112,7 +112,7 @@ $spreadsheet->getActiveSheet()->setCellValue("G" . $k, 'Noted by:');
 
 $k+=2 ; 
 
-  $spreadsheet->getActiveSheet()->mergeCells("G" .$k.":J" .$k);
+$spreadsheet->getActiveSheet()->mergeCells("G" .$k.":J" .$k);
 $spreadsheet->getActiveSheet()->setCellValue("G" . $k, 'PAMELA C. PAKIPAC, RND, MPA');
 $spreadsheet->getActiveSheet()->getStyle("G" . $k)->applyFromArray($bold);
 

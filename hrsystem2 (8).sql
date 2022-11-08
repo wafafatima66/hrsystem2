@@ -8436,7 +8436,7 @@ ALTER TABLE `item` ADD `time_allocations` VARCHAR(500) NULL AFTER `date_modified
 ALTER TABLE `item` ADD `level_of_competency` INT NULL AFTER `time_allocations`;
 ALTER TABLE `emp_civil_service` CHANGE `civil_exam_rating` `civil_exam_rating` DOUBLE NULL DEFAULT NULL;
 
---new
+
 
 ALTER TABLE `emp_performance` ADD `date_of_submission` DATE NULL AFTER `excel_file_name`;
 ALTER TABLE `emp_performance` ADD `date_of_resubmission` DATE NULL AFTER `date_of_submission`;
@@ -8460,8 +8460,12 @@ ALTER TABLE `training_table` ADD `classification` VARCHAR(255) NULL AFTER `role_
 
 ALTER TABLE `training_table` ADD `employee_names` VARCHAR(255) NULL AFTER `source_of_fund`;
 
--- new
+
 ALTER TABLE `applicant` ADD `old_employee` INT NULL AFTER `appointmented`;
 ALTER TABLE `applicant` ADD `emp_id` VARCHAR(255) NULL AFTER `old_employee`;
 ALTER TABLE `training_table` ADD `no_of_days` INT NULL AFTER `employee_names`;
 ALTER TABLE `training_table` ADD `registration_fee` VARCHAR(255) NULL AFTER `no_of_days`;
+
+ALTER TABLE `employee` ADD `high_school_name` VARCHAR(100) NULL AFTER `voc_graduation`, ADD `high_degree` VARCHAR(100) NULL AFTER `high_school_name`, ADD `high_from_date` VARCHAR(200) NULL AFTER `high_degree`, ADD `high_to_date` VARCHAR(200) NULL AFTER `high_from_date`, ADD `high_units` INT(100) NULL AFTER `high_to_date`, ADD `high_award` VARCHAR(100) NULL AFTER `high_units`;
+
+ALTER TABLE `employee` ADD `high_graduation` VARCHAR(100) NULL AFTER `high_award`;

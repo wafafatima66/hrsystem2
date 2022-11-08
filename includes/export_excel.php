@@ -82,6 +82,26 @@ if (isset($_GET["month_leave_report"])) {
 
     include "../export_excel_parts/month_leave_report.php";
 }
+if (isset($_GET["monthly_training_report_attendance_ld"])) {
+
+    include "../export_excel_parts/monthly_training_report_attendance_ld.php";
+}
+if (isset($_GET["monthly_learning_development_database"])) {
+
+    include "../export_excel_parts/monthly_learning_development_database.php";
+}
+if (isset($_GET["summary_of_position"])) {
+
+    include "../export_excel_parts/summary_of_position.php";
+}
+if (isset($_GET["educational_profile"])) {
+
+    include "../export_excel_parts/educational_profile.php";
+}
+if (isset($_GET["dob_over_age"])) {
+
+    include "../export_excel_parts/dob_over_age.php";
+}
 
 
 

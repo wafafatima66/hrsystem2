@@ -98,6 +98,14 @@ if (isset($_POST['submit'])) {
     $voc_award = $_POST['voc_award'];
     $voc_graduation = $_POST['voc_graduation'];
 
+    
+    $high_school_name = $_POST['high_school_name'];
+    $high_degree = $_POST['high_degree'];
+    $high_from_date = $_POST['high_from_date'];
+    $high_to_date = $_POST['high_to_date'];
+    $high_units = $_POST['high_units'];
+    $high_award = $_POST['high_award'];
+    $high_graduation = $_POST['high_graduation'];
 
     // other
     $condition_1 = $_POST['condition_1'];
@@ -278,6 +286,7 @@ if (isset($_POST['submit'])) {
                     sec_units  , 
                     sec_award  , 
                     sec_graduation  ,
+
                     voc_school_name  ,
                     voc_degree  , 
                     voc_from_date , 
@@ -285,6 +294,15 @@ if (isset($_POST['submit'])) {
                     voc_units  , 
                     voc_award  ,
                     voc_graduation  , 
+
+                    high_school_name  ,
+                    high_degree  , 
+                    high_from_date , 
+                    high_to_date  ,
+                    high_units  , 
+                    high_award  ,
+                    high_graduation  , 
+
                     condition_1  , 
                     condition_2  , 
                     condition_2_des  ,
@@ -383,7 +401,16 @@ if (isset($_POST['submit'])) {
                     '$voc_to_date'  , 
                     '$voc_units'  , 
                     '$voc_award'  , 
-                    '$voc_graduation'  ,   
+                    '$voc_graduation'  ,
+
+                    '$high_school_name'  ,
+                    '$high_degree'  , 
+                    '$high_from_date' , 
+                    '$high_to_date'  ,
+                    '$high_units'  , 
+                    '$high_award'  ,
+                    '$high_graduation'  , 
+
                     '$condition_1'  , 
                     '$condition_2'  , 
                     '$condition_2_des ' ,

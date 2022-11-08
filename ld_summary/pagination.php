@@ -22,13 +22,16 @@ $add3 = "";
 
 
 
-// if (isset($_POST['from_date']) && isset($_POST['to_date']) && !empty($_POST['from_date']) && !empty($_POST['to_date'])) {
+if (isset($_POST['date'])  && !empty($_POST['date'])) {
 
-// 	$from_date = $_POST['from_date'];
-// 	$to_date = $_POST['to_date'];
-// 	$add2 = "and from_date BETWEEN '$from_date' AND '$to_date'";
+	$date =  $_POST["date"];
+	$datearray = explode('-', $date);
+	$search_month = $datearray[1];
+	$search_year = $datearray[0];
+	$date = $_POST['date'];
+	$add2 = "and YEAR(from_date) = ".$search_year." AND MONTH(from_date) = ".$search_month."" ;
 
-// }
+}
 
 
 // if (isset($_POST['search_post']) && !empty($_POST['search_post'])) {
@@ -91,7 +94,7 @@ if (mysqli_num_rows($result) > 0) {
 
 
 		$result1 = mysqli_query($conn, $query1);
-		if (mysqli_num_rows($result) > 0) {
+		if (mysqli_num_rows($result1) > 0) {
 			while ($mydata1 = mysqli_fetch_assoc($result1)) {
 
 				if ($mydata1['emp_gender'] == 'Female') {
@@ -151,6 +154,6 @@ if (mysqli_num_rows($result) > 0) {
 	$output .= '</ul> </div>';
 	echo $output;
 } else {
-	$output .= "<tr><td colspan='7'>No data Available</td> </tr></tbody></table>";
+	$output .= "<tr><td colspan='9'>No data Available</td> </tr></tbody></table>";
 	echo $output;
 }
