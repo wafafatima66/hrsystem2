@@ -27,7 +27,13 @@
   <h2>📸 Screenshots</h2>
   <p>Below are some UI previews</p>
 
-  <img src="screenshots/dashboard.png" alt="Dashboard Screenshot">
+  <img src="img/Screenshots/1.png" alt="Dashboard Screenshot">
+  <img src="img/Screenshots/2.png" alt="Dashboard Screenshot">
+  <img src="img/Screenshots/3.png" alt="Dashboard Screenshot">
+  <img src="img/Screenshots/4.png" alt="Dashboard Screenshot">
+  <img src="img/Screenshots/5.png" alt="Dashboard Screenshot">
+  <img src="img/Screenshots/6.png" alt="Dashboard Screenshot">
+  <img src="img/Screenshots/7.png" alt="Dashboard Screenshot">
 
 
   <h2>🛠 Tech Stack</h2>
