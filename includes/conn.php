@@ -2,8 +2,8 @@
 
 $dbhost = "localhost";
 $dbusername = "root";
-$dbpassword = "";
-$dbname="hrsystem2";
+$dbpassword = "root";
+$dbname="hrsystem";
 
 $conn = mysqli_connect($dbhost,$dbusername,$dbpassword,$dbname);
 

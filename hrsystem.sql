@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 04, 2022 at 10:39 AM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 7.3.29
+-- Host: localhost
+-- Generation Time: May 26, 2025 at 04:02 PM
+-- Server version: 8.0.41
+-- PHP Version: 8.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hrsystem2`
+-- Database: `hrsystem`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `applicant` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `item_no` varchar(100) DEFAULT NULL,
   `position_no` varchar(100) NOT NULL,
   `applicant_id` varchar(100) DEFAULT NULL,
@@ -44,8 +44,8 @@ CREATE TABLE `applicant` (
   `applicant_municipal` varchar(100) DEFAULT NULL,
   `applicant_barangay` varchar(255) DEFAULT NULL,
   `applicant_zip` varchar(100) DEFAULT NULL,
-  `appointmented` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `appointmented` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -54,10 +54,10 @@ CREATE TABLE `applicant` (
 --
 
 CREATE TABLE `applicant_file` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `file_name` varchar(100) DEFAULT NULL,
   `applicant_id` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -66,16 +66,16 @@ CREATE TABLE `applicant_file` (
 --
 
 CREATE TABLE `cont_position` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `position_no` varchar(100) DEFAULT NULL,
   `position_name` varchar(100) DEFAULT NULL,
   `salary_grade` varchar(100) DEFAULT NULL,
   `duration` varchar(100) DEFAULT NULL,
   `from_date` date DEFAULT NULL,
   `to_date` date DEFAULT NULL,
-  `status` int(11) NOT NULL,
+  `status` int NOT NULL,
   `date_posted` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -84,9 +84,9 @@ CREATE TABLE `cont_position` (
 --
 
 CREATE TABLE `department` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `department_name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -95,7 +95,7 @@ CREATE TABLE `department` (
 --
 
 CREATE TABLE `employee` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `emp_image` varchar(100) DEFAULT NULL,
   `emp_banner` varchar(200) DEFAULT NULL,
@@ -132,12 +132,12 @@ CREATE TABLE `employee` (
   `emp_tel_no` varchar(100) DEFAULT NULL,
   `emp_mb_no` varchar(100) DEFAULT NULL,
   `emp_email` varchar(100) DEFAULT NULL,
-  `emp_contact_gs` int(100) DEFAULT NULL,
-  `emp_contact_pag` int(100) DEFAULT NULL,
-  `emp_contact_ph` int(100) DEFAULT NULL,
-  `emp_contact_ss` int(100) DEFAULT NULL,
-  `emp_contact_tin` int(100) DEFAULT NULL,
-  `emp_contact_agency` int(100) DEFAULT NULL,
+  `emp_contact_gs` int DEFAULT NULL,
+  `emp_contact_pag` int DEFAULT NULL,
+  `emp_contact_ph` int DEFAULT NULL,
+  `emp_contact_ss` int DEFAULT NULL,
+  `emp_contact_tin` int DEFAULT NULL,
+  `emp_contact_agency` int DEFAULT NULL,
   `emp_father_lastname` varchar(100) DEFAULT NULL,
   `emp_father_firstname` varchar(100) DEFAULT NULL,
   `emp_father_middlename` varchar(100) DEFAULT NULL,
@@ -150,23 +150,23 @@ CREATE TABLE `employee` (
   `ele_degree` varchar(100) DEFAULT NULL,
   `ele_from_date` varchar(100) DEFAULT NULL,
   `ele_to_date` varchar(200) DEFAULT NULL,
-  `ele_units` int(100) DEFAULT NULL,
+  `ele_units` int DEFAULT NULL,
   `ele_award` varchar(100) DEFAULT NULL,
   `ele_graduation` varchar(50) DEFAULT NULL,
   `sec_school_name` varchar(100) DEFAULT NULL,
   `sec_degree` varchar(100) DEFAULT NULL,
   `sec_from_date` varchar(200) DEFAULT NULL,
   `sec_to_date` varchar(200) DEFAULT NULL,
-  `sec_units` int(100) DEFAULT NULL,
+  `sec_units` int DEFAULT NULL,
   `sec_award` varchar(100) DEFAULT NULL,
-  `sec_graduation` int(50) DEFAULT NULL,
+  `sec_graduation` int DEFAULT NULL,
   `voc_school_name` varchar(100) DEFAULT NULL,
   `voc_degree` varchar(100) DEFAULT NULL,
   `voc_from_date` varchar(200) DEFAULT NULL,
   `voc_to_date` varchar(200) DEFAULT NULL,
-  `voc_units` int(100) DEFAULT NULL,
+  `voc_units` int DEFAULT NULL,
   `voc_award` varchar(100) DEFAULT NULL,
-  `voc_graduation` int(50) DEFAULT NULL,
+  `voc_graduation` int DEFAULT NULL,
   `condition_1` varchar(10) DEFAULT NULL,
   `condition_2` varchar(10) DEFAULT NULL,
   `condition_2_des` varchar(100) DEFAULT NULL,
@@ -192,8 +192,8 @@ CREATE TABLE `employee` (
   `condition_11_des` varchar(100) DEFAULT NULL,
   `condition_12` varchar(10) DEFAULT NULL,
   `condition_12_des` varchar(100) DEFAULT NULL,
-  `active` int(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `active` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `employee`
@@ -687,11 +687,11 @@ INSERT INTO `employee` (`id`, `emp_id`, `emp_image`, `emp_banner`, `emp_first_na
 --
 
 CREATE TABLE `emp_children` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `emp_child_name` varchar(50) DEFAULT NULL,
   `emp_child_dob` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_children`
@@ -721,16 +721,16 @@ INSERT INTO `emp_children` (`id`, `emp_id`, `emp_child_name`, `emp_child_dob`) V
 --
 
 CREATE TABLE `emp_civil_service` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `civil_exam_type` varchar(50) DEFAULT NULL,
   `civil_exam_name` varchar(50) DEFAULT NULL,
-  `civil_exam_rating` int(10) DEFAULT NULL,
+  `civil_exam_rating` int DEFAULT NULL,
   `civil_exam_date` date DEFAULT NULL,
   `civil_exam_place` varchar(50) DEFAULT NULL,
-  `civil_exam_licence_no` int(50) DEFAULT NULL,
+  `civil_exam_licence_no` int DEFAULT NULL,
   `civil_exam_licence_val` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_civil_service`
@@ -760,17 +760,17 @@ INSERT INTO `emp_civil_service` (`id`, `emp_id`, `civil_exam_type`, `civil_exam_
 --
 
 CREATE TABLE `emp_education` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `school_name` varchar(255) DEFAULT NULL,
   `degree` varchar(255) DEFAULT NULL,
   `from_date` varchar(200) DEFAULT NULL,
   `to_date` varchar(200) DEFAULT NULL,
-  `units` int(100) DEFAULT NULL,
+  `units` int DEFAULT NULL,
   `award` varchar(255) DEFAULT NULL,
-  `graduation` int(50) DEFAULT NULL,
+  `graduation` int DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_education`
@@ -809,15 +809,15 @@ INSERT INTO `emp_education` (`id`, `emp_id`, `school_name`, `degree`, `from_date
 --
 
 CREATE TABLE `emp_file` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(100) DEFAULT NULL,
   `file_folder` varchar(100) DEFAULT NULL,
   `file_name` varchar(100) DEFAULT NULL,
   `file_type` varchar(100) DEFAULT NULL,
   `file_size` varchar(100) DEFAULT NULL,
   `file_date` varchar(100) DEFAULT NULL,
-  `performance_file_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `performance_file_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_file`
@@ -834,10 +834,10 @@ INSERT INTO `emp_file` (`id`, `emp_id`, `file_folder`, `file_name`, `file_type`,
 --
 
 CREATE TABLE `emp_folder` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `folder_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -846,11 +846,11 @@ CREATE TABLE `emp_folder` (
 --
 
 CREATE TABLE `emp_govt_id` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `emp_gov_issued_id_type` varchar(100) DEFAULT NULL,
   `emp_gov_issued_id` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_govt_id`
@@ -918,22 +918,22 @@ INSERT INTO `emp_govt_id` (`id`, `emp_id`, `emp_gov_issued_id_type`, `emp_gov_is
 --
 
 CREATE TABLE `emp_leaves` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(225) DEFAULT NULL,
   `type_of_leave` varchar(50) DEFAULT NULL,
   `leave_from_date` varchar(255) DEFAULT NULL,
   `leave_to_date` varchar(255) DEFAULT NULL,
-  `date_diff` int(100) NOT NULL,
+  `date_diff` int NOT NULL,
   `details_of_leave` varchar(255) NOT NULL,
-  `no_of_working_days` int(11) NOT NULL,
-  `status` int(11) DEFAULT NULL,
-  `final_status` int(11) DEFAULT NULL,
+  `no_of_working_days` int NOT NULL,
+  `status` int DEFAULT NULL,
+  `final_status` int DEFAULT NULL,
   `remarks` varchar(255) DEFAULT NULL,
   `final_remarks` varchar(255) DEFAULT NULL,
   `date_filled` date NOT NULL,
-  `lwp` int(11) DEFAULT NULL,
+  `lwp` int DEFAULT NULL,
   `from_date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -942,10 +942,10 @@ CREATE TABLE `emp_leaves` (
 --
 
 CREATE TABLE `emp_membership` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `emp_membership` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_membership`
@@ -978,10 +978,10 @@ INSERT INTO `emp_membership` (`id`, `emp_id`, `emp_membership`) VALUES
 --
 
 CREATE TABLE `emp_non_academic` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `emp_non_academic` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_non_academic`
@@ -1014,14 +1014,14 @@ INSERT INTO `emp_non_academic` (`id`, `emp_id`, `emp_non_academic`) VALUES
 --
 
 CREATE TABLE `emp_performance` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(100) DEFAULT NULL,
   `excel_file_type` varchar(100) DEFAULT NULL,
   `year` varchar(100) DEFAULT NULL,
   `rating_period` varchar(100) DEFAULT NULL,
   `rating` float DEFAULT NULL,
   `excel_file_name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_performance`
@@ -1037,12 +1037,12 @@ INSERT INTO `emp_performance` (`id`, `emp_id`, `excel_file_type`, `year`, `ratin
 --
 
 CREATE TABLE `emp_reference` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `ref_full_name` varchar(50) DEFAULT NULL,
   `ref_add` varchar(50) DEFAULT NULL,
   `ref_tel` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_reference`
@@ -1083,10 +1083,10 @@ INSERT INTO `emp_reference` (`id`, `emp_id`, `ref_full_name`, `ref_add`, `ref_te
 --
 
 CREATE TABLE `emp_special_skills` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `emp_special_skills` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_special_skills`
@@ -1119,7 +1119,7 @@ INSERT INTO `emp_special_skills` (`id`, `emp_id`, `emp_special_skills`) VALUES
 --
 
 CREATE TABLE `emp_spouse` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) NOT NULL,
   `emp_spouse_lastname` varchar(100) DEFAULT NULL,
   `emp_spouse_firstname` varchar(100) DEFAULT NULL,
@@ -1129,7 +1129,7 @@ CREATE TABLE `emp_spouse` (
   `emp_sp_employer` varchar(100) DEFAULT NULL,
   `emp_sp_add` varchar(100) DEFAULT NULL,
   `emp_sp_tel` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_spouse`
@@ -1154,17 +1154,17 @@ INSERT INTO `emp_spouse` (`id`, `emp_id`, `emp_spouse_lastname`, `emp_spouse_fir
 --
 
 CREATE TABLE `emp_training` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `title_of_training` varchar(50) DEFAULT NULL,
   `training_type_of_position` varchar(50) DEFAULT NULL,
-  `training_no_of_hrs` int(10) DEFAULT NULL,
+  `training_no_of_hrs` int DEFAULT NULL,
   `training_from_date` date DEFAULT NULL,
   `training_to_date` date NOT NULL,
   `training_conducted_by` varchar(50) DEFAULT NULL,
   `file` varchar(255) DEFAULT NULL,
-  `learning_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `learning_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_training`
@@ -1217,15 +1217,15 @@ INSERT INTO `emp_training` (`id`, `emp_id`, `title_of_training`, `training_type_
 --
 
 CREATE TABLE `emp_voluntary_work` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `vol_name_org` varchar(50) DEFAULT NULL,
   `vol_org_add` varchar(50) DEFAULT NULL,
   `vol_from_date` date DEFAULT NULL,
   `vol_to_date` date NOT NULL,
-  `vol_no_of_hrs` int(10) DEFAULT NULL,
+  `vol_no_of_hrs` int DEFAULT NULL,
   `vol_position` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_voluntary_work`
@@ -1252,7 +1252,7 @@ INSERT INTO `emp_voluntary_work` (`id`, `emp_id`, `vol_name_org`, `vol_org_add`,
 --
 
 CREATE TABLE `emp_work_experience` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `work_to_date` date DEFAULT NULL,
   `work_from_date` date DEFAULT NULL,
@@ -1262,7 +1262,7 @@ CREATE TABLE `emp_work_experience` (
   `work_monthly_sal` varchar(200) DEFAULT NULL,
   `work_increment` varchar(200) DEFAULT NULL,
   `work_status` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emp_work_experience`
@@ -1314,12 +1314,12 @@ INSERT INTO `emp_work_experience` (`id`, `emp_id`, `work_to_date`, `work_from_da
 --
 
 CREATE TABLE `files` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `date` varchar(100) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
   `size` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -1328,11 +1328,11 @@ CREATE TABLE `files` (
 --
 
 CREATE TABLE `hiring_competency` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `item_no` varchar(255) DEFAULT NULL,
   `add_com` varchar(255) DEFAULT NULL,
-  `com_num` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `com_num` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `hiring_competency`
@@ -1832,12 +1832,12 @@ INSERT INTO `hiring_competency` (`id`, `item_no`, `add_com`, `com_num`) VALUES
 --
 
 CREATE TABLE `hiring_education` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `item_no` varchar(100) DEFAULT NULL,
   `position_no` varchar(100) DEFAULT NULL,
   `applicant_id` varchar(100) DEFAULT NULL,
   `hiring_education` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `hiring_education`
@@ -2334,12 +2334,12 @@ INSERT INTO `hiring_education` (`id`, `item_no`, `position_no`, `applicant_id`, 
 --
 
 CREATE TABLE `hiring_eligibility` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `item_no` varchar(100) DEFAULT NULL,
   `position_no` varchar(100) DEFAULT NULL,
   `applicant_id` varchar(100) DEFAULT NULL,
   `hiring_eligibility` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `hiring_eligibility`
@@ -2836,12 +2836,12 @@ INSERT INTO `hiring_eligibility` (`id`, `item_no`, `position_no`, `applicant_id`
 --
 
 CREATE TABLE `hiring_training` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `item_no` varchar(100) DEFAULT NULL,
   `position_no` varchar(100) DEFAULT NULL,
   `applicant_id` varchar(100) DEFAULT NULL,
   `hiring_training` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `hiring_training`
@@ -3338,12 +3338,12 @@ INSERT INTO `hiring_training` (`id`, `item_no`, `position_no`, `applicant_id`, `
 --
 
 CREATE TABLE `hiring_work_exp` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `item_no` varchar(100) DEFAULT NULL,
   `position_no` varchar(100) DEFAULT NULL,
   `applicant_id` varchar(100) DEFAULT NULL,
   `hiring_work_exp` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `hiring_work_exp`
@@ -3840,20 +3840,20 @@ INSERT INTO `hiring_work_exp` (`id`, `item_no`, `position_no`, `applicant_id`, `
 --
 
 CREATE TABLE `item` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `item_no` varchar(100) DEFAULT NULL,
   `emp_id` varchar(108) DEFAULT NULL,
   `position` varchar(100) DEFAULT NULL,
   `salary_grade` varchar(100) DEFAULT NULL,
-  `annual_salary` int(8) DEFAULT NULL,
-  `monthly_salary` int(8) DEFAULT NULL,
-  `sg_step` int(2) DEFAULT NULL,
+  `annual_salary` int DEFAULT NULL,
+  `monthly_salary` int DEFAULT NULL,
+  `sg_step` int DEFAULT NULL,
   `area_code` varchar(8) DEFAULT NULL,
   `area_type` varchar(1) DEFAULT NULL,
   `level` varchar(1) DEFAULT NULL,
   `ppa` varchar(38) DEFAULT NULL,
-  `filled` int(1) DEFAULT NULL,
-  `position_level` int(1) DEFAULT NULL,
+  `filled` int DEFAULT NULL,
+  `position_level` int DEFAULT NULL,
   `date_orgappnt_other` date DEFAULT NULL,
   `date_orgappnt_lhmrh` date DEFAULT NULL,
   `date_last_promotion` date DEFAULT NULL,
@@ -3869,7 +3869,7 @@ CREATE TABLE `item` (
   `job_type` varchar(100) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `date_accomplished` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `item`
@@ -4359,7 +4359,8 @@ INSERT INTO `item` (`id`, `item_no`, `emp_id`, `position`, `salary_grade`, `annu
 (481, 'OSEC-DOHB-LAW2-90001-2019', 'LHMRH-2020-00311', 'LAUNDRY WORKER II', '3', 162864, 13572, 1, '011', 'R', 'T', '320101100003000', 1, 1, NULL, '2020-03-02', NULL, 'P', 'Housekee', NULL, NULL, NULL, NULL, NULL, 'ORIGINAL', 'HSD', '', NULL, NULL),
 (482, 'OSEC-DOHB-LAW2-90003-1998', 'LHMRH-2014-00081', 'LAUNDRY WORKER II', '3', 162864, 13572, 1, '0582', 'M', 'A', '320101100003000', 1, 1, NULL, '2014-01-02', '2014-09-01', 'P', 'Housekee', NULL, NULL, NULL, NULL, NULL, 'PROMOTION', 'HSD', '', NULL, NULL),
 (483, 'OSEC-DOHB-SEAM-90004-1998', 'LHMRH-2020-00366', 'SEAMSTRESS', '2', 153480, 12790, 1, '0582', 'M', 'S', '320101100003000', 1, 1, NULL, '2020-06-03', NULL, 'P', 'Housekee', NULL, NULL, NULL, NULL, NULL, 'ORIGINAL', 'HSD', '', NULL, NULL),
-(484, 'OSEC-DOHB-MDSP2-90065-2019', NULL, 'MEDICAL SPECIALIST II', '23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'P', 'Emergency Unit', NULL, '0000-00-00', NULL, '', '2021-12-08', NULL, 'MSD', '', '', NULL);
+(484, 'OSEC-DOHB-MDSP2-90065-2019', NULL, 'MEDICAL SPECIALIST II', '23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, 'P', 'Emergency Unit', NULL, '0000-00-00', NULL, '', '2021-12-08', NULL, 'MSD', '', '', NULL),
+(485, NULL, 'HR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -4368,19 +4369,19 @@ INSERT INTO `item` (`id`, `item_no`, `emp_id`, `position`, `salary_grade`, `annu
 --
 
 CREATE TABLE `leave_credits` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(100) DEFAULT NULL,
-  `vacation_leave` int(100) DEFAULT NULL,
-  `sick_leave` int(100) DEFAULT NULL,
-  `spl` int(100) DEFAULT NULL,
-  `force_leave` int(100) DEFAULT NULL,
-  `lwp` int(100) DEFAULT NULL,
-  `mon` int(11) DEFAULT NULL,
-  `year` int(11) NOT NULL,
-  `status` int(11) DEFAULT NULL,
-  `final_status` int(11) DEFAULT NULL,
-  `leave_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `vacation_leave` int DEFAULT NULL,
+  `sick_leave` int DEFAULT NULL,
+  `spl` int DEFAULT NULL,
+  `force_leave` int DEFAULT NULL,
+  `lwp` int DEFAULT NULL,
+  `mon` int DEFAULT NULL,
+  `year` int NOT NULL,
+  `status` int DEFAULT NULL,
+  `final_status` int DEFAULT NULL,
+  `leave_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -4389,9 +4390,9 @@ CREATE TABLE `leave_credits` (
 --
 
 CREATE TABLE `leave_credits_result` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(225) DEFAULT NULL,
-  `year` int(11) DEFAULT NULL,
+  `year` int DEFAULT NULL,
   `vl_pts_1` float DEFAULT NULL,
   `vl_pts_2` float DEFAULT NULL,
   `vl_pts_3` float DEFAULT NULL,
@@ -4416,7 +4417,7 @@ CREATE TABLE `leave_credits_result` (
   `sl_pts_10` float DEFAULT NULL,
   `sl_pts_11` float DEFAULT NULL,
   `sl_pts_12` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `leave_credits_result`
@@ -4900,7 +4901,8 @@ INSERT INTO `leave_credits_result` (`id`, `emp_id`, `year`, `vl_pts_1`, `vl_pts_
 (474, 'LHMRH-2020-00366', 2021, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
 (475, 'LHMRH-2020-00280', 2022, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
 (499, 'LHMRH-2014-00083', 2022, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
-(667, 'LHMRH-2014-00073', 2022, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30);
+(667, 'LHMRH-2014-00073', 2022, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30),
+(787, 'LHMRH-2014-00073', 2025, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30, 16.25, 17.5, 18.75, 20, 21.25, 22.5, 23.75, 25, 26.25, 27.5, 28.75, 30);
 
 -- --------------------------------------------------------
 
@@ -4909,21 +4911,21 @@ INSERT INTO `leave_credits_result` (`id`, `emp_id`, `year`, `vl_pts_1`, `vl_pts_
 --
 
 CREATE TABLE `leave_credits_year` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(100) DEFAULT NULL,
-  `year` int(100) DEFAULT NULL,
+  `year` int DEFAULT NULL,
   `vl_pts` decimal(10,2) DEFAULT NULL,
   `sl_pts` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `leave_credits_year`
 --
 
 INSERT INTO `leave_credits_year` (`id`, `emp_id`, `year`, `vl_pts`, `sl_pts`) VALUES
-(1, 'LHMRH-2014-00073', 2020, '15.00', '15.00'),
-(2, 'LHMRH-2020-00351', 2020, '20.92', '16.92'),
-(3, 'LHMRH-2016-00222', 2020, '12.20', '15.00');
+(1, 'LHMRH-2014-00073', 2020, 15.00, 15.00),
+(2, 'LHMRH-2020-00351', 2020, 20.92, 16.92),
+(3, 'LHMRH-2016-00222', 2020, 12.20, 15.00);
 
 -- --------------------------------------------------------
 
@@ -4932,10 +4934,10 @@ INSERT INTO `leave_credits_year` (`id`, `emp_id`, `year`, `vl_pts`, `sl_pts`) VA
 --
 
 CREATE TABLE `office` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `office_name` varchar(100) DEFAULT NULL,
   `department_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `office`
@@ -4951,11 +4953,11 @@ INSERT INTO `office` (`id`, `office_name`, `department_name`) VALUES
 --
 
 CREATE TABLE `publication` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `date_of_publication` date DEFAULT NULL,
   `end_of_publication` date DEFAULT NULL,
   `item_number` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `publication`
@@ -4971,12 +4973,12 @@ INSERT INTO `publication` (`id`, `date_of_publication`, `end_of_publication`, `i
 --
 
 CREATE TABLE `termination` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `termination_reason` varchar(255) DEFAULT NULL,
   `date_of_effectivity` date DEFAULT NULL,
   `termination_details` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -4985,10 +4987,10 @@ CREATE TABLE `termination` (
 --
 
 CREATE TABLE `termination_file` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `emp_id` varchar(255) DEFAULT NULL,
   `file_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -4997,10 +4999,10 @@ CREATE TABLE `termination_file` (
 --
 
 CREATE TABLE `training_emp_list` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `training_id` varchar(100) DEFAULT NULL,
   `emp_id` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `training_emp_list`
@@ -5016,18 +5018,37 @@ INSERT INTO `training_emp_list` (`id`, `training_id`, `emp_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `training_post_table`
+--
+
+CREATE TABLE `training_post_table` (
+  `id` int NOT NULL,
+  `title_of_training` varchar(100) DEFAULT NULL,
+  `from_date` varchar(100) DEFAULT NULL,
+  `to_date` varchar(100) DEFAULT NULL,
+  `type_of_training` varchar(100) DEFAULT NULL,
+  `no_of_hrs` varchar(100) DEFAULT NULL,
+  `venue` varchar(100) DEFAULT NULL,
+  `sponsors` varchar(500) DEFAULT NULL,
+  `file` varchar(500) DEFAULT NULL,
+  `training_details` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `training_speaker_list`
 --
 
 CREATE TABLE `training_speaker_list` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `training_id` varchar(100) DEFAULT NULL,
   `speaker_last_name` varchar(100) DEFAULT NULL,
   `speaker_first_name` varchar(100) DEFAULT NULL,
   `speaker_middle_name` varchar(100) DEFAULT NULL,
   `speaker_ext` varchar(100) DEFAULT NULL,
   `title` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `training_speaker_list`
@@ -5044,10 +5065,10 @@ INSERT INTO `training_speaker_list` (`id`, `training_id`, `speaker_last_name`, `
 --
 
 CREATE TABLE `training_sponsor_list` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `training_id` varchar(100) DEFAULT NULL,
   `sponsor` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `training_sponsor_list`
@@ -5066,7 +5087,7 @@ INSERT INTO `training_sponsor_list` (`id`, `training_id`, `sponsor`) VALUES
 --
 
 CREATE TABLE `training_table` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `title_of_training` varchar(100) DEFAULT NULL,
   `from_date` varchar(100) DEFAULT NULL,
   `to_date` varchar(100) DEFAULT NULL,
@@ -5077,17 +5098,18 @@ CREATE TABLE `training_table` (
   `agency` varchar(100) DEFAULT NULL,
   `speakers` varchar(500) DEFAULT NULL,
   `sponsors` varchar(500) DEFAULT NULL,
-  `employees` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `employees` varchar(500) DEFAULT NULL,
+  `training_details` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `training_table`
 --
 
-INSERT INTO `training_table` (`id`, `title_of_training`, `from_date`, `to_date`, `type_of_training`, `no_of_hrs`, `venue`, `province`, `agency`, `speakers`, `sponsors`, `employees`) VALUES
-(1, 'Sample Training ', '2022-03-28', '2022-03-31', 'technical', '8', 'Cafe', 'Bauko', 'MPSPC', NULL, NULL, NULL),
-(2, 'SDFADA', '2022-03-18', '2022-03-18', 'supervisory', '8', 'SDSAD', 'SDASDASD', 'SDADASD', NULL, NULL, NULL),
-(3, 'digital mareting', '1987-10-03', '2006-10-28', 'Supervisory', 'Nemo cumque vero in ', 'Nisi temporibus nost', 'Ut ipsum veniam con', 'Quaerat sint nesciun', '{\"speakers_name\":[\"Harriet Berk Willis Lyons\",\"Chantale Burke Delacruz Blanchard\"],\"speakers_title\":[\"Officiis et recusand\",\"Ea provident aut id\"]}', 'Elit sit officia i,Aut iure rerum volup,', 'LHMRH-2004-00048,');
+INSERT INTO `training_table` (`id`, `title_of_training`, `from_date`, `to_date`, `type_of_training`, `no_of_hrs`, `venue`, `province`, `agency`, `speakers`, `sponsors`, `employees`, `training_details`) VALUES
+(1, 'Sample Training ', '2022-03-28', '2022-03-31', 'technical', '8', 'Cafe', 'Bauko', 'MPSPC', NULL, NULL, NULL, NULL),
+(2, 'SDFADA', '2022-03-18', '2022-03-18', 'supervisory', '8', 'SDSAD', 'SDASDASD', 'SDADASD', NULL, NULL, NULL, NULL),
+(3, 'digital mareting', '1987-10-03', '2006-10-28', 'Supervisory', 'Nemo cumque vero in ', 'Nisi temporibus nost', 'Ut ipsum veniam con', 'Quaerat sint nesciun', '{\"speakers_name\":[\"Harriet Berk Willis Lyons\",\"Chantale Burke Delacruz Blanchard\"],\"speakers_title\":[\"Officiis et recusand\",\"Ea provident aut id\"]}', 'Elit sit officia i,Aut iure rerum volup,', 'LHMRH-2004-00048,', NULL);
 
 -- --------------------------------------------------------
 
@@ -5096,7 +5118,7 @@ INSERT INTO `training_table` (`id`, `title_of_training`, `from_date`, `to_date`,
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `username` varchar(100) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
@@ -5105,7 +5127,7 @@ CREATE TABLE `users` (
   `emp_id` varchar(100) NOT NULL,
   `department` varchar(100) DEFAULT NULL,
   `office` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
@@ -5586,7 +5608,7 @@ INSERT INTO `users` (`id`, `username`, `name`, `password`, `admin_photo`, `role`
 (472, 'GRANT', NULL, 'OSBOKENAYEO', NULL, 'Employee', 'LHMRH-2020-00311', NULL, NULL),
 (473, 'CRISTIN', NULL, 'PELAYOSIW-ANGAN', NULL, 'Employee', 'LHMRH-2014-00081', NULL, NULL),
 (474, 'CLEMENTINA', NULL, 'ONDONGCONENG', NULL, 'Employee', 'LHMRH-2020-00366', NULL, NULL),
-(493, 'hr', 'Administrator', 'hr    ', 'admin493-LHMRH logo icon.png', 'Super Administrator', 'HR', 'dept1', 'off1');
+(493, 'superadmin@hr.com', 'Super Administration', 'admin123', 'admin493-LHMRH logo icon.png', 'Super Administrator', 'HR', 'dept1', 'off1');
 
 -- --------------------------------------------------------
 
@@ -5595,7 +5617,7 @@ INSERT INTO `users` (`id`, `username`, `name`, `password`, `admin_photo`, `role`
 --
 
 CREATE TABLE `zipcodes` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `country` char(2) NOT NULL,
   `major_area` varchar(300) NOT NULL,
   `zip_code` varchar(25) NOT NULL,
@@ -8138,334 +8160,243 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applicant`
 --
 ALTER TABLE `applicant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `applicant_file`
 --
 ALTER TABLE `applicant_file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cont_position`
 --
 ALTER TABLE `cont_position`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=532;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=532;
 
 --
 -- AUTO_INCREMENT for table `emp_children`
 --
 ALTER TABLE `emp_children`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `emp_civil_service`
 --
 ALTER TABLE `emp_civil_service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `emp_education`
 --
 ALTER TABLE `emp_education`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `emp_file`
 --
 ALTER TABLE `emp_file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `emp_folder`
 --
 ALTER TABLE `emp_folder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `emp_govt_id`
 --
 ALTER TABLE `emp_govt_id`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `emp_leaves`
 --
 ALTER TABLE `emp_leaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `emp_membership`
 --
 ALTER TABLE `emp_membership`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `emp_non_academic`
 --
 ALTER TABLE `emp_non_academic`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `emp_performance`
 --
 ALTER TABLE `emp_performance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `emp_reference`
 --
 ALTER TABLE `emp_reference`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `emp_special_skills`
 --
 ALTER TABLE `emp_special_skills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `emp_spouse`
 --
 ALTER TABLE `emp_spouse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `emp_training`
 --
 ALTER TABLE `emp_training`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `emp_voluntary_work`
 --
 ALTER TABLE `emp_voluntary_work`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `emp_work_experience`
 --
 ALTER TABLE `emp_work_experience`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hiring_competency`
 --
 ALTER TABLE `hiring_competency`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=488;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=488;
 
 --
 -- AUTO_INCREMENT for table `hiring_education`
 --
 ALTER TABLE `hiring_education`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
 
 --
 -- AUTO_INCREMENT for table `hiring_eligibility`
 --
 ALTER TABLE `hiring_eligibility`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
 
 --
 -- AUTO_INCREMENT for table `hiring_training`
 --
 ALTER TABLE `hiring_training`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
 
 --
 -- AUTO_INCREMENT for table `hiring_work_exp`
 --
 ALTER TABLE `hiring_work_exp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
 
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=485;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=486;
 
 --
 -- AUTO_INCREMENT for table `leave_credits`
 --
 ALTER TABLE `leave_credits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `leave_credits_result`
 --
 ALTER TABLE `leave_credits_result`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=787;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=835;
 
 --
 -- AUTO_INCREMENT for table `leave_credits_year`
 --
 ALTER TABLE `leave_credits_year`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `office`
 --
 ALTER TABLE `office`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `publication`
 --
 ALTER TABLE `publication`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `termination`
 --
 ALTER TABLE `termination`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `termination_file`
 --
 ALTER TABLE `termination_file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `training_emp_list`
 --
 ALTER TABLE `training_emp_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `training_speaker_list`
 --
 ALTER TABLE `training_speaker_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `training_sponsor_list`
 --
 ALTER TABLE `training_sponsor_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `training_table`
 --
 ALTER TABLE `training_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=968;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=968;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-INSERT INTO `item` (`id`, `item_no`, `emp_id`, `position`, `salary_grade`, `annual_salary`, `monthly_salary`, `sg_step`, `area_code`, `area_type`, `level`, `ppa`, `filled`, `position_level`, `date_orgappnt_other`, `date_orgappnt_lhmrh`, `date_last_promotion`, `appt_stat`, `area_wrk_assign`, `remarks`, `date_created`, `status`, `place_of_assignment`, `date_posted`, `nature`, `division`, `job_type`, `description`, `date_accomplished`) VALUES (NULL, NULL, 'HR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL);
-
-
-ALTER TABLE `training_table` ADD `training_details` VARCHAR(255) NULL AFTER `employees`;
-
-CREATE TABLE `training_post_table` (
-  `id` int(11) NOT NULL,
-  `title_of_training` varchar(100) DEFAULT NULL,
-  `from_date` varchar(100) DEFAULT NULL,
-  `to_date` varchar(100) DEFAULT NULL,
-  `type_of_training` varchar(100) DEFAULT NULL,
-  `no_of_hrs` varchar(100) DEFAULT NULL,
-  `venue` varchar(100) DEFAULT NULL,
-  `sponsors` varchar(500) DEFAULT NULL,
-  `file` varchar(500) DEFAULT NULL
-) ;
-
-ALTER TABLE `training_post_table` ADD `training_details` VARCHAR(255) NULL AFTER `file`;
-
-ALTER TABLE `hrsystem2`.`training_post_table` ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `training_post_table` CHANGE `file` `file_name` VARCHAR(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
-
-ALTER TABLE `training_post_table` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-
-
-CREATE TABLE emp_leave_time (
-    Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    emp_id VARCHAR(100),
-    type varchar(100),
-    mon varchar(100),
-    year varchar(100)
-);
-
-ALTER TABLE `hrsystem2`.`emp_leave_time` ADD UNIQUE (`emp_id`, `type`, `mon`, `year`);
-
-ALTER TABLE `emp_leave_time` ADD `value` INT NULL AFTER `year`;
-
-
-ALTER TABLE `item` ADD `date_modified` DATE NULL AFTER `date_accomplished`;
-ALTER TABLE `employee` CHANGE `emp_contact_gs` `emp_contact_gs` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_pag` `emp_contact_pag` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_ph` `emp_contact_ph` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_ss` `emp_contact_ss` VARCHAR(100) NULL DEFAULT NULL, CHANGE `emp_contact_tin` `emp_contact_tin` VARCHAR(100) NULL DEFAULT NULL;
-
-
-ALTER TABLE `training_post_table` ADD `address` VARCHAR(255) NULL AFTER `file_name`;
-ALTER TABLE `training_post_table` ADD `role_posted` VARCHAR(255) NULL AFTER `training_details`;
-ALTER TABLE `training_post_table` ADD `role_posted_dept` VARCHAR(255) NULL AFTER `role_posted`;
-ALTER TABLE `training_post_table` ADD `role_posted_office` VARCHAR(255) NULL AFTER `role_posted_dept`;
-
-
-ALTER TABLE `training_post_table` ADD `role_posted_name` VARCHAR(255) NULL AFTER `role_posted_office`;
-ALTER TABLE `training_table` ADD `role_posted` VARCHAR(255) NULL AFTER `training_details`, ADD `role_posted_name` VARCHAR(255) NULL AFTER `role_posted`;
-
-ALTER TABLE `item` ADD `time_allocations` VARCHAR(500) NULL AFTER `date_modified`;
-ALTER TABLE `item` ADD `level_of_competency` INT NULL AFTER `time_allocations`;
-ALTER TABLE `emp_civil_service` CHANGE `civil_exam_rating` `civil_exam_rating` DOUBLE NULL DEFAULT NULL;
-
-
-
-ALTER TABLE `emp_performance` ADD `date_of_submission` DATE NULL AFTER `excel_file_name`;
-ALTER TABLE `emp_performance` ADD `date_of_resubmission` DATE NULL AFTER `date_of_submission`;
-ALTER TABLE `emp_performance` ADD `remarks` VARCHAR(1000) NULL AFTER `date_of_resubmission`;
-
-CREATE TABLE `daily_accomplishment` ( 
-  `id` INT NOT NULL AUTO_INCREMENT , 
-  `date` DATE NULL , 
-  `qty` INT(11) NOT NULL , 
-  `output_description` VARCHAR(1000) NULL , 
-  `output_date` DATE NULL , 
-  `success_description` VARCHAR(1000) NULL , 
-  `success_date` DATE NULL , 
-  `emp_id` VARCHAR(255) NOT NULL , 
-  PRIMARY KEY (`id`)) ;
-
-ALTER TABLE `daily_accomplishment` ADD `output_checked` INT(11) NULL AFTER `success_date`;
-ALTER TABLE `daily_accomplishment` ADD `success_checked` INT(11) NULL AFTER `output_checked`;
-
-ALTER TABLE `training_table` ADD `classification` VARCHAR(255) NULL AFTER `role_posted_name`, ADD `proponent` VARCHAR(255) NULL AFTER `classification`, ADD `budgetary_requirement` VARCHAR(255) NULL AFTER `proponent`, ADD `financed_by` VARCHAR(255) NULL AFTER `budgetary_requirement`, ADD `source_of_fund` VARCHAR(255) NULL AFTER `financed_by`;
-
-ALTER TABLE `training_table` ADD `employee_names` VARCHAR(255) NULL AFTER `source_of_fund`;
-
-
-ALTER TABLE `applicant` ADD `old_employee` INT NULL AFTER `appointmented`;
-ALTER TABLE `applicant` ADD `emp_id` VARCHAR(255) NULL AFTER `old_employee`;
-ALTER TABLE `training_table` ADD `no_of_days` INT NULL AFTER `employee_names`;
-ALTER TABLE `training_table` ADD `registration_fee` VARCHAR(255) NULL AFTER `no_of_days`;
-
-ALTER TABLE `employee` ADD `high_school_name` VARCHAR(100) NULL AFTER `voc_graduation`, ADD `high_degree` VARCHAR(100) NULL AFTER `high_school_name`, ADD `high_from_date` VARCHAR(200) NULL AFTER `high_degree`, ADD `high_to_date` VARCHAR(200) NULL AFTER `high_from_date`, ADD `high_units` INT(100) NULL AFTER `high_to_date`, ADD `high_award` VARCHAR(100) NULL AFTER `high_units`;
-
-ALTER TABLE `employee` ADD `high_graduation` VARCHAR(100) NULL AFTER `high_award`;
