@@ -48,7 +48,7 @@
   <h2>⚙️ Setup Instructions</h2>
   <ol>
     <li>Clone the project:
-      <pre><code>git clone https://github.com/wafafatima66/hrsystem2</code></pre>
+      <pre><code>https://github.com/wafafatima66/Human-resourse-management-system-php-mysql</code></pre>
     </li>
     <li>Place it in your server's web root (e.g., <code>htdocs</code> for XAMPP)</li>
     <li>Create a MySQL database, e.g., <code>hr_system</code></li>
